@@ -3,6 +3,7 @@
 @section('title')Тесты@endsection
 
 @section('stylesheet')
+    @yield('testform_stylesheet')
     <link rel="stylesheet" type="text/css" href="{{url('css/tests.css')}}">
 @endsection
 
@@ -26,5 +27,7 @@
             </div>
         </div>
     </div>
+
+    @yield('testform')
 
 @endsection
