@@ -41,6 +41,14 @@
 
 @yield('main_content')
 
+<footer>
+    <div class="footer_descr">
+        <span>Служба поддержки</span>  |  <span>Политика конфиденциальности</span>
+        <br>
+        Позвоните нам 8-800-555-01-21
+    </div>
+</footer>
+
 </body>
 </html>
 <script src="{{url('js/main.js')}}"></script>

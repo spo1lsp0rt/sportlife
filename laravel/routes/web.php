@@ -18,8 +18,6 @@ Route::get('/', [ MainController::class, 'home' ]);
 
 Route::get('/tests', [ MainController::class, 'tests' ]);
 
-Route::get('/about', [ MainController::class, 'about' ]);
+Route::get('/tests', [ MainController::class, 'testform' ]);
 
-/*Route::get('/user/{id}/{name}', function ($id, $name) {
-    return 'ID: '. $id.' Name: '.$name;
-});*/
+Route::get('/about', [ MainController::class, 'about' ]);

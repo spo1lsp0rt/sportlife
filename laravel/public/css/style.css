@@ -59,3 +59,23 @@ header .menulogin .menulogin_round .menulogin_downarrow {
     width: 12px;
     height: 5px;
 }
+
+footer {
+    margin-top: 40px;
+    padding: 69px 0 57px 0;
+    background: #1A1A1A;
+}
+
+footer .footer_descr {
+    margin: 0 auto;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 21px;
+    text-align: center;
+    color: #888888;
+}
+
+footer .footer_descr span {
+    text-decoration-line: underline;
+    cursor: pointer;
+}
