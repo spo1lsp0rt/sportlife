@@ -41,7 +41,7 @@
     foreach ($tests as &$var)
     {
         echo "
-                <a href='/' class='form_link''>s
+                <a href='$var->PathToHtml' class='form_link''>s
                     <div class='tests_form'>
                         <div class='form_title'>Тест №" .  $var->n . "</div>
                         <div class='form_divider'></div>
