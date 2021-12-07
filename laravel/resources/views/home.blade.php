@@ -3,7 +3,7 @@
 @section('title')Главная страница@endsection
 
 @section('stylesheet')
-    <link rel="stylesheet" href="{{url('css/home.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url('css/home.css')}}">
 @endsection
 
 @section('main_content')
