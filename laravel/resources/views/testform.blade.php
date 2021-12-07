@@ -11,26 +11,33 @@
         public $n;
         public $name;
         public $description;
+        public $PathToHtml;
         // конструктор
-        public function __construct($n, $name, $description)
+        public function __construct($n, $name, $description, $PathToHtml)
         {
             $this->n = $n;
             $this->name = $name;
             $this->description = $description;
+            $this->PathToHtml = $PathToHtml;
         }
         // геттеры
         public function getN() { return $this->n; }
         public function getName() { return $this->name; }
         public function getDescription() { return $this->description; }
+        public function getPathToHtml() { return $this->PathToHtml; }
         // сеттеры
         public function setN($n) { $this->n = $n; }
         public function setName($name) { $this->name = $name; }
         public function setDescription($description) { $this->description = $description; }
+        public function setPathToFile($PathToHtml) {$this->PathToHtml = $PathToHtml;}
     }
-    $tests = array(
-        new TestData(1, "Работа 1", "Описание работы №1"),
-        new TestData(2, "Работа 2", "Описание работы №2")
-    );
+    $tests = array();
+
+    foreach($allTests as $test)
+    {
+        $tests[] = new TestData($test->ID_Test, $test->Name, $test->Description, $test->PathToHtml);
+    }
+
     foreach ($tests as &$var)
     {
         echo "

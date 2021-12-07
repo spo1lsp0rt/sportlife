@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Test;
 
 class MainController extends Controller
 {
@@ -10,16 +11,14 @@ class MainController extends Controller
         return view('home');
     }
 
-    public function  authorize() {
-        return view('authorize');
-    }
-
     public function  tests() {
+
         return view('tests');
     }
 
     public function  testform() {
-        return view('testform');
+        $tests = new Test();
+        return view('testform', ['allTests' => $tests->all()]);
     }
 
     public function  about() {
