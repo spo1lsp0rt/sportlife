@@ -14,6 +14,10 @@ class MainController extends Controller
         return view('tests');
     }
 
+    public function  testform() {
+        return view('testform');
+    }
+
     public function  about() {
         return view('about');
     }
