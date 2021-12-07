@@ -10,6 +10,10 @@ class MainController extends Controller
         return view('home');
     }
 
+    public function  authorize() {
+        return view('authorize');
+    }
+
     public function  tests() {
         return view('tests');
     }
