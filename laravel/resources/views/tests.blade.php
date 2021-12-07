@@ -28,8 +28,6 @@
         </div>
     </div>
 
-    @for ($i = 0; $i < 10; $i++)
         @yield('testform')
-    @endfor
 
 @endsection
