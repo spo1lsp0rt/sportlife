@@ -21,3 +21,5 @@ Route::get('/tests', [ MainController::class, 'tests' ]);
 Route::get('/tests', [ MainController::class, 'testform' ]);
 
 Route::get('/about', [ MainController::class, 'about' ]);
+
+Route::get('/test1', [ MainController::class, 'test1' ]);
