@@ -28,4 +28,17 @@ class MainController extends Controller
     public function test1(){
         return view('test1');
     }
+    public function test1_check(Request $request){
+        $valid = $request->validate([
+            'PushUp' => 'required|max:100',
+            'RaisTorso' => 'required|max:100',
+            'TiltForward' => 'required|max:100',
+            'Retention' => 'required|max:100',
+            'Catching' => 'required|max:100',
+            'Equilibrium' => 'required|max:100',
+            'Tapping' => 'required|max:100'
+        ]);
+
+        return view('home');
+    }
 }
