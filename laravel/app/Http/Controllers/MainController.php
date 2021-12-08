@@ -41,4 +41,8 @@ class MainController extends Controller
 
         return view('home');
     }
+
+    public function test2(){
+        return view('test2');
+    }
 }

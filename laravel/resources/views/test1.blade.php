@@ -3,7 +3,7 @@
 @section('title')Оценка собственного уровня физической кондиции@endsection
 
 @section('stylesheet')
-    <link rel="stylesheet" type="text/css" href="{{url('css/test1.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url('css/style_test.css')}}">
 @endsection
 
 @section('main_content')

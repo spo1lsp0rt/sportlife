@@ -26,4 +26,6 @@ Route::get('/about', [ MainController::class, 'about' ]);
 
 Route::get('/test1', [ MainController::class, 'test1' ]);
 
+Route::get('/test2', [ MainController::class, 'test2' ]);
+
 Route::post('/test1/check', [ MainController::class, 'test1_check' ]);
