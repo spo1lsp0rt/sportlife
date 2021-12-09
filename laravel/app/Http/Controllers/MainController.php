@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\statistic;
 use Illuminate\Http\Request;
 use App\Models\Test;
 
@@ -16,7 +17,9 @@ class MainController extends Controller
     }
 
     public function  statistic_table() {
-        return view('statistic_table');
+        $allStat = new statistic();
+        $tests = new Test();
+        return view('statistic_table', ['allStat' => $allStat->all()], ['allTests' => $tests->all()]);
     }
 
     public function  tests() {
