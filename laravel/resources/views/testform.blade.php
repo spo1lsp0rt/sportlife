@@ -52,7 +52,7 @@
                         <div class='testdescr_case'>
                             <div class='form_testdescr_title'>Описание:</div>
                             <div class='form_testdescr_field'>
-                                <div class=\"form_testdescr\">" . $var->description . "</div>
+                                " . $var->description . "
                             </div>
                         </div>
                     </div>

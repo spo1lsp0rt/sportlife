@@ -12,8 +12,11 @@ class MainController extends Controller
     }
 
     public function  tests() {
-
         return view('tests');
+    }
+
+    public function  authorization() {
+        return view('authorization');
     }
 
     public function  testform() {

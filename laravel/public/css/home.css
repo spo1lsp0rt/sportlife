@@ -1,10 +1,8 @@
 
 .home {
     display: flex;
-}
-
-.home .home_descrblock {
-    padding-top: 198px;
+    justify-content: center;
+    align-items: center;
 }
 
 .home .home_descrblock .home_title {
@@ -35,8 +33,4 @@
     border-radius: 17px;
     font-size: 25px;
     color: #FFFFFF;
-}
-
-.home .home_img {
-    padding-top: 53px;
 }

@@ -30,7 +30,7 @@
                 <div class="col-md-2 offset-md-2">
                     <div class="menulogin">
                         <div class="menulogin_round"><img src="/icons/user_log.png" alt="" class="menulogin_icon"></div>
-                        <a href="/authorize" class="menulogin_link">Войти</a>
+                        <a href="/authorization" class="menulogin_link">Войти</a>
                         <a href="#"><img src="icons/down_arrow.png" alt="" class="menulogin_downarrow"></a>
                     </div>
                 </div>
@@ -51,4 +51,4 @@
 
 </body>
 </html>
-<script src="{{url('js/main.js')}}"></script>
+<script src="{{ asset("js/bootstrap.min.js") }}"></script>
