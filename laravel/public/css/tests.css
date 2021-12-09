@@ -1,5 +1,6 @@
 .tests {
-    padding-bottom: 60px;
+    height: 160px;
+    margin-bottom: 20px;
 }
 
 .tests .tests_title {
