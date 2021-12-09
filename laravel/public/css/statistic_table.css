@@ -1,0 +1,64 @@
+.statistic_table {
+    display: flex;
+    width: 1144px;
+    margin: 0 auto;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+}
+
+.statistic_table .col {
+    padding: 0;
+}
+
+.statistic_table .title_field {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    padding: 10px 15px 10px 15px;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 30px;
+    color: #000000;
+    border-right: 1px solid black;
+}
+
+.statistic_table .title_field_last {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    padding: 10px 15px 10px 15px;
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 30px;
+    color: #000000;
+    border-right: none;
+}
+
+.statistic_table .data_field {
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    padding: 10px 15px 10px 15px;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 30px;
+    color: #000000;
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+}
+
+.statistic_table .data_field_last {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    padding: 10px 15px 10px 15px;
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 30px;
+    color: #000000;
+    border-top: 1px solid black;
+    border-right: none;
+}

@@ -16,6 +16,10 @@ use App\Http\Controllers\MainController;
 
 Route::get('/', [ MainController::class, 'home' ]);
 
+Route::get('/user_profile', [ MainController::class, 'user_profile' ]);
+
+Route::get('/user_profile', [ MainController::class, 'statistic_table' ]);
+
 Route::get('/authorization', [ MainController::class, 'authorization' ]);
 
 Route::get('/tests', [ MainController::class, 'tests' ]);

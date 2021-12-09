@@ -29,7 +29,9 @@
                 </div>
                 <div class="col-md-2 offset-md-2">
                     <div class="menulogin">
-                        <div class="menulogin_round"><img src="/icons/user_log.png" alt="" class="menulogin_icon"></div>
+                        <a href="/user_profile">
+                            <div class="menulogin_round"><img src="/icons/user_log.png" alt="" class="menulogin_icon"></div>
+                        </a>
                         <a href="/authorization" class="menulogin_link">Войти</a>
                         <a href="#"><img src="icons/down_arrow.png" alt="" class="menulogin_downarrow"></a>
                     </div>
@@ -43,7 +45,7 @@
 
 <footer>
     <div class="footer_descr">
-        <span>Служба поддержки</span>  |  <span>Политика конфиденциальности</span>
+        <span>Служба поддержки</span> | <span>Политика конфиденциальности</span>
         <br>
         Позвоните нам 8-800-555-01-21
     </div>

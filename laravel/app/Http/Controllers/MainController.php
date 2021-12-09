@@ -11,6 +11,14 @@ class MainController extends Controller
         return view('home');
     }
 
+    public function  user_profile() {
+        return view('user_profile');
+    }
+
+    public function  statistic_table() {
+        return view('statistic_table');
+    }
+
     public function  tests() {
         return view('tests');
     }
