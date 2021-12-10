@@ -7,11 +7,6 @@
     <div class="container">
         <div class="alert alert-light">
             <div class="row mb-3">
-                <div class="col">
-                    <h3>Образец политики конфиденциальности</h3>
-                </div>
-            </div>
-            <div class="row mb-3">
                 <div class="col" style="border: solid 2px #eee; padding: 20px">
                     <div id="inputResult">
                         <div class="row mb-4">
