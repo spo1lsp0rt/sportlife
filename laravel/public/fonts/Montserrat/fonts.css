@@ -23,6 +23,16 @@
 }
 
 @font-face {
+    font-family: 'Montserrat';
+    src: url('Montserrat-SemiBold.eot');
+    src: url('Montserrat-SemiBold.eot?#iefix') format('embedded-opentype'),
+    url('Montserrat-SemiBold.woff') format('woff'),
+    url('Montserrat-SemiBold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
 	font-family: 'Montserrat';
 	src: url('Montserrat-Bold.eot');
 	src: local('Montserrat Bold'), local('Montserrat-Bold'),

@@ -17,7 +17,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <a href="/"><img src="/img/logo.png" alt="logo" class="menu_img"></a>
+                    <a href="/"><img src="/img/logo.svg" alt="logo" class="menu_img"></a>
                 </div>
                 <div class="col-md-5">
                     <ul class="menu">

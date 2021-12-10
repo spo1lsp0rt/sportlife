@@ -17,6 +17,7 @@
     height: 50px;
     display: flex;
     justify-content: center;
+    align-items: center;
     padding: 10px 15px 10px 15px;
     font-weight: 400;
     font-size: 25px;
@@ -29,6 +30,7 @@
     height: 50px;
     display: flex;
     justify-content: center;
+    align-items: center;
     padding: 10px 15px 10px 15px;
     font-weight: 400;
     font-size: 25px;
@@ -41,9 +43,10 @@
     height: 60px;
     display: flex;
     justify-content: center;
+    align-items: center;
     padding: 10px 15px 10px 15px;
-    font-weight: 700;
-    font-size: 25px;
+    font-weight: 600;
+    font-size: 20px;
     line-height: 30px;
     color: #000000;
     border-top: 1px solid black;
@@ -54,9 +57,10 @@
     height: 50px;
     display: flex;
     justify-content: center;
+    align-items: center;
     padding: 10px 15px 10px 15px;
-    font-weight: 700;
-    font-size: 25px;
+    font-weight: 600;
+    font-size: 20px;
     line-height: 30px;
     color: #000000;
     border-top: 1px solid black;
