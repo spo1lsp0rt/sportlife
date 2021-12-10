@@ -13,17 +13,6 @@
             <div class="container">
                 <h1>Контрольная работа №2</h1>
             </div>
-            @if($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        <li>
-                        @foreach($errors->all() as $error)
-                            <li>{{$error}}</li>
-                            @endforeach
-                            </li>
-                    </ul>
-                </div>
-            @endif
             <div class="container">
                 <h2>Оценка собственного уровня функционального состояния</h2>
             </div>
@@ -32,8 +21,16 @@
                     <div class="col">
                         <div class="test_task">
                             <div class="test_header">Задание 1. Определение индекса массы тела (индекс Кетле).</div>
-                            <input type="text" placeholder="Введите вашу массу тела" class="test_result" name="Weight">
-                            <input type="text" placeholder="Введите ваш рост" class="test_result" name="Growth">
+                            <input type="text" placeholder="Введите вашу массу тела" class="test_result"
+                                   class="@error('Weight') is-invalid @enderror" name="Weight">
+                            @error('Weight')
+                            <div class="alert alert-danger">{{ 'Поле заполнено некорректно' }}</div>
+                            @enderror
+                            <input type="text" placeholder="Введите ваш рост" class="test_result"
+                                   class="@error('Growth') is-invalid @enderror" name="Growth">
+                            @error('Growth')
+                            <div class="alert alert-danger">{{ 'Поле заполнено некорректно' }}</div>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -55,7 +52,11 @@
                                 значение ЧСС можно измерить пульс в течение 10 секунд и умножить на 6, более точное
                                 измерение проводится в течение 15 секунд и умножить на 4.
                             </div>
-                            <input type="text" placeholder="Введите результат" class="test_result" name="RecoveryReaction">
+                            <input type="text" placeholder="Введите результат" class="test_result"
+                                   class="@error('RecoveryReaction') is-invalid @enderror" name="RecoveryReaction">
+                            @error('RecoveryReaction')
+                            <div class="alert alert-danger">{{ 'Поле заполнено некорректно' }}</div>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -69,7 +70,11 @@
                                 <br>
                                 <ol>
                                     <li>Измеряется пульс за 15 секунд (<b>Результат 1</b>).</li>
-                                    <input type="text" placeholder="Введите результат 1" class="test_result" name="HeartResult1">
+                                    <input type="text" placeholder="Введите результат 1" class="test_result"
+                                           class="@error('HeartResult1') is-invalid @enderror" name="HeartResult1">
+                                    @error('HeartResult1')
+                                    <div class="alert alert-danger">{{ 'Поле заполнено некорректно' }}</div>
+                                    @enderror
                                     <br>
                                     <li>Далее тестируемый выполняет 30 приседаний за 45 секунд, то есть в среднем темпе.
                                     </li>
@@ -78,8 +83,16 @@
                                     </li>
                                 </ol>
                             </div>
-                            <input type="text" placeholder="Введите результат 2" class="test_result" name="HeartResult2">
-                            <input type="text" placeholder="Введите результат 3" class="test_result" name="HeartResult3">
+                            <input type="text" placeholder="Введите результат 2" class="test_result"
+                                   class="@error('HeartResult2') is-invalid @enderror" name="HeartResult2">
+                            @error('HeartResult2')
+                            <div class="alert alert-danger">{{ 'Поле заполнено некорректно' }}</div>
+                            @enderror
+                            <input type="text" placeholder="Введите результат 3" class="test_result"
+                                   class="@error('HeartResult3') is-invalid @enderror" name="HeartResult3">
+                            @error('HeartResult2')
+                            <div class="alert alert-danger">{{ 'Поле заполнено некорректно' }}</div>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -99,12 +112,19 @@
                                 <ol>
                                     <li>После 5-минутного отдыха определите пульс за одну минуту в положении стоя (уд/мин).
                                     </li>
-                                    <input type="text" placeholder="Введите частоту пульса" class="test_result" name="Pulse">
+                                    <input type="text" placeholder="Введите частоту пульса" class="test_result"
+                                           class="@error('Pulse') is-invalid @enderror" name="Pulse">
+                                    @error('Pulse')
+                                    <div class="alert alert-danger">{{ 'Поле заполнено некорректно' }}</div>
+                                    @enderror
                                     <br>
                                     <li>Измерьте свое артериальное давление и запомните его «верхнее» значение.
                                     </li>
-                                    <input type="text" placeholder="Введите показание артериального давления"
-                                           class="test_result" name="ArterialPressure">
+                                    <input type="text" placeholder="Введите показание артериального давления" class="test_result"
+                                           class="@error('ArterialPressure') is-invalid @enderror" name="ArterialPressure">
+                                    @error('ArterialPressure')
+                                    <div class="alert alert-danger">{{ 'Поле заполнено некорректно' }}</div>
+                                    @enderror
                                 </ol>
                             </div>
                         </div>
@@ -137,7 +157,11 @@
                                     </li>
                                 </ol>
                             </div>
-                            <input type="text" placeholder="Введите результат" class="test_result" name="StangeTest">
+                            <input type="text" placeholder="Введите результат" class="test_result"
+                                   class="@error('StangeTest') is-invalid @enderror" name="StangeTest">
+                            @error('StangeTest')
+                            <div class="alert alert-danger">{{ 'Поле заполнено некорректно' }}</div>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -166,7 +190,11 @@
                                 Если проба Генче выполняется сразу после пробы Штанге, то необходим отдых между пробами
                                 7-10 минут.
                             </div>
-                            <input type="text" placeholder="Введите результат" class="test_result" name="StangeTest">
+                            <input type="text" placeholder="Введите результат" class="test_result"
+                                   class="@error('GencheTest') is-invalid @enderror" name="GencheTest">
+                            @error('GencheTest')
+                            <div class="alert alert-danger">{{ 'Поле заполнено некорректно' }}</div>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -190,7 +218,11 @@
                                 </ol>
                                 Итоговая оценка производится по результатам фазы 3 (сек).
                             </div>
-                            <input type="text" placeholder="Введите результат" class="test_result" name="SerkinTest">
+                            <input type="text" placeholder="Введите результат" class="test_result"
+                                   class="@error('SerkinTest') is-invalid @enderror" name="SerkinTest">
+                            @error('SerkinTest')
+                            <div class="alert alert-danger">{{ 'Поле заполнено некорректно' }}</div>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -205,11 +237,19 @@
                                 <br>
                                 <ol>
                                     <li>В положении лежа подсчитывается пульс за 10 сек и умножается на 6.</li>
-                                    <input type="text" placeholder="Введите результат" class="test_result">
+                                    <input type="text" placeholder="Введите результат" class="test_result"
+                                           class="@error('OrthostaticTest1') is-invalid @enderror" name="OrthostaticTest1">
+                                    @error('OrthostaticTest1')
+                                    <div class="alert alert-danger">{{ 'Поле заполнено некорректно' }}</div>
+                                    @enderror
                                     <br>
                                     <li>Затем нужно спокойно встать и подсчитать пульс в положении стоя.
                                     </li>
-                                    <input type="text" placeholder="Введите результат" class="test_result" name="OrthostaticTest">
+                                    <input type="text" placeholder="Введите результат" class="test_result"
+                                           class="@error('OrthostaticTest2') is-invalid @enderror" name="OrthostaticTest2">
+                                    @error('OrthostaticTest2')
+                                    <div class="alert alert-danger">{{ 'Поле заполнено некорректно' }}</div>
+                                    @enderror
                                 </ol>
                             </div>
                         </div>
@@ -226,11 +266,19 @@
                                 <br>
                                 <ol>
                                     <li>В положении стоя подсчитывается пульс за 10 сек и умножается на 6.</li>
-                                    <input type="text" placeholder="Введите результат" class="test_result">
+                                    <input type="text" placeholder="Введите результат" class="test_result"
+                                           class="@error('ClinostaticTest1') is-invalid @enderror" name="ClinostaticTest1">
+                                    @error('ClinostaticTest1')
+                                    <div class="alert alert-danger">{{ 'Поле заполнено некорректно' }}</div>
+                                    @enderror
                                     <br>
                                     <li>Затем нужно спокойно лечь и подсчитать пульс в положении лежа.
                                     </li>
-                                    <input type="text" placeholder="Введите результат" class="test_result" name="ClinostaticTest">
+                                    <input type="text" placeholder="Введите результат" class="test_result"
+                                           class="@error('ClinostaticTest2') is-invalid @enderror" name="ClinostaticTest2">
+                                    @error('ClinostaticTest2')
+                                    <div class="alert alert-danger">{{ 'Поле заполнено некорректно' }}</div>
+                                    @enderror
                                 </ol>
                             </div>
                         </div>
