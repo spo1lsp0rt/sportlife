@@ -93,7 +93,9 @@ footer .footer_descr {
     color: #888888;
 }
 
-footer .footer_descr span {
+footer .footer_descr a {
     text-decoration-line: underline;
+    color: #888888;
+    text-decoration-color: #888888;
     cursor: pointer;
 }

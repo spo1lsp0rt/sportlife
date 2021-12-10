@@ -22,6 +22,8 @@ Route::get('/user_profile', [ MainController::class, 'statistic_table' ]);
 
 Route::get('/authorization', [ MainController::class, 'authorization' ]);
 
+Route::get('/privacy', [ MainController::class, 'privacy_policy' ]);
+
 Route::get('/tests', [ MainController::class, 'tests' ]);
 
 Route::get('/tests', [ MainController::class, 'testform' ]);

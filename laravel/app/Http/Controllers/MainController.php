@@ -22,6 +22,10 @@ class MainController extends Controller
         return view('statistic_table', ['allStat' => $allStat->all()], ['allTests' => $tests->all()]);
     }
 
+    public function  privacy_policy() {
+        return view('privacy_policy');
+    }
+
     public function  tests() {
         return view('tests');
     }
