@@ -59,4 +59,23 @@ class MainController extends Controller
     public function test2(){
         return view('test2');
     }
+
+    public function test2_check(Request $request){
+        $valid = $request->validate([
+            'Weight' => 'required|max:100',
+            'Growth' => 'required|max:100',
+            'RecoveryReaction' => 'required|max:100',
+            'HeartResult1' => 'required|max:100',
+            'HeartResult2' => 'required|max:100',
+            'HeartResult3' => 'required|max:100',
+            'Pulse' => 'required|max:100',
+            'ArterialPressure' => 'required|max:100',
+            'StangeTest' => 'required|max:100',
+            'StangeTest' => 'required|max:100',
+            'OrthostaticTest' => 'required|max:100',
+            'ClinostaticTest' => 'required|max:100',
+        ]);
+
+        return view('home');
+    }
 }
