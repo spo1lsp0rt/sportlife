@@ -71,9 +71,11 @@ class MainController extends Controller
             'Pulse' => 'required|max:100',
             'ArterialPressure' => 'required|max:100',
             'StangeTest' => 'required|max:100',
-            'StangeTest' => 'required|max:100',
-            'OrthostaticTest' => 'required|max:100',
-            'ClinostaticTest' => 'required|max:100',
+            'GencheTest' => 'required|max:100',
+            'OrthostaticTest1' => 'required|max:100',
+            'OrthostaticTest2' => 'required|max:100',
+            'ClinostaticTest1' => 'required|max:100',
+            'ClinostaticTest2' => 'required|max:100',
         ]);
 
         return view('home');

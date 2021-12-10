@@ -18,18 +18,6 @@
                 <h2>Оценка собственного уровня физической кондиции</h2>
             </div>
 
-            @if($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        <li>
-                        @foreach($errors->all() as $error)
-                            <li>{{$error}}</li>
-                            @endforeach
-                            </li>
-                    </ul>
-                </div>
-            @endif
-
             <div class="container">
                 <div class="row">
                     <div class="col">
@@ -47,7 +35,12 @@
                                 Дается одна попытка. Фиксируется количество отжиманий от пола при условии правильного выполнения
                                 теста в произвольном темпе.
                             </div>
-                            <input type="text" placeholder="Введите результат" class="test_result" name="PushUp">
+
+                            <input type="text" placeholder="Введите результат" class="test_result"
+                                   class="@error('PushUp') is-invalid @enderror" name="PushUp" value="">
+                            @error('PushUp')
+                            <div class="alert alert-danger">{{ 'Поле заполнено некорректно' }}</div>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -64,7 +57,11 @@
                                 <br>
                                 Фиксируется количество выполненных упражнений в одной попытке за 30 секунд.
                             </div>
-                            <input type="text" placeholder="Введите результат" class="test_result" name = "RaisTorso">
+                            <input type="text" placeholder="Введите результат" class="test_result"
+                                   class="@error('RaisTorso') is-invalid @enderror" name = "RaisTorso">
+                            @error('RaisTorso')
+                            <div class="alert alert-danger">{{ 'Поле заполнено некорректно' }}</div>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -81,7 +78,11 @@
                                 по кончикам пальцев при фиксации этого результата в течение 5 секунд, при этом не допускается
                                 сгибание ног в коленках.
                             </div>
-                            <input type="text" placeholder="Введите результат" class="test_result" name = "TiltForward">
+                            <input type="text" placeholder="Введите результат" class="test_result"
+                                   class="@error('RaisTorso') is-invalid @enderror" name = "TiltForward">
+                            @error('TiltForward')
+                            <div class="alert alert-danger">{{ 'Поле заполнено некорректно' }}</div>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -98,7 +99,11 @@
                                 при
                                 изменении угла сгибания в локтях. Оценивается время удержания позы (сек).
                             </div>
-                            <input type="text" placeholder="Введите результат" class="test_result" name = "Retention">
+                            <input type="text" placeholder="Введите результат" class="test_result" class="test_result"
+                                   class="@error('Retention') is-invalid @enderror" name = "Retention">
+                            @error('Retention')
+                            <div class="alert alert-danger">{{ 'Поле заполнено некорректно' }}</div>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -126,7 +131,11 @@
                                 испытуемого
                                 (см). Проводится три попытки, учитывается лучший результат.
                             </div>
-                            <input type="text" placeholder="Введите результат" class="test_result" name = "Catching" >
+                            <input type="text" placeholder="Введите результат" class="test_result"
+                                   class="@error('Retention') is-invalid @enderror" name = "Catching" name = "Catching">
+                            @error('Catching')
+                            <div class="alert alert-danger">{{ 'Поле заполнено некорректно' }}</div>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -148,7 +157,11 @@
                                 <br>
                                 Оценивается средний показатель времени удержания равновесия (из 3-х попыток).
                             </div>
-                            <input type="text" placeholder="Введите результат" class="test_result" name = "Equilibrium">
+                            <input type="text" placeholder="Введите результат" class="test_result"
+                                   class="@error('Equilibrium') is-invalid @enderror" name = "Equilibrium">
+                            @error('Equilibrium')
+                            <div class="alert alert-danger">{{ 'Поле заполнено некорректно' }}</div>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -181,7 +194,11 @@
                                     </li>
                                 </ol>
                             </div>
-                            <input type="text" placeholder="Введите результат" class="test_result" name = "Tapping">
+                            <input type="text" placeholder="Введите результат" class="test_result"
+                                   class="@error('Tapping') is-invalid @enderror"  name = "Tapping">
+                            @error('Tapping')
+                            <div class="alert alert-danger">{{ 'Поле заполнено некорректно' }}</div>
+                            @enderror
                         </div>
                     </div>
                 </div>
