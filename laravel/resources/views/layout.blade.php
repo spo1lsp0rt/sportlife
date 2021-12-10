@@ -50,7 +50,6 @@
         Позвоните нам 8-800-555-01-21
     </div>
 </footer>
-
+<script src="/js/bootstrap.min.js"></script>
 </body>
 </html>
-<script src="{{ asset("js/bootstrap.min.js") }}"></script>
