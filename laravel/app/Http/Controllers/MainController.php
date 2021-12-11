@@ -57,7 +57,7 @@ class MainController extends Controller
             'Tapping' => 'required|max:100'
         ]);
 
-        return view('home');
+        return view('test1_result');
     }
 
     public function test2(){
