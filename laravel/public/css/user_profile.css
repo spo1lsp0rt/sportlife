@@ -1,12 +1,17 @@
-.user_profile {
-
+.user_profile .profile_title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70px;
+    background-color: black;
+    color: #efefef;
 }
 
 .user_profile .profile_img {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 auto;
+    margin: 50px auto 0 auto;
     width: 220px;
     height: 220px;
     background: #5A5A5A;

@@ -55,17 +55,19 @@ if(isset($stats))
             }
         }
         echo "
-                <div class='row'>
-                    <div class='col col-md-3'>
-                        <div class='data_field'>$stat->date_test</div>
+                <a href='/'>
+                    <div class='row'>
+                        <div class='col col-md-3'>
+                            <div class='data_field'>$stat->date_test</div>
+                        </div>
+                        <div class='col col-md-6'>
+                            <div class='data_field'>" . $allTests[$index]->Name . "</div>
+                        </div>
+                        <div class='col col-md-3'>
+                            <div class='data_field_last'>$stat->result</div>
+                        </div>
                     </div>
-                    <div class='col col-md-6'>
-                        <div class='data_field'>" . $allTests[$index]->Name . "</div>
-                    </div>
-                    <div class='col col-md-3'>
-                        <div class='data_field_last'>$stat->result</div>
-                    </div>
-                </div>
+                </a>
         ";
     }
     echo "

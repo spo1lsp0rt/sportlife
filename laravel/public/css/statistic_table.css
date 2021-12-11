@@ -9,6 +9,10 @@
     border-radius: 20px;
 }
 
+.statistic_table a {
+    text-decoration: none;
+}
+
 .statistic_table .col {
     padding: 0;
 }

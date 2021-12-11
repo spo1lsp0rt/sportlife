@@ -1,0 +1,91 @@
+.result_title {
+    margin: 0 auto;
+}
+
+.result_table {
+    display: flex;
+    width: 800px;
+    margin: 40px auto 0 auto;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+}
+
+.result_table .col {
+    padding: 0;
+}
+
+.result_table .title_field {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 15px 10px 15px;
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 30px;
+    color: #000000;
+    border-right: 1px solid black;
+}
+
+.result_table .title_field_last {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 15px 10px 15px;
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 30px;
+    color: #000000;
+    border-right: none;
+}
+
+.result_table .data_field {
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 15px 10px 15px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    color: #000000;
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+}
+
+.result_table .data_field_last {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 15px 10px 15px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    color: #000000;
+    border-top: 1px solid black;
+    border-right: none;
+}
+
+.result_total {
+    margin: 30px auto 0px auto;
+}
+
+.result_total .total_counting {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 400;
+    font-size: 25px;
+    height: 50px;
+    margin: 20px auto 0 auto;
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+}

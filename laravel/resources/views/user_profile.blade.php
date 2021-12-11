@@ -10,6 +10,7 @@
 @section('main_content')
 
     <div class="user_profile">
+        <div class="profile_title"><h2>Профиль</h2></div>
         <div class="profile_img">
             <img src="/img/profile_img.png" alt="profile">
         </div>

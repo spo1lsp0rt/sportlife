@@ -17,6 +17,15 @@
     border-radius: 11px;
 }
 
+.test .test_task .alert {
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    padding: 5px 15px 5px 15px;
+}
+
 .test .test_task .test_header{
     text-align: center;
     font-weight: 700;
@@ -55,12 +64,17 @@
     color: #FFFFFF;
     text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.21);
 
-    width: 259px;
+    width: 280px;
     height: 63px;
-    background-image: linear-gradient(to top, #1EACC7 0%, #4CE2FF 100%);
+    background-image: linear-gradient(to top, #111111 0%, #424852 100%);
     box-shadow: inset 0px -3px 0px rgba(0, 0, 0, 0.12);
     border: none;
-    border-radius: 4px;
+    border-radius: 17px;
+}
+
+.test .result_btn:hover {
+    background-image: linear-gradient(to top, #2f2f2f 0%, #373f4b 100%);
+    color: #e5e5e5;
 }
 
 .test .test_warn{
