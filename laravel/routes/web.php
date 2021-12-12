@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\SaveResultController;
+use App\Http\Controllers\TestController;
+use App\Http\Controllers\TestListController;
+use App\Http\Controllers\TestResultController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MainController;
 
@@ -24,16 +28,30 @@ Route::get('/authorization', [ MainController::class, 'authorization' ]);
 
 Route::get('/privacy', [ MainController::class, 'privacy_policy' ]);
 
-Route::get('/tests', [ MainController::class, 'tests' ]);
+/*Route::get('/tests', [ MainController::class, 'tests' ]);*/
 
-Route::get('/tests', [ MainController::class, 'testform' ]);
+/**
+ * Вывод списка тестов
+ */
+Route::get('/tests',  TestListController::class );
 
 Route::get('/about', [ MainController::class, 'about' ]);
 
-Route::get('/test1', [ MainController::class, 'test1' ]);
+/**
+ * Вывод списка заданий теста пользователю
+ */
+Route::get('/test/{id}',  TestController::class ) ->whereNumber('id');
 
-Route::get('/test2', [ MainController::class, 'test2' ]);
+/**
+ * Сохранение результатов теста, вводимых пользователем значений
+ *
+ */
+Route::post('/test/{id}',  SaveResultController::class ) ->whereNumber('id');
 
-Route::post('/test1/check', [ MainController::class, 'test1_check' ]);
+/**
+ * Вывод результата выполнения теста
+ */
+Route::get('/test_result/{id}',  TestResultController::class ) ->whereNumber('id');
 
-Route::post('/test2/check', [ MainController::class, 'test2_check' ]);
+
+Route::post('/test1_result', [ MainController::class, 'test1_result' ]);

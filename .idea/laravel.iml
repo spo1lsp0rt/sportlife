@@ -119,6 +119,18 @@
       <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/nesbot/carbon" />
       <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/ramsey/collection" />
       <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/ramsey/uuid" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/barryvdh/reflection-docblock" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/barryvdh/laravel-ide-helper" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/react/promise" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/justinrainbow/json-schema" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/symfony/filesystem" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/psr/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/seld/phar-utils" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/seld/jsonlint" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/doctrine/deprecations" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/doctrine/event-manager" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/doctrine/dbal" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/doctrine/cache" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -46,6 +46,7 @@ class MainController extends Controller
     public function test1(){
         return view('test1');
     }
+
     public function test1_check(Request $request){
         $valid = $request->validate([
             'PushUp' => 'required|max:100',
@@ -57,7 +58,7 @@ class MainController extends Controller
             'Tapping' => 'required|max:100'
         ]);
 
-        return view('test1_result');
+        return view('test1_result', $_POST);
     }
 
     public function test2(){
