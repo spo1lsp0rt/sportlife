@@ -29,16 +29,16 @@
             @foreach($result->Exercises as $key => $exercise)
                 <div class='row'>
                     <div class='col col-md-5'>
-                        <div class='title_field'>{{$exercise->Name}}</div>
+                        <div class='data_field'>{{$exercise->Name}}</div>
                     </div>
                     <div class='col col-md-3'>
-                        <div class='title_field'>{{$exercise->Value}}</div>
+                        <div class='data_field'>{{$exercise->Value}}</div>
                     </div>
                     <div class='col col-md-2'>
-                        <div class='title_field'>НВП</div>
+                        <div class='data_field'>НВП</div>
                     </div>
                     <div class='col col-md-2'>
-                        <div class='title_field_last'>Оценка</div>
+                        <div class='data_field_last'>Оценка</div>
                     </div>
                 </div>
             @endforeach
@@ -52,112 +52,3 @@
     </div>
 
 @endsection
-
-
-
-{{--
-<div class='row'>
-    <div class='col col-md-5'>
-        <div class='data_field'>Отжимания</div>
-    </div>
-    <div class='col col-md-3'>
-        <div class='data_field'>0,53</div>
-    </div>
-    <div class='col col-md-2'>
-        <div class='data_field'>0,61</div>
-    </div>
-    <div class='col col-md-2'>
-        <div class='data_field_last'>1</div>
-    </div>
-</div>
-
-
-<div class='row'>
-    <div class='col col-md-5'>
-        <div class='data_field'>Поднимание туловища</div>
-    </div>
-    <div class='col col-md-3'>
-        <div class='data_field'>0,53</div>
-    </div>
-    <div class='col col-md-2'>
-        <div class='data_field'>0,61</div>
-    </div>
-    <div class='col col-md-2'>
-        <div class='data_field_last'>1</div>
-    </div>
-</div>
-
-<div class='row'>
-    <div class='col col-md-5'>
-        <div class='data_field'>Наклон вперед</div>
-    </div>
-    <div class='col col-md-3'>
-        <div class='data_field'>0,53</div>
-    </div>
-    <div class='col col-md-2'>
-        <div class='data_field'>0,61</div>
-    </div>
-    <div class='col col-md-2'>
-        <div class='data_field_last'>1</div>
-    </div>
-</div>
-
-<div class='row'>
-    <div class='col col-md-5'>
-        <div class='data_field'>Удержание упора</div>
-    </div>
-    <div class='col col-md-3'>
-        <div class='data_field'>0,53</div>
-    </div>
-    <div class='col col-md-2'>
-        <div class='data_field'>0,61</div>
-    </div>
-    <div class='col col-md-2'>
-        <div class='data_field_last'>1</div>
-    </div>
-</div>
-
-<div class='row'>
-    <div class='col col-md-5'>
-        <div class='data_field'>Ловля линейки</div>
-    </div>
-    <div class='col col-md-3'>
-        <div class='data_field'>0,53</div>
-    </div>
-    <div class='col col-md-2'>
-        <div class='data_field'>0,61</div>
-    </div>
-    <div class='col col-md-2'>
-        <div class='data_field_last'>1</div>
-    </div>
-</div>
-
-<div class='row'>
-    <div class='col col-md-5'>
-        <div class='data_field'>Удержание равновесия</div>
-    </div>
-    <div class='col col-md-3'>
-        <div class='data_field'>0,53</div>
-    </div>
-    <div class='col col-md-2'>
-        <div class='data_field'>0,61</div>
-    </div>
-    <div class='col col-md-2'>
-        <div class='data_field_last'>1</div>
-    </div>
-</div>
-
-<div class='row'>
-    <div class='col col-md-5'>
-        <div class='data_field'>Теппинг-тест</div>
-    </div>
-    <div class='col col-md-3'>
-        <div class='data_field'>0,53</div>
-    </div>
-    <div class='col col-md-2'>
-        <div class='data_field'>0,61</div>
-    </div>
-    <div class='col col-md-2'>
-        <div class='data_field_last'>1</div>
-    </div>
-</div>--}}
