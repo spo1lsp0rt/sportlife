@@ -12,8 +12,8 @@
         <div class="authorize_title">Авторизация</div>
         <form class="px-4 py-3">
             <div class="mb-3">
-                <label for="exampleDropdownFormEmail1" class="form-label">Электронная почта</label>
-                <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@sportlife.com">
+                <label for="exampleDropdownFormEmail1" class="form-label">Логин</label>
+                <input type="text" class="form-control" placeholder="Введите логин">
             </div>
             <div class="mb-3">
                 <label for="exampleDropdownFormPassword1" class="form-label">Пароль</label>
