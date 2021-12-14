@@ -38,6 +38,24 @@
                     </div>
                 @endforeach
             </div>
+            <div class="person_info">
+                <div class="gender_info">
+                    <div class="gender_title">Выберите ваш пол:</div>
+                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                        <label class="btn btn-outline-dark" for="btnradio1">Мужской</label>
+
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                        <label class="btn btn-outline-dark" for="btnradio2">Женский</label>
+                    </div>
+                </div>
+
+                <div class="age_info">
+                    <div class="age_title">Введите ваш возраст:</div>
+                    <input type="text" placeholder="Например: 18" class="age_input">
+                </div>
+
+            </div>
             <button class="result_btn">Получить результат</button>
         </section>
     </form>

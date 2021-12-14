@@ -39,6 +39,7 @@
 .test .test_task .test_result{
     display: block;
     margin: 0 auto;
+    margin-top: 10px;
     width: 855px;
     height: 35px;
     background: #E8E8E8;
@@ -46,8 +47,6 @@
     box-sizing: border-box;
     border-radius: 17px;
     text-align: center;
-    margin: 0 auto;
-    margin-top: 10px;
 }
 
 .test .tests_task input[type=text] {
@@ -91,4 +90,32 @@
     font-style: italic;
 }
 
+.test .person_info {
+    width: 380px;
+    margin: 30px auto 0 auto;
+}
 
+.test .person_info .gender_title, .test .person_info .age_title {
+    margin-right: 15px;
+}
+
+.test .person_info .gender_info {
+    display: flex;
+    align-items: center;
+}
+
+.test .person_info .age_info {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.test .person_info .age_input {
+    width: 150px;
+    height: 38px;
+    background: #ffffff;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: .25rem;
+    text-align: center;
+}

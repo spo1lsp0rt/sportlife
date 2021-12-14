@@ -38,7 +38,6 @@
                         @php }else{ @endphp
                         <a href="/authorization" class="menulogin_link">Войти</a>
                         @php }@endphp
-                        <a href="#"><img src="icons/down_arrow.png" alt="arrow" class="menulogin_downarrow"></a>
                     </div>
                 </div>
             </div>
