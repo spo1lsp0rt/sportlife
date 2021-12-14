@@ -8,8 +8,6 @@
 
 @section('main_content')
 
-    <div class="ratio ratio-16x9">
-        <iframe src="/img/jum-jum.mp4" title="YouTube video" allowfullscreen></iframe>
-    </div>
+
 
 @endsection

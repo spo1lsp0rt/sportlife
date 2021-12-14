@@ -9,7 +9,7 @@
 @section('main_content')
 
     <div class="authorize_menu">
-        <div class="authorize_title">Авторизация</div>
+        <div class="authorize_title"><h2>Авторизация</h2></div>
         <form class="px-4 py-3" method="post" action="/auth/check">
             @csrf
             <?php if($error != "")

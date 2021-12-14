@@ -4,10 +4,8 @@
 }
 
 .tests .tests_title {
-    width: 280px;
-    margin: 0 auto;
-    font-weight: 400;
-    font-size: 25px;
+    display: flex;
+    justify-content: center;
     color: #000000;
 }
 
@@ -52,6 +50,12 @@
     padding-right: 20px;
 }
 
+.tests .tests_vision .vision_link {
+    width: 35px;
+    height: 35px;
+    margin-right: 16px;
+}
+
 .tests .tests_vision .vision_columns {
     display: flex;
     justify-content: center;
@@ -62,7 +66,10 @@
     border: 1px solid #000000;
     box-sizing: border-box;
     border-radius: 10px;
-    margin-right: 16px;
+}
+
+.tests .tests_vision .vision_link:hover .vision_columns {
+    background: #cbcbcb;
 }
 
 .tests .tests_vision .vision_rows {

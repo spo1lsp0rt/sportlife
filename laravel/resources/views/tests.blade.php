@@ -11,7 +11,7 @@
 @section('main_content')
 
     <div class="tests">
-        <div class="tests_title">Выбор нужного теста</div>
+        <div class="tests_title"><h2>Выбор нужного теста</h2></div>
         <div class="tests_search">
             <div class="search_title">Название:</div>
             <input type="text" placeholder="Введите название теста" class="search_field" />

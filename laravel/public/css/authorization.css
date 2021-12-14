@@ -6,5 +6,9 @@
 .authorize_menu .authorize_title {
     display: flex;
     justify-content: center;
-    font-size: 20px;
+    color: #000000;
+}
+
+.authorize_menu .alert {
+    height: 55px;
 }
