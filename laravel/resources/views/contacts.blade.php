@@ -33,7 +33,7 @@
                     <div class="info_text">Звоните: </div>
                 </div>
                 <div class="col-md-2">
-                    <div class="info_text">8-800-555-01-21</div>
+                    <div class="info_text"><a href="tel:8-800-555-01-21">8-800-555-01-21</a></div>
                 </div>
             </div>
             <div class="row">

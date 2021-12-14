@@ -1,5 +1,7 @@
 .form_link {
     text-decoration: none;
+    width: auto;
+    height: auto;
 }
 
 .tests_form {
@@ -82,10 +84,3 @@
     line-height: 23px;
     color: #000000;
 }
-
-/*.tests_form .testdescr_case .form_testdescr {
-    font-weight: 400;
-    font-size: 15px;
-    line-height: 19px;
-    color: #000000;
-}*/

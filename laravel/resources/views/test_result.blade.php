@@ -75,4 +75,6 @@
         <div class="total_counting">ОУФК = (О + ПТ + Н + У + ЛЛ + УР + ТТ) : 7 = {{$OYFK}}</div>
     </div>
 
+
+
 @endsection

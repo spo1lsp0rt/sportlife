@@ -96,11 +96,13 @@
 
 .test .person_info .gender_info {
     display: flex;
+    justify-content: center;
     align-items: center;
 }
 
 .test .person_info .age_info {
     display: flex;
+    justify-content: center;
     align-items: center;
     margin-top: 15px;
 }
