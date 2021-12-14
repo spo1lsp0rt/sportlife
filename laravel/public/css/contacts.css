@@ -1,0 +1,8 @@
+.info{
+    margin-top: 70px;
+}
+
+.info .info_text{
+    margin-top: 15px;
+    display: inline-block;
+}

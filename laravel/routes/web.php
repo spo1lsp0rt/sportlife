@@ -41,6 +41,8 @@ Route::get('/tests',  TestListController::class );
 
 Route::get('/about', [ MainController::class, 'about' ]);
 
+Route::get('/contacts', [ MainController::class, 'contacts' ]);
+
 /**
  * Вывод списка заданий теста пользователю
  */

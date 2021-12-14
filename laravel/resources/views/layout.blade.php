@@ -25,7 +25,7 @@
                         <li class="menu_item"><a href="/" class="menu_link">Главная</a></li>
                         <li class="menu_item"><a href="/tests" class="menu_link">Тесты</a></li>
                         <li class="menu_item"><a href="/about" class="menu_link">О сервисе</a></li>
-                        <li class="menu_item"><a href="#" class="menu_link">Контакты</a></li>
+                        <li class="menu_item"><a href="/contacts" class="menu_link">Контакты</a></li>
                     </ul>
                 </div>
                 <div class="col-md-2 offset-md-2">

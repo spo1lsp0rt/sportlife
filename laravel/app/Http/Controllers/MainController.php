@@ -81,6 +81,10 @@ class MainController extends Controller
         return view('about');
     }
 
+    public function  contacts() {
+        return view('contacts');
+    }
+
     public function test1(){
         return view('test1');
     }
