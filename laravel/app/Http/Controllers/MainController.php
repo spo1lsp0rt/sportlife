@@ -65,7 +65,7 @@ class MainController extends Controller
                 setcookie('login', $login, 0, '/');
                 setcookie('password', $password, 0, '/');
                 setcookie('ID_User', $user->ID_User, 0, '/');
-                return view('home');
+                return redirect('/');
             }
         }
         $error = "Неверный логин или пароль";
