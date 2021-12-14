@@ -33,7 +33,11 @@
                         <a href="/user_profile">
                             <div class="menulogin_round"><img src="/icons/user_log.png" alt="" class="menulogin_icon"></div>
                         </a>
+                        @php if(array_key_exists('login', $_COOKIE)) { @endphp
+                        <a href="/exit" class="menulogin_link">Выйти</a>
+                        @php }else{ @endphp
                         <a href="/authorization" class="menulogin_link">Войти</a>
+                        @php }@endphp
                         <a href="#"><img src="icons/down_arrow.png" alt="" class="menulogin_downarrow"></a>
                     </div>
                 </div>

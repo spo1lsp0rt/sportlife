@@ -10,14 +10,26 @@
 
     <div class="authorize_menu">
         <div class="authorize_title">Авторизация</div>
-        <form class="px-4 py-3">
+        <form class="px-4 py-3" method="post" action="/auth/check">
+            @csrf
+            <?php if($error != "")
+                {
+                    echo "
+                        <div class='alert alert-danger'>
+                            <ul>
+                                <li>$error</li>
+                             </ul>
+                         </div>
+                    ";
+                }
+                ?>
             <div class="mb-3">
                 <label for="exampleDropdownFormEmail1" class="form-label">Логин</label>
-                <input type="text" class="form-control" placeholder="Введите логин">
+                <input type="text" name="login" class="form-control" placeholder="Введите логин">
             </div>
             <div class="mb-3">
                 <label for="exampleDropdownFormPassword1" class="form-label">Пароль</label>
-                <input type="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Введите пароль">
+                <input type="password" name="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Введите пароль">
             </div>
             <div class="mb-3">
                 <div class="form-check">

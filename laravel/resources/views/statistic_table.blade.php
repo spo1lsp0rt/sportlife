@@ -4,6 +4,7 @@
 
 
 <?php
+
 class StatData
 {
     public $id_stat;
@@ -20,8 +21,28 @@ class StatData
         $this->result = $result;
     }
 }
+
+if(!array_key_exists('login', $_COOKIE))
+{
+    header('Location: /authorization');
+    exit;
+}
+
 $stats = array();
 
+$allStat = $currentData[0];
+$allTests = $currentData[1];
+$allUsers = $currentData[2];
+
+$currentUser = null;
+foreach($allUsers as $user)
+{
+    if($user->ID_User == $_COOKIE['ID_User'])
+    {
+        $currentUser = $user;
+        break;
+    }
+}
 foreach($allStat as $test)
 {
     $stats[] = new StatData($test->ID_Statistic, $test->ID_User, $test->ID_Test, $test->date_test, $test->Result);
@@ -45,6 +66,8 @@ if(isset($stats))
             ";
     foreach($stats as $stat)
     {
+        if($stat->id_user != $currentUser->ID_User)
+            continue;
         $index = 0;
         for($i = 0; $i < count($allTests); $i++)
         {

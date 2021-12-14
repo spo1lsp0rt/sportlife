@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\statistic;
+use App\Models\User;
+use App\Models\Userdata;
 use Illuminate\Http\Request;
 use App\Models\Test;
+use App\Models\users;
 
 class MainController extends Controller
 {
@@ -13,13 +16,16 @@ class MainController extends Controller
     }
 
     public function  user_profile() {
-        return view('user_profile');
+        $allUsers = new users();
+        return view('user_profile', ['allUsers' => $allUsers]);
     }
 
     public function  statistic_table() {
         $allStat = new statistic();
-        $tests = new Test();
-        return view('statistic_table', ['allStat' => $allStat->all()], ['allTests' => $tests->all()]);
+        $allTests = new Test();
+        $allUsers = new users();
+        $currentData = array($allStat->all(), $allTests->all(), $allUsers->all());
+        return view('statistic_table', ['currentData' => $currentData]);
     }
 
     public function  privacy_policy() {
@@ -31,7 +37,39 @@ class MainController extends Controller
     }
 
     public function  authorization() {
-        return view('authorization');
+        $error = "";
+        return view('authorization', ['error' => $error]);
+    }
+
+    public function  exit()
+    {
+        setcookie('login', '');
+        setcookie('password', '');
+        setcookie('ID_User', '');
+        return redirect('/');
+    }
+
+    public function  auth_check() {
+        $Userdata = new Userdata();
+        $allUserdata = $Userdata->all();
+        $login = $_POST['login'] ?? '';
+        $password = $_POST['password'] ?? '';
+        foreach ($allUserdata as $user) {
+            if ($user->Login == $login
+                && $user->Password == $password)
+            {
+                $allStat = new statistic();
+                $allTests = new Test();
+                $allUsers = new users();
+                $currentData = array($allStat->all(), $allTests->all(), $allUsers->all());
+                setcookie('login', $login, 0, '/');
+                setcookie('password', $password, 0, '/');
+                setcookie('ID_User', $user->ID_User, 0, '/');
+                return view('home');
+            }
+        }
+        $error = "Неверный логин или пароль";
+        return view('authorization', ['error' => $error]);
     }
 
     public function  testform() {

@@ -20,11 +20,15 @@ use App\Http\Controllers\MainController;
 
 Route::get('/', [ MainController::class, 'home' ]);
 
+Route::get('/exit', [ MainController::class, 'exit' ]);
+
 Route::get('/user_profile', [ MainController::class, 'user_profile' ]);
 
 Route::get('/user_profile', [ MainController::class, 'statistic_table' ]);
 
 Route::get('/authorization', [ MainController::class, 'authorization' ]);
+
+Route::post('/auth/check', [ MainController::class, 'auth_check' ]);
 
 Route::get('/privacy', [ MainController::class, 'privacy_policy' ]);
 
