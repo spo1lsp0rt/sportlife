@@ -1,8 +1,3 @@
-.test{
-    margin-top: 80px;
-    border: 4px;
-}
-
 .test h1, h2{
     text-align: center;
 }
@@ -17,7 +12,7 @@
     border-radius: 11px;
 }
 
-.test .test_task .alert {
+.test .test_task .alert, .test .person_info .alert {
     height: 30px;
     display: flex;
     justify-content: center;

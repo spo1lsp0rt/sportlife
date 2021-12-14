@@ -49,11 +49,13 @@
                         <label class="btn btn-outline-dark" for="btnradio2">Женский</label>
                     </div>
                 </div>
+                <div class="alert alert-danger">{{ 'Поле заполнено некорректно' }}</div>
 
                 <div class="age_info">
                     <div class="age_title">Введите ваш возраст:</div>
                     <input type="text" placeholder="Например: 18" class="age_input">
                 </div>
+                <div class="alert alert-danger">{{ 'Поле заполнено некорректно' }}</div>
 
             </div>
             <button class="result_btn">Получить результат</button>
