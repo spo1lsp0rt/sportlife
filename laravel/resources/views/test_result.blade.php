@@ -48,7 +48,6 @@
                 </div>
             </div>
             @foreach($result->Exercises as $key => $exercise)
-                {{--@php dd($result) @endphp--}}
                 <div class='row'>
                     <div class='col col-md-5'>
                         <div class='data_field'>{{$exercise->Name}}</div>
@@ -60,11 +59,25 @@
                         <div class='data_field'>{{$matrix[$key][0]}}</div>
                     </div>
                     <div class='col col-md-2'>
-                        <div class='data_field_last'>{{round(( $exercise->Value - $matrix[$key][0]) / $matrix[$key][0], 2)}}</div>
+                        <div class='data_field_last'>
+                            @php
+                            if ($exercise->Name == "Ловля падающей линейки."){
+                                echo((-1) * round(( $exercise->Value - $matrix[$key][0]) / $matrix[$key][0], 2));
+                            }
+                            else{
+                                echo(round(( $exercise->Value - $matrix[$key][0]) / $matrix[$key][0], 2));
+                            }
+                            @endphp</div>
                     </div>
                 </div>
                 @php
-                    $OYFK += round(( $exercise->Value - $matrix[$key][0]) / $matrix[$key][0], 2);
+                    if ($exercise->Name == "Ловля падающей линейки.")
+                    {
+                        //dd($exercise);
+                        $OYFK += (-1) * round(( $exercise->Value - $matrix[$key][0]) / $matrix[$key][0], 2);
+                    }
+                    else
+                        $OYFK += round(( $exercise->Value - $matrix[$key][0]) / $matrix[$key][0], 2);
                 @endphp
             @endforeach
 
