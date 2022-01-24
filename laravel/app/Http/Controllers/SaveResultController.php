@@ -47,7 +47,10 @@ class SaveResultController extends Controller
 
         $idResult = $result->ID_Result;
 
+        //dd($valid_params);
+
         foreach ($test->Exercises as $exercise ){
+
             $resultExersise = new ResultExercise();
             $resultExersise->ID_Result = $result->ID_Result;
             $resultExersise->Name = $exercise->Name;

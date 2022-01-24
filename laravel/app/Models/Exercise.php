@@ -30,7 +30,7 @@ class Exercise extends Model
     /* Название таблицы в БД */
     protected $table = "exercises";
     /*Название первичного ключа в таблице*/
-    protected $primaryKey = "ID_Exercises";
+    protected $primaryKey = "ID_Exercise";
 
     /**
      * Название поля на форме
@@ -38,6 +38,6 @@ class Exercise extends Model
      * @return string
      */
     public function getInputName():string{
-        return 'exercisevalue'.$this->ID_Exercises;
+        return 'exercisevalue'.$this->ID_Exercise;
     }
 }

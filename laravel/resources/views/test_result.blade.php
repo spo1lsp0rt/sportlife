@@ -48,6 +48,7 @@
                 </div>
             </div>
             @foreach($result->Exercises as $key => $exercise)
+                {{--@php dd($result) @endphp--}}
                 <div class='row'>
                     <div class='col col-md-5'>
                         <div class='data_field'>{{$exercise->Name}}</div>

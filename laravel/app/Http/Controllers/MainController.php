@@ -85,28 +85,6 @@ class MainController extends Controller
         return view('contacts');
     }
 
-    public function test1(){
-        return view('test1');
-    }
-
-    public function test1_check(Request $request){
-        $valid = $request->validate([
-            'PushUp' => 'required|max:100',
-            'RaisTorso' => 'required|max:100',
-            'TiltForward' => 'required|max:100',
-            'Retention' => 'required|max:100',
-            'Catching' => 'required|max:100',
-            'Equilibrium' => 'required|max:100',
-            'Tapping' => 'required|max:100'
-        ]);
-
-        return view('test1_result', $_POST);
-    }
-
-    public function test2(){
-        return view('test2');
-    }
-
     public function test2_check(Request $request){
         $valid = $request->validate([
             'Weight' => 'required|max:100',

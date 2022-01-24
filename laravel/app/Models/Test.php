@@ -44,4 +44,5 @@ class Test extends Model
     public function Exercises():HasMany{
         return $this->hasMany(Exercise::class, 'ID_Test', 'ID_Test');
     }
+
 }
