@@ -58,7 +58,7 @@
                 <div class="alert alert-danger">{{ 'Поле заполнено некорректно' }}</div>
 
             </div>
-            <button class="result_btn">Получить результат</button>
+            <button class="result_btn"">Получить результат</button>
         </section>
     </form>
 
