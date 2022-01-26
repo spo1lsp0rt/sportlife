@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $Description
  * @property int|null $ID_Exercise
  * @property string $Value
+ * @property string $Norma
  * @method static \Illuminate\Database\Eloquent\Builder|ResultExercise newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ResultExercise newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ResultExercise query()

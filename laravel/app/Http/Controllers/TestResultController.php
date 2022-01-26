@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\Result;
 use App\Models\statistic;
 use App\Models\Test;
+use Illuminate\Http\Request;
+use DB;
 
 /**
  * Вывод результата выполнения теста
@@ -17,7 +19,7 @@ class TestResultController extends Controller
      *
      * @return \Illuminate\Contracts\View\View
     */
-    public function __invoke(int $id)
+    public function __invoke(int $id, Request $request)
     {
         $result = Result::with('Exercises')->findOrFail($id);
         if(array_key_exists('login', $_COOKIE))
@@ -39,9 +41,9 @@ class TestResultController extends Controller
                 $statistic->save();
             }
         }
+
         return view('test_result', [
             "id" => $id,
-            "result" => $result,
-        ]);
+            "result" => $result,]);
     }
 }

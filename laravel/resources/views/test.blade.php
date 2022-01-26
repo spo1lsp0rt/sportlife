@@ -29,7 +29,7 @@
                                 </div>
 
                                 <input type="text" placeholder="Введите результат" class="test_result"
-                                       class="@error($exercise->getInputName()) is-invalid @enderror" name="{{$exercise->getInputName()}}" value="">
+                                       class="@error($exercise->getInputName()) is-invalid @enderror" name="{{$exercise->getInputName()}}" value="{{$exercise->Value}}">
                                 @error($exercise->getInputName())
                                 <div class="alert alert-danger">{{ 'Поле заполнено некорректно' }}</div>
                                 @enderror
@@ -42,10 +42,10 @@
                 <div class="gender_info">
                     <div class="gender_title">Выберите ваш пол:</div>
                     <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked name = "male">
                         <label class="btn btn-outline-dark" for="btnradio1">Мужской</label>
 
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" name = "female">
                         <label class="btn btn-outline-dark" for="btnradio2">Женский</label>
                     </div>
                 </div>
@@ -53,12 +53,12 @@
 
                 <div class="age_info">
                     <div class="age_title">Введите ваш возраст:</div>
-                    <input type="text" placeholder="Например: 18" class="age_input">
+                    <input type="text" placeholder="Например: 18" class="age_input" name = "age">
                 </div>
                 <div class="alert alert-danger">{{ 'Поле заполнено некорректно' }}</div>
 
             </div>
-            <button class="result_btn"">Получить результат</button>
+            <button class="result_btn">Получить результат</button>
         </section>
     </form>
 

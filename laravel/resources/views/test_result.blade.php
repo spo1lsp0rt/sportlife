@@ -9,22 +9,6 @@
 @section('main_content')
 
     @php
-        $matrix = ([
-
-        [40, 42, 43, 44, 44, 44, 43],
-
-        [23, 24, 25, 25, 25, 25, 24],
-
-        [11, 11, 10, 10, 9, 9, 8],
-
-        [70, 80, 90, 100, 110, 110, 100],
-
-        [17, 18, 19, 19, 20, 22, 22],
-
-        [20.7, 21, 22, 22, 23, 23, 22],
-
-        [77, 76.5, 73.5, 66.5, 64.5, 64, 63.5]
-    ]);
 
     $OYFK = 0;
     @endphp
@@ -56,16 +40,16 @@
                         <div class='data_field'>{{$exercise->Value}}</div>
                     </div>
                     <div class='col col-md-2'>
-                        <div class='data_field'>{{$matrix[$key][0]}}</div>
+                        <div class='data_field'>{{$exercise->Norma}}</div>
                     </div>
                     <div class='col col-md-2'>
                         <div class='data_field_last'>
                             @php
                             if ($exercise->Name == "Ловля падающей линейки."){
-                                echo((-1) * round(( $exercise->Value - $matrix[$key][0]) / $matrix[$key][0], 2));
+                                echo((-1) * round(( $exercise->Value - $exercise->Norma) / $exercise->Norma, 2));
                             }
                             else{
-                                echo(round(( $exercise->Value - $matrix[$key][0]) / $matrix[$key][0], 2));
+                                echo(round(( $exercise->Value - $exercise->Norma) / $exercise->Norma, 2));
                             }
                             @endphp</div>
                     </div>
@@ -74,10 +58,10 @@
                     if ($exercise->Name == "Ловля падающей линейки.")
                     {
                         //dd($exercise);
-                        $OYFK += (-1) * round(( $exercise->Value - $matrix[$key][0]) / $matrix[$key][0], 2);
+                        $OYFK += (-1) * round(( $exercise->Value - $exercise->Norma) / $exercise->Norma, 2);
                     }
                     else
-                        $OYFK += round(( $exercise->Value - $matrix[$key][0]) / $matrix[$key][0], 2);
+                        $OYFK += round(( $exercise->Value - $exercise->Norma) / $exercise->Norma, 2);
                 @endphp
             @endforeach
 
