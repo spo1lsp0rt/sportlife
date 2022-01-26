@@ -27,7 +27,12 @@ class SaveResultController extends Controller
 
         $test = Test::with('Exercises')->findOrFail($id);
 
-        $normative = DB::select('select * from normatives where ID_Test = '. $test->ID_Test  .' AND '.'age = '.$request->input('age'));
+        $age = $request->input('age');
+        if($age < 17 || $age > 23)
+            $age = 17;
+        if(empty($age))
+            $age = 17;
+        $normative = DB::select('select * from normatives where ID_Test = '. $test->ID_Test  .' AND '.'age = '.$age);
 
         $valid = $request->validate($this->getRules($test));
         $result_id = $this->saveResult($test, $valid, $normative);
