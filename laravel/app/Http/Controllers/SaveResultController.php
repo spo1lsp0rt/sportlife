@@ -37,10 +37,11 @@ class SaveResultController extends Controller
 
         $course = $_POST["btnradio"];
 
-        if($course = "муж")
+        if($course == "муж")
             $normative = DB::select("select * from normatives where ID_Test = ". $test->ID_Test  ." AND "."age = ".$age." AND gender = 'муж'");
         else
             $normative = DB::select("select * from normatives where ID_Test = ". $test->ID_Test  ." AND "."age = ".$age." AND gender = 'жен'");
+
         $valid = $request->validate($this->getRules($test));
         $result_id = $this->saveResult($test, $valid, $normative);
         return redirect('test_result/'.$result_id);
@@ -60,6 +61,8 @@ class SaveResultController extends Controller
         $result->Date = Carbon::now();
         $result->save();
 
+
+
         $idResult = $result->ID_Result;
 
         $i = 0;
@@ -72,7 +75,7 @@ class SaveResultController extends Controller
             $resultExersise->ID_Exercise = $exercise->ID_Exercise;
             $resultExersise->Value = $valid_params[$exercise->getInputName()];
             $resultExersise->Norma = $normative[$i]->Value;
-            //dd($resultExersise);
+
             $i++;
             $resultExersise->save();
         }
