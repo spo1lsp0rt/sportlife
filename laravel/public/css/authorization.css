@@ -1,14 +1,12 @@
 .authorize_menu {
-    margin: 0 auto;
-    width: 500px;
+  margin: 0 auto;
+  width: 500px;
 }
-
 .authorize_menu .authorize_title {
-    display: flex;
-    justify-content: center;
-    color: #000000;
+  display: flex;
+  justify-content: center;
+  color: #000000;
 }
-
 .authorize_menu .alert {
-    height: 55px;
+  height: 55px;
 }
