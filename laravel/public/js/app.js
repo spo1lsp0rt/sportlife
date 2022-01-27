@@ -19320,6 +19320,84 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/sass/contacts.sass":
+/*!**************************************!*\
+  !*** ./resources/sass/contacts.sass ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/sass/statistic_table.sass":
+/*!*********************************************!*\
+  !*** ./resources/sass/statistic_table.sass ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/sass/style_result.sass":
+/*!******************************************!*\
+  !*** ./resources/sass/style_result.sass ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/sass/style_test.sass":
+/*!****************************************!*\
+  !*** ./resources/sass/style_test.sass ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/sass/tests.sass":
+/*!***********************************!*\
+  !*** ./resources/sass/tests.sass ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./resources/sass/user_profile.sass":
+/*!******************************************!*\
+  !*** ./resources/sass/user_profile.sass ***!
+  \******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
 /***/ "./resources/sass/app.sass":
 /*!*********************************!*\
   !*** ./resources/sass/app.sass ***!
@@ -19706,6 +19784,12 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 			"css/about": 0,
 /******/ 			"css/style": 0,
 /******/ 			"css/home": 0,
+/******/ 			"css/user_profile": 0,
+/******/ 			"css/tests": 0,
+/******/ 			"css/style_test": 0,
+/******/ 			"css/style_result": 0,
+/******/ 			"css/statistic_table": 0,
+/******/ 			"css/contacts": 0,
 /******/ 			"css/testform": 0
 /******/ 		};
 /******/ 		
@@ -19756,13 +19840,19 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/authorization","css/about","css/style","css/home","css/testform"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/authorization","css/about","css/style","css/home","css/testform"], () => (__webpack_require__("./resources/sass/app.sass")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/authorization","css/about","css/style","css/home","css/testform"], () => (__webpack_require__("./resources/sass/home.sass")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/authorization","css/about","css/style","css/home","css/testform"], () => (__webpack_require__("./resources/sass/style.sass")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/authorization","css/about","css/style","css/home","css/testform"], () => (__webpack_require__("./resources/sass/about.sass")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/authorization","css/about","css/style","css/home","css/testform"], () => (__webpack_require__("./resources/sass/authorization.sass")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app","css/authorization","css/about","css/style","css/home","css/testform"], () => (__webpack_require__("./resources/sass/testform.sass")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/authorization","css/about","css/style","css/home","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/testform"], () => (__webpack_require__("./resources/js/app.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/authorization","css/about","css/style","css/home","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/testform"], () => (__webpack_require__("./resources/sass/app.sass")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/authorization","css/about","css/style","css/home","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/testform"], () => (__webpack_require__("./resources/sass/home.sass")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/authorization","css/about","css/style","css/home","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/testform"], () => (__webpack_require__("./resources/sass/style.sass")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/authorization","css/about","css/style","css/home","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/testform"], () => (__webpack_require__("./resources/sass/about.sass")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/authorization","css/about","css/style","css/home","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/testform"], () => (__webpack_require__("./resources/sass/authorization.sass")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/authorization","css/about","css/style","css/home","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/testform"], () => (__webpack_require__("./resources/sass/testform.sass")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/authorization","css/about","css/style","css/home","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/testform"], () => (__webpack_require__("./resources/sass/contacts.sass")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/authorization","css/about","css/style","css/home","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/testform"], () => (__webpack_require__("./resources/sass/statistic_table.sass")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/authorization","css/about","css/style","css/home","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/testform"], () => (__webpack_require__("./resources/sass/style_result.sass")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/authorization","css/about","css/style","css/home","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/testform"], () => (__webpack_require__("./resources/sass/style_test.sass")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/authorization","css/about","css/style","css/home","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/testform"], () => (__webpack_require__("./resources/sass/tests.sass")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app","css/authorization","css/about","css/style","css/home","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/testform"], () => (__webpack_require__("./resources/sass/user_profile.sass")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
