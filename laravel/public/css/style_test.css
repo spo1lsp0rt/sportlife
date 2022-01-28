@@ -8,18 +8,10 @@
   background: #FFFFFF;
   border: 1px solid #000000;
   box-sizing: border-box;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 11px;
 }
 .test .test_task .alert {
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 10px;
-  padding: 5px 15px 5px 15px;
-}
-.test .person_info .alert {
   height: 30px;
   display: flex;
   justify-content: center;
@@ -57,7 +49,7 @@
   text-align: center;
   text-transform: uppercase;
   color: #FFFFFF;
-  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.21);
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.21);
   width: 280px;
   height: 63px;
   background-image: linear-gradient(to top, #111111 0%, #424852 100%);
@@ -107,4 +99,12 @@
   box-sizing: border-box;
   border-radius: 0.25rem;
   text-align: center;
+}
+.test .person_info .alert {
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  padding: 5px 15px 5px 15px;
 }
