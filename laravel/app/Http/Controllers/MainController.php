@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use DB;
+
 use App\Models\statistic;
 use App\Models\User;
 use App\Models\Userdata;
@@ -36,6 +40,41 @@ class MainController extends Controller
         return view('tests');
     }
 
+    public function  add_users()
+    {
+        $file = resource_path() . '/xlsx/Студенты.xlsx'; // файл для получения данных
+        $spreadsheet = IOFactory::load( $file );
+        $worksheet = $spreadsheet->getActiveSheet();
+        $rows = [];
+        foreach ($worksheet->getRowIterator() AS $row) {
+            $cellIterator = $row->getCellIterator();
+            $cellIterator->setIterateOnlyExistingCells(FALSE); // This loops through all cells,
+            $cells = [];
+            foreach ($cellIterator as $cell) {
+                $cells[] = $cell->getValue();
+            }
+            $rows[] = $cells;
+        }
+        foreach($rows as $row)
+        {
+            $users = new users();
+            $userdata = new Userdata();
+            $name = $row[0];
+            $login = $row[1];
+            $pass = $row[2];
+            $pass = hash('sha512', $pass);
+            $users->FullName = $name;
+            $users->ID_Role = 1;
+            $users->save();
+            $id_user = DB::table('user')->max('ID_User');
+            $userdata->ID_User = $id_user;
+            $userdata->Login = $login;
+            $userdata->Password = $pass;
+            $userdata->save();
+        }
+        echo "Студенты успешно добавлены в базу данных!";
+    }
+
     public function  authorization() {
         $error = "";
         return view('authorization', ['error' => $error]);
@@ -56,14 +95,13 @@ class MainController extends Controller
         $password = $_POST['password'] ?? '';
         foreach ($allUserdata as $user) {
             if ($user->Login == $login
-                && $user->Password == $password)
+                && $user->Password == hash('sha512', $password))
             {
                 $allStat = new statistic();
                 $allTests = new Test();
                 $allUsers = new users();
                 $currentData = array($allStat->all(), $allTests->all(), $allUsers->all());
                 setcookie('login', $login, 0, '/');
-                setcookie('password', $password, 0, '/');
                 setcookie('ID_User', $user->ID_User, 0, '/');
                 return redirect('/');
             }

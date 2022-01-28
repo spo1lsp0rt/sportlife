@@ -43,6 +43,8 @@ Route::get('/about', [ MainController::class, 'about' ]);
 
 Route::get('/contacts', [ MainController::class, 'contacts' ]);
 
+Route::get('/add_users', [ MainController::class, 'add_users' ]);
+
 /**
  * Вывод списка заданий теста пользователю
  */

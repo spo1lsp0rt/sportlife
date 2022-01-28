@@ -131,6 +131,12 @@
       <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/doctrine/event-manager" />
       <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/doctrine/dbal" />
       <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/doctrine/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/phpoffice/phpspreadsheet" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/maennchen/zipstream-php" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/markbaker/complex" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/markbaker/matrix" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/myclabs/php-enum" />
+      <excludeFolder url="file://$MODULE_DIR$/laravel/vendor/ezyang/htmlpurifier" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
