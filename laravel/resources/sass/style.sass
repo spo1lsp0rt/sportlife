@@ -18,46 +18,54 @@ header
     height: 70px
     margin-top: 28px
 
-  .menu
-    display: flex
-    justify-content: space-between
-    list-style-type: none
+    .logo_link
+      display: contents
 
-    .menu_item
-      line-height: 70px
+    .menu
+      display: flex
+      align-items: center
+      height: 72px
+      list-style-type: none
 
-      .menu_link
+      .menu_item
+        line-height: 20px
+        padding-right: 50px
+
+        &:last-child
+          padding-right: 0
+
+        .menu_link
+          color: black
+          text-decoration: none
+          font-weight: 400
+          font-size: 16px
+
+          &:hover
+            text-decoration: underline
+
+    .menulogin
+      width: 144px
+      height: 70px
+      display: flex
+      margin-left: 70px
+      align-items: center
+
+      .menulogin_round
+        display: flex
+        justify-content: center
+        align-items: center
+        background: black
+        width: 40px
+        height: 40px
+        border-radius: 100%
+
+      .menulogin_link
         color: black
         text-decoration: none
+        padding-left: 16px
+        padding-right: 11px
         font-weight: 400
-        font-size: 15px
-
-        &:hover
-          text-decoration: underline
-
-  .menulogin
-    width: 144px
-    height: 70px
-    display: flex
-    margin-left: 70px
-    align-items: center
-
-    .menulogin_round
-      display: flex
-      justify-content: center
-      align-items: center
-      background: black
-      width: 40px
-      height: 40px
-      border-radius: 100%
-
-    .menulogin_link
-      color: black
-      text-decoration: none
-      padding-left: 16px
-      padding-right: 11px
-      font-weight: 400
-      font-size: 18px
+        font-size: 18px
 
 footer
   height: 168px
@@ -78,3 +86,5 @@ footer
       color: #888888
       text-decoration-color: #888888
       cursor: pointer
+
+@import "media_style"

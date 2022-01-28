@@ -29,21 +29,24 @@
             }
     @endphp
 
-    <div class="user_profile">
-        <div class="profile_title"><h2>Профиль</h2></div>
-        <div class="profile_img">
-            <img src="/img/profile_img.png" alt="profile">
-        </div>
-        <div class="profile_panel">
-            <div class="profile_name">@php echo $currentUser->FullName; @endphp</div>
-            <form action="#">
-                <button formaction="#" class="edit_profile_btn">
-                    <img src="/icons/edit.png" alt="edit">
-                </button>
-            </form>
-        </div>
+    <div class="container">
+        <div class="user_profile">
+            <div class="profile_title"><h2>Профиль</h2></div>
+            <div class="profile_img">
+                <img src="/img/profile_img.png" alt="profile">
+            </div>
+            <div class="profile_panel">
+                <div class="profile_name">@php echo $currentUser->FullName; @endphp</div>
+                <form action="#">
+                    <button formaction="#" class="edit_profile_btn">
+                        <img src="/icons/edit.png" alt="edit">
+                    </button>
+                </form>
+            </div>
 
-        @yield('user_statistic')
+            @yield('user_statistic')
+        </div>
     </div>
+
 
 @endsection

@@ -21,31 +21,39 @@ header nav {
   height: 70px;
   margin-top: 28px;
 }
-header .menu {
+header nav .logo_link {
+  display: contents;
+}
+header nav .menu {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  height: 72px;
   list-style-type: none;
 }
-header .menu .menu_item {
-  line-height: 70px;
+header nav .menu .menu_item {
+  line-height: 20px;
+  padding-right: 50px;
 }
-header .menu .menu_item .menu_link {
+header nav .menu .menu_item:last-child {
+  padding-right: 0;
+}
+header nav .menu .menu_item .menu_link {
   color: black;
   text-decoration: none;
   font-weight: 400;
-  font-size: 15px;
+  font-size: 16px;
 }
-header .menu .menu_item .menu_link:hover {
+header nav .menu .menu_item .menu_link:hover {
   text-decoration: underline;
 }
-header .menulogin {
+header nav .menulogin {
   width: 144px;
   height: 70px;
   display: flex;
   margin-left: 70px;
   align-items: center;
 }
-header .menulogin .menulogin_round {
+header nav .menulogin .menulogin_round {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,7 +62,7 @@ header .menulogin .menulogin_round {
   height: 40px;
   border-radius: 100%;
 }
-header .menulogin .menulogin_link {
+header nav .menulogin .menulogin_link {
   color: black;
   text-decoration: none;
   padding-left: 16px;
@@ -84,4 +92,51 @@ footer .footer_descr a {
   -webkit-text-decoration-color: #888888;
           text-decoration-color: #888888;
   cursor: pointer;
+}
+
+@media (max-width: 1200px) {
+  header nav .menulogin {
+    margin-left: 25px;
+  }
+  header nav .menulogin .menulogin_link {
+    font-size: 16px;
+  }
+  header nav .menu .menu_item {
+    padding-right: 30px;
+  }
+  header nav .menu .menu_item .menu_link {
+    font-size: 16px;
+  }
+}
+@media (max-width: 992px) {
+  header nav .menulogin {
+    margin-left: 0;
+  }
+  header nav .menu {
+    padding-left: 0;
+  }
+  header nav .menu .menu_item {
+    padding-right: 18px;
+  }
+  header nav .menu .menu_item .menu_link {
+    font-size: 15px;
+  }
+}
+@media (max-width: 767px) {
+  header nav .logo_link .menu_img {
+    display: block;
+    margin: 0 auto;
+  }
+  header nav .menu .menu_item {
+    padding-right: 25px;
+  }
+}
+@media (max-width: 575px) {
+  header nav .logo_link .menu_img {
+    display: block;
+    margin: 0;
+  }
+  header nav .menu .menu_item {
+    padding-right: 25px;
+  }
 }
