@@ -9,23 +9,25 @@
 
     .tests_search
         display: flex
+        justify-content: center
         padding-top: 38px
         margin: 0 auto
 
         .search_title
-            padding-right: 60px
+            padding-right: 30px
             font-weight: 400
             font-size: 20px
             color: #000000
 
         .search_field
             display: block
-            width: 80%
+            width: 78%
             height: 35px
             background: #E8E8E8
             border: 1px solid #000000
             box-sizing: border-box
             border-radius: 17px
+            text-align: center
 
         input[type=text]
             padding: 15px
@@ -87,42 +89,43 @@
     border-radius: 11px
     padding-bottom: 25px
 
-.form_title
-    font-weight: 400
-    font-size: 20px
-    line-height: 23px
-    text-align: center
-    color: #000000
-    margin: 0 auto
-    margin-top: 14px
-
-.form_divider
-    height: 1px
-    background-color: #b9b9b9
-    margin: 0 auto
-    margin-top: 9px
-
-.testname_case
-    display: flex
-    margin-top: 34px
-    margin-left: 28px
-
-    .form_testname
+    .form_title
         font-weight: 400
-        font-size: 18px
+        font-size: 20px
+        line-height: 23px
+        text-align: center
         color: #000000
-        margin-right: 20px
+        margin: 0 auto
+        margin-top: 14px
 
-.testdescr_case
-    display: flex
-    margin-top: 14px
-    margin-left: 28px
+    .form_divider
+        height: 1px
+        background-color: #b9b9b9
+        margin: 0 auto
+        margin-top: 9px
 
-    .form_testdescr
-        font-weight: 400
-        font-size: 18px
-        line-height: 21px
-        color: #000000
-        margin-top: 7px
-        margin-right: 20px
+    .testname_case
+        display: flex
+        margin-top: 34px
+        margin-left: 28px
 
+        .form_testname
+            font-weight: 400
+            font-size: 18px
+            color: #000000
+            margin-right: 20px
+
+    .testdescr_case
+        display: flex
+        margin-top: 14px
+        margin-left: 28px
+
+        .form_testdescr
+            font-weight: 400
+            font-size: 18px
+            line-height: 21px
+            color: #000000
+            margin-top: 7px
+            margin-right: 20px
+
+@import "media_tests"

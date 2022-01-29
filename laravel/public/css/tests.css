@@ -9,23 +9,25 @@
 }
 .tests .tests_search {
   display: flex;
+  justify-content: center;
   padding-top: 38px;
   margin: 0 auto;
 }
 .tests .tests_search .search_title {
-  padding-right: 60px;
+  padding-right: 30px;
   font-weight: 400;
   font-size: 20px;
   color: #000000;
 }
 .tests .tests_search .search_field {
   display: block;
-  width: 80%;
+  width: 78%;
   height: 35px;
   background: #E8E8E8;
   border: 1px solid #000000;
   box-sizing: border-box;
   border-radius: 17px;
+  text-align: center;
 }
 .tests .tests_search input[type=text] {
   padding: 15px;
@@ -89,8 +91,7 @@
   border-radius: 11px;
   padding-bottom: 25px;
 }
-
-.form_title {
+.tests_form .form_title {
   font-weight: 400;
   font-size: 20px;
   line-height: 23px;
@@ -99,36 +100,85 @@
   margin: 0 auto;
   margin-top: 14px;
 }
-
-.form_divider {
+.tests_form .form_divider {
   height: 1px;
   background-color: #b9b9b9;
   margin: 0 auto;
   margin-top: 9px;
 }
-
-.testname_case {
+.tests_form .testname_case {
   display: flex;
   margin-top: 34px;
   margin-left: 28px;
 }
-.testname_case .form_testname {
+.tests_form .testname_case .form_testname {
   font-weight: 400;
   font-size: 18px;
   color: #000000;
   margin-right: 20px;
 }
-
-.testdescr_case {
+.tests_form .testdescr_case {
   display: flex;
   margin-top: 14px;
   margin-left: 28px;
 }
-.testdescr_case .form_testdescr {
+.tests_form .testdescr_case .form_testdescr {
   font-weight: 400;
   font-size: 18px;
   line-height: 21px;
   color: #000000;
   margin-top: 7px;
   margin-right: 20px;
+}
+
+@media (max-width: 991px) {
+  .tests .tests_vision .vision_title {
+    padding-left: 8px;
+  }
+}
+@media (max-width: 767px) {
+  .tests .tests_title {
+    margin-top: 20px;
+  }
+  .tests .tests_title h2 {
+    font-size: 23px;
+  }
+  .tests .tests_vision .vision_title {
+    padding-left: 0;
+  }
+}
+@media (max-width: 575.5px) {
+  .tests .tests_search .search_title {
+    padding-left: 8px;
+  }
+  .tests .tests_vision .vision_title {
+    padding-left: 8px;
+  }
+}
+@media (max-width: 400.5px) {
+  .tests {
+    margin-bottom: 0;
+  }
+  .tests .tests_title {
+    margin-top: 0;
+  }
+  .tests .tests_search .search_title {
+    padding-left: 0;
+    font-size: 18px;
+    padding-right: 20px;
+  }
+  .tests .tests_vision .vision_title {
+    padding-left: 0;
+    font-size: 18px;
+  }
+
+  .tests_form .form_title {
+    font-size: 18px;
+  }
+  .tests_form .testname_case .form_testname {
+    font-size: 16px;
+  }
+  .tests_form .testdescr_case .form_testdescr {
+    font-size: 16px;
+  }
 }

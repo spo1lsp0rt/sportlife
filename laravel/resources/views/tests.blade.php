@@ -19,7 +19,7 @@
                         <input type="text" placeholder="Введите название теста" class="search_field" />
                     </div>
                 </div>
-                <div class="col-md-4 offset-md-8">
+                <div class="col-12 col-lg-4 offset-lg-8">
                     <div class="tests_vision">
                         <div class="vision_title">Отображение:</div>
                         <a href="#" class="vision_link"><div class="vision_columns"><img src="/icons/columns_grid.png" alt="columns" class="columns_img"></div></a>

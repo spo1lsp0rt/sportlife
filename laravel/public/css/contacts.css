@@ -1,7 +1,51 @@
 .info {
-  margin-top: 40px;
+  margin-top: 15px;
+}
+.info h1 {
+  margin-bottom: 20px;
 }
 .info .info_text {
   margin-top: 15px;
+  font-size: 19px;
   display: inline-block;
+}
+
+@media (max-width: 767.5px) {
+  .info {
+    margin-top: 25px;
+  }
+  .info .info_text {
+    font-size: 15px;
+  }
+}
+@media (max-width: 575.5px) {
+  .info {
+    margin-top: 0;
+  }
+  .info h1 {
+    padding-left: 8px;
+  }
+  .info .info_text {
+    font-size: 15px;
+    padding-left: 8px;
+  }
+}
+@media (max-width: 565px) {
+  .info h1 {
+    font-size: 26px;
+  }
+  .info .info_text {
+    font-size: 14px;
+  }
+}
+@media (max-width: 422px) {
+  .info h1 {
+    padding-left: 0;
+  }
+  .info .info_text {
+    padding-left: 0;
+  }
+  .info .container .row .col {
+    padding: 0;
+  }
 }

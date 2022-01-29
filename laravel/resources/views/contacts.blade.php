@@ -13,36 +13,36 @@
         </div>
         <div class="container">
             <div class="row">
-                <div class="col-md-2">
+                <div class="col-5 col-sm-4 col-md-4 col-lg-3">
                     <div class="info_text">Адрес: </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col">
                     <div class="info_text">г.Астрахань, ул. Татищева, 16</div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-2">
+                <div class="col-5 col-sm-4 col-md-4 col-lg-3">
                     <div class="info_text">График работы: </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col">
                     <div class="info_text">Понедельник - суббота <br>8:30 - 17:00</div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-2">
+                <div class="col-5 col-sm-4 col-md-4 col-lg-3">
                     <div class="info_text">Звоните: </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col">
                     <div class="info_text"><a href="tel:8-800-555-01-21">8-800-555-01-21</a></div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-2">
-                    <div class="info_text">Электронная почта: </a>
+                <div class="col-5 col-sm-4 col-md-4 col-lg-3">
+                    <div class="info_text">Электронная почта:
                     </div>
                 </div>
-                <div class="col-md-2">
-                    <div class="info_text"><a href="mailto:sportlife@mail.ru">sportlife@mail.ru</div>
+                <div class="col">
+                    <div class="info_text"><a href="mailto:sportlife@mail.ru">sportlife@mail.ru</a></div>
                 </div>
             </div>
         </div>
