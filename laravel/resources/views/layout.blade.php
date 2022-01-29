@@ -15,11 +15,16 @@
 <header>
     <nav>
         <div class="container">
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             <div class="row">
-                <div class="col-sm-12 col-md-4 offset-md-0 col-lg-3">
+                <div class="col-7 col-sm-12 col-md-4 offset-md-0 col-lg-3">
                     <a class="logo_link" href="/"><img src="/img/logo.svg" alt="logo" class="menu_img"></a>
                 </div>
-                <div class="col-sm-8 offset-sm-0 col-md-6 offset-md-0 col-lg-6 offset-lg-0">
+                <div class="col-1 col-sm-9 offset-sm-0 col-md-6 offset-md-0 col-lg-6 offset-lg-0">
                     <ul class="menu">
                         <li class="menu_item"><a href="/" class="menu_link">Главная</a></li>
                         <li class="menu_item"><a href="/tests" class="menu_link">Тесты</a></li>
@@ -27,7 +32,7 @@
                         <li class="menu_item"><a href="/contacts" class="menu_link">Контакты</a></li>
                     </ul>
                 </div>
-                <div class="col-sm-2 offset-sm-1 col-md-2 offset-md-0 col-lg-2 offset-lg-1">
+                <div class="col-4 col-sm-2 offset-sm-0 col-md-2 offset-md-0 col-lg-2 offset-lg-1">
                     <div class="menulogin">
                         <a href="/user_profile">
                             <div class="menulogin_round"><img src="/icons/user_log.png" alt="" class="menulogin_icon"></div>
@@ -54,5 +59,6 @@
     </div>
 </footer>
 <script src="{{ mix('js/app.js') }}"></script>
+<script src="{{ mix('js/hamburger.js') }}"></script>
 </body>
 </html>

@@ -1,29 +1,33 @@
 @media (max-width: 1200px)
   header
     nav
-      .menulogin
-        margin-left: 25px
-        .menulogin_link
-          font-size: 16px
       .menu
+        padding-left: 0
         .menu_item
           padding-right: 30px
           .menu_link
             font-size: 16px
+      .menulogin
+        margin-left: 25px
+        .menulogin_link
+          font-size: 17px
 
-@media (max-width: 992px)
+@media (max-width: 991px)
   header
     nav
       .menulogin
         margin-left: 0
       .menu
-        padding-left: 0
+        padding-left: 10px
         .menu_item
           padding-right: 18px
           .menu_link
             font-size: 15px
+      .menulogin
+        .menulogin_link
+          font-size: 16px
 
-@media (max-width: 767px)
+@media (max-width: 768px)
   header
     nav
       .logo_link
@@ -31,16 +35,79 @@
           display: block
           margin: 0 auto
       .menu
+        padding-left: 0
         .menu_item
-          padding-right: 25px
+          padding-right: 22px
+          .menu_link
+            font-size: 18px
+      .menulogin
+        .menulogin_link
+          font-size: 19px
 
-@media (max-width: 575px)
+@media (max-width: 575.5px)
   header
     nav
+      .hamburger
+        display: block
+        position: absolute
+        right: 12px
+        top: 20px
+        width: 26px
+        height: 12px
+        span
+          display: block
+          height: 2px
+          width: 100%
+          background-color: black
+          margin-bottom: 2px
+          transition: 0.5s all
+        &_active
+          span
+            margin-bottom: -2px
+            &:nth-child(1)
+              transform: translateY(3px) rotate(-45deg)
+            &:nth-child(2)
+              display: none
+            &:nth-child(3)
+              transform: translateY(3px) rotate(45deg)
       .logo_link
         .menu_img
           display: block
           margin: 0
+          width: 200px
       .menu
+        position: fixed
+        flex-direction: column
+        justify-content: center
+        align-items: center
+        top: 0
+        left: -100%
+        width: 50%
+        height: 100vh
+        background-color: rgba(250,250,250, 0.8)
+        border-right: black solid 1px
+        transition: 0.5s all
+        &_active
+          left: 0
         .menu_item
-          padding-right: 25px
+          padding-right: 0
+          margin: 15px 0
+          .menu_link
+            font-size: 20px
+
+      .menulogin
+        margin-left: 0
+        width: 125px
+        .menulogin_link
+          padding-right: 0
+          font-size: 20px
+        .menulogin_round
+          width: 35px
+          height: 35px
+          .menulogin_icon
+            width: 25px
+@media (max-width: 400.5px)
+  header
+    nav
+      .menulogin
+        margin-left: -15px
