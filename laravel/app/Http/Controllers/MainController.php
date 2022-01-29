@@ -110,11 +110,6 @@ class MainController extends Controller
         return view('authorization', ['error' => $error]);
     }
 
-    public function  testform() {
-        $tests = new Test();
-        return view('testform', ['allTests' => $tests->all()]);
-    }
-
     public function  about() {
         return view('about');
     }
