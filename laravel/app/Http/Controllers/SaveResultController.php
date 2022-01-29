@@ -28,19 +28,27 @@ class SaveResultController extends Controller
         $test = Test::with('Exercises')->findOrFail($id);
         //dd($request->input('btnradio'));
 
+        if ($test->ID_Test == 1){
 
-        $age = $request->input('age');
-        if($age < 17 || $age > 23)
-            $age = 17;
-        if(empty($age))
-            $age = 17;
+            $age = $request->input('age');
 
-        $course = $_POST["btnradio"];
+            if($age < 17 || $age > 23)
+                $age = 17;
+            if(empty($age))
+                $age = 17;
 
-        if($course == "муж")
-            $normative = DB::select("select * from normatives where ID_Test = ". $test->ID_Test  ." AND "."age = ".$age." AND gender = 'муж'");
-        else
-            $normative = DB::select("select * from normatives where ID_Test = ". $test->ID_Test  ." AND "."age = ".$age." AND gender = 'жен'");
+            $course = $_POST["btnradio"];
+
+            if($course == "муж")
+                $normative = DB::select("select * from normatives1 where age = ".$age." AND gender = 'муж'");
+            else
+                $normative = DB::select("select * from normatives1 where age = ".$age." AND gender = 'жен'");
+        }
+
+        if($test->ID_Test == 2){
+            $normative = DB::select("select * from normatives2 where gender = 'муж'");
+            //dd($normative);
+        }
 
         $valid = $request->validate($this->getRules($test));
         $result_id = $this->saveResult($test, $valid, $normative);
@@ -65,19 +73,105 @@ class SaveResultController extends Controller
 
         $idResult = $result->ID_Result;
 
-        $i = 0;
+        $i = 1;
+        $var1 = 0;
+        $var2 = 0;
+        $array = array();
         foreach ($test->Exercises as $exercise ){
 
             $resultExersise = new ResultExercise();
-            $resultExersise->ID_Result = $result->ID_Result;
-            $resultExersise->Name = $exercise->Name;
-            $resultExersise->Description = $exercise->Description;
-            $resultExersise->ID_Exercise = $exercise->ID_Exercise;
-            $resultExersise->Value = $valid_params[$exercise->getInputName()];
-            $resultExersise->Norma = $normative[$i]->Value;
+            if($test->ID_Test == 1)
+            {
 
-            $i++;
-            $resultExersise->save();
+                $resultExersise->ID_Result = $result->ID_Result;
+                $resultExersise->Name = $exercise->Name;
+                $resultExersise->Description = $exercise->Description;
+                $resultExersise->ID_Exercise = $exercise->ID_Exercise;
+                $resultExersise->Value = $valid_params[$exercise->getInputName()];
+                $resultExersise->Norma = $normative[$i]->Value;
+                $resultExersise->save();
+            }
+
+            if($test->ID_Test == 2)
+            {
+
+
+                $resultExersise->ID_Result = $result->ID_Result;
+                $resultExersise->Name = $exercise->Name;
+                $resultExersise->Description = $exercise->Description;
+                $resultExersise->ID_Exercise = $exercise->ID_Exercise;
+
+                if($exercise->getInputName() == "exercisevalue10" || $exercise->getInputName() == "exercisevalue11" ||
+                    $exercise->getInputName() == "exercisevalue12")
+                    $var1 += (float)$valid_params[$exercise->getInputName()];
+
+                if($exercise->getInputName() == "exercisevalue13" || $exercise->getInputName() == "exercisevalue14")
+                    $var2 += (float)$valid_params[$exercise->getInputName()];
+
+                if($exercise->getInputName() != "exercisevalue10" && $exercise->getInputName() != "exercisevalue11" &&
+                    $exercise->getInputName() != "exercisevalue13")
+                {
+                    $resultExersise->ID_Result = $result->ID_Result;
+                    $resultExersise->Name = $exercise->Name;
+                    $resultExersise->Description = $exercise->Description;
+                    $resultExersise->ID_Exercise = $exercise->ID_Exercise;
+                    $resultExersise->Norma = -1;
+
+
+                    $norma = DB::select("select Value from normatives2 where gender = 'муж' AND id_exercise = ".$i);
+
+                    foreach($norma as $key)
+                    {
+                        $array[] = $key->Value;
+                    }
+
+
+                    $num = (float) ($valid_params[$exercise->getInputName()]);
+                    //dd($num);
+
+                    if($exercise->getInputName() == "exercisevalue12"){
+                        $num = (4 * ($var1) - 200) / 10;
+                        $resultExersise->Value = $num;
+                    }
+
+
+                    if($exercise->getInputName() == "exercisevalue14"){
+                        $num = ($var2)/100;
+                        $resultExersise->Value = $num;
+                    }
+
+                    if($i != 8 && $i != 9)
+                    {
+                        if ($num > $array[0])
+                            $resultExersise->Norma = 1;
+                        if($num < $array[0] && $num > $array[1])
+                            $resultExersise->Norma = 2;
+                        if($num < $array[1] && $num > $array[2])
+                            $resultExersise->Norma = 3;
+                        if($num < $array[2] && $num > $array[3])
+                            $resultExersise->Norma = 4;
+                        if($num < $array[3])
+                            $resultExersise->Norma = 5;
+
+                        $resultExersise->Value = $num;
+                    }else
+                    {
+                        if ($num > $norma[0]->Value)
+                            $resultExersise->Norma = 1;
+                        if($num < $norma[0]->Value && $num > $norma[1]->Value)
+                            $resultExersise->Norma = 2;
+                        if($num < $norma[1]->Value && $num > $norma[2]->Value)
+                            $resultExersise->Norma = 4;
+
+                        $resultExersise->Value = $num;
+                    }
+
+                    $resultExersise->save();
+                    $i++;
+                }
+            }
+
+
         }
 
         return  $idResult;
