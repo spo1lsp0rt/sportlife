@@ -37,16 +37,21 @@
             </div>
             <div class="profile_panel">
                 <div class="profile_name">@php echo $currentUser->FullName; @endphp</div>
-                <form action="#">
-                    <button formaction="#" class="edit_profile_btn">
-                        <img src="/icons/edit.png" alt="edit">
-                    </button>
-                </form>
             </div>
-
+            @php if($currentUser->ID_Role == 3){ @endphp
+            <h4>Добавление студентов</h4>
+            <form action="/add_users" method="post" enctype="multipart/form-data">
+                @csrf
+                <input type="file" name="uploadfile">
+                <input type="submit" value="Загрузить">
+            </form>
+            @php } @endphp
+            @php if($currentUser->ID_Role == 1){ @endphp
             @yield('user_statistic')
+            @php } @endphp
         </div>
     </div>
+
 
 
 @endsection

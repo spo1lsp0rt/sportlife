@@ -42,7 +42,7 @@ class MainController extends Controller
 
     public function  add_users()
     {
-        $file = resource_path() . '/xlsx/Студенты.xlsx'; // файл для получения данных
+        $file = $_FILES['uploadfile']['tmp_name']; // файл для получения данных
         $spreadsheet = IOFactory::load( $file );
         $worksheet = $spreadsheet->getActiveSheet();
         $rows = [];
@@ -72,7 +72,7 @@ class MainController extends Controller
             $userdata->Password = $pass;
             $userdata->save();
         }
-        echo "Студенты успешно добавлены в базу данных!";
+        return redirect('/user_profile');
     }
 
     public function  authorization() {
