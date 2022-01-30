@@ -1,5 +1,5 @@
 .result_title {
-  margin: 0 auto;
+  text-align: center;
 }
 
 .result_table {
@@ -74,7 +74,11 @@
 }
 
 .result_total {
+  display: block;
   margin: 30px auto 0 auto;
+}
+.result_total h3 {
+  text-align: center;
 }
 .result_total .total_counting {
   display: flex;

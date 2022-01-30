@@ -9,7 +9,6 @@
   align-items: center;
   margin: 50px auto 0 auto;
   width: 220px;
-  height: 220px;
   background: #5A5A5A;
   border: 2px solid #000000;
   box-sizing: border-box;
@@ -17,7 +16,6 @@
   border-radius: 120px;
 }
 .user_profile .profile_img img {
-  height: 100%;
   width: 100%;
   border-radius: 100%;
 }
@@ -30,7 +28,6 @@
 .user_profile .profile_panel .profile_name {
   height: 40px;
   padding: 5px 15px 5px 15px;
-  margin-right: 16px;
   line-height: 30px;
   font-weight: 400;
   font-size: 25px;
@@ -56,4 +53,13 @@
 .user_profile .profile_panel .edit_profile_btn img {
   height: 21px;
   width: 21px;
+}
+
+@media (max-width: 1200px) {
+  .user_profile .profile_img {
+    width: 190px;
+  }
+  .user_profile .profile_panel .profile_name {
+    font-size: 23px;
+  }
 }

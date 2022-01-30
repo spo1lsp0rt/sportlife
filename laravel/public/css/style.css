@@ -71,7 +71,6 @@ header nav .menu .menu_item .menu_link:hover {
   text-decoration: underline;
 }
 header nav .menulogin {
-  width: 144px;
   height: 70px;
   display: flex;
   margin-left: 70px;

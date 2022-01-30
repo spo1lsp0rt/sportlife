@@ -27,7 +27,7 @@
                 <div class="col-1 col-sm-9 offset-sm-0 col-md-6 offset-md-0 col-lg-6 offset-lg-0">
                     <ul class="menu">
                         <div class="mobile_menulogin">
-                            <a href="/user_profile">
+                            <a href="/profile">
                                 <div class="mobile_menulogin_round"><img src="/icons/user_log.png" alt="" class="mobile_menulogin_icon"></div>
                             </a>
                             @php if(array_key_exists('login', $_COOKIE)) { @endphp
@@ -44,7 +44,7 @@
                 </div>
                 <div class="col-4 col-sm-2 offset-sm-0 col-md-2 offset-md-0 col-lg-2 offset-lg-1">
                     <div class="menulogin">
-                        <a href="/user_profile">
+                        <a href="/profile">
                             <div class="menulogin_round"><img src="/icons/user_log.png" alt="" class="menulogin_icon"></div>
                         </a>
                         @php if(array_key_exists('login', $_COOKIE)) { @endphp
