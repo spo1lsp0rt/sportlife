@@ -45,6 +45,9 @@
                             <div class='testdescr_case'>
                                 <div class='form_testdescr'><b>Описание:</b> {{$test->Description}}</div>
                             </div>
+                            <div class="testlock">
+                                <img src="/img/lock.png" alt="lock" class="lock_img">
+                            </div>
                         </div>
                     </a>
                 </div>
