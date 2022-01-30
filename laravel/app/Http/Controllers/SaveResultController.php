@@ -52,6 +52,18 @@ class SaveResultController extends Controller
 
         $valid = $request->validate($this->getRules($test));
         $result_id = $this->saveResult($test, $valid, $normative);
+
+        // -- Добавление id пользователя и id теста в таблицу test_user --
+        if(array_key_exists('ID_User', $_COOKIE))
+        {
+            DB::table('test_user')->insert(
+                array(
+                    'ID_Test' => $id,
+                    'ID_User' => $_COOKIE['ID_User']
+                )
+            );
+        }
+        // ----------------------------------------------------------------
         return redirect('test_result/'.$result_id);
     }
 
