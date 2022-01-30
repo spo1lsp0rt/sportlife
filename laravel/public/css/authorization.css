@@ -1,6 +1,6 @@
 .authorize_menu {
   margin: 0 auto;
-  width: 500px;
+  width: 40%;
 }
 .authorize_menu .authorize_title {
   display: flex;
@@ -9,4 +9,15 @@
 }
 .authorize_menu .alert {
   height: 55px;
+}
+
+@media (max-width: 991px) {
+  .authorize_menu {
+    width: 55%;
+  }
+}
+@media (max-width: 767.5px) {
+  .authorize_menu {
+    width: 75%;
+  }
 }
