@@ -13,10 +13,10 @@
                 <div class='title_field'>Тест</div>
             </div>
             <div class='col col-md-3'>
-                <div class='title_field'>Результат</div>
+                <div class='title_field_last'>Результат</div>
             </div>
             <div class='col col-md-2'>
-                <div class='title_field'>НВП</div>
+                <div class='title_field_last'>НВП</div>
             </div>
             <div class='col col-md-2'>
                 <div class='title_field_last'>Оценка</div>
@@ -28,10 +28,10 @@
                     <div class='data_field'>{{$exercise->Name}}</div>
                 </div>
                 <div class='col col-md-3'>
-                    <div class='data_field'>{{$exercise->Value}}</div>
+                    <div class='data_field_last'>{{$exercise->Value}}</div>
                 </div>
                 <div class='col col-md-2'>
-                    <div class='data_field'>{{$exercise->Norma}}</div>
+                    <div class='data_field_last'>{{$exercise->Norma}}</div>
                 </div>
                 <div class='col col-md-2'>
                     <div class='data_field_last'>

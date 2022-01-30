@@ -12,8 +12,14 @@
 }
 .statistic_table .col {
   padding: 0;
+  display: flex;
+}
+.statistic_table .row {
+  display: flex;
+  flex-wrap: wrap;
 }
 .statistic_table .title_field {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,6 +30,7 @@
   color: #000000;
 }
 .statistic_table .title_field_last {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,6 +42,7 @@
   border-left: 1px solid black;
 }
 .statistic_table .data_field {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -46,6 +54,7 @@
   border-top: 1px solid black;
 }
 .statistic_table .data_field_last {
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;

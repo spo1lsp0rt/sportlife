@@ -1,4 +1,6 @@
 
+<div class="result_title"><h2>Результаты тестирования</h2></div>
+
 <div class="result_table">
     <div class='container'>
         <div class='row'>
@@ -6,10 +8,10 @@
                 <div class='title_field'>Проба</div>
             </div>
             <div class='col col-md-3'>
-                <div class='title_field'>Результат</div>
+                <div class='title_field_last'>Результат</div>
             </div>
-            <div class='col col-md-2'>
-                <div class='title_field'>Уровнень</div>
+            <div class='col col-md-4'>
+                <div class='title_field_last'>Уровнень</div>
             </div>
 
         </div>
@@ -19,10 +21,10 @@
                     <div class='data_field'>{{$exercise->Name}}</div>
                 </div>
                 <div class='col col-md-3'>
-                    <div class='data_field'>{{$exercise->Value}}</div>
+                    <div class='data_field_last'>{{$exercise->Value}}</div>
                 </div>
-                <div class='col col-md-2'>
-                    <div class='data_field'>
+                <div class='col col-md-4'>
+                    <div class='data_field_last'>
                         @php
                             //dd($exercise);
                             if($exercise->Norma == 1) { echo "Низкий";}

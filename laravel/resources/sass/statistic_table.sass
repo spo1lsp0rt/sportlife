@@ -12,8 +12,20 @@
 
     .col
         padding: 0
+        display: -webkit-flex
+        display: -ms-flexbox
+        display: flex
+
+    .row
+        display: -webkit-flex
+        display: -ms-flexbox
+        display: flex
+        -webkit-flex-wrap: wrap
+        -ms-flex-wrap: wrap
+        flex-wrap: wrap
 
     .title_field
+        width: 100%
         display: flex
         justify-content: center
         align-items: center
@@ -24,6 +36,7 @@
         color: #000000
 
     .title_field_last
+        width: 100%
         display: flex
         justify-content: center
         align-items: center
@@ -35,6 +48,7 @@
         border-left: 1px solid black
 
     .data_field
+        width: 100%
         display: flex
         justify-content: center
         align-items: center
@@ -46,6 +60,7 @@
         border-top: 1px solid black
 
     .data_field_last
+        width: 100%
         display: flex
         justify-content: center
         align-items: center
