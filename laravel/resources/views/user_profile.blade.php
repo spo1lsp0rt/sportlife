@@ -47,7 +47,10 @@
             </form>
             @php } @endphp
             @php if($currentUser->ID_Role == 1){ @endphp
-            @yield('user_statistic')
+
+            @php } @endphp
+            @php if($currentUser->ID_Role == 2){ @endphp
+            @yield('passed_test')
             @php } @endphp
         </div>
     </div>

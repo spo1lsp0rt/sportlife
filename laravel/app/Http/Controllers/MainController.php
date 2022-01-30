@@ -19,7 +19,7 @@ class MainController extends Controller
         return view('home');
     }
 
-    public function  user_profile() {
+    public function  profile() {
         $allUsers = new users();
         return view('user_profile', ['allUsers' => $allUsers]);
     }
@@ -30,6 +30,10 @@ class MainController extends Controller
         $allUsers = new users();
         $currentData = array($allStat->all(), $allTests->all(), $allUsers->all());
         return view('statistic_table', ['currentData' => $currentData]);
+    }
+
+    public function  passed_test() {
+        return view('passed_test');
     }
 
     public function  privacy_policy() {

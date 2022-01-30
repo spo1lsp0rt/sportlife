@@ -22,9 +22,11 @@ Route::get('/', [ MainController::class, 'home' ]);
 
 Route::get('/exit', [ MainController::class, 'exit' ]);
 
-Route::get('/user_profile', [ MainController::class, 'user_profile' ]);
+Route::get('/profile', [ MainController::class, 'profile' ]);
 
-Route::get('/user_profile', [ MainController::class, 'statistic_table' ]);
+Route::get('/profile', [ MainController::class, 'passed_test' ]);
+
+Route::get('/profile', [ MainController::class, 'statistic_table' ]);
 
 Route::get('/authorization', [ MainController::class, 'authorization' ]);
 
