@@ -17,4 +17,8 @@
         @component('task2', ['result' => $result])
         @endcomponent
     @endif
+
+    <form action="#">
+        <button formaction="#" class="access_btn">Открыть доступ</button>
+    </form>
 @endsection

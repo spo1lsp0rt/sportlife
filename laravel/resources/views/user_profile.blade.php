@@ -50,7 +50,34 @@
             @yield('user_statistic')
             @php } @endphp
             @php if($currentUser->ID_Role == 2){ @endphp
-            @yield('passed_test')
+            <div class='statistic_table'>
+                <div class='container'>
+                    <div class='row'>
+                        <div class='col col-md-2'>
+                            <div class='title_field'>Дата</div>
+                        </div>
+                        <div class='col col-md-4'>
+                            <div class='title_field_last'>ФИО</div>
+                        </div>
+                        <div class='col col-md-6'>
+                            <div class='title_field_last'>Название</div>
+                        </div>
+                    </div>
+                    <a href='/test_result/$stat->id_result'>
+                        <div class='row'>
+                            <div class='col col-md-2'>
+                                <div class='data_field'>$stat->date_test</div>
+                            </div>
+                            <div class='col col-md-4'>
+                                <div class='data_field_last'>$stat->date_test</div>
+                            </div>
+                            <div class='col col-md-6'>
+                                <div class='data_field_last'>" . $allTests[$index]->Name . "</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
             @php } @endphp
         </div>
     </div>
