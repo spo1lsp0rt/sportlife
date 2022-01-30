@@ -17,8 +17,16 @@
         @component('task2', ['result' => $result])
         @endcomponent
     @endif
-
-    <form action="#">
-        <button formaction="#" class="access_btn">Открыть доступ</button>
+    @php
+    if(array_key_exists('ID_User', $_COOKIE))
+    {
+        $id = DB::table('user')->where('ID_User', $_COOKIE['ID_User'])->value('ID_Role');
+    }
+    @endphp
+    @if($id == 2)
+    <form action="/clear_statistic/{{$result->ID_Result}}" method="post">
+        @csrf
+        <button formaction="/clear_statistic/{{$result->ID_Result}}" class="access_btn">Открыть доступ</button>
     </form>
+    @endif
 @endsection

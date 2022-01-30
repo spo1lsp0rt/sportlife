@@ -24,9 +24,9 @@ Route::get('/exit', [ MainController::class, 'exit' ]);
 
 Route::get('/profile', [ MainController::class, 'profile' ]);
 
-Route::get('/profile', [ MainController::class, 'passed_test' ]);
-
 Route::get('/profile', [ MainController::class, 'statistic_table' ]);
+
+Route::post('/clear_statistic/{id}', [ MainController::class, 'clear_statistic' ])->whereNumber('id');
 
 Route::get('/authorization', [ MainController::class, 'authorization' ]);
 
