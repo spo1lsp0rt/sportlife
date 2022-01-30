@@ -30,6 +30,27 @@ header
       height: 72px
       list-style-type: none
 
+      .mobile_menulogin
+        display: none
+        align-items: center
+        margin: 30px 0
+
+        .mobile_menulogin_round
+          display: flex
+          justify-content: center
+          align-items: center
+          background: black
+          width: 40px
+          height: 40px
+          border-radius: 100%
+
+        .mobile_menulogin_link
+          color: black
+          text-decoration: none
+          padding-left: 16px
+          font-weight: 400
+          font-size: 19px
+
       .menu_item
         line-height: 20px
         padding-right: 50px
@@ -70,6 +91,7 @@ header
         font-weight: 400
         font-size: 19px
 
+
 footer
   height: 168px
   margin-top: 50px
@@ -89,5 +111,10 @@ footer
       color: #888888
       text-decoration-color: #888888
       cursor: pointer
+      padding-right: 5px
+      border-right: #888888 solid 1px
+      &:nth-child(2)
+        padding-right: 0
+        border-right: none
 
 @import "media_style"
