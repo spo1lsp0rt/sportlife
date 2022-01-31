@@ -26,7 +26,6 @@ class SaveResultController extends Controller
     {
 
         $test = Test::with('Exercises')->findOrFail($id);
-        //dd($request->input('btnradio'));
 
         if ($test->ID_Test == 1){
 
@@ -47,10 +46,11 @@ class SaveResultController extends Controller
 
         if($test->ID_Test == 2){
             $normative = DB::select("select * from normatives2 where gender = 'муж'");
-            //dd($normative);
+
         }
 
         $valid = $request->validate($this->getRules($test));
+
         $result_id = $this->saveResult($test, $valid, $normative);
 
         // -- Добавление id пользователя и id теста в таблицу test_user --
@@ -63,6 +63,7 @@ class SaveResultController extends Controller
                 )
             );
         }
+
         // ----------------------------------------------------------------
         return redirect('test_result/'.$result_id);
     }
@@ -76,12 +77,12 @@ class SaveResultController extends Controller
      * @return int Возвращает идентификатор сохраненного результата
      */
     private function saveResult(Test $test, array $valid_params, array $normative):int{
+
         $result = new Result();
         $result->ID_Test = $test->ID_Test;
+
         $result->Date = Carbon::now();
         $result->save();
-
-
 
         $idResult = $result->ID_Result;
 
@@ -101,6 +102,7 @@ class SaveResultController extends Controller
                 $resultExersise->ID_Exercise = $exercise->ID_Exercise;
                 $resultExersise->Value = $valid_params[$exercise->getInputName()];
                 $resultExersise->Norma = $normative[$i]->Value;
+
                 $resultExersise->save();
             }
 
@@ -152,7 +154,7 @@ class SaveResultController extends Controller
                         $resultExersise->Value = $num;
                     }
 
-                    if($i != 8 && $i != 9)
+                    if($i != 9)
                     {
                         if ($num > $array[0])
                             $resultExersise->Norma = 1;
@@ -173,6 +175,8 @@ class SaveResultController extends Controller
                         if($num < $norma[0]->Value && $num > $norma[1]->Value)
                             $resultExersise->Norma = 2;
                         if($num < $norma[1]->Value && $num > $norma[2]->Value)
+                            $resultExersise->Norma = 3;
+                        if($num < $norma[2]->Value)
                             $resultExersise->Norma = 4;
 
                         $resultExersise->Value = $num;
