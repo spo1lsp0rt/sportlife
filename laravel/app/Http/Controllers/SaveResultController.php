@@ -87,6 +87,7 @@ class SaveResultController extends Controller
         $idResult = $result->ID_Result;
 
         $i = 1;
+        $j = 0;
         $var1 = 0;
         $var2 = 0;
         $array = array();
@@ -101,9 +102,10 @@ class SaveResultController extends Controller
                 $resultExersise->Description = $exercise->Description;
                 $resultExersise->ID_Exercise = $exercise->ID_Exercise;
                 $resultExersise->Value = $valid_params[$exercise->getInputName()];
-                $resultExersise->Norma = $normative[$i]->Value;
+                $resultExersise->Norma = $normative[$j]->Value;
 
                 $resultExersise->save();
+                $j++;
             }
 
             if($test->ID_Test == 2)
