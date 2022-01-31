@@ -54,6 +54,35 @@
   height: 21px;
   width: 21px;
 }
+.user_profile .admin_panel {
+  display: block;
+  margin: 0 auto;
+}
+.user_profile .admin_panel h4 {
+  display: flex;
+  width: 287px;
+  margin: 0 auto;
+}
+.user_profile .admin_panel form {
+  display: flex;
+  margin: 10px auto 0 auto;
+  width: 600px;
+  padding: 30px 50px;
+  border: black solid 1px;
+  border-radius: 10px;
+}
+.user_profile .admin_panel form .form-control {
+  margin-right: 10px;
+}
+.user_profile .admin_panel form .sumbit-upload {
+  background-color: #e9ecef;
+  border: #ced4da solid 1px;
+  border-radius: 5px;
+  transition: 0.2s;
+}
+.user_profile .admin_panel form .sumbit-upload:hover {
+  background-color: #dde0e3;
+}
 
 @media (max-width: 1200px) {
   .user_profile .profile_img {

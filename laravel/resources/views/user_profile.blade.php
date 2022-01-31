@@ -39,12 +39,15 @@
                 <div class="profile_name">{{$currentUser->FullName}}</div>
             </div>
             @if($currentUser->ID_Role == 3)
-            <h4>Добавление студентов</h4>
-            <form action="/add_users" method="post" enctype="multipart/form-data">
-                @csrf
-                <input type="file" name="uploadfile">
-                <input type="submit" value="Загрузить">
-            </form>
+                <div class="admin_panel">
+                    <h4>Добавление студентов</h4>
+                    <form action="/add_users" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <input class="form-control" type="file" id="formFile" name="uploadfile">
+                        {{--<input type="file" name="uploadfile">--}}
+                        <input class="sumbit-upload" type="submit" value="Загрузить">
+                    </form>
+                </div>
             @endif
             @if($currentUser->ID_Role == 1)
             @yield('user_statistic')
