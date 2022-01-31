@@ -82,7 +82,7 @@ class MainController extends Controller
             $userdata->Password = $pass;
             $userdata->save();
         }
-        return redirect('/user_profile');
+        return redirect('/profile');
     }
 
     public function  authorization() {
