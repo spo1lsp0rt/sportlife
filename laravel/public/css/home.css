@@ -92,9 +92,6 @@
   }
 }
 @media (max-width: 575.5px) {
-  .home {
-    margin: 10vh 0;
-  }
   .home .home_descrblock .home_title {
     font-size: 28px;
     line-height: 36px;
@@ -120,9 +117,6 @@
   }
 }
 @media (max-width: 425px) {
-  .home {
-    margin: 20vh 0;
-  }
   .home .home_descrblock .home_title {
     font-size: 25px;
     line-height: 35px;

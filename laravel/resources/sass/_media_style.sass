@@ -47,6 +47,7 @@
 
 @media (max-width: 575.5px)
   header
+    margin-bottom: 80px
     nav
       height: 70px
       .hamburger
@@ -94,10 +95,23 @@
           right: 0
         .mobile_menulogin
           display: flex
+          flex-direction: column
+          width: 100%
+          margin: 0
+          padding: 20px
+          border-top: black dotted 1px
+          border-bottom: black dotted 1px
+          .mobile_menulogin_link
+            padding-left: 0
+            margin-top: 15px
         .menu_item
+          width: 100%
+          text-align: center
           padding: 0
           margin: 15px 0
           .menu_link
+            display: block
+            padding: 10px 0
             font-size: 20px
 
       .menulogin

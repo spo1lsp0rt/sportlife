@@ -179,6 +179,9 @@ footer .footer_descr a:nth-child(2) {
   }
 }
 @media (max-width: 575.5px) {
+  header {
+    margin-bottom: 80px;
+  }
   header nav {
     height: 70px;
   }
@@ -234,12 +237,26 @@ footer .footer_descr a:nth-child(2) {
   }
   header nav .menu .mobile_menulogin {
     display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0;
+    padding: 20px;
+    border-top: black dotted 1px;
+    border-bottom: black dotted 1px;
+  }
+  header nav .menu .mobile_menulogin .mobile_menulogin_link {
+    padding-left: 0;
+    margin-top: 15px;
   }
   header nav .menu .menu_item {
+    width: 100%;
+    text-align: center;
     padding: 0;
     margin: 15px 0;
   }
   header nav .menu .menu_item .menu_link {
+    display: block;
+    padding: 10px 0;
     font-size: 20px;
   }
   header nav .menulogin {
