@@ -25,11 +25,7 @@ class MainController extends Controller
     }
 
     public function  statistic_table() {
-        $allStat = new statistic();
-        $allTests = new Test();
-        $allUsers = new users();
-        $currentData = array($allStat->all(), $allTests->all(), $allUsers->all());
-        return view('statistic_table', ['currentData' => $currentData]);
+        return view('statistic_table');
     }
 
     public function  privacy_policy() {
