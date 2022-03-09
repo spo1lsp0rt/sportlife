@@ -39,7 +39,7 @@
             </div>
             <div class='col col-md-3'>
                 <div class='data_field data_field_last'>
-
+                    Заглушка
                 </div>
             </div>
         </div>
