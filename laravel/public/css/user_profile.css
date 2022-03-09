@@ -58,29 +58,44 @@
   display: block;
   margin: 0 auto;
 }
-.user_profile .admin_panel h4 {
+.user_profile .admin_panel h3 {
   display: flex;
-  width: 287px;
+  width: 335px;
   margin: 0 auto;
 }
-.user_profile .admin_panel form {
+.user_profile .admin_panel .upload_form {
   display: flex;
   margin: 10px auto 0 auto;
   width: 600px;
-  padding: 30px 50px;
-  border: black solid 1px;
-  border-radius: 10px;
 }
-.user_profile .admin_panel form .form-control {
+.user_profile .admin_panel .upload_form .form-control {
   margin-right: 10px;
+  font-size: 18px;
 }
-.user_profile .admin_panel form .sumbit-upload {
+.user_profile .admin_panel .upload_form .sumbit-upload {
   background-color: #e9ecef;
   border: #ced4da solid 1px;
   border-radius: 5px;
   transition: 0.2s;
+  font-size: 18px;
 }
-.user_profile .admin_panel form .sumbit-upload:hover {
+.user_profile .admin_panel .upload_form .sumbit-upload:hover {
+  background-color: #dde0e3;
+}
+.user_profile .admin_panel .admin_table {
+  margin-top: 25px;
+}
+.user_profile .admin_panel .user_delbtn {
+  margin: 25px 0 0 0;
+  width: 300px;
+  height: 40px;
+  background-color: #e9ecef;
+  border: #ced4da solid 1px;
+  border-radius: 5px;
+  transition: 0.2s;
+  font-size: 18px;
+}
+.user_profile .admin_panel .user_delbtn:hover {
   background-color: #dde0e3;
 }
 

@@ -57,26 +57,38 @@
     .admin_panel
         display: block
         margin: 0 auto
-        h4
+        h3
             display: flex
-            width: 287px
+            width: 335px
             margin: 0 auto
-        form
+        .upload_form
             display: flex
-
             margin: 10px auto 0 auto
             width: 600px
-            padding: 30px 50px
-            border: black solid 1px
-            border-radius: 10px
             .form-control
                 margin-right: 10px
+                font-size: 18px
             .sumbit-upload
                 background-color: rgb(233, 236, 239)
                 border: rgb(206, 212, 218) solid 1px
                 border-radius: 5px
                 transition: 0.2s
+                font-size: 18px
                 &:hover
                     background-color: rgb(221, 224, 227)
+        .admin_table
+            margin-top: 25px
+        .user_delbtn
+            margin: 25px 0 0 0
+            width: 300px
+            height: 40px
+            background-color: rgb(233, 236, 239)
+            border: rgb(206, 212, 218) solid 1px
+            border-radius: 5px
+            transition: 0.2s
+            font-size: 18px
+            &:hover
+                background-color: rgb(221, 224, 227)
+
 
 @import "media_user_profile"

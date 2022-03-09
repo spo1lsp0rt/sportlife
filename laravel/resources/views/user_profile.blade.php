@@ -38,17 +38,6 @@
             <div class="profile_panel">
                 <div class="profile_name">{{$currentUser->FullName}}</div>
             </div>
-            @if($currentUser->ID_Role == 3)
-                <div class="admin_panel">
-                    <h4>Добавление студентов</h4>
-                    <form action="/add_users" method="post" enctype="multipart/form-data">
-                        @csrf
-                        <input class="form-control" type="file" id="formFile" name="uploadfile">
-                        {{--<input type="file" name="uploadfile">--}}
-                        <input class="sumbit-upload" type="submit" value="Загрузить">
-                    </form>
-                </div>
-            @endif
             @if($currentUser->ID_Role == 1)
             @yield('user_statistic')
             @endif
@@ -62,8 +51,11 @@
                         <div class='col col-md-4'>
                             <div class='title_field_last'>ФИО</div>
                         </div>
-                        <div class='col col-md-6'>
+                        <div class='col col-md-4'>
                             <div class='title_field_last'>Название</div>
+                        </div>
+                        <div class='col col-md-2'>
+                            <div class='title_field_last'>Результат</div>
                         </div>
                     </div>
                         @php
@@ -82,14 +74,69 @@
                             <div class='col col-md-4'>
                                 <div class='data_field_last'>{{$name_user}}</div>
                             </div>
-                            <div class='col col-md-6'>
+                            <div class='col col-md-4'>
                                 <div class='data_field_last'>{{$name_test}}</div>
+                            </div>
+                            <div class='col col-md-2'>
+                                <div class='data_field_last'>5 баллов</div>
                             </div>
                         </div>
                     </a>
                     @endforeach
                 </div>
             </div>
+            @endif
+            @if($currentUser->ID_Role == 3)
+                <div class="admin_panel">
+                    <h3>Добавление студентов</h3>
+                    <form class="upload_form" action="/add_users" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <input class="form-control" type="file" id="formFile" name="uploadfile">
+                        {{--<input type="file" name="uploadfile">--}}
+                        <input class="sumbit-upload" type="submit" value="Загрузить">
+                    </form>
+                    <div class='admin_table statistic_table'>
+                        <div class='container'>
+                            <div class='row'>
+                                <div class='col col-md-1'>
+                                    <div class='title_field'>№</div>
+                                </div>
+                                <div class='col col-md-4'>
+                                    <div class='title_field_last'>ФИО</div>
+                                </div>
+                                <div class='col col-md-2'>
+                                    <div class='title_field_last'>Факультет</div>
+                                </div>
+                                <div class='col col-md-2'>
+                                    <div class='title_field_last'>Группа</div>
+                                </div>
+                                <div class='col col-md-3'>
+                                    <div class='title_field_last'>Действия</div>
+                                </div>
+                            </div>
+                            <div class='row'>
+                                <div class='col col-md-1'>
+                                    <div class='data_field'><input type="checkbox" style="transform:scale(1.4);"></div>
+                                </div>
+                                <div class='col col-md-4'>
+                                    <div class='data_field_last'>Иванов Иван Иванович</div>
+                                </div>
+                                <div class='col col-md-2'>
+                                    <div class='data_field_last'>ИИТИК</div>
+                                </div>
+                                <div class='col col-md-2'>
+                                    <div class='data_field_last'>ДИНРб31</div>
+                                </div>
+                                <div class='col col-md-3'>
+                                    <div class='data_field_last'></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <form action="#">
+                        <button formaction="#" class="user_delbtn">Удалить пользователя(-ей)</button>
+                    </form>
+                </div>
             @endif
         </div>
     </div>
