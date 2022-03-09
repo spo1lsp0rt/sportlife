@@ -6,8 +6,7 @@
 
 <div class="result_title"><h2>Результаты тестирования</h2></div>
 
-<div class="result_table">
-    <div class='container'>
+    <div class='container result_table'>
         <div class='row'>
             <div class='col col-md-5'>
                 <div class='title_field'>Тест</div>
@@ -29,13 +28,13 @@
                     <div class='data_field'>{{$exercise->Name}}</div>
                 </div>
                 <div class='col col-md-3'>
-                    <div class='data_field_last'>{{$exercise->Value}}</div>
+                    <div class='data_field data_field_last'>{{$exercise->Value}}</div>
                 </div>
                 <div class='col col-md-2'>
-                    <div class='data_field_last'>{{$exercise->Norma}}</div>
+                    <div class='data_field data_field_last'>{{$exercise->Norma}}</div>
                 </div>
                 <div class='col col-md-2'>
-                    <div class='data_field_last'>
+                    <div class='data_field data_field_last'>
                         @php
                             if ($exercise->Name == "Ловля падающей линейки."){
                                 echo((-1) * round(( $exercise->Value - $exercise->Norma) / $exercise->Norma, 2));
@@ -59,7 +58,6 @@
 
         @php $OYFK = $OYFK / 7; @endphp
     </div>
-</div>
 
 <div class="result_total">
     <h3>Общий уровень развития физических кондиций</h3>
