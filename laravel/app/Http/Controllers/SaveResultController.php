@@ -46,12 +46,12 @@ class SaveResultController extends Controller
 
         if($test->ID_Test == 2){
             $normative = DB::select("select * from normatives2 where gender = 'муж'");
-
+            $course = $_POST["btnradio"];
         }
 
         $valid = $request->validate($this->getRules($test));
 
-        $result_id = $this->saveResult($test, $valid, $normative);
+        $result_id = $this->saveResult($test, $valid, $normative, $course);
 
         // -- Добавление id пользователя и id теста в таблицу test_user --
         if(array_key_exists('ID_User', $_COOKIE))
@@ -73,10 +73,11 @@ class SaveResultController extends Controller
      *
      * @param Test $test
      * @param array $valid_params Проверенные данные
+     * @param string $course Пол студента
      *
      * @return int Возвращает идентификатор сохраненного результата
      */
-    private function saveResult(Test $test, array $valid_params, array $normative):int{
+    private function saveResult(Test $test, array $valid_params, array $normative, string $course):int{
 
         $result = new Result();
         $result->ID_Test = $test->ID_Test;
@@ -129,28 +130,28 @@ class SaveResultController extends Controller
                     $exercise->getInputName() != "exercisevalue13")
                 {
                     $resultExersise->ID_Result = $result->ID_Result;
-                    $resultExersise->Name = $exercise->Name;
+                    $resultExersise->Name = $exercise->Name.$course;
                     $resultExersise->Description = $exercise->Description;
                     $resultExersise->ID_Exercise = $exercise->ID_Exercise;
                     $resultExersise->Norma = -1;
 
 
-                    $norma = DB::select("select Value from normatives2 where gender = 'муж' AND id_exercise = ".$i);
+                    if($course == "муж")
+                        $norma = DB::select("select Value from normatives2 where gender = 'муж' AND id_exercise = ".$i);
+                    else
+                        $norma = DB::select("select Value from normatives2 where gender = 'жен' AND id_exercise = ".$i);
 
                     foreach($norma as $key)
                     {
                         $array[] = $key->Value;
                     }
 
-
                     $num = (float) ($valid_params[$exercise->getInputName()]);
-                    //dd($num);
 
                     if($exercise->getInputName() == "exercisevalue12"){
                         $num = (4 * ($var1) - 200) / 10;
                         $resultExersise->Value = $num;
                     }
-
 
                     if($exercise->getInputName() == "exercisevalue14"){
                         $num = ($var2)/100;
@@ -159,28 +160,29 @@ class SaveResultController extends Controller
 
                     if($i != 9)
                     {
-                        if ($num > $array[0])
-                            $resultExersise->Norma = 1;
-                        if($num < $array[0] && $num > $array[1])
-                            $resultExersise->Norma = 2;
-                        if($num < $array[1] && $num > $array[2])
-                            $resultExersise->Norma = 3;
-                        if($num < $array[2] && $num > $array[3])
-                            $resultExersise->Norma = 4;
-                        if($num < $array[3])
+                        if($num > $norma[0]->Value)
                             $resultExersise->Norma = 5;
+                        else if ($num < $norma[0]->Value && $num > $norma[1]->Value)
+                            $resultExersise->Norma = 4;
+                        else if($num < $norma[1]->Value && $num > $norma[2]->Value)
+                            $resultExersise->Norma = 3;
+                        else if($num < $norma[2]->Value && $num > $norma[3]->Value)
+                            $resultExersise->Norma = 2;
+                        else if($num < $norma[3]->Value)
+                            $resultExersise->Norma = 1;
 
-                        $resultExersise->Value = $num;
+                            $resultExersise->Value = $num;
                     }else
                     {
-                        if ($num > $norma[0]->Value)
-                            $resultExersise->Norma = 1;
-                        if($num < $norma[0]->Value && $num > $norma[1]->Value)
-                            $resultExersise->Norma = 2;
-                        if($num < $norma[1]->Value && $num > $norma[2]->Value)
-                            $resultExersise->Norma = 3;
-                        if($num < $norma[2]->Value)
+
+                        if($num > $norma[0]->Value)
+                            $resultExersise->Norma = 5;
+                        else if ($num < $norma[0]->Value && $num > $norma[1]->Value)
                             $resultExersise->Norma = 4;
+                        else if($num < $norma[1]->Value && $num > $norma[2]->Value)
+                            $resultExersise->Norma = 2;
+                        else if($num < $norma[2]->Value)
+                            $resultExersise->Norma = 1;
 
                         $resultExersise->Value = $num;
                     }

@@ -1,5 +1,6 @@
 @extends('layout')
 
+
 @section('title')Результат@endsection
 
 @section('stylesheet')
