@@ -40,6 +40,7 @@
             </div>
 
             @if($test->ID_Test == 1 || $test->ID_Test == 2)
+
                 <div class="person_info">
                     <div class="gender_info">
                         <div class="gender_title">Выберите ваш пол:</div>

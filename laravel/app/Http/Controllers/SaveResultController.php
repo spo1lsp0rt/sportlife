@@ -96,7 +96,6 @@ class SaveResultController extends Controller
             $resultExersise = new ResultExercise();
             if($test->ID_Test == 1)
             {
-/*bjbckej*/
                 $resultExersise->ID_Result = $result->ID_Result;
                 $resultExersise->Name = $exercise->Name;
                 $resultExersise->Description = $exercise->Description;
@@ -104,7 +103,9 @@ class SaveResultController extends Controller
                 $resultExersise->Value = $valid_params[$exercise->getInputName()];
                 $resultExersise->Norma = $normative[$j]->Value;
 
+
                 $resultExersise->save();
+
                 $j++;
             }
 

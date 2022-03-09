@@ -57,6 +57,7 @@
             @endphp
         @endforeach
 
+        @php $OYFK = $OYFK / 7; @endphp
     </div>
 </div>
 
