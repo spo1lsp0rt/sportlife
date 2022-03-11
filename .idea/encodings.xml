@@ -4,5 +4,6 @@
     <file url="file://$PROJECT_DIR$/laravel/node_modules/sass-loader/dist/SassWarning.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/laravel/resources/views/task1.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/laravel/resources/views/task2.blade.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/laravel/resources/views/task3.blade.php" charset="UTF-8" />
   </component>
 </project>

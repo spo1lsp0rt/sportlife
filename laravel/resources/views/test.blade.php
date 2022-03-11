@@ -39,7 +39,7 @@
                 @endforeach
             </div>
 
-            @if($test->ID_Test == 1 || $test->ID_Test == 2)
+            @if($test->ID_Test == 1 || $test->ID_Test == 2 || $test->ID_Test == 3)
 
                 <div class="person_info">
                     <div class="gender_info">

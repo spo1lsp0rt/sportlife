@@ -18,6 +18,12 @@
         @component('task2', ['result' => $result])
         @endcomponent
     @endif
+
+    @if($result->ID_Test == 3)
+        @component('task3', ['result' => $result])
+        @endcomponent
+    @endif
+
     @php
     if(array_key_exists('ID_User', $_COOKIE))
     {

@@ -49,6 +49,11 @@ class SaveResultController extends Controller
             $course = $_POST["btnradio"];
         }
 
+        if($test->ID_Test == 3){
+            $normative = DB::select("select * from normatives3 where gender = 'муж'");
+            $course = $_POST["btnradio"];
+        }
+
         $valid = $request->validate($this->getRules($test));
 
         $result_id = $this->saveResult($test, $valid, $normative, $course);
@@ -141,10 +146,6 @@ class SaveResultController extends Controller
                     else
                         $norma = DB::select("select Value from normatives2 where gender = 'жен' AND id_exercise = ".$i);
 
-                    foreach($norma as $key)
-                    {
-                        $array[] = $key->Value;
-                    }
 
                     $num = (float) ($valid_params[$exercise->getInputName()]);
 
@@ -192,6 +193,55 @@ class SaveResultController extends Controller
                 }
             }
 
+            if($test->ID_Test == 3)
+            {
+                $resultExersise->ID_Result = $result->ID_Result;
+                $resultExersise->Name = $exercise->Name;
+                $resultExersise->Description = $exercise->Description;
+                $resultExersise->ID_Exercise = $exercise->ID_Exercise;
+
+                if($course == "муж")
+                    $norma = DB::select("select Value from normatives3 where gender = 'муж' AND id_exercise = ".$i+20);
+                else
+                    $norma = DB::select("select Value from normatives3 where gender = 'жен' AND id_exercise = ".$i+20);
+
+
+
+                $num = (float) ($valid_params[$exercise->getInputName()]);
+
+                if($i != 4)
+                {
+                    if($num > $norma[0]->Value)
+                        $resultExersise->Norma = 5;
+                    else if ($num < $norma[0]->Value && $num > $norma[1]->Value)
+                        $resultExersise->Norma = 4;
+                    else if($num < $norma[1]->Value && $num > $norma[2]->Value)
+                        $resultExersise->Norma = 3;
+                    else if($num < $norma[2]->Value && $num > $norma[3]->Value)
+                        $resultExersise->Norma = 2;
+                    else if($num < $norma[3]->Value)
+                        $resultExersise->Norma = 1;
+
+                    $resultExersise->Value = $num;
+                }else
+                {
+
+                    if($num > $norma[0]->Value)
+                        $resultExersise->Norma = 5;
+                    else if ($num < $norma[0]->Value && $num > $norma[1]->Value)
+                        $resultExersise->Norma = 4;
+                    else if($num < $norma[1]->Value && $num > $norma[2]->Value)
+                        $resultExersise->Norma = 2;
+                    else if($num < $norma[2]->Value)
+                        $resultExersise->Norma = 1;
+
+                    $resultExersise->Value = $num;
+                }
+
+                $resultExersise->save();
+
+                $i++;
+            }
 
         }
 
