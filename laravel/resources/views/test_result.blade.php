@@ -24,6 +24,11 @@
         @endcomponent
     @endif
 
+    @if($result->ID_Test == 4)
+        @component('task4', ['result' => $result])
+        @endcomponent
+    @endif
+
     @php
     if(array_key_exists('ID_User', $_COOKIE))
     {

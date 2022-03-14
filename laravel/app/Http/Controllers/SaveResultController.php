@@ -54,6 +54,11 @@ class SaveResultController extends Controller
             $course = $_POST["btnradio"];
         }
 
+        if($test->ID_Test == 4){
+            $normative = DB::select("select * from normatives3 where gender = 'муж'");
+            $course = '';
+        }
+
         $valid = $request->validate($this->getRules($test));
 
         $result_id = $this->saveResult($test, $valid, $normative, $course);
@@ -243,6 +248,17 @@ class SaveResultController extends Controller
                 $i++;
             }
 
+            if($test->ID_Test == 4)
+            {
+                $num = (float) ($valid_params[$exercise->getInputName()]);
+                $resultExersise->ID_Result = $result->ID_Result;
+                $resultExersise->Name = $exercise->Name;
+                $resultExersise->Norma = 0;
+                $resultExersise->Description = $exercise->Description;
+                $resultExersise->ID_Exercise = $exercise->ID_Exercise;
+                $resultExersise->Value = $num;
+                $resultExersise->save();
+            }
         }
 
         return  $idResult;
