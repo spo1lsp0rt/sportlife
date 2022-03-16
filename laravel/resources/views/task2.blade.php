@@ -57,27 +57,27 @@
 
                         if($i != 9)
                         {
-                            if($exercise->Value > $norma[0]->Value)
+                            if($exercise->Value >= $norma[0]->Value)
                                 echo $exercise->Value . " > " . $norma[0]->Value;
-                            else if ($exercise->Value < $norma[0]->Value && $exercise->Value > $norma[1]->Value)
+                            else if ($exercise->Value < $norma[0]->Value && $exercise->Value >= $norma[1]->Value)
                                 echo $norma[0]->Value . " --- " . $exercise->Value . " --- " . $norma[1]->Value;
-                            else if($exercise->Value < $norma[1]->Value && $exercise->Value > $norma[2]->Value)
+                            else if($exercise->Value < $norma[1]->Value && $exercise->Value >= $norma[2]->Value)
                                 echo $norma[1]->Value . " --- " . $exercise->Value . " --- " . $norma[2]->Value;
-                            else if($exercise->Value < $norma[2]->Value && $exercise->Value > $norma[3]->Value)
+                            else if($exercise->Value < $norma[2]->Value && $exercise->Value >= $norma[3]->Value)
                                 echo $norma[2]->Value . " --- " . $exercise->Value . " --- " . $norma[3]->Value;
                             else if($exercise->Value < $norma[3]->Value)
                                 echo $exercise->Value . " < " . $norma[3]->Value;
                         }else
                         {
 
-                            if($exercise->Value > $norma[0]->Value)
+                            if($exercise->Value >= $norma[0]->Value)
                                 echo $exercise->Value . " > " . $norma[0]->Value;
-                            else if ($exercise->Value < $norma[0]->Value && $exercise->Value > $norma[1]->Value)
+                            else if ($exercise->Value < $norma[0]->Value && $exercise->Value >= $norma[1]->Value)
                                 echo $norma[0]->Value . " --- " . $exercise->Value . " --- " . $norma[1]->Value;
-                            else if($exercise->Value < $norma[1]->Value && $exercise->Value > $norma[2]->Value)
+                            else if($exercise->Value < $norma[1]->Value && $exercise->Value >= $norma[2]->Value)
                                 echo $norma[1]->Value . " --- " . $exercise->Value . " --- " . $norma[2]->Value;
                             else if($exercise->Value < $norma[2]->Value)
-                                echo $exercise->Value . " < " . $norma[3]->Value;
+                                echo $exercise->Value . " < " . $norma[2]->Value;
                         }
 
                         $i++;

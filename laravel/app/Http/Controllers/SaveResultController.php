@@ -166,13 +166,13 @@ class SaveResultController extends Controller
 
                     if($i != 9)
                     {
-                        if($num > $norma[0]->Value)
+                        if($num >= $norma[0]->Value)
                             $resultExersise->Norma = 5;
-                        else if ($num < $norma[0]->Value && $num > $norma[1]->Value)
+                        else if ($num < $norma[0]->Value && $num >= $norma[1]->Value)
                             $resultExersise->Norma = 4;
-                        else if($num < $norma[1]->Value && $num > $norma[2]->Value)
+                        else if($num < $norma[1]->Value && $num >= $norma[2]->Value)
                             $resultExersise->Norma = 3;
-                        else if($num < $norma[2]->Value && $num > $norma[3]->Value)
+                        else if($num < $norma[2]->Value && $num >= $norma[3]->Value)
                             $resultExersise->Norma = 2;
                         else if($num < $norma[3]->Value)
                             $resultExersise->Norma = 1;
@@ -181,11 +181,11 @@ class SaveResultController extends Controller
                     }else
                     {
 
-                        if($num > $norma[0]->Value)
+                        if($num >= $norma[0]->Value)
                             $resultExersise->Norma = 5;
-                        else if ($num < $norma[0]->Value && $num > $norma[1]->Value)
+                        else if ($num < $norma[0]->Value && $num >= $norma[1]->Value)
                             $resultExersise->Norma = 4;
-                        else if($num < $norma[1]->Value && $num > $norma[2]->Value)
+                        else if($num < $norma[1]->Value && $num >= $norma[2]->Value)
                             $resultExersise->Norma = 2;
                         else if($num < $norma[2]->Value)
                             $resultExersise->Norma = 1;
@@ -216,13 +216,13 @@ class SaveResultController extends Controller
 
                 if($i != 4)
                 {
-                    if($num > $norma[0]->Value)
+                    if($num >= $norma[0]->Value)
                         $resultExersise->Norma = 5;
-                    else if ($num < $norma[0]->Value && $num > $norma[1]->Value)
+                    else if ($num < $norma[0]->Value && $num >= $norma[1]->Value)
                         $resultExersise->Norma = 4;
-                    else if($num < $norma[1]->Value && $num > $norma[2]->Value)
+                    else if($num < $norma[1]->Value && $num >= $norma[2]->Value)
                         $resultExersise->Norma = 3;
-                    else if($num < $norma[2]->Value && $num > $norma[3]->Value)
+                    else if($num < $norma[2]->Value && $num >= $norma[3]->Value)
                         $resultExersise->Norma = 2;
                     else if($num < $norma[3]->Value)
                         $resultExersise->Norma = 1;
@@ -231,11 +231,11 @@ class SaveResultController extends Controller
                 }else
                 {
 
-                    if($num > $norma[0]->Value)
+                    if($num >= $norma[0]->Value)
                         $resultExersise->Norma = 5;
-                    else if ($num < $norma[0]->Value && $num > $norma[1]->Value)
+                    else if ($num < $norma[0]->Value && $num >= $norma[1]->Value)
                         $resultExersise->Norma = 4;
-                    else if($num < $norma[1]->Value && $num > $norma[2]->Value)
+                    else if($num < $norma[1]->Value && $num >= $norma[2]->Value)
                         $resultExersise->Norma = 2;
                     else if($num < $norma[2]->Value)
                         $resultExersise->Norma = 1;
