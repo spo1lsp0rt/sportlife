@@ -114,23 +114,34 @@
                                     <div class='title_field_last'>Действия</div>
                                 </div>
                             </div>
+                            @php
+
+                            $students = @DB::select('select * from student');
+                            @endphp
+
+                            @foreach($students as $student)
+                            @php
+                                $class = DB::table('class')->where('ID_Class', $student->ID_Class)->value('Name');
+                                $faculty = DB::table('faculty')->where('id_faculty', DB::table('class')->where('ID_Class', $student->ID_Class)->value('id_faculty'))->value('Name');
+                            @endphp
                             <div class='row'>
                                 <div class='col col-md-1'>
                                     <div class='data_field'><input type="checkbox" style="transform:scale(1.4);"></div>
                                 </div>
                                 <div class='col col-md-4'>
-                                    <div class='data_field_last'>Иванов Иван Иванович</div>
+                                    <div class='data_field_last'>{{$student->FullName}}</div>
                                 </div>
                                 <div class='col col-md-2'>
-                                    <div class='data_field_last'>ИИТИК</div>
+                                    <div class='data_field_last'>{{$faculty}}</div>
                                 </div>
                                 <div class='col col-md-2'>
-                                    <div class='data_field_last'>ДИНРб31</div>
+                                    <div class='data_field_last'>{{$class}}</div>
                                 </div>
                                 <div class='col col-md-3'>
                                     <div class='data_field_last'></div>
                                 </div>
                             </div>
+                            @endforeach
                         </div>
                     </div>
                     <form action="#">
