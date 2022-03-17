@@ -5,28 +5,29 @@
 @section('stylesheet')
     <link rel="stylesheet" type="text/css" href="{{url('css/statistic_table.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url('css/user_profile.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url('css/modal.css')}}">
 @endsection
 
 @section('main_content')
 
     @php
-    $currentUser = null;
-        if (array_key_exists('login', $_COOKIE))
-            {
-                foreach($allUsers as $user)
+        $currentUser = null;
+            if (array_key_exists('login', $_COOKIE))
                 {
-                    if($user->ID_User == $_COOKIE['ID_User'])
+                    foreach($allUsers as $user)
                     {
-                        $currentUser = $user;
-                        break;
+                        if($user->ID_User == $_COOKIE['ID_User'])
+                        {
+                            $currentUser = $user;
+                            break;
+                        }
                     }
                 }
-            }
-        else
-            {
-                header('Location: /authorization');
-                exit;
-            }
+            else
+                {
+                    header('Location: /authorization');
+                    exit;
+                }
     @endphp
 
     <div class="container">
@@ -39,52 +40,52 @@
                 <div class="profile_name">{{$currentUser->FullName}}</div>
             </div>
             @if($currentUser->ID_Role == 1)
-            @yield('user_statistic')
+                @yield('user_statistic')
             @endif
             @if($currentUser->ID_Role == 2)
-            <div class='statistic_table'>
-                <div class='container'>
-                    <div class='row'>
-                        <div class='col col-md-2'>
-                            <div class='title_field'>Дата</div>
+                <div class='statistic_table'>
+                    <div class='container'>
+                        <div class='row'>
+                            <div class='col col-md-2'>
+                                <div class='title_field'>Дата</div>
+                            </div>
+                            <div class='col col-md-4'>
+                                <div class='title_field_last'>ФИО</div>
+                            </div>
+                            <div class='col col-md-4'>
+                                <div class='title_field_last'>Название</div>
+                            </div>
+                            <div class='col col-md-2'>
+                                <div class='title_field_last'>Результат</div>
+                            </div>
                         </div>
-                        <div class='col col-md-4'>
-                            <div class='title_field_last'>ФИО</div>
-                        </div>
-                        <div class='col col-md-4'>
-                            <div class='title_field_last'>Название</div>
-                        </div>
-                        <div class='col col-md-2'>
-                            <div class='title_field_last'>Результат</div>
-                        </div>
-                    </div>
                         @php
                             $allStat = DB::select("select * from statistic");
                         @endphp
-                    @foreach($allStat as $stat)
-                        @php
-                            $name_user = DB::table('user')->where('ID_User', $stat->ID_User)->value('FullName');
-                            $name_test = DB::table('tests')->where('ID_Test', $stat->ID_Test)->value('Name');
-                        @endphp
-                    <a href='/test_result/{{$stat->ID_Result}}'>
-                        <div class='row'>
-                            <div class='col col-md-2'>
-                                <div class='data_field'>{{$stat->date_test}}</div>
-                            </div>
-                            <div class='col col-md-4'>
-                                <div class='data_field_last'>{{$name_user}}</div>
-                            </div>
-                            <div class='col col-md-4'>
-                                <div class='data_field_last'>{{$name_test}}</div>
-                            </div>
-                            <div class='col col-md-2'>
-                                <div class='data_field_last'>5 баллов</div>
-                            </div>
-                        </div>
-                    </a>
-                    @endforeach
+                        @foreach($allStat as $stat)
+                            @php
+                                $name_user = DB::table('user')->where('ID_User', $stat->ID_User)->value('FullName');
+                                $name_test = DB::table('tests')->where('ID_Test', $stat->ID_Test)->value('Name');
+                            @endphp
+                            <a href='/test_result/{{$stat->ID_Result}}'>
+                                <div class='row'>
+                                    <div class='col col-md-2'>
+                                        <div class='data_field'>{{$stat->date_test}}</div>
+                                    </div>
+                                    <div class='col col-md-4'>
+                                        <div class='data_field_last'>{{$name_user}}</div>
+                                    </div>
+                                    <div class='col col-md-4'>
+                                        <div class='data_field_last'>{{$name_test}}</div>
+                                    </div>
+                                    <div class='col col-md-2'>
+                                        <div class='data_field_last'>5 баллов</div>
+                                    </div>
+                                </div>
+                            </a>
+                        @endforeach
+                    </div>
                 </div>
-            </div>
             @endif
             @if($currentUser->ID_Role == 3)
                 <div class="admin_panel">
@@ -116,31 +117,36 @@
                             </div>
                             @php
 
-                            $students = @DB::select('select * from student');
+                                $students = @DB::select('select * from student');
                             @endphp
 
                             @foreach($students as $student)
-                            @php
-                                $class = DB::table('class')->where('ID_Class', $student->ID_Class)->value('Name');
-                                $faculty = DB::table('faculty')->where('id_faculty', DB::table('class')->where('ID_Class', $student->ID_Class)->value('id_faculty'))->value('Name');
-                            @endphp
-                            <div class='row'>
-                                <div class='col col-md-1'>
-                                    <div class='data_field'><input type="checkbox" style="transform:scale(1.4);"></div>
+                                @php
+                                    $class = DB::table('class')->where('ID_Class', $student->ID_Class)->value('Name');
+                                    $faculty = DB::table('faculty')->where('id_faculty', DB::table('class')->where('ID_Class', $student->ID_Class)->value('id_faculty'))->value('Name');
+                                @endphp
+                                <div class='row'>
+                                    <div class='col col-md-1'>
+                                        <div class='data_field'><input type="checkbox" style="transform:scale(1.4);">
+                                        </div>
+                                    </div>
+                                    <div class='col col-md-4'>
+                                        <div class='data_field_last'>{{$student->FullName}}</div>
+                                    </div>
+                                    <div class='col col-md-2'>
+                                        <div class='data_field_last'>{{$faculty}}</div>
+                                    </div>
+                                    <div class='col col-md-2'>
+                                        <div class='data_field_last'>{{$class}}</div>
+                                    </div>
+                                    <div class='col col-md-3'>
+                                        <div class='data_field_last'>
+                                            <button class="modal_btn" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                                                Редактировать
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class='col col-md-4'>
-                                    <div class='data_field_last'>{{$student->FullName}}</div>
-                                </div>
-                                <div class='col col-md-2'>
-                                    <div class='data_field_last'>{{$faculty}}</div>
-                                </div>
-                                <div class='col col-md-2'>
-                                    <div class='data_field_last'>{{$class}}</div>
-                                </div>
-                                <div class='col col-md-3'>
-                                    <div class='data_field_last'></div>
-                                </div>
-                            </div>
                             @endforeach
                         </div>
                     </div>
@@ -152,6 +158,48 @@
         </div>
     </div>
 
-
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Редактирование</h5>
+                    <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col">
+                                <input type="text" name="fio" class="form-control" placeholder="ФИО">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected>Факультет</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected>Группа</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                    <button class="btn btn-success">Сохранить</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 @endsection
