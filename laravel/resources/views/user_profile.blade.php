@@ -140,7 +140,7 @@
                                         <div class='data_field_last'>{{$class}}</div>
                                     </div>
                                     <div class='col col-md-3'>
-                                        <div class='data_field_last'>
+                                        <div id="{{$student->ID_Student}}" class='data_field_last'>
                                             <button class="modal_btn" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
                                                 Редактировать
                                             </button>
@@ -169,7 +169,7 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col">
-                                <input type="text" name="fio" class="form-control" placeholder="ФИО">
+                                <input type="text" name="fio" id="out" class="form-control" value="" >
                             </div>
                         </div>
                         <div class="row">
@@ -202,4 +202,17 @@
         </div>
     </div>
 
+    <script>
+        function getParentId(el) {
+            const id = el.parentElement.id;
+            document.getElementById('out').value = `${id}`;
+        }
+
+        let btns = document.querySelectorAll('button');
+        btns.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                getParentId(btn);
+            });
+        });
+    </script>
 @endsection
