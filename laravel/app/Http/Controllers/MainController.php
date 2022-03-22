@@ -94,6 +94,15 @@ class MainController extends Controller
         return redirect('/');
     }
 
+    public function  updateStudent() {
+        $id = DB::table('student')->where('FullName', $_POST['old_fio'])->value('ID_Student');
+        DB::table('student')->where('ID_Student', $id)->update(array(
+            'FullName' => $_POST['new_fio'],
+            'ID_Class' => $_POST['groups']
+        ));
+        return redirect('/profile');
+    }
+
     public function  auth_check() {
         $Userdata = new Userdata();
         $allUserdata = $Userdata->all();

@@ -140,7 +140,7 @@
                                         <div class='data_field_last'>{{$class}}</div>
                                     </div>
                                     <div class='col col-md-3'>
-                                        <div id="{{$student->ID_Student}}" class='data_field_last'>
+                                        <div id="{{$student->FullName}}" class='data_field_last'>
                                             <button class="modal_btn" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
                                                 Редактировать
                                             </button>
@@ -158,54 +158,18 @@
         </div>
     </div>
 
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Редактирование</h5>
-                    <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col">
-                                <input type="text" name="fio" id="out" class="form-control" value="" >
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected>Факультет</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                <select class="form-select" aria-label="Default select example">
-                                    <option selected>Группа</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-                    <button class="btn btn-success">Сохранить</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    @php
+
+    $groups = DB::select('select * from class');
+    $facultys = DB::select('select * from faculty')
+
+    @endphp
 
     <script>
         function getParentId(el) {
             const id = el.parentElement.id;
-            document.getElementById('out').value = `${id}`;
+            document.getElementById('out1').value = `${id}`;
+            document.getElementById('out2').value = `${id}`;
         }
 
         let btns = document.querySelectorAll('button');
@@ -215,4 +179,41 @@
             });
         });
     </script>
+
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Редактирование</h5>
+                    <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="/updateStudent" method="post">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col">
+                                    <input type="text" name="new_fio" id="out1" class="form-control" value="" >
+                                    <input type="hidden" name="old_fio" id="out2" class="form-control" value="" >
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <select name="groups" class="form-select" aria-label="Default select example">
+                                        @foreach($groups as $group)
+                                            <option name="group{{$group->ID_Class}}" value="{{$group->ID_Class}}">{{$group->Name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button formaction="updateStudent" class="btn btn-success">Сохранить</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
 @endsection

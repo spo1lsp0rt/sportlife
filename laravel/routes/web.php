@@ -32,6 +32,8 @@ Route::get('/authorization', [ MainController::class, 'authorization' ]);
 
 Route::post('/auth/check', [ MainController::class, 'auth_check' ]);
 
+Route::post('/updateStudent', [ MainController::class, 'updateStudent' ]);
+
 Route::get('/privacy', [ MainController::class, 'privacy_policy' ]);
 
 /*Route::get('/tests', [ MainController::class, 'tests' ]);*/
