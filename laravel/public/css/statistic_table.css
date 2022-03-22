@@ -1,6 +1,5 @@
 .statistic_table {
-  display: flex;
-  margin: 0 auto;
+  margin: 40px auto 0 auto;
   background: #FFFFFF;
   border: 1px solid #000000;
   box-sizing: border-box;
@@ -24,7 +23,7 @@
   justify-content: center;
   align-items: center;
   padding: 10px 15px 10px 15px;
-  font-weight: 400;
+  font-weight: 600;
   font-size: 25px;
   line-height: 30px;
   color: #000000;
@@ -35,7 +34,7 @@
   justify-content: center;
   align-items: center;
   padding: 10px 15px 10px 15px;
-  font-weight: 400;
+  font-weight: 600;
   font-size: 25px;
   line-height: 30px;
   color: #000000;
@@ -47,22 +46,34 @@
   justify-content: center;
   align-items: center;
   padding: 10px 15px 10px 15px;
-  font-weight: 600;
+  font-weight: 400;
   font-size: 20px;
   line-height: 30px;
   color: #000000;
   border-top: 1px solid black;
 }
 .statistic_table .data_field_last {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px 15px 10px 15px;
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 30px;
-  color: #000000;
-  border-top: 1px solid black;
   border-left: 1px solid black;
+}
+.statistic_table .total_field_first {
+  font-weight: 600;
+  background-color: #dedede;
+  border-bottom-left-radius: 20px;
+  border-top: 3px solid black;
+  border-left: 3px solid black;
+  border-bottom: 3px solid black;
+}
+.statistic_table .total_field {
+  font-weight: 600;
+  background-color: #dedede;
+  border-top: 3px solid black;
+  border-bottom: 3px solid black;
+}
+.statistic_table .total_field_last {
+  font-weight: 600;
+  background-color: #dedede;
+  border-bottom-right-radius: 20px;
+  border-top: 3px solid black;
+  border-right: 3px solid black;
+  border-bottom: 3px solid black;
 }

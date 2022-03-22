@@ -6,7 +6,7 @@
 
 <div class="result_title"><h2>Результаты тестирования</h2></div>
 
-<div class='container result_table'>
+<div class='container statistic_table'>
     <div class='row'>
         <div class='col col-md-4'>
             <div class='title_field'>Проба</div>

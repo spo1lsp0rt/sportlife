@@ -50,10 +50,10 @@ foreach($allUsers as $user)
                             <div class='data_field'>{{$stat->date_test}}</div>
                         </div>
                         <div class='col col-md-6'>
-                            <div class='data_field_last'>{{$testname}}</div>
+                            <div class='data_field data_field_last'>{{$testname}}</div>
                         </div>
                         <div class='col col-md-3'>
-                            <div class='data_field_last'></div>
+                            <div class='data_field data_field_last'></div>
                         </div>
                     </div>
                 </a>

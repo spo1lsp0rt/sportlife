@@ -6,9 +6,9 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>SportLife - @yield('title')</title>
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}">
     @yield('stylesheet')
-    <link rel="stylesheet" href="{{url('css/style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url('css/style.css')}}">
     <link rel="icon" href="/icons/favicon.svg">
 </head>
 <body>
@@ -38,7 +38,8 @@
                         </div>
                         <li class="menu_item"><a href="/" class="menu_link">Главная</a></li>
                         <li class="menu_item"><a href="/tests" class="menu_link">Тесты</a></li>
-                        <li class="menu_item"><a href="/about" class="menu_link">О сервисе</a></li>
+                        <li class="menu_item"><a href="/normatives" class="menu_link">Нормативы</a></li>
+                        <li class="menu_item"><a href="/about" class="menu_link">О сайте</a></li>
                         <li class="menu_item"><a href="/contacts" class="menu_link">Контакты</a></li>
                     </ul>
                 </div>

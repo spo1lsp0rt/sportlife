@@ -19,6 +19,10 @@ class MainController extends Controller
         return view('home');
     }
 
+    public function  normatives() {
+        return view('normatives');
+    }
+
     public function  profile() {
         $allUsers = new users();
         return view('user_profile', ['allUsers' => $allUsers]);

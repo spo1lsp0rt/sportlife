@@ -43,48 +43,46 @@
                 @yield('user_statistic')
             @endif
             @if($currentUser->ID_Role == 2)
-                <div class='statistic_table'>
-                    <div class='container'>
-                        <div class='row'>
-                            <div class='col col-md-2'>
-                                <div class='title_field'>Дата</div>
-                            </div>
-                            <div class='col col-md-4'>
-                                <div class='title_field_last'>ФИО</div>
-                            </div>
-                            <div class='col col-md-4'>
-                                <div class='title_field_last'>Название</div>
-                            </div>
-                            <div class='col col-md-2'>
-                                <div class='title_field_last'>Результат</div>
-                            </div>
+                <div class='container statistic_table'>
+                    <div class='row'>
+                        <div class='col col-md-2'>
+                            <div class='title_field'>Дата</div>
                         </div>
-                        @php
-                            $allStat = DB::select("select * from statistic");
-                        @endphp
-                        @foreach($allStat as $stat)
-                            @php
-                                $name_user = DB::table('user')->where('ID_User', $stat->ID_User)->value('FullName');
-                                $name_test = DB::table('tests')->where('ID_Test', $stat->ID_Test)->value('Name');
-                            @endphp
-                            <a href='/test_result/{{$stat->ID_Result}}'>
-                                <div class='row'>
-                                    <div class='col col-md-2'>
-                                        <div class='data_field'>{{$stat->date_test}}</div>
-                                    </div>
-                                    <div class='col col-md-4'>
-                                        <div class='data_field_last'>{{$name_user}}</div>
-                                    </div>
-                                    <div class='col col-md-4'>
-                                        <div class='data_field_last'>{{$name_test}}</div>
-                                    </div>
-                                    <div class='col col-md-2'>
-                                        <div class='data_field_last'>5 баллов</div>
-                                    </div>
-                                </div>
-                            </a>
-                        @endforeach
+                        <div class='col col-md-4'>
+                            <div class='title_field_last'>ФИО</div>
+                        </div>
+                        <div class='col col-md-4'>
+                            <div class='title_field_last'>Название</div>
+                        </div>
+                        <div class='col col-md-2'>
+                            <div class='title_field_last'>Результат</div>
+                        </div>
                     </div>
+                    @php
+                        $allStat = DB::select("select * from statistic");
+                    @endphp
+                    @foreach($allStat as $stat)
+                        @php
+                            $name_user = DB::table('user')->where('ID_User', $stat->ID_User)->value('FullName');
+                            $name_test = DB::table('tests')->where('ID_Test', $stat->ID_Test)->value('Name');
+                        @endphp
+                        <a href='/test_result/{{$stat->ID_Result}}'>
+                            <div class='row'>
+                                <div class='col col-md-2'>
+                                    <div class='data_field'>{{$stat->date_test}}</div>
+                                </div>
+                                <div class='col col-md-4'>
+                                    <div class='data_field data_field_last'>{{$name_user}}</div>
+                                </div>
+                                <div class='col col-md-4'>
+                                    <div class='data_field data_field_last'>{{$name_test}}</div>
+                                </div>
+                                <div class='col col-md-2'>
+                                    <div class='data_field data_field_last'>5 баллов</div>
+                                </div>
+                            </div>
+                        </a>
+                    @endforeach
                 </div>
             @endif
             @if($currentUser->ID_Role == 3)
@@ -96,8 +94,8 @@
                         {{--<input type="file" name="uploadfile">--}}
                         <input class="sumbit-upload" type="submit" value="Загрузить">
                     </form>
-                    <div class='admin_table statistic_table'>
-                        <div class='container'>
+                    <div class='admin_table'>
+                        <div class='container statistic_table'>
                             <div class='row'>
                                 <div class='col col-md-1'>
                                     <div class='title_field'>№</div>
@@ -131,16 +129,16 @@
                                         </div>
                                     </div>
                                     <div class='col col-md-4'>
-                                        <div class='data_field_last'>{{$student->FullName}}</div>
+                                        <div class='data_field data_field_last'>{{$student->FullName}}</div>
                                     </div>
                                     <div class='col col-md-2'>
-                                        <div class='data_field_last'>{{$faculty}}</div>
+                                        <div class='data_field data_field_last'>{{$faculty}}</div>
                                     </div>
                                     <div class='col col-md-2'>
-                                        <div class='data_field_last'>{{$class}}</div>
+                                        <div class='data_field data_field_last'>{{$class}}</div>
                                     </div>
                                     <div class='col col-md-3'>
-                                        <div id="{{$student->FullName}}" class='data_field_last'>
+                                        <div id="{{$student->FullName}}" class='data_field data_field_last'>
                                             <button class="modal_btn" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
                                                 Редактировать
                                             </button>

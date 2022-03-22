@@ -20,6 +20,8 @@ use App\Http\Controllers\MainController;
 
 Route::get('/', [ MainController::class, 'home' ]);
 
+Route::get('/normatives', [ MainController::class, 'normatives' ]);
+
 Route::get('/exit', [ MainController::class, 'exit' ]);
 
 Route::get('/profile', [ MainController::class, 'profile' ]);

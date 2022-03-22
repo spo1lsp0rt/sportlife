@@ -4,6 +4,7 @@
 @section('title')Результат@endsection
 
 @section('stylesheet')
+    <link rel="stylesheet" type="text/css" href="{{url('css/statistic_table.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url('css/style_result.css')}}">
 @endsection
 
