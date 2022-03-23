@@ -1,7 +1,6 @@
 
 @php
     $i = 1;
-    $course = '';
 @endphp
 
 <div class="result_title"><h2>Результаты тестирования</h2></div>

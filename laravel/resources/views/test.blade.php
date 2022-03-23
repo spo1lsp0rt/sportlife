@@ -26,9 +26,9 @@
                     <div class="row">
                         <div class="col">
                             <div class="test_task">
-                                <div class="test_header">Задание {{$key + 1}}. {!! nl2br(htmlspecialchars($exercise->Name)) !!}
+                                <div class="test_header">Задание {{$key + 1}}. {!! ($exercise->Name) !!}
                                 </div>
-                                <div class="test_info">{!! nl2br(htmlspecialchars($exercise->Description)) !!}
+                                <div class="test_info">{!! $exercise->Description !!}
                                 </div>
 
                                 <input type="text" placeholder="Введите результат" class="test_result"
@@ -42,7 +42,7 @@
                 @endforeach
             </div>
 
-            @if($test->ID_Test == 1 || $test->ID_Test == 2 || $test->ID_Test == 3)
+            @if($test->ID_Test == 1 || $test->ID_Test == 2 || $test->ID_Test == 3 || $test->ID_Test == 5)
 
                 <div class="person_info">
                     <div class="gender_info">
@@ -60,6 +60,22 @@
                         <div class="age_info">
                             <div class="age_title">Введите ваш возраст:</div>
                             <input type="text" placeholder="Например: 18" class="age_input" name = "age">
+                        </div>
+                    @endif
+
+                    @if($test->ID_Test == 5)
+                        <div class="gender_info">
+                            <div class="gender_title">Выберите вашу форму грудной клетки:</div>
+                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                <input type="radio" class="btn-check" name="btnradio2"  value = "Astenik" id="btnradio3" autocomplete="on" checked >
+                                <label class="btn btn-outline-dark" for="btnradio3">Астеники</label>
+
+                                <input type="radio" class="btn-check" name="btnradio2" value = "Normostenik" id="btnradio4" autocomplete="off" >
+                                <label class="btn btn-outline-dark" for="btnradio4">Нормастеники </label>
+
+                                <input type="radio" class="btn-check" name="btnradio2" value = "Hypersthenic" id="btnradio5" autocomplete="off" >
+                                <label class="btn btn-outline-dark" for="btnradio5">Гиперстеник </label>
+                            </div>
                         </div>
                     @endif
 

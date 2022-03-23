@@ -59,6 +59,11 @@ class SaveResultController extends Controller
             $course = '';
         }
 
+        if($test->ID_Test == 5){
+            $normative = DB::select("select * from normatives5 where gender = 'муж'");
+            $course = $_POST["btnradio"] . $_POST["btnradio2"];
+        }
+
         $valid = $request->validate($this->getRules($test));
 
         $result_id = $this->saveResult($test, $valid, $normative, $course);
@@ -102,9 +107,27 @@ class SaveResultController extends Controller
         $var1 = 0;
         $var2 = 0;
         $array = array();
+
+        $num_tmp = 0;
+        $num_sit = 0;
+        $center_gravity = '';
+        $check = true;
+        $weight = 0;
+        $rise = 0;
+        $leglength = 0;
+        $hips = 0;
+        $ribcagenorm = 0;
+        $ribcagemax = 0;
+        $ribcagemin = 0;
+
         foreach ($test->Exercises as $exercise ){
+            if($check){
+                $count =  $exercise->ID_Exercise;
+                $check = false;
+            }
 
             $resultExersise = new ResultExercise();
+
             if($test->ID_Test == 1)
             {
                 $resultExersise->ID_Result = $result->ID_Result;
@@ -180,7 +203,6 @@ class SaveResultController extends Controller
                             $resultExersise->Value = $num;
                     }else
                     {
-
                         if($num >= $norma[0]->Value)
                             $resultExersise->Norma = 5;
                         else if ($num < $norma[0]->Value && $num >= $norma[1]->Value)
@@ -258,6 +280,135 @@ class SaveResultController extends Controller
                 $resultExersise->ID_Exercise = $exercise->ID_Exercise;
                 $resultExersise->Value = $num;
                 $resultExersise->save();
+            }
+
+            if($test->ID_Test == 5){
+
+                $resultExersise->ID_Result = $result->ID_Result;
+                $num = (float) ($valid_params[$exercise->getInputName()]);
+
+                if($i == 1){
+                    $resultExersise->Name = 'Рост стоя (см)';
+                    $resultExersise->Norma = 0;
+                    $resultExersise->Description = '';
+                    $resultExersise->ID_Exercise = $count;
+                    $resultExersise->Value = $num;
+                    $resultExersise->save();
+                    $rise = $num;
+                }
+
+                if($i == 2){
+
+                    $resultExersise->Name = 'Рост сидя (см)';
+                    $resultExersise->Norma = 0;
+                    $resultExersise->Description = '';
+                    $resultExersise->ID_Exercise = $count;
+                    $resultExersise->Value = $num;
+                    $resultExersise->save();
+
+                    $num_sit = $num;
+                    $count++;
+
+                }
+
+
+                if($i == 3){
+                    $num_tmp += $num;
+
+                    $resultExersise->Name = 'Коэффициент пропорциональности тела (%)';
+                    $resultExersise->Norma = 0;
+                    $resultExersise->Description = '.';
+                    $resultExersise->ID_Exercise = $count;
+                    $resultExersise->Value = round((($rise - $num_sit) / $num_sit) * 100);
+
+                    $resultExersise->save();
+
+                    $count++;
+                }
+
+                if($i == 4){
+                    $num_tmp += $num;
+                    $num_tmp /= 2;
+
+                    $resultExersise->Name = 'Прогнозируемый рост (см)';
+                    $resultExersise->Norma = 0;
+                    $resultExersise->Description = '';
+                    $resultExersise->ID_Exercise = $count;
+                    $resultExersise->Value = $num_tmp;
+                    $resultExersise->save();
+
+                    $count++;
+
+                }
+
+                if($i == 5){
+                    $weight = $num;
+                    $resultExersise->Name = 'Масса тела (кг)';
+                    $resultExersise->Norma = 0;
+                    $resultExersise->Description = '';
+                    $resultExersise->ID_Exercise = $count;
+                    $resultExersise->Value = $weight;
+                    $resultExersise->save();
+                    $count++;
+                }
+
+                if($i == 6){
+                    $leglength = $num;
+                    $resultExersise->Name = 'Индекс Кетле по формуле Мануврие';
+                    $resultExersise->Norma = 0;
+                    $resultExersise->Description = '';
+                    $resultExersise->ID_Exercise = $count;
+                    $resultExersise->Value = $leglength / $num_sit * 100;
+                    $resultExersise->save();
+                    $count++;
+                }
+
+                if($i == 7){
+
+                    $resultExersise->Name = 'Индекс граций';
+                    $resultExersise->Norma = 0;
+                    $resultExersise->Description = '';
+                    $resultExersise->ID_Exercise = $count;
+                    $resultExersise->Value = $num / ($rise - 100);
+                    $resultExersise->save();
+                    $count++;
+                }
+
+                if($i == 8){
+                    $ribcagenorm = $num;
+                    $resultExersise->Name = 'Окружность грудной клетки в состоянии покоя (см)';
+                    $resultExersise->Norma = 0;
+                    $resultExersise->Description = '';
+                    $resultExersise->ID_Exercise = $count;
+                    $resultExersise->Value = $ribcagenorm;
+                    $resultExersise->save();
+                    $count++;
+                }
+
+                if($i == 9){
+                    $ribcagemax = $num;
+                    $resultExersise->Name = 'Окружность грудной клетки при максимальном вдохе (см)'.' '.$course;
+                    $resultExersise->Norma = 0;
+                    $resultExersise->Description = '';
+                    $resultExersise->ID_Exercise = $count;
+                    $resultExersise->Value = $ribcagemax;
+                    $resultExersise->save();
+                    $count++;
+                }
+
+                if($i == 10){
+                    $ribcagemin = $num;
+                    $resultExersise->Name = 'Окружность грудной клетки при максимальном выдохе (см)';
+                    $resultExersise->Norma = 0;
+                    $resultExersise->Description = '';
+                    $resultExersise->ID_Exercise = $count;
+                    $resultExersise->Value = $ribcagemin;
+                    $resultExersise->save();
+
+                    $count++;
+                }
+
+                $i++;
             }
         }
 
