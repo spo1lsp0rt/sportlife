@@ -16,7 +16,6 @@
             <div class="row">
                 <div class="col">
                     <div class="tests_search">
-                        <div class="search_title">Название:</div>
                         <input type="text" placeholder="Введите название теста" class="search_field" />
                     </div>
                 </div>

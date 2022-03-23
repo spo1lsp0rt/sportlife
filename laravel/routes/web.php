@@ -30,6 +30,8 @@ Route::get('/profile', [ MainController::class, 'statistic_table' ]);
 
 Route::post('/clear_statistic/{id}', [ MainController::class, 'clear_statistic' ])->whereNumber('id');
 
+Route::get('/registration', [ MainController::class, 'registration' ]);
+
 Route::get('/authorization', [ MainController::class, 'authorization' ]);
 
 Route::post('/auth/check', [ MainController::class, 'auth_check' ]);

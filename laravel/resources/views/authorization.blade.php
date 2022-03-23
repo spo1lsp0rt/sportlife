@@ -46,6 +46,7 @@
                     </form>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#">Забыли пароль?</a>
+                    <a class="dropdown-item" href="/registration">Пройти регистрацию</a>
                 </div>
             </div>
         </div>

@@ -47,12 +47,21 @@
   align-items: center;
   padding: 10px 15px 10px 15px;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 25px;
   line-height: 30px;
   color: #000000;
   border-top: 1px solid black;
 }
 .statistic_table .data_field_last {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 15px 10px 15px;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 30px;
+  color: #000000;
   border-left: 1px solid black;
 }
 .statistic_table .total_field_first {

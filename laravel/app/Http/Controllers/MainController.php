@@ -85,6 +85,10 @@ class MainController extends Controller
         return redirect('/profile');
     }
 
+    public function  registration() {
+        return view('registration');
+    }
+
     public function  authorization() {
         $error = "";
         return view('authorization', ['error' => $error]);

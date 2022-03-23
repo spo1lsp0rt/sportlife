@@ -5,13 +5,13 @@ $arrvar = array();
 @endphp
 <div class='container statistic_table'>
     <div class='row'>
-        <div class='col col-md-5'>
+        <div class='col col-md-1'>
             <div class='title_field'>№</div>
         </div>
-        <div class='col col-md-3'>
+        <div class='col col-md-7'>
             <div class='title_field_last'>Соматометрические показатели</div>
         </div>
-        <div class='col col-md-2'>
+        <div class='col col-md-4'>
             <div class='title_field_last'>Полученные значения</div>
         </div>
     </div>
@@ -19,25 +19,25 @@ $arrvar = array();
     @foreach($result->Exercises as $key => $exercise)
         @if($i != 3)
             <div class='row'>
-                <div class='col col-md-5'>
+                <div class='col col-md-1'>
                     <div class='data_field'>{{$i}}</div>
                 </div>
-                <div class='col col-md-3'>
+                <div class='col col-md-7'>
                     <div class='data_field data_field_last'>{{rtrim($exercise->Name, 'женмужNormostenikAstenikHypersthenic')}}</div>
                 </div>
-                <div class='col col-md-2'>
+                <div class='col col-md-4'>
                     <div class='data_field data_field_last'>{{$exercise->Value}}</div>
                 </div>
             </div>
         @else
             <div class='row'>
-                <div class='col col-md-5'>
+                <div class='col col-md-1'>
                     <div class='data_field'>{{$i}}</div>
                 </div>
-                <div class='col col-md-3'>
+                <div class='col col-md-7'>
                     <div class='data_field data_field_last'>{{rtrim($exercise->Name, 'женмужNormostenikAstenikHypersthenic')}}</div>
                 </div>
-                <div class='col col-md-2'>
+                <div class='col col-md-4'>
                     <div class='data_field data_field_last'>
                         @php
                             if($exercise->Value <=  87)
@@ -59,10 +59,10 @@ $arrvar = array();
 
     @for($j = $i; $j <= 15; $j++)
         <div class='row'>
-            <div class='col col-md-5'>
+            <div class='col col-md-1'>
                 <div class='data_field'>{{$j}}</div>
             </div>
-            <div class='col col-md-3'>
+            <div class='col col-md-7'>
                 <div class='data_field data_field_last'>
                     @php
                     switch ($j){
@@ -88,7 +88,7 @@ $arrvar = array();
                     @endphp
                 </div>
             </div>
-            <div class='col col-md-2'>
+            <div class='col col-md-4'>
                 <div class='data_field data_field_last'>
                     @php
                         switch ($j){

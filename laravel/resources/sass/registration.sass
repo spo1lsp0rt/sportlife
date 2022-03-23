@@ -1,0 +1,47 @@
+
+=title_properties
+  font-size: 20px
+  font-weight: 400
+  margin: 2px 30px 0 0
+
+=input_properties($width, $text-pos)
+  width: $width
+  text-align: $text-pos
+
+.registration_title
+  text-align: center
+
+.registration_form
+  display: flex
+  justify-content: center
+  margin-top: 40px
+  .registration_form_border
+    .token_field
+      display: flex
+      justify-content: center
+      .token_title
+        +title_properties
+      .token_input
+        margin-right: 10px
+        +input_properties(200px, center)
+        text-transform:  uppercase
+      .token_check_btn
+        border: none
+        background-color: white
+        .token_check_icon
+          width: 20px
+    .personal_info
+      display: flex
+      justify-content: center
+      margin-top: 20px
+      .group_combobox, .faculties_combobox
+        +input_properties(300px, left)
+      .second-name_input, .first-name_input, .patronymic_input, .email_input, .password_input
+        +input_properties(300px, left)
+    .registration_agreement_field
+      margin-top: 20px
+      .agreement_link
+        text-decoration: none
+    .registration_btn
+      display: block
+      margin: 40px auto 0 auto

@@ -1,3 +1,14 @@
+=title_field($fontweight)
+    width: 100%
+    display: flex
+    justify-content: center
+    align-items: center
+    padding: 10px 15px 10px 15px
+    font-weight: $fontweight
+    font-size: 25px
+    line-height: 30px
+    color: #000000
+
 .statistic_table
     margin: 40px auto 0 auto
     background: #FFFFFF
@@ -24,41 +35,18 @@
         flex-wrap: wrap
 
     .title_field
-        width: 100%
-        display: flex
-        justify-content: center
-        align-items: center
-        padding: 10px 15px 10px 15px
-        font-weight: 600
-        font-size: 25px
-        line-height: 30px
-        color: #000000
+        +title_field(600)
 
     .title_field_last
-        width: 100%
-        display: flex
-        justify-content: center
-        align-items: center
-        padding: 10px 15px 10px 15px
-        font-weight: 600
-        font-size: 25px
-        line-height: 30px
-        color: #000000
+        +title_field(600)
         border-left: 1px solid black
 
     .data_field
-        width: 100%
-        display: flex
-        justify-content: center
-        align-items: center
-        padding: 10px 15px 10px 15px
-        font-weight: 400
-        font-size: 20px
-        line-height: 30px
-        color: #000000
+        +title_field(400)
         border-top: 1px solid black
 
     .data_field_last
+        +title_field(400)
         border-left: 1px solid black
 
     .total_field_first
