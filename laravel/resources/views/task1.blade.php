@@ -9,32 +9,32 @@
     <div class='container statistic_table'>
         <div class='row'>
             <div class='col col-md-5'>
-                <div class='title_field'>Тест</div>
+                <div class='title_field_head'>Тест</div>
             </div>
             <div class='col col-md-3'>
-                <div class='title_field_last'>Результат</div>
+                <div class='title_field'>Результат</div>
             </div>
             <div class='col col-md-2'>
-                <div class='title_field_last'>НВП</div>
+                <div class='title_field'>НВП</div>
             </div>
             <div class='col col-md-2'>
-                <div class='title_field_last'>Оценка</div>
+                <div class='title_field'>Оценка</div>
             </div>
         </div>
         {{--hjhj--}}
         @foreach($result->Exercises as $key => $exercise)
             <div class='row'>
                 <div class='col col-md-5'>
-                    <div class='data_field'>{{$exercise->Name}}</div>
+                    <div class='data_field_head textX_left'>{{$exercise->Name}}</div>
                 </div>
                 <div class='col col-md-3'>
-                    <div class='data_field data_field_last'>{{$exercise->Value}}</div>
+                    <div class='data_field'>{{$exercise->Value}}</div>
                 </div>
                 <div class='col col-md-2'>
-                    <div class='data_field data_field_last'>{{$exercise->Norma}}</div>
+                    <div class='data_field'>{{$exercise->Norma}}</div>
                 </div>
                 <div class='col col-md-2'>
-                    <div class='data_field data_field_last'>
+                    <div class='data_field'>
                         @php
                             if ($exercise->Name == "Ловля падающей линейки."){
                                 echo((-1) * round(( $exercise->Value - $exercise->Norma) / $exercise->Norma, 2));

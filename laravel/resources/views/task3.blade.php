@@ -9,29 +9,29 @@
 <div class='container statistic_table'>
     <div class='row'>
         <div class='col col-md-4'>
-            <div class='title_field'>Проба</div>
+            <div class='title_field_head'>Проба</div>
         </div>
         <div class='col col-md-2'>
-            <div class='title_field_last'>Результат</div>
+            <div class='title_field'>Результат</div>
         </div>
         <div class='col col-md-3'>
-            <div class='title_field_last'>Оценка</div>
+            <div class='title_field'>Оценка</div>
         </div>
         <div class='col col-md-3'>
-            <div class='title_field_last'>Диапазон</div>
+            <div class='title_field'>Диапазон</div>
         </div>
 
     </div>
     @foreach($result->Exercises as $key => $exercise)
         <div class='row'>
             <div class='col col-md-4'>
-                <div class='data_field'>{{rtrim($exercise->Name, 'женмуж')}}</div>
+                <div class='data_field_head textX_left'>{{rtrim($exercise->Name, 'женмуж')}}</div>
             </div>
             <div class='col col-md-2'>
-                <div class='data_field data_field_last'>{{$exercise->Value}}</div>
+                <div class='data_field'>{{$exercise->Value}}</div>
             </div>
             <div class='col col-md-3'>
-                <div class='data_field data_field_last'>
+                <div class='data_field'>
                     @php
                         if($exercise->Norma == 1) { echo "1";}
                         if($exercise->Norma == 2) { echo "2"; }
@@ -42,7 +42,7 @@
                 </div>
             </div>
             <div class='col col-md-3'>
-                <div class='data_field data_field_last'>
+                <div class='data_field'>
                     @php
 
                         if(stripos($exercise->Name, 'муж'))

@@ -2,13 +2,6 @@
   text-align: center;
 }
 
-.statistic_table .data_field {
-  justify-content: left;
-}
-.statistic_table .data_field_last {
-  justify-content: center;
-}
-
 .result_total {
   display: block;
   margin: 30px auto 0 auto;

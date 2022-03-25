@@ -15,11 +15,11 @@
   width: 150px;
 }
 
-.statistic_table .title_field {
+.statistic_table .title_field_head {
   font-size: 20px;
   line-height: 25px;
 }
-.statistic_table .title_field_last {
+.statistic_table .title_field {
   font-size: 13px;
   line-height: 25px;
 }

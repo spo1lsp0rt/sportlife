@@ -2,9 +2,9 @@
   margin: 40px auto 0 auto;
   background: #FFFFFF;
   border: 1px solid #000000;
-  box-sizing: border-box;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
+  overflow-x: auto;
 }
 .statistic_table a {
   text-decoration: none;
@@ -17,7 +17,7 @@
   display: flex;
   flex-wrap: wrap;
 }
-.statistic_table .title_field {
+.statistic_table .title_field_head {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -28,7 +28,7 @@
   line-height: 30px;
   color: #000000;
 }
-.statistic_table .title_field_last {
+.statistic_table .title_field {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -40,7 +40,7 @@
   color: #000000;
   border-left: 1px solid black;
 }
-.statistic_table .data_field {
+.statistic_table .data_field_head {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -52,7 +52,7 @@
   color: #000000;
   border-top: 1px solid black;
 }
-.statistic_table .data_field_last {
+.statistic_table .data_field {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -63,9 +63,18 @@
   line-height: 30px;
   color: #000000;
   border-left: 1px solid black;
+  border-top: 1px solid black;
 }
-.statistic_table .total_field_first {
+.statistic_table .total_field_head {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 15px 10px 15px;
   font-weight: 600;
+  font-size: 25px;
+  line-height: 30px;
+  color: #000000;
   background-color: #dedede;
   border-bottom-left-radius: 20px;
   border-top: 3px solid black;
@@ -73,16 +82,37 @@
   border-bottom: 3px solid black;
 }
 .statistic_table .total_field {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 15px 10px 15px;
   font-weight: 600;
+  font-size: 25px;
+  line-height: 30px;
+  color: #000000;
   background-color: #dedede;
   border-top: 3px solid black;
   border-bottom: 3px solid black;
+  border-left: 3px solid black;
 }
 .statistic_table .total_field_last {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 15px 10px 15px;
   font-weight: 600;
+  font-size: 25px;
+  line-height: 30px;
+  color: #000000;
   background-color: #dedede;
   border-bottom-right-radius: 20px;
-  border-top: 3px solid black;
-  border-right: 3px solid black;
-  border-bottom: 3px solid black;
+  border: 3px solid black;
+}
+.statistic_table .textX_left {
+  justify-content: left;
+}
+.statistic_table .textX_right {
+  justify-content: right;
 }

@@ -11,8 +11,8 @@
     "/css/tests.css": "/css/tests.css",
     "/css/style_test.css": "/css/style_test.css",
     "/css/style_result.css": "/css/style_result.css",
-    "/css/statistic_table.css": "/css/statistic_table.css",
     "/css/contacts.css": "/css/contacts.css",
     "/css/authorization.css": "/css/authorization.css",
-    "/css/registration.css": "/css/registration.css"
+    "/css/registration.css": "/css/registration.css",
+    "/css/statistic_table.css": "/css/statistic_table.css"
 }

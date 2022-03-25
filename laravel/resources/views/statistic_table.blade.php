@@ -30,13 +30,13 @@ foreach($allUsers as $user)
         <div class='container'>
             <div class='row'>
                 <div class='col col-md-3'>
-                    <div class='title_field'>Дата</div>
+                    <div class='title_field_head'>Дата</div>
                 </div>
                 <div class='col col-md-6'>
-                    <div class='title_field_last'>Название</div>
+                    <div class='title_field'>Название</div>
                 </div>
                 <div class='col col-md-3'>
-                    <div class='title_field_last'>Результат</div>
+                    <div class='title_field'>Результат</div>
                 </div>
             </div>
     @foreach($allStat as $stat)
@@ -47,13 +47,13 @@ foreach($allUsers as $user)
                 <a href='/test_result/{{$stat->ID_Result}}'>
                     <div class='row'>
                         <div class='col col-md-3'>
-                            <div class='data_field'>{{$stat->date_test}}</div>
+                            <div class='data_field_head'>{{$stat->date_test}}</div>
                         </div>
                         <div class='col col-md-6'>
-                            <div class='data_field data_field_last'>{{$testname}}</div>
+                            <div class='data_field textX_left'>{{$testname}}</div>
                         </div>
                         <div class='col col-md-3'>
-                            <div class='data_field data_field_last'></div>
+                            <div class='data_field'></div>
                         </div>
                     </div>
                 </a>

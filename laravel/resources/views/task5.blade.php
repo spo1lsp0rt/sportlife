@@ -6,13 +6,13 @@ $arrvar = array();
 <div class='container statistic_table'>
     <div class='row'>
         <div class='col col-md-1'>
-            <div class='title_field'>№</div>
+            <div class='title_field_head'>№</div>
         </div>
         <div class='col col-md-7'>
-            <div class='title_field_last'>Соматометрические показатели</div>
+            <div class='title_field'>Соматометрические показатели</div>
         </div>
         <div class='col col-md-4'>
-            <div class='title_field_last'>Полученные значения</div>
+            <div class='title_field'>Полученные значения</div>
         </div>
     </div>
 
@@ -20,25 +20,25 @@ $arrvar = array();
         @if($i != 3)
             <div class='row'>
                 <div class='col col-md-1'>
-                    <div class='data_field'>{{$i}}</div>
+                    <div class='data_field_head'>{{$i}}</div>
                 </div>
                 <div class='col col-md-7'>
-                    <div class='data_field data_field_last'>{{rtrim($exercise->Name, 'женмужNormostenikAstenikHypersthenic')}}</div>
+                    <div class='data_field textX_left'>{{rtrim($exercise->Name, 'женмужNormostenikAstenikHypersthenic')}}</div>
                 </div>
                 <div class='col col-md-4'>
-                    <div class='data_field data_field_last'>{{$exercise->Value}}</div>
+                    <div class='data_field'>{{$exercise->Value}}</div>
                 </div>
             </div>
         @else
             <div class='row'>
                 <div class='col col-md-1'>
-                    <div class='data_field'>{{$i}}</div>
+                    <div class='data_field_head'>{{$i}}</div>
                 </div>
                 <div class='col col-md-7'>
-                    <div class='data_field data_field_last'>{{rtrim($exercise->Name, 'женмужNormostenikAstenikHypersthenic')}}</div>
+                    <div class='data_field textX_left'>{{rtrim($exercise->Name, 'женмужNormostenikAstenikHypersthenic')}}</div>
                 </div>
                 <div class='col col-md-4'>
-                    <div class='data_field data_field_last'>
+                    <div class='data_field'>
                         @php
                             if($exercise->Value <=  87)
                                 echo 'Низкий КП';
@@ -60,10 +60,10 @@ $arrvar = array();
     @for($j = $i; $j <= 15; $j++)
         <div class='row'>
             <div class='col col-md-1'>
-                <div class='data_field'>{{$j}}</div>
+                <div class='data_field_head'>{{$j}}</div>
             </div>
             <div class='col col-md-7'>
-                <div class='data_field data_field_last'>
+                <div class='data_field textX_left'>
                     @php
                     switch ($j){
                         case 10:
@@ -82,14 +82,14 @@ $arrvar = array();
                            echo 'Окружность бедер';
                            break;
                         case 15:
-                           echo 'Массо-ростовой индекс Кетле.';
+                           echo 'Массо-ростовой индекс Кетле';
                            break;
                     }
                     @endphp
                 </div>
             </div>
             <div class='col col-md-4'>
-                <div class='data_field data_field_last'>
+                <div class='data_field'>
                     @php
                         switch ($j){
                             case 10:

@@ -46,16 +46,16 @@
                 <div class='container statistic_table'>
                     <div class='row'>
                         <div class='col col-md-2'>
-                            <div class='title_field'>Дата</div>
+                            <div class='title_field_head'>Дата</div>
                         </div>
                         <div class='col col-md-4'>
-                            <div class='title_field_last'>ФИО</div>
+                            <div class='title_field'>ФИО</div>
                         </div>
                         <div class='col col-md-4'>
-                            <div class='title_field_last'>Название</div>
+                            <div class='title_field'>Название</div>
                         </div>
                         <div class='col col-md-2'>
-                            <div class='title_field_last'>Результат</div>
+                            <div class='title_field'>Результат</div>
                         </div>
                     </div>
                     @php
@@ -69,16 +69,16 @@
                         <a href='/test_result/{{$stat->ID_Result}}'>
                             <div class='row'>
                                 <div class='col col-md-2'>
-                                    <div class='data_field'>{{$stat->date_test}}</div>
+                                    <div class='data_field_head'>{{$stat->date_test}}</div>
                                 </div>
                                 <div class='col col-md-4'>
-                                    <div class='data_field data_field_last'>{{$name_user}}</div>
+                                    <div class='data_field'>{{$name_user}}</div>
                                 </div>
                                 <div class='col col-md-4'>
-                                    <div class='data_field data_field_last'>{{$name_test}}</div>
+                                    <div class='data_field textX_left'>{{$name_test}}</div>
                                 </div>
                                 <div class='col col-md-2'>
-                                    <div class='data_field data_field_last'>5 баллов</div>
+                                    <div class='data_field'>5 баллов</div>
                                 </div>
                             </div>
                         </a>
@@ -98,19 +98,19 @@
                         <div class='container statistic_table'>
                             <div class='row'>
                                 <div class='col col-md-1'>
-                                    <div class='title_field'>№</div>
+                                    <div class='title_field_head'>№</div>
                                 </div>
                                 <div class='col col-md-4'>
-                                    <div class='title_field_last'>ФИО</div>
+                                    <div class='title_field'>ФИО</div>
                                 </div>
                                 <div class='col col-md-2'>
-                                    <div class='title_field_last'>Факультет</div>
+                                    <div class='title_field'>Факультет</div>
                                 </div>
                                 <div class='col col-md-2'>
-                                    <div class='title_field_last'>Группа</div>
+                                    <div class='title_field'>Группа</div>
                                 </div>
                                 <div class='col col-md-3'>
-                                    <div class='title_field_last'>Действия</div>
+                                    <div class='title_field'>Действия</div>
                                 </div>
                             </div>
                             @php
@@ -125,20 +125,20 @@
                                 @endphp
                                 <div class='row'>
                                     <div class='col col-md-1'>
-                                        <div class='data_field'><input type="checkbox" style="transform:scale(1.4);">
+                                        <div class='data_field_head'><input type="checkbox" style="transform:scale(1.4);">
                                         </div>
                                     </div>
                                     <div class='col col-md-4'>
-                                        <div class='data_field data_field_last'>{{$student->FullName}}</div>
+                                        <div class='data_field'>{{$student->FullName}}</div>
                                     </div>
                                     <div class='col col-md-2'>
-                                        <div class='data_field data_field_last'>{{$faculty}}</div>
+                                        <div class='data_field'>{{$faculty}}</div>
                                     </div>
                                     <div class='col col-md-2'>
-                                        <div class='data_field data_field_last'>{{$class}}</div>
+                                        <div class='data_field'>{{$class}}</div>
                                     </div>
                                     <div class='col col-md-3'>
-                                        <div id="{{$student->FullName}}" class='data_field data_field_last'>
+                                        <div id="{{$student->FullName}}" class='data_field'>
                                             <button class="modal_btn" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
                                                 Редактировать
                                             </button>

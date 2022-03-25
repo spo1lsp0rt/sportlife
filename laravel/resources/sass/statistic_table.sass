@@ -1,4 +1,4 @@
-=title_field($fontweight)
+=field_props($fontweight)
     width: 100%
     display: flex
     justify-content: center
@@ -13,9 +13,9 @@
     margin: 40px auto 0 auto
     background: #FFFFFF
     border: 1px solid #000000
-    box-sizing: border-box
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25)
     border-radius: 20px
+    overflow-x: auto
 
     a
         text-decoration: none
@@ -26,6 +26,7 @@
         display: -ms-flexbox
         display: flex
 
+
     .row
         display: -webkit-flex
         display: -ms-flexbox
@@ -34,23 +35,25 @@
         -ms-flex-wrap: wrap
         flex-wrap: wrap
 
-    .title_field
-        +title_field(600)
 
-    .title_field_last
-        +title_field(600)
+    .title_field_head
+        +field_props(600)
+
+    .title_field
+        +field_props(600)
         border-left: 1px solid black
 
-    .data_field
-        +title_field(400)
+    .data_field_head
+        +field_props(400)
         border-top: 1px solid black
 
-    .data_field_last
-        +title_field(400)
+    .data_field
+        +field_props(400)
         border-left: 1px solid black
+        border-top: 1px solid black
 
-    .total_field_first
-        font-weight: 600
+    .total_field_head
+        +field_props(600)
         background-color: #dedede
         border-bottom-left-radius: 20px
         border-top: 3px solid black
@@ -58,15 +61,20 @@
         border-bottom: 3px solid black
 
     .total_field
-        font-weight: 600
+        +field_props(600)
         background-color: #dedede
         border-top: 3px solid black
         border-bottom: 3px solid black
+        border-left: 3px solid black
 
     .total_field_last
-        font-weight: 600
+        +field_props(600)
         background-color: #dedede
         border-bottom-right-radius: 20px
-        border-top: 3px solid black
-        border-right: 3px solid black
-        border-bottom: 3px solid black
+        border: 3px solid black
+
+    .textX_left
+        justify-content: left
+
+    .textX_right
+        justify-content: right
