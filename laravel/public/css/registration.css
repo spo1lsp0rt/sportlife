@@ -1,0 +1,54 @@
+.registration_title {
+  text-align: center;
+}
+
+.registration_form {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+.registration_form .registration_form_border .token_field {
+  display: flex;
+  justify-content: center;
+}
+.registration_form .registration_form_border .token_field .token_title {
+  font-size: 20px;
+  font-weight: 400;
+  margin: 2px 30px 0 0;
+}
+.registration_form .registration_form_border .token_field .token_input {
+  margin-right: 10px;
+  width: 200px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.registration_form .registration_form_border .token_field .token_check_btn {
+  border: none;
+  background-color: white;
+}
+.registration_form .registration_form_border .token_field .token_check_btn .token_check_icon {
+  width: 20px;
+}
+.registration_form .registration_form_border .personal_info {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.registration_form .registration_form_border .personal_info .group_combobox, .registration_form .registration_form_border .personal_info .faculties_combobox {
+  width: 300px;
+  text-align: left;
+}
+.registration_form .registration_form_border .personal_info .second-name_input, .registration_form .registration_form_border .personal_info .first-name_input, .registration_form .registration_form_border .personal_info .patronymic_input, .registration_form .registration_form_border .personal_info .email_input, .registration_form .registration_form_border .personal_info .password_input {
+  width: 300px;
+  text-align: left;
+}
+.registration_form .registration_form_border .registration_agreement_field {
+  margin-top: 20px;
+}
+.registration_form .registration_form_border .registration_agreement_field .agreement_link {
+  text-decoration: none;
+}
+.registration_form .registration_form_border .registration_btn {
+  display: block;
+  margin: 40px auto 0 auto;
+}
