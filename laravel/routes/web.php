@@ -36,6 +36,10 @@ Route::get('/authorization', [ MainController::class, 'authorization' ]);
 
 Route::post('/auth/check', [ MainController::class, 'auth_check' ]);
 
+Route::post('/check_key', [ MainController::class, 'check_key' ]);
+
+Route::post('/reg', [ MainController::class, 'reg' ]);
+
 Route::post('/updateStudent', [ MainController::class, 'updateStudent' ]);
 
 Route::get('/privacy', [ MainController::class, 'privacy_policy' ]);

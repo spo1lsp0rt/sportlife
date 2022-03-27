@@ -11,6 +11,7 @@
 @section('main_content')
 
     @php
+
         $currentUser = null;
             if (array_key_exists('login', $_COOKIE))
                 {

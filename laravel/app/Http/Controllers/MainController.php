@@ -2,16 +2,18 @@
 
 namespace App\Http\Controllers;
 
-
+use Illuminate\Support\Facades\Redirect;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use DB;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 use App\Models\statistic;
 use App\Models\User;
 use App\Models\Userdata;
-use Illuminate\Http\Request;
 use App\Models\Test;
 use App\Models\users;
+
 
 class MainController extends Controller
 {
@@ -67,22 +69,14 @@ class MainController extends Controller
         }
         foreach($rows as $row)
         {
-            $users = new users();
-            $userdata = new Userdata();
-            $name = $row[0];
-            $login = $row[1];
-            $pass = $row[2];
-            $pass = hash('sha512', $pass);
-            $users->FullName = $name;
-            $users->ID_Role = 1;
-            $users->save();
-            $id_user = DB::table('user')->max('ID_User');
-            $userdata->ID_User = $id_user;
-            $userdata->Login = $login;
-            $userdata->Password = $pass;
-            $userdata->save();
+            $key = key_gen();
+            DB::table('reg_key')->insert(array(
+                'fio' => $row[0],
+                'key' => $key
+            ));
         }
         return redirect('/profile');
+
     }
 
     public function  registration() {
@@ -92,6 +86,45 @@ class MainController extends Controller
     public function  authorization() {
         $error = "";
         return view('authorization', ['error' => $error]);
+    }
+
+    public function  check_key() {
+        if(!($fio = DB::table('reg_key')->where('key', $_POST['key'])->value('fio'))) {
+            return Redirect::back()->withErrors(['key_failed' => 'Неверно введен ключ!']);
+        }
+        return Redirect::back()->with(['fio' => $fio]);
+    }
+
+    public function  reg(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+            'password' => 'required|confirmed'
+        ]);
+        $fio = $request->input('secondname') . " " . $request->input('firstname') . " " . $request->input('lastname');
+        if ($validator->fails()) {
+            return Redirect::back()
+                ->withErrors(['reg_failed' => 'Ошибка! Проверьте введенные данные!'])
+                ->with('fio', $fio);
+        }
+        $id_student = DB::table('student')->max('ID_Student');
+        DB::table('student')->insert([
+            'ID_Student' => $id_student + 1,
+            'Fullname' => $fio,
+            'ID_Class' => $request->input('groups')
+        ]);
+        $id_user = DB::table('user')->max('ID_User');
+        DB::table('user')->insert([
+            'ID_User' => $id_user + 1,
+            'FullName' => $fio,
+            'ID_Role' => 1
+        ]);
+        DB::table('userdata')->insert([
+            'ID_User' => $id_user + 1,
+            'Login' => $request->input('email'),
+            'Password' => hash('sha512', $request->input('password'))
+        ]);
+        DB::table('reg_key')->where('fio', $fio)->delete();
+        return redirect('authorization');
     }
 
     public function  exit()
