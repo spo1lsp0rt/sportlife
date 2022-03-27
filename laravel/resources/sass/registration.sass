@@ -12,7 +12,6 @@
   text-align: center
 
 .registration_form
-  display: flex
   justify-content: center
   margin-top: 40px
   .registration_form_border
@@ -39,6 +38,8 @@
       .second-name_input, .first-name_input, .patronymic_input, .email_input, .password_input
         +input_properties(300px, left)
     .registration_agreement_field
+      display: flex
+      justify-content: center
       margin-top: 20px
       .agreement_link
         text-decoration: none

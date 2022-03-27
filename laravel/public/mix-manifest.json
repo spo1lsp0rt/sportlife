@@ -1,18 +1,20 @@
 {
     "/js/app.js": "/js/app.js",
     "/js/hamburger.js": "/js/hamburger.js",
+    "/js/combobox.js": "/js/combobox.js",
     "/css/app.css": "/css/app.css",
-    "/css/about.css": "/css/about.css",
     "/css/style.css": "/css/style.css",
     "/css/home.css": "/css/home.css",
     "/css/normatives.css": "/css/normatives.css",
+    "/css/combobox.css": "/css/combobox.css",
     "/css/modal.css": "/css/modal.css",
     "/css/user_profile.css": "/css/user_profile.css",
     "/css/tests.css": "/css/tests.css",
     "/css/style_test.css": "/css/style_test.css",
     "/css/style_result.css": "/css/style_result.css",
+    "/css/statistic_table.css": "/css/statistic_table.css",
     "/css/contacts.css": "/css/contacts.css",
     "/css/authorization.css": "/css/authorization.css",
     "/css/registration.css": "/css/registration.css",
-    "/css/statistic_table.css": "/css/statistic_table.css"
+    "/css/about.css": "/css/about.css"
 }

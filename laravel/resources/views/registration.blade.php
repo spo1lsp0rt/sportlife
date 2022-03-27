@@ -4,6 +4,7 @@
 
 @section('stylesheet')
     <link rel="stylesheet" type="text/css" href="{{url('css/registration.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url('css/combobox.css')}}">
 @endsection
 
 @section('main_content')
@@ -11,7 +12,6 @@
     <div class="registration_title">
         <h2>Регистрация</h2>
     </div>
-
     @php
         $groups = DB::select('select * from class');
         $faculties = DB::select('select * from faculty');
@@ -63,13 +63,14 @@
                         <div class="personal_info">
                             <input readonly name="lastname" type="text" class="form-control patronymic_input" value="{{$lastname}}" placeholder="Отчество">
                         </div>
-                        <div class="personal_info">
+                        <div class="personal_info js-combobox">
                             <select @if(!$key_success) disabled @endif name="faculties" class="form-select faculties_combobox" aria-label="Default select example">
                                 @foreach($faculties as $faculty)
                                     <option name="group{{$faculty->id_faculty}}" value="{{$faculty->id_faculty}}">{{$faculty->Name}}</option>
                                 @endforeach
                             </select>
                         </div>
+
                         <div class="personal_info">
                             <select @if(!$key_success) disabled @endif name="groups" class="form-select group_combobox" aria-label="Default select example">
                                 @foreach($groups as $group)
@@ -89,7 +90,7 @@
                         <div class="registration_agreement_field">
                             <div class="form-check form-switch">
                                 <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                                <label class="form-check-label" for="flexSwitchCheckDefault">Я принимаюм условия <a class="agreement_link" href="/privacy">Пользовательского соглашения</a></label>
+                                <label class="form-check-label" for="flexSwitchCheckDefault">Я принимаю условия <a class="agreement_link" href="/privacy">Пользовательского соглашения</a></label>
                             </div>
                         </div>
                         <button @if(!$key_success) disabled @endif type="submit" class="btn btn-dark registration_btn">Зарегистрироваться</button>
@@ -98,4 +99,8 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scriptsheet')
+    <script src="{{ asset('js/combobox.js') }}"></script>
 @endsection

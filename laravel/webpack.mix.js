@@ -14,6 +14,8 @@ const mix = require('laravel-mix');
 
 mix.js('resources/js/app.js', 'public/js')
     .js('resources/js/hamburger.js', 'public/js')
+    .js('resources/js/combobox.js', 'public/js')
+    .sass('resources/sass/combobox.sass', 'public/css')
     .sass('resources/sass/app.sass', 'public/css')
     .sass('resources/sass/normatives.sass', 'public/css')
     .sass('resources/sass/home.sass', 'public/css')
