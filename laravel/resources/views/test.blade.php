@@ -59,8 +59,12 @@
                     @if($test->ID_Test == 1)
                         <div class="age_info">
                             <div class="age_title">Введите ваш возраст:</div>
-                            <input type="text" placeholder="Например: 18" class="age_input" name = "age">
+                            <input type="text" placeholder="Например: 18" class="age_input" name = "age"
+                                   class="@error("age") is-invalid @enderror" value= >
                         </div>
+                        @error("age")
+                        <div class="alert alert-danger">{{ 'Введите число от 18 до 21' }}</div>
+                        @enderror
                     @endif
 
                     @if($test->ID_Test == 5)

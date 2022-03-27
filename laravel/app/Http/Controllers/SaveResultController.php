@@ -426,6 +426,8 @@ class SaveResultController extends Controller
         $rules = [];
         foreach ($test->Exercises as $exercise){
             $rules[$exercise->getInputName()] = 'required|max:100';
+            if($test->ID_Test == 1)
+                $rules['age'] = 'required||integer|between:18,21';
         }
         return $rules;
     }
