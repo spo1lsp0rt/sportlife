@@ -63,7 +63,7 @@
                                    class="@error("age") is-invalid @enderror" value= >
                         </div>
                         @error("age")
-                        <div class="alert alert-danger">{{ 'Введите число от 18 до 21' }}</div>
+                        <div class="alert alert-danger">{{ 'Введите число от 16 до 45' }}</div>
                         @enderror
                     @endif
 
