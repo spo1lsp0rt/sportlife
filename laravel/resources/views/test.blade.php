@@ -28,7 +28,7 @@
                                 <div class="test_header">Задание {{$key + 1}}. {!! ($exercise->Name) !!}
                                 </div>
                                 @if($exercise->img)
-                                    <div><img src={{"/img/".$exercise->img}} alt="">
+                                    <div><img class="test_img" src={{"/img/".$exercise->img}} alt="">
                                 @endif
                                 <div class="test_info">{!! $exercise->Description !!}
                                 </div>

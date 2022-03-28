@@ -14,7 +14,16 @@
     </div>
     @php
         $groups = DB::select('select * from class');
+        $arr_groups = array();
+        foreach ($groups as $group) {
+            $arr_groups[] = $group->Name;
+        }
+
         $faculties = DB::select('select * from faculty');
+        $arr_faculties = array();
+        foreach ($faculties as $faculty)
+            $arr_faculties[] = $faculty->Name;
+
         $key_success = false;
         $name = "";
         $surname = "";
@@ -28,6 +37,11 @@
             $lastname = $temp[2];
         }
     @endphp
+    <script type="text/javascript">
+        var arr_groups = <?php echo json_encode($arr_groups); ?>;
+        var arr_faculties = <?php echo json_encode($arr_faculties); ?>;
+
+    </script>
 
     <div class="container">
         <div class="row">
@@ -63,12 +77,12 @@
                         <div class="personal_info">
                             <input readonly name="lastname" type="text" class="form-control patronymic_input" value="{{$lastname}}" placeholder="Отчество">
                         </div>
-                        <div class="personal_info js-combobox">
-                            <select @if(!$key_success) disabled @endif name="faculties" class="form-select faculties_combobox" aria-label="Default select example">
-                                @foreach($faculties as $faculty)
-                                    <option name="group{{$faculty->id_faculty}}" value="{{$faculty->id_faculty}}">{{$faculty->Name}}</option>
-                                @endforeach
-                            </select>
+                        <div class="personal_info">
+                            <div class="combo js-combobox">
+                                <input aria-activedescendant="combo2-0" aria-autocomplete="none" aria-controls="listbox" aria-expanded="false"
+                                       aria-haspopup="listbox" id="combo" class="combo-input" role="combobox" type="text">
+                                <div class="combo-menu" role="listbox" id="listbox"></div>
+                            </div>
                         </div>
 
                         <div class="personal_info">

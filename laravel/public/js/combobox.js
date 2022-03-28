@@ -300,7 +300,7 @@ Combobox.prototype.updateMenuState = function (open) {
 
 
 var comboEl = document.querySelector('.js-combobox');
-var options = ['ДИНРБ-31', 'ДИПРБ-31'];
+var options = arr_groups;
 var comboComponent = new Combobox(comboEl, options);
 comboComponent.init();
 /******/ })()

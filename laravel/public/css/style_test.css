@@ -16,6 +16,11 @@
   font-weight: 700;
   margin-bottom: 8px;
 }
+.test .test_task .test_img {
+  display: block;
+  margin: 0 auto 10px auto;
+  padding: 10px;
+}
 .test .test_task .test_info {
   margin-bottom: 10px;
 }

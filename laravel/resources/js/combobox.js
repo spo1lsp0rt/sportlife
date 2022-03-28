@@ -266,8 +266,9 @@ Combobox.prototype.updateMenuState = function (open, callFocus = true) {
     open ? this.el.classList.add('open') : this.el.classList.remove('open');
     callFocus && this.inputEl.focus();
 };
+
 // init combo
 const comboEl = document.querySelector('.js-combobox');
-const options = ['ДИНРБ-31', 'ДИПРБ-31'];
+const options = arr_groups;
 const comboComponent = new Combobox(comboEl, options);
 comboComponent.init();
