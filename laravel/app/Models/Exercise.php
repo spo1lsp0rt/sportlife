@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $ID_Exercise
  * @property string $Name
  * @property string $Description
+ * @property string $Explanation
  * @property int $ID_Test
  * @method static \Illuminate\Database\Eloquent\Builder|Exercise newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Exercise newQuery()
