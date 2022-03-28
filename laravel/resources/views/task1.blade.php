@@ -21,7 +21,7 @@
                 <div class='title_field'>Оценка</div>
             </div>
         </div>
-        {{--hjhj--}}
+
         @foreach($result->Exercises as $key => $exercise)
             <div class='row'>
                 <div class='col col-md-5'>
