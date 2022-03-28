@@ -106,11 +106,12 @@ class MainController extends Controller
                 ->withErrors(['reg_failed' => 'Ошибка! Проверьте введенные данные!'])
                 ->with('fio', $fio);
         }
+        $id_group = DB::table('class')->where('Name', $request->input('group'))->value('ID_Class');
         $id_student = DB::table('student')->max('ID_Student');
         DB::table('student')->insert([
             'ID_Student' => $id_student + 1,
             'Fullname' => $fio,
-            'ID_Class' => $request->input('groups')
+            'ID_Class' => $id_group
         ]);
         $id_user = DB::table('user')->max('ID_User');
         DB::table('user')->insert([

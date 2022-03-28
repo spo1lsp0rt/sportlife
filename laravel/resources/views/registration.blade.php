@@ -79,19 +79,12 @@
                         </div>
                         <div class="personal_info">
                             <div class="combo js-combobox">
-                                <input aria-activedescendant="combo2-0" aria-autocomplete="none" aria-controls="listbox" aria-expanded="false"
+                                <input name="group" aria-activedescendant="combo2-0" aria-autocomplete="none" aria-controls="listbox" aria-expanded="false"
                                        aria-haspopup="listbox" id="combo" class="combo-input" role="combobox" type="text">
                                 <div class="combo-menu" role="listbox" id="listbox"></div>
                             </div>
                         </div>
 
-                        <div class="personal_info">
-                            <select @if(!$key_success) disabled @endif name="groups" class="form-select group_combobox" aria-label="Default select example">
-                                @foreach($groups as $group)
-                                    <option name="group{{$group->ID_Class}}" value="{{$group->ID_Class}}">{{$group->Name}}</option>
-                                @endforeach
-                            </select>
-                        </div>
                         <div class="personal_info">
                             <input @if(!$key_success) readonly @endif name="email" type="text" class="form-control email_input" autocomplete="off" placeholder="Email ⃰">
                         </div>
