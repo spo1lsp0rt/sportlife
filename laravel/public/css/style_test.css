@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+.row {
+  justify-content: center;
+}
+
 .test .test_task {
   margin: 35px auto 0 auto;
   padding: 15px 15px 15px 15px;
@@ -71,16 +75,22 @@
   font-style: italic;
 }
 .test .person_info {
-  width: 380px;
   margin: 30px auto 0 auto;
 }
-.test .person_info .gender_title, .test .person_info .age_title {
+.test .person_info .gender_title, .test .person_info .body_title, .test .person_info .age_title {
   margin-right: 15px;
 }
 .test .person_info .gender_info {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.test .person_info .body_info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-left: 14px;
 }
 .test .person_info .age_info {
   display: flex;

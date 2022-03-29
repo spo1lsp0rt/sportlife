@@ -89,10 +89,10 @@
                             <input @if(!$key_success) readonly @endif name="email" type="text" class="form-control email_input" autocomplete="off" placeholder="Email ⃰">
                         </div>
                         <div class="personal_info">
-                            <input @if(!$key_success) readonly @endif name="password" type="text" class="form-control password_input" autocomplete="off" placeholder="Пароль ⃰">
+                            <input @if(!$key_success) readonly @endif name="password" type="password" class="form-control password_input" autocomplete="off" placeholder="Пароль ⃰">
                         </div>
                         <div class="personal_info">
-                            <input @if(!$key_success) readonly @endif name="password_confirmation" type="text" class="form-control password_input" autocomplete="off" placeholder="Подтвердите пароль ⃰">
+                            <input @if(!$key_success) readonly @endif name="password_confirmation" type="password" class="form-control password_input" autocomplete="off" placeholder="Подтвердите пароль ⃰">
                         </div>
                         <div class="registration_agreement_field">
                             <div class="form-check form-switch">

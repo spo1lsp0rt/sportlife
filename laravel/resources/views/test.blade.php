@@ -70,8 +70,8 @@
                     @endif
 
                     @if($test->ID_Test == 5)
-                        <div class="gender_info">
-                            <div class="gender_title">Выберите вашу форму грудной клетки:</div>
+                        <div class="body_info">
+                            <div class="body_title">Выберите вашу форму грудной клетки:</div>
                             <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
                                 <input type="radio" class="btn-check" name="btnradio2"  value = "Astenik" id="btnradio3" autocomplete="on" checked >
                                 <label class="btn btn-outline-dark" for="btnradio3">Астеники</label>
