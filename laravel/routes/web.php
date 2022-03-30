@@ -42,7 +42,12 @@ Route::post('/reg', [ MainController::class, 'reg' ]);
 
 Route::post('/updateStudent', [ MainController::class, 'updateStudent' ]);
 
+Route::post('/delete_student', [ MainController::class, 'delete_student' ]);
+
+Route::post('/add_users', [ MainController::class, 'add_users' ]);
+
 Route::get('/privacy', [ MainController::class, 'privacy_policy' ]);
+
 
 /*Route::get('/tests', [ MainController::class, 'tests' ]);*/
 
@@ -55,7 +60,6 @@ Route::get('/about', [ MainController::class, 'about' ]);
 
 Route::get('/contacts', [ MainController::class, 'contacts' ]);
 
-Route::post('/add_users', [ MainController::class, 'add_users' ]);
 
 /**
  * Вывод списка заданий теста пользователю

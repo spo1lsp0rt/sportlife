@@ -15,17 +15,15 @@
                     <div class="authorize_title"><h2>Авторизация</h2></div>
                     <form class="px-4 py-3" method="post" action="/auth/check">
                         @csrf
-                        <?php if($error != "")
-                        {
-                            echo "
-                        <div class='alert alert-danger'>
-                            <ul>
-                                <li>$error</li>
-                             </ul>
-                         </div>
-                    ";
-                        }
-                        ?>
+                        @if($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach($errors->all() as $error)
+                                        <li>{{$error}}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <div class="mb-3">
                             <label for="exampleDropdownFormEmail1" class="form-label">Логин</label>
                             <input type="text" name="login" class="form-control" placeholder="Введите логин">

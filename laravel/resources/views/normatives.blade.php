@@ -14,7 +14,7 @@
     @php
 
         $groups = DB::select('select * from class');
-        $facultys = DB::select('select * from faculty')
+        $facultys = DB::select('select * from faculty');
 
     @endphp
     <div class="container">

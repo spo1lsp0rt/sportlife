@@ -11,7 +11,7 @@
 @section('main_content')
 
     @php
-
+        $allUsers = DB::select('select * from user');
         $currentUser = null;
             if (array_key_exists('login', $_COOKIE))
                 {
@@ -32,6 +32,12 @@
     @endphp
 
     <div class="container">
+        @if(session('add_success'))
+                <div class="alert alert-success">{{session('add_success')}}</div>
+        @endif
+            @if(session('update_success'))
+                <div class="alert alert-success">{{session('update_success')}}</div>
+            @endif
         <div class="user_profile">
             <div class="profile_title"><h2>Профиль</h2></div>
             <div class="profile_img">
@@ -95,6 +101,8 @@
                         {{--<input type="file" name="uploadfile">--}}
                         <input class="sumbit-upload" type="submit" value="Загрузить">
                     </form>
+                    <form method="post" action="delete_student">
+                        @csrf
                     <div class='admin_table'>
                         <div class='container statistic_table'>
                             <div class='row'>
@@ -115,42 +123,39 @@
                                 </div>
                             </div>
                             @php
-
                                 $students = @DB::select('select * from student');
                             @endphp
-
                             @foreach($students as $student)
                                 @php
                                     $class = DB::table('class')->where('ID_Class', $student->ID_Class)->value('Name');
                                     $faculty = DB::table('faculty')->where('id_faculty', DB::table('class')->where('ID_Class', $student->ID_Class)->value('id_faculty'))->value('Name');
                                 @endphp
-                                <div class='row'>
-                                    <div class='col col-md-1'>
-                                        <div class='data_field_head'><input type="checkbox" style="transform:scale(1.4);">
+                                    <div class='row'>
+                                        <div class='col col-md-1'>
+                                            <div  class='data_field_head'><input name="{{$student->ID_Student}}" type="checkbox" style="transform:scale(1.4);">
+                                            </div>
+                                        </div>
+                                        <div class='col col-md-4'>
+                                            <div class='data_field'>{{$student->FullName}}</div>
+                                        </div>
+                                        <div class='col col-md-2'>
+                                            <div class='data_field'>{{$faculty}}</div>
+                                        </div>
+                                        <div class='col col-md-2'>
+                                            <div class='data_field'>{{$class}}</div>
+                                        </div>
+                                        <div class='col col-md-3'>
+                                            <div id="{{$student->FullName}}" class='data_field'>
+                                                <button class="modal_btn" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                                                    Редактировать
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class='col col-md-4'>
-                                        <div class='data_field'>{{$student->FullName}}</div>
-                                    </div>
-                                    <div class='col col-md-2'>
-                                        <div class='data_field'>{{$faculty}}</div>
-                                    </div>
-                                    <div class='col col-md-2'>
-                                        <div class='data_field'>{{$class}}</div>
-                                    </div>
-                                    <div class='col col-md-3'>
-                                        <div id="{{$student->FullName}}" class='data_field'>
-                                            <button class="modal_btn" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
-                                                Редактировать
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
                             @endforeach
                         </div>
                     </div>
-                    <form action="#">
-                        <button formaction="#" class="user_delbtn">Удалить пользователя(-ей)</button>
+                        <button class="user_delbtn">Удалить пользователя(-ей)</button>
                     </form>
                 </div>
             @endif

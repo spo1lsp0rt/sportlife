@@ -26,8 +26,7 @@ class MainController extends Controller
     }
 
     public function  profile() {
-        $allUsers = new users();
-        return view('user_profile', ['allUsers' => $allUsers]);
+        return view('user_profile',);
     }
 
     public function  statistic_table() {
@@ -75,7 +74,7 @@ class MainController extends Controller
                 'key' => $key
             ));
         }
-        return redirect('/profile');
+        return Redirect::back()->with(['add_success' => 'Студенты были успешно добавлены!']);
 
     }
 
@@ -84,8 +83,7 @@ class MainController extends Controller
     }
 
     public function  authorization() {
-        $error = "";
-        return view('authorization', ['error' => $error]);
+        return view('authorization');
     }
 
     public function  check_key() {
@@ -142,7 +140,24 @@ class MainController extends Controller
             'FullName' => $_POST['new_fio'],
             'ID_Class' => $_POST['groups']
         ));
-        return redirect('/profile');
+        return Redirect::back()->with(['update_success' => 'Обновление студента прошло успешно!']);
+    }
+
+    public function  delete_student(Request $request) {
+       $students = DB::select('select * from student');
+       $success = false;
+       foreach ($students as $student)
+       {
+           if($request->input((string)$student->ID_Student) == "on")
+           {
+               DB::table('student')->where('ID_Student', $student->ID_Student)->delete();
+               DB::table('user')->where('FullName', $student->FullName)->delete();
+               $success = true;
+           }
+       }
+       if($success)
+           return Redirect::back()->with(['delete_success' => 'Студент(-ы) успешно удален(-ы)!']);
+        return Redirect::back()->withErrors(['delete_failed' => 'Для удаления выберите хотя бы одного студента!']);
     }
 
     public function  auth_check() {
@@ -160,11 +175,10 @@ class MainController extends Controller
                 $currentData = array($allStat->all(), $allTests->all(), $allUsers->all());
                 setcookie('login', $login, 0, '/');
                 setcookie('ID_User', $user->ID_User, 0, '/');
-                return redirect('/');
+                return redirect('/profile');
             }
         }
-        $error = "Неверный логин или пароль";
-        return view('authorization', ['error' => $error]);
+        return Redirect::back()->withErrors(['failed' => 'Неверный логин или пароль!']);
     }
 
     public function  about() {
