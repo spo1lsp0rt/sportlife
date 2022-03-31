@@ -179,7 +179,7 @@
                                         </div>
                                         <div class='col col-md-3'>
                                             <div id="{{$student->FullName}}" class='data_field'>
-                                                <button class="modal_btn" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                                                <button class="modal_btn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
                                                     Редактировать
                                                 </button>
                                             </div>
