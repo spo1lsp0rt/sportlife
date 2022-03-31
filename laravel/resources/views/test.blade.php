@@ -45,19 +45,19 @@
             </div>
 
             @if($test->ID_Test == 1 || $test->ID_Test == 2 || $test->ID_Test == 3 || $test->ID_Test == 5)
-
                 <div class="person_info">
-                    <div class="gender_info">
-                        <div class="gender_title">Выберите ваш пол:</div>
-                        <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                            <input type="radio" class="btn-check" name="btnradio"  value = "муж" id="btnradio1" autocomplete="off" checked >
-                            <label class="btn btn-outline-dark" for="btnradio1">Мужской</label>
+                @if(!array_key_exists('Gender', $_COOKIE))
+                        <div class="gender_info">
+                            <div class="gender_title">Выберите ваш пол:</div>
+                            <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                <input type="radio" class="btn-check" name="btnradio"  value = "муж" id="btnradio1" autocomplete="off" checked >
+                                <label class="btn btn-outline-dark" for="btnradio1">Мужской</label>
 
-                            <input type="radio" class="btn-check" name="btnradio" value = "жен" id="btnradio2" autocomplete="off" >
-                            <label class="btn btn-outline-dark" for="btnradio2">Женский</label>
+                                <input type="radio" class="btn-check" name="btnradio" value = "жен" id="btnradio2" autocomplete="off" >
+                                <label class="btn btn-outline-dark" for="btnradio2">Женский</label>
+                            </div>
                         </div>
-                    </div>
-
+                @endif
                     @if($test->ID_Test == 1)
                         <div class="age_info">
                             <div class="age_title">Введите ваш возраст:</div>

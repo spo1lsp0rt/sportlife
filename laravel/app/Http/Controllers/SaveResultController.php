@@ -36,7 +36,10 @@ class SaveResultController extends Controller
             if(empty($age))
                 $age = 17;
 
-            $course = $_POST["btnradio"];
+            if(array_key_exists('Gender', $_COOKIE))
+                $course = $_COOKIE["Gender"];
+            else
+                $course = $_POST["btnradio"];
 
             if($course == "муж")
                 $normative = DB::select("select * from normatives1 where age = ".$age." AND gender = 'муж'");
@@ -46,12 +49,18 @@ class SaveResultController extends Controller
 
         if($test->ID_Test == 2){
             $normative = DB::select("select * from normatives2 where gender = 'муж'");
-            $course = $_POST["btnradio"];
+            if(array_key_exists('Gender', $_COOKIE))
+                $course = $_COOKIE["Gender"];
+            else
+                $course = $_POST["btnradio"];
         }
 
         if($test->ID_Test == 3){
             $normative = DB::select("select * from normatives3 where gender = 'муж'");
-            $course = $_POST["btnradio"];
+            if(array_key_exists('Gender', $_COOKIE))
+                $course = $_COOKIE["Gender"];
+            else
+                $course = $_POST["btnradio"];
         }
 
         if($test->ID_Test == 4){
@@ -61,7 +70,10 @@ class SaveResultController extends Controller
 
         if($test->ID_Test == 5){
             $normative = DB::select("select * from normatives5 where gender = 'муж'");
-            $course = $_POST["btnradio"] . $_POST["btnradio2"];
+            if(array_key_exists('Gender', $_COOKIE))
+                $course = $_COOKIE["Gender"].  $_POST["btnradio2"];
+            else
+                $course = $_POST["btnradio"] . $_POST["btnradio2"];
         }
 
         $valid = $request->validate($this->getRules($test));

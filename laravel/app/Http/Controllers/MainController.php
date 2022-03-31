@@ -175,6 +175,7 @@ class MainController extends Controller
                 $currentData = array($allStat->all(), $allTests->all(), $allUsers->all());
                 setcookie('login', $login, 0, '/');
                 setcookie('ID_User', $user->ID_User, 0, '/');
+                setcookie('Gender', $user->gender, 0, '/');
                 return redirect('/profile');
             }
         }
