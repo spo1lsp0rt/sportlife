@@ -268,7 +268,13 @@ Combobox.prototype.updateMenuState = function (open, callFocus = true) {
 };
 
 // init combo
-const comboEl = document.querySelector('.js-combobox');
-const options = arr_groups;
-const comboComponent = new Combobox(comboEl, options);
-comboComponent.init();
+const arr_comboEl = document.querySelectorAll('.js-combobox');
+let n = arr_options.length;
+let i = 0;
+let options = arr_options[i];
+arr_comboEl.forEach(function (comboEl) {
+    const comboComponent = new Combobox(comboEl, options);
+    comboComponent.init();
+    i++;
+    options = arr_options[i];
+});

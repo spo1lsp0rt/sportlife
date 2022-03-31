@@ -4,8 +4,9 @@
 
 @section('stylesheet')
     <link rel="stylesheet" type="text/css" href="{{url('css/statistic_table.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{url('css/user_profile.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url('css/modal.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url('css/combobox.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url('css/user_profile.css')}}">
 @endsection
 
 @section('main_content')
@@ -50,6 +51,38 @@
                 @yield('user_statistic')
             @endif
             @if($currentUser->ID_Role == 2)
+                @php
+                    $groups = DB::select('select * from class');
+                    $arr_groups = array();
+                    foreach ($groups as $group) {
+                        $arr_groups[] = $group->Name;
+                    }
+
+                    $faculties = DB::select('select * from faculty');
+                    $arr_faculties = array();
+                    foreach ($faculties as $faculty)
+                        $arr_faculties[] = $faculty->Name;
+                @endphp
+                <script type="text/javascript">
+                    let arr_groups = <?php echo json_encode($arr_groups); ?>;
+                    let arr_faculties = <?php echo json_encode($arr_faculties); ?>;
+                    let arr_options = [arr_faculties, arr_groups];
+                </script>
+                <div class="parameters_panel">
+                    <div class="faculties_combobox">
+                        <div name="faculty" class="combo js-combobox">
+                            <input name="group" aria-autocomplete="none" aria-controls="faculties-listbox" aria-haspopup="faculties-listbox" id="faculties-combo" class="combo-input" role="combobox" type="text">
+                            <div class="combo-menu" role="listbox" id="faculties-listbox"></div>
+                        </div>
+                    </div>
+                    <div class="group_combobox">
+                        <div name="group" class="combo js-combobox">
+                            <input name="group" aria-autocomplete="none" aria-controls="groups-listbox" aria-haspopup="groups-listbox" id="groups-combo" class="combo-input" role="combobox" type="text">
+                            <div class="combo-menu" role="listbox" id="groups-listbox"></div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class='container statistic_table'>
                     <div class='row'>
                         <div class='col col-md-2'>
@@ -136,7 +169,7 @@
                                             </div>
                                         </div>
                                         <div class='col col-md-4'>
-                                            <div class='data_field'>{{$student->FullName}}</div>
+                                            <div class='data_field textX_left'>{{$student->FullName}}</div>
                                         </div>
                                         <div class='col col-md-2'>
                                             <div class='data_field'>{{$faculty}}</div>
@@ -220,4 +253,8 @@
 
         </div>
     </div>
+@endsection
+
+@section('scriptsheet')
+    <script src="{{ asset('js/combobox.js') }}"></script>
 @endsection

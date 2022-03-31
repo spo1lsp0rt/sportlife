@@ -1,12 +1,11 @@
 .combo {
   display: block;
-  margin-bottom: 1.5em;
   max-width: 400px;
   position: relative;
 }
 .combo::after {
-  border-bottom: 2px solid rgba(0, 0, 0, 0.5);
-  border-right: 2px solid rgba(0, 0, 0, 0.5);
+  border-bottom: 2px solid #aeb3b8;
+  border-right: 2px solid #aeb3b8;
   content: "";
   display: block;
   height: 12px;
@@ -19,20 +18,25 @@
 }
 
 .combo-input {
-  background-color: #f5f5f5;
-  border: 2px solid rgba(0, 0, 0, 0.5);
-  border-radius: 4px;
+  background-color: #ffffff;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
   display: block;
-  font-size: 1em;
-  min-height: calc(1.4em + 26px);
-  padding: 12px 16px 14px;
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 6px 12px;
   text-align: left;
-  width: 100%;
+  width: 300px;
+  height: 38px;
+}
+.combo-input:disabled {
+  background-color: #E9ECEF;
 }
 .combo-input:focus {
-  border-color: #e60023;
-  box-shadow: 0 0 4px 2px #e60023;
-  outline: 5px solid transparent;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  border-color: #86B7FE;
+  box-shadow: 0 0 0 4px #C2DAFF;
+  outline: none;
 }
 
 .open .combo-input {
@@ -51,11 +55,11 @@
 
 .combo-menu {
   background-color: #f5f5f5;
-  border: 1px solid rgba(0, 0, 0, 0.42);
+  border: 1px solid #ced4da;
   border-radius: 0 0 4px 4px;
   display: none;
-  max-height: 300px;
-  overflow-y: scroll;
+  max-height: 190px;
+  overflow-y: auto;
   left: 0;
   position: absolute;
   top: 100%;
@@ -64,7 +68,7 @@
 }
 
 .combo-option {
-  padding: 10px 12px 12px;
+  padding: 6px 12px;
 }
 .combo-option.option-selected {
   padding-right: 30px;
@@ -85,50 +89,4 @@
 .combo-option.option-current,
 .combo-option:hover {
   background-color: rgba(0, 0, 0, 0.1);
-}
-
-.selected-options {
-  list-style-type: none;
-  margin: 0;
-  max-width: 400px;
-  padding: 0;
-}
-.selected-options li {
-  display: inline-block;
-  margin-bottom: 5px;
-}
-
-.remove-option {
-  background-color: #ff3d3d;
-  border: 1px solid #ff3d3d;
-  border-radius: 3px;
-  color: #fff;
-  font-size: 0.75em;
-  font-weight: bold;
-  margin-bottom: 6px;
-  margin-right: 6px;
-  padding: 0.25em 1.75em 0.25em 0.25em;
-  position: relative;
-}
-.remove-option:focus {
-  border-color: #baa1dd;
-  box-shadow: 0 0 3px 1px #ff3d3d;
-  outline: 3px solid transparent;
-}
-.remove-option::before {
-  transform: translate(0, -50%) rotate(45deg);
-}
-.remove-option::after {
-  transform: translate(0, -50%) rotate(-45deg);
-}
-
-.remove-option::before,
-.remove-option::after {
-  border-right: 2px solid #fff;
-  content: "";
-  height: 1em;
-  right: 0.75em;
-  position: absolute;
-  top: 50%;
-  width: 0;
 }

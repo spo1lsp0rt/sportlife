@@ -38,9 +38,9 @@
         }
     @endphp
     <script type="text/javascript">
-        var arr_groups = <?php echo json_encode($arr_groups); ?>;
-        var arr_faculties = <?php echo json_encode($arr_faculties); ?>;
-
+        let arr_groups = <?php echo json_encode($arr_groups); ?>;
+        let arr_faculties = <?php echo json_encode($arr_faculties); ?>;
+        let arr_options = [arr_groups, arr_faculties];
     </script>
 
     <div class="container">
@@ -69,30 +69,28 @@
                     <form class="registration_form_border" method="post" action="/reg">
                         @csrf
                         <div class="personal_info">
-                            <input readonly name="secondname" type="text" class="form-control second-name_input" autocomplete="off" value="{{$surname}}" placeholder="Фамилия ">
+                            <input disabled readonly name="secondname" type="text" class="form-control second-name_input" autocomplete="off" value="{{$surname}}" placeholder="Фамилия ">
                         </div>
                         <div class="personal_info">
-                            <input readonly name="firstname" type="text" class="form-control first-name_input" value="{{$name}}" placeholder="Имя ⃰">
+                            <input disabled readonly name="firstname" type="text" class="form-control first-name_input" value="{{$name}}" placeholder="Имя ⃰">
                         </div>
                         <div class="personal_info">
-                            <input readonly name="lastname" type="text" class="form-control patronymic_input" value="{{$lastname}}" placeholder="Отчество">
+                            <input disabled readonly name="lastname" type="text" class="form-control patronymic_input" value="{{$lastname}}" placeholder="Отчество">
                         </div>
                         <div class="personal_info">
-                            <div class="combo js-combobox">
-                                <input name="group" aria-activedescendant="combo2-0" aria-autocomplete="none" aria-controls="listbox" aria-expanded="false"
-                                       aria-haspopup="listbox" id="combo" class="combo-input" role="combobox" type="text">
-                                <div class="combo-menu" role="listbox" id="listbox"></div>
+                            <div name="group" class="combo js-combobox">
+                                <input @if(!$key_success) disabled readonly @endif name="group" aria-autocomplete="none" aria-controls="groups-listbox" aria-haspopup="groups-listbox" id="groups-combo" class="combo-input" role="combobox" type="text">
+                                <div class="combo-menu" role="listbox" id="groups-listbox"></div>
                             </div>
                         </div>
-
                         <div class="personal_info">
-                            <input @if(!$key_success) readonly @endif name="email" type="text" class="form-control email_input" autocomplete="off" placeholder="Email ⃰">
+                            <input @if(!$key_success) disabled readonly @endif name="email" type="text" class="form-control email_input" autocomplete="off" placeholder="Email ⃰">
                         </div>
                         <div class="personal_info">
-                            <input @if(!$key_success) readonly @endif name="password" type="password" class="form-control password_input" autocomplete="off" placeholder="Пароль ⃰">
+                            <input @if(!$key_success) disabled readonly @endif name="password" type="password" class="form-control password_input" autocomplete="off" placeholder="Пароль ⃰">
                         </div>
                         <div class="personal_info">
-                            <input @if(!$key_success) readonly @endif name="password_confirmation" type="password" class="form-control password_input" autocomplete="off" placeholder="Подтвердите пароль ⃰">
+                            <input @if(!$key_success) disabled readonly @endif name="password_confirmation" type="password" class="form-control password_input" autocomplete="off" placeholder="Подтвердите пароль ⃰">
                         </div>
                         <div class="registration_agreement_field">
                             <div class="form-check form-switch">

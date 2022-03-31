@@ -39,11 +39,12 @@
             <div class='col col-md-6'>
                 <div class='title_field'>Сумма</div>
             </div>
-            @for($i = 0; $i < 5; $i++)
-                <div class='row'>
-                    <div class='col col-md-6'>
-                        <div class='data_field_head textX_left'>
-                            @php
+        </div>
+        @for($i = 0; $i < 5; $i++)
+            <div class='row'>
+                <div class='col col-md-6'>
+                    <div class='data_field_head'>
+                        @php
                             if($i == 0)
                                 echo 'Низкий';
                             else if($i == 1)
@@ -54,28 +55,26 @@
                                 echo 'Выше среднего';
                             else if($i == 4)
                                 echo 'Высокий';
-                            @endphp
-                        </div>
-                    </div>
-
-                    <div class='col col-md-6'>
-                        <div class='data_field'>
-                            @php
-                                if($i == 0)
-                                    echo '500 и более';
-                                else if($i == 1)
-                                    echo 'при 450-500';
-                                else if($i == 2)
-                                    echo 'при 400-450';
-                                else if($i == 3)
-                                    echo 'при 350-400';
-                                else if($i == 4)
-                                    echo 'при сумме, меньшей 350';
-                            @endphp
-                        </div>
+                        @endphp
                     </div>
                 </div>
-            @endfor
 
-        </div>
+                <div class='col col-md-6'>
+                    <div class='data_field'>
+                        @php
+                            if($i == 0)
+                                echo '500 и более';
+                            else if($i == 1)
+                                echo 'при 450-500';
+                            else if($i == 2)
+                                echo 'при 400-450';
+                            else if($i == 3)
+                                echo 'при 350-400';
+                            else if($i == 4)
+                                echo 'при сумме, меньшей 350';
+                        @endphp
+                    </div>
+                </div>
+            </div>
+        @endfor
     </div>

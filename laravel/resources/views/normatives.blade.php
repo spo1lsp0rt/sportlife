@@ -5,6 +5,7 @@
 @section('stylesheet')
     <link rel="stylesheet" type="text/css" href="{{url('css/statistic_table.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url('css/normatives.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url('css/combobox.css')}}">
 @endsection
 
 @section('main_content')
@@ -12,21 +13,39 @@
         <h2>Журнал нормативов</h2>
     </div>
     @php
-
         $groups = DB::select('select * from class');
-        $facultys = DB::select('select * from faculty');
+        $arr_groups = array();
+        foreach ($groups as $group) {
+            $arr_groups[] = $group->Name;
+        }
 
+        $faculties = DB::select('select * from faculty');
+        $arr_faculties = array();
+        foreach ($faculties as $faculty)
+            $arr_faculties[] = $faculty->Name;
     @endphp
+    <script type="text/javascript">
+        let arr_groups = <?php echo json_encode($arr_groups); ?>;
+        let arr_faculties = <?php echo json_encode($arr_faculties); ?>;
+        let arr_options = [arr_faculties, arr_groups];
+    </script>
+
     <div class="container">
         <div class="row">
             <div class="col">
                 <div class="parameters_panel">
-                    <div class="parameter_name">Выберите группу:</div>
-                    <select name="groups" class="form-select" aria-label="Default select example">
-                        @foreach($groups as $group)
-                            <option name="group{{$group->ID_Class}}" value="{{$group->ID_Class}}">{{$group->Name}}</option>
-                        @endforeach
-                    </select>
+                    <div class="faculties_combobox">
+                        <div name="faculty" class="combo js-combobox">
+                            <input name="group" aria-autocomplete="none" aria-controls="faculties-listbox" aria-haspopup="faculties-listbox" id="faculties-combo" class="combo-input" role="combobox" type="text">
+                            <div class="combo-menu" role="listbox" id="faculties-listbox"></div>
+                        </div>
+                    </div>
+                    <div class="group_combobox">
+                        <div name="group" class="combo js-combobox">
+                            <input name="group" aria-autocomplete="none" aria-controls="groups-listbox" aria-haspopup="groups-listbox" id="groups-combo" class="combo-input" role="combobox" type="text">
+                            <div class="combo-menu" role="listbox" id="groups-listbox"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -121,4 +140,8 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scriptsheet')
+    <script src="{{ asset('js/combobox.js') }}"></script>
 @endsection

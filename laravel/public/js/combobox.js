@@ -299,9 +299,15 @@ Combobox.prototype.updateMenuState = function (open) {
 }; // init combo
 
 
-var comboEl = document.querySelector('.js-combobox');
-var options = arr_groups;
-var comboComponent = new Combobox(comboEl, options);
-comboComponent.init();
+var arr_comboEl = document.querySelectorAll('.js-combobox');
+var n = arr_options.length;
+var i = 0;
+var options = arr_options[i];
+arr_comboEl.forEach(function (comboEl) {
+  var comboComponent = new Combobox(comboEl, options);
+  comboComponent.init();
+  i++;
+  options = arr_options[i];
+});
 /******/ })()
 ;

@@ -54,6 +54,19 @@
   height: 21px;
   width: 21px;
 }
+.user_profile .parameters_panel {
+  display: flex;
+  margin: 40px auto 0 auto;
+}
+.user_profile .parameters_panel .faculties_combobox {
+  margin-right: 10px;
+}
+.user_profile .parameters_panel .faculties_combobox .combo .combo-input {
+  width: 200px;
+}
+.user_profile .parameters_panel .group_combobox .combo .combo-input {
+  width: 200px;
+}
 .user_profile .admin_panel {
   display: block;
   margin: 0 auto;
@@ -65,7 +78,7 @@
 }
 .user_profile .admin_panel .upload_form {
   display: flex;
-  margin: 10px auto 0 auto;
+  margin: 30px auto 0 auto;
   width: 600px;
 }
 .user_profile .admin_panel .upload_form .form-control {
