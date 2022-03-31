@@ -41,6 +41,17 @@
         $id = DB::table('user')->where('ID_User', $_COOKIE['ID_User'])->value('ID_Role');
     }
     @endphp
+
+    @if(!array_key_exists('ID_User', $_COOKIE))
+        @php
+            $id_user = DB::table('statistic')->where('ID_Result', $id)->value('ID_User');
+                $id_test = DB::table('statistic')->where('ID_Result', $id)->value('ID_Test');
+                DB::table('test_user')->where('ID_User', $id_user)->where('ID_Test', $id_test)->delete();
+                DB::table('statistic')->where('ID_Result', $id)->delete();
+                DB::table('result_exercises')->where('ID_Result', $id)->delete();
+                DB::table('results')->where('ID_Result', $id)->delete();
+        @endphp
+    @endif
     @if($id == 2)
     <form action="/clear_statistic/{{$result->ID_Result}}" method="post">
         @csrf

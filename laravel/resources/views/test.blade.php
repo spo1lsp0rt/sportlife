@@ -88,6 +88,7 @@
                 </div>
             @endif
 
+
             <button class="result_btn">Получить результат</button>
         </section>
     </form>

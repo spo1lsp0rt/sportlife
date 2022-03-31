@@ -137,7 +137,6 @@ class SaveResultController extends Controller
                 $resultExersise->Value = $valid_params[$exercise->getInputName()];
                 $resultExersise->Norma = $normative[$j]->Value;
 
-
                 $resultExersise->save();
 
                 $j++;
