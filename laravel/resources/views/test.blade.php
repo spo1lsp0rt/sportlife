@@ -28,9 +28,16 @@
                                 <div class="test_header">Задание {{$key + 1}}. {!! ($exercise->Name) !!}
                                 </div>
                                 @if($exercise->img)
-                                    <div><img class="test_img" src={{"/img/".$exercise->img}} alt="">
+                                    <img class="test_img" src={{"/img/".$exercise->img}} alt="">
                                 @endif
                                 <div class="test_info">{!! $exercise->Description !!}
+                                </div>
+
+                                {{--------------------------Таймер------------------------------}}
+                                <div class="{{$key + 1}}">
+                                    <div class="timer" id="timer{{$key + 1}}"></div>
+                                    <input value="Запустить таймер" class="timer_btn"
+                                           onclick="" id="timer_btn{{$key + 1}}" type="button">
                                 </div>
 
                                 <input type="text" placeholder="Введите результат" class="test_result"
@@ -94,4 +101,8 @@
     </form>
 
 
+@endsection
+
+@section('scriptsheet')
+    <script src="{{ asset('js/timer.js') }}"></script>
 @endsection

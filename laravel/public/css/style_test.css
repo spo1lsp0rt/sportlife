@@ -115,3 +115,67 @@
   margin-top: 10px;
   padding: 5px 15px 5px 15px;
 }
+.test .base-timer {
+  position: relative;
+  margin: 0 auto;
+  width: 100px;
+  height: 100px;
+}
+.test .base-timer__svg {
+  transform: scaleX(-1);
+}
+.test .base-timer__circle {
+  fill: none;
+  stroke: none;
+}
+.test .base-timer__path-elapsed {
+  stroke-width: 7px;
+  stroke: grey;
+}
+.test .base-timer__path-remaining {
+  stroke-width: 7px;
+  stroke-linecap: round;
+  transform: rotate(90deg);
+  transform-origin: center;
+  transition: 1s linear all;
+  fill-rule: nonzero;
+  stroke: currentColor;
+}
+.test .base-timer__path-remaining.green {
+  color: #41b883;
+}
+.test .base-timer__path-remaining.orange {
+  color: orange;
+}
+.test .base-timer__path-remaining.red {
+  color: red;
+}
+.test .base-timer__label {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+}
+.test .timer_btn {
+  display: block;
+  margin: 10px auto 5px auto;
+  font-size: 15px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.21);
+  width: 240px;
+  height: 45px;
+  background-image: linear-gradient(to top, #111111 0%, #424852 100%);
+  box-shadow: inset 0px -3px 0px rgba(0, 0, 0, 0.12);
+  border: none;
+  border-radius: 17px;
+}
+.test .timer_btn:hover {
+  background-image: linear-gradient(to top, #2f2f2f 0%, #373f4b 100%);
+  color: #e5e5e5;
+}
