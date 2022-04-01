@@ -10,11 +10,13 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 var FULL_DASH_ARRAY = 283;
-var WARNING_THRESHOLD = 10;
-var ALERT_THRESHOLD = 5;
+var TIME_LIMIT = 20;
+var WARNING_THRESHOLD = TIME_LIMIT / 2;
+var ALERT_THRESHOLD = TIME_LIMIT / 4;
 var COLOR_CODES = {
   info: {
-    color: "green"
+    color: "green",
+    threshold: TIME_LIMIT
   },
   warning: {
     color: "orange",
@@ -25,7 +27,6 @@ var COLOR_CODES = {
     threshold: ALERT_THRESHOLD
   }
 };
-var TIME_LIMIT = 20;
 var timePassed;
 var timeLeft = TIME_LIMIT;
 var timerInterval = null;
@@ -61,7 +62,9 @@ try {
     var btnID = "timer_btn" + _timer.id.slice(5);
 
     var btn = document.getElementById(btnID);
-    btn.addEventListener("click", setTimeout(startTimer, 1000), false);
+    btn.addEventListener("click", function () {
+      startTimer();
+    });
   }
 } catch (err) {
   _iterator2.e(err);
@@ -70,16 +73,14 @@ try {
 }
 
 function startTimer() {
-  /*timePassed = 0;
+  onTimesUp();
+  timePassed = 0;
   timeLeft = TIME_LIMIT;
   timerInterval = null;
-  remainingPathColor = COLOR_CODES.info.color;*/
   timerInterval = setInterval(function () {
-    timePassed = timePassed += 1;
+    timePassed += 1;
     timeLeft = TIME_LIMIT - timePassed;
-    console.log(document.activeElement.id);
     var fullID = "base-timer-label" + document.activeElement.id.slice(9);
-    console.log(fullID);
     document.getElementById(fullID).innerHTML = formatTime(timeLeft);
     setCircleDasharray(document.activeElement.id.slice(9));
     setRemainingPathColor(timeLeft, document.activeElement.id.slice(9));
@@ -112,6 +113,10 @@ function setRemainingPathColor(timeLeft, id) {
   } else if (timeLeft <= warning.threshold) {
     document.getElementById("base-timer-path-remaining" + id).classList.remove(info.color);
     document.getElementById("base-timer-path-remaining" + id).classList.add(warning.color);
+  } else if (timeLeft <= info.threshold) {
+    document.getElementById("base-timer-path-remaining" + id).classList.remove(alert.color);
+    document.getElementById("base-timer-path-remaining" + id).classList.remove(warning.color);
+    document.getElementById("base-timer-path-remaining" + id).classList.add(info.color);
   }
 }
 

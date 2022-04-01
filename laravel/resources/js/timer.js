@@ -1,10 +1,12 @@
 const FULL_DASH_ARRAY = 283;
-const WARNING_THRESHOLD = 10;
-const ALERT_THRESHOLD = 5;
+const TIME_LIMIT = 20;
+const WARNING_THRESHOLD = TIME_LIMIT / 2;
+const ALERT_THRESHOLD = TIME_LIMIT / 4;
 
 const COLOR_CODES = {
     info: {
-        color: "green"
+        color: "green",
+        threshold: TIME_LIMIT
     },
     warning: {
         color: "orange",
@@ -16,7 +18,6 @@ const COLOR_CODES = {
     }
 };
 
-const TIME_LIMIT = 20;
 let timePassed;
 let timeLeft = TIME_LIMIT;
 let timerInterval = null;
@@ -63,12 +64,12 @@ for(let timer of timers){
 }
 
 function startTimer() {
+    onTimesUp();
     timePassed = 0;
     timeLeft = TIME_LIMIT;
     timerInterval = null;
-    remainingPathColor = COLOR_CODES.info.color;
     timerInterval = setInterval(() => {
-        timePassed = timePassed += 1;
+        timePassed += 1;
         timeLeft = TIME_LIMIT - timePassed;
         const fullID = "base-timer-label" + document.activeElement.id.slice(9);
         document.getElementById(fullID).innerHTML = formatTime(
@@ -110,6 +111,16 @@ function setRemainingPathColor(timeLeft, id) {
         document
             .getElementById("base-timer-path-remaining" + id)
             .classList.add(warning.color);
+    } else if (timeLeft <= info.threshold) {
+        document
+            .getElementById("base-timer-path-remaining" + id)
+            .classList.remove(alert.color);
+        document
+            .getElementById("base-timer-path-remaining" + id)
+            .classList.remove(warning.color);
+        document
+            .getElementById("base-timer-path-remaining" + id)
+            .classList.add(info.color);
     }
 }
 

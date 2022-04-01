@@ -33,6 +33,7 @@
                                 <div class="test_info">{!! $exercise->Description !!}
                                 </div>
 
+
                                 {{--------------------------Таймер------------------------------}}
                                 <div class="{{$key + 1}}">
                                     <div class="timer" id="timer{{$key + 1}}"></div>
