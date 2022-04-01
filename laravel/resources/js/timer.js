@@ -57,7 +57,6 @@ function onTimesUp() {
 }
 
 for(let timer of timers){
-    console.log(timer.id.slice(5));
     const btnID = "timer_btn" + timer.id.slice(5);
     let btn = document.getElementById(btnID);
     btn.addEventListener("click", () => {startTimer(); })
