@@ -1,6 +1,12 @@
 .modal-body .container-fluid .row {
   margin-bottom: 20px;
 }
+.modal-body .container-fluid .row .combo {
+  max-width: 200px;
+}
+.modal-body .container-fluid .row .combo .combo-input {
+  width: 200px;
+}
 
 .modal_btn {
   width: 200px;

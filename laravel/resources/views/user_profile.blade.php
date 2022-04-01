@@ -196,11 +196,16 @@
     </div>
 
     @php
-
-    $groups = DB::select('select * from class');
-    $facultys = DB::select('select * from faculty')
-
+        $groups = DB::select('select * from class');
+        $arr_groups = array();
+        foreach ($groups as $group) {
+            $arr_groups[] = $group->Name;
+        }
     @endphp
+    <script type="text/javascript">
+        let arr_groups = <?php echo json_encode($arr_groups); ?>;
+        let arr_options = [arr_groups];
+    </script>
 
     <script>
         function getParentId(el) {
@@ -236,11 +241,10 @@
                             </div>
                             <div class="row">
                                 <div class="col">
-                                    <select name="groups" class="form-select" aria-label="Default select example">
-                                        @foreach($groups as $group)
-                                            <option name="group{{$group->ID_Class}}" value="{{$group->ID_Class}}">{{$group->Name}}</option>
-                                        @endforeach
-                                    </select>
+                                    <div name="group" class="combo js-combobox">
+                                        <input name="group" aria-autocomplete="none" aria-controls="groups-listbox" aria-haspopup="groups-listbox" id="groups-combo" class="combo-input" role="combobox" type="text">
+                                        <div class="combo-menu" role="listbox" id="groups-listbox"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
