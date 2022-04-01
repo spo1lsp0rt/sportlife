@@ -64,6 +64,7 @@ for(let timer of timers){
 }
 
 function startTimer() {
+    const fullID = document.activeElement.id.slice(9);
     onTimesUp();
     timePassed = 0;
     timeLeft = TIME_LIMIT;
@@ -71,12 +72,11 @@ function startTimer() {
     timerInterval = setInterval(() => {
         timePassed += 1;
         timeLeft = TIME_LIMIT - timePassed;
-        const fullID = "base-timer-label" + document.activeElement.id.slice(9);
-        document.getElementById(fullID).innerHTML = formatTime(
+        document.getElementById("base-timer-label" + fullID).innerHTML = formatTime(
             timeLeft
         );
-        setCircleDasharray(document.activeElement.id.slice(9));
-        setRemainingPathColor(timeLeft, document.activeElement.id.slice(9));
+        setCircleDasharray(fullID);
+        setRemainingPathColor(timeLeft, fullID);
 
         if (timeLeft === 0) {
             onTimesUp();
