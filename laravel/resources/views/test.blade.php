@@ -27,19 +27,22 @@
                             <div class="test_task">
                                 <div class="test_header">Задание {{$key + 1}}. {!! ($exercise->Name) !!}
                                 </div>
+
+                                <div class="test_info">{!! $exercise->Description !!}
+                                </div>
                                 @if($exercise->img)
                                     <img class="test_img" src={{"/img/".$exercise->img}} alt="">
                                 @endif
-                                <div class="test_info">{!! $exercise->Description !!}
-                                </div>
 
 
-                                {{--------------------------Таймер------------------------------}}
-                                <div class="{{$key + 1}}">
-                                    <div class="timer" id="timer{{$key + 1}}"></div>
-                                    <input value="Запустить таймер" class="timer_btn"
-                                           onclick="" id="timer_btn{{$key + 1}}" type="button">
-                                </div>
+                                @if($exercise->Timer_seconds != NULL)
+                                    {{--------------------------Таймер------------------------------}}
+                                    <div id="Timer_seconds">
+                                        <div class="timer" id="timer{{$key + 1}}"></div>
+                                        <input value="Запустить таймер" class="timer_btn"
+                                               onclick="" id="timer_btn{{$key + 1}}" type="button">
+                                    </div>
+                                @endif
 
                                 <input type="text" placeholder="Введите результат" class="test_result"
                                        class="@error($exercise->getInputName()) is-invalid @enderror" name="{{$exercise->getInputName()}}" value="{{$exercise->Value}}">
