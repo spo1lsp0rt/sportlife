@@ -59,20 +59,18 @@ for(let timer of timers){
     console.log(timer.id.slice(5));
     const btnID = "timer_btn" + timer.id.slice(5);
     let btn = document.getElementById(btnID);
-    btn.addEventListener("click", startTimer(), false)
+    btn.addEventListener("click", () => {startTimer(); })
 }
 
 function startTimer() {
-    /*timePassed = 0;
+    timePassed = 0;
     timeLeft = TIME_LIMIT;
     timerInterval = null;
-    remainingPathColor = COLOR_CODES.info.color;*/
+    remainingPathColor = COLOR_CODES.info.color;
     timerInterval = setInterval(() => {
         timePassed = timePassed += 1;
         timeLeft = TIME_LIMIT - timePassed;
-        console.log(document.activeElement.id);
         const fullID = "base-timer-label" + document.activeElement.id.slice(9);
-        console.log(fullID);
         document.getElementById(fullID).innerHTML = formatTime(
             timeLeft
         );
