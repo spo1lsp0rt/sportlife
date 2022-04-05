@@ -1,9 +1,9 @@
 const FULL_DASH_ARRAY = 283;
-const TIME_LIMIT = 20;
-const WARNING_THRESHOLD = TIME_LIMIT / 2;
-const ALERT_THRESHOLD = TIME_LIMIT / 4;
+let TIME_LIMIT;
+let WARNING_THRESHOLD;
+let ALERT_THRESHOLD;
 
-const COLOR_CODES = {
+let COLOR_CODES = {
     info: {
         color: "green",
         threshold: TIME_LIMIT
@@ -19,7 +19,7 @@ const COLOR_CODES = {
 };
 
 let timePassed;
-let timeLeft = TIME_LIMIT;
+let timeLeft;
 let timerInterval = null;
 let remainingPathColor = COLOR_CODES.info.color;
 
@@ -44,13 +44,11 @@ for(let timer of timers){
     </g>
   </svg>
   <span id="base-timer-label${timer.id.slice(5)}" class="base-timer__label">${formatTime(
-        timeLeft
+        timer.parentElement.id
     )}</span>
 </div>
 `;
 }
-
-
 
 function onTimesUp() {
     clearInterval(timerInterval);
@@ -66,6 +64,23 @@ function startTimer() {
     const fullID = document.activeElement.id.slice(9);
     onTimesUp();
     timePassed = 0;
+    TIME_LIMIT = document.activeElement.parentElement.id;
+    WARNING_THRESHOLD = TIME_LIMIT / 2;
+    ALERT_THRESHOLD = TIME_LIMIT / 4;
+    COLOR_CODES = {
+        info: {
+            color: "green",
+            threshold: TIME_LIMIT
+        },
+        warning: {
+            color: "orange",
+            threshold: WARNING_THRESHOLD
+        },
+        alert: {
+            color: "red",
+            threshold: ALERT_THRESHOLD
+        }
+    };
     timeLeft = TIME_LIMIT;
     timerInterval = null;
     timerInterval = setInterval(() => {

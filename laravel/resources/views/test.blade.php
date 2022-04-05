@@ -37,7 +37,7 @@
 
                                 @if($exercise->Timer_seconds != NULL)
                                     {{--------------------------Таймер------------------------------}}
-                                    <div id="Timer_seconds">
+                                    <div id="{{$exercise->Timer_seconds}}">
                                         <div class="timer" id="timer{{$key + 1}}"></div>
                                         <input value="Запустить таймер" class="timer_btn"
                                                onclick="" id="timer_btn{{$key + 1}}" type="button">

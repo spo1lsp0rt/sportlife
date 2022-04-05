@@ -10,9 +10,9 @@ function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o =
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
 var FULL_DASH_ARRAY = 283;
-var TIME_LIMIT = 20;
-var WARNING_THRESHOLD = TIME_LIMIT / 2;
-var ALERT_THRESHOLD = TIME_LIMIT / 4;
+var TIME_LIMIT;
+var WARNING_THRESHOLD;
+var ALERT_THRESHOLD;
 var COLOR_CODES = {
   info: {
     color: "green",
@@ -28,7 +28,7 @@ var COLOR_CODES = {
   }
 };
 var timePassed;
-var timeLeft = TIME_LIMIT;
+var timeLeft;
 var timerInterval = null;
 var remainingPathColor = COLOR_CODES.info.color;
 var timers = document.getElementsByClassName("timer");
@@ -39,7 +39,7 @@ var _iterator = _createForOfIteratorHelper(timers),
 try {
   for (_iterator.s(); !(_step = _iterator.n()).done;) {
     var timer = _step.value;
-    timer.innerHTML = "\n<div class=\"base-timer\">\n  <svg class=\"base-timer__svg\" viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\">\n    <g class=\"base-timer__circle\">\n      <circle class=\"base-timer__path-elapsed\" cx=\"50\" cy=\"50\" r=\"45\"></circle>\n      <path\n        id=\"base-timer-path-remaining".concat(timer.id.slice(5), "\"\n        stroke-dasharray=\"283\"\n        class=\"base-timer__path-remaining ").concat(remainingPathColor, "\"\n        d=\"\n          M 50, 50\n          m -45, 0\n          a 45,45 0 1,0 90,0\n          a 45,45 0 1,0 -90,0\n        \"\n      ></path>\n    </g>\n  </svg>\n  <span id=\"base-timer-label").concat(timer.id.slice(5), "\" class=\"base-timer__label\">").concat(formatTime(timeLeft), "</span>\n</div>\n");
+    timer.innerHTML = "\n<div class=\"base-timer\">\n  <svg class=\"base-timer__svg\" viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\">\n    <g class=\"base-timer__circle\">\n      <circle class=\"base-timer__path-elapsed\" cx=\"50\" cy=\"50\" r=\"45\"></circle>\n      <path\n        id=\"base-timer-path-remaining".concat(timer.id.slice(5), "\"\n        stroke-dasharray=\"283\"\n        class=\"base-timer__path-remaining ").concat(remainingPathColor, "\"\n        d=\"\n          M 50, 50\n          m -45, 0\n          a 45,45 0 1,0 90,0\n          a 45,45 0 1,0 -90,0\n        \"\n      ></path>\n    </g>\n  </svg>\n  <span id=\"base-timer-label").concat(timer.id.slice(5), "\" class=\"base-timer__label\">").concat(formatTime(timer.parentElement.id), "</span>\n</div>\n");
   }
 } catch (err) {
   _iterator.e(err);
@@ -57,7 +57,6 @@ var _iterator2 = _createForOfIteratorHelper(timers),
 try {
   for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
     var _timer = _step2.value;
-    console.log(_timer.id.slice(5));
 
     var btnID = "timer_btn" + _timer.id.slice(5);
 
@@ -76,6 +75,23 @@ function startTimer() {
   var fullID = document.activeElement.id.slice(9);
   onTimesUp();
   timePassed = 0;
+  TIME_LIMIT = document.activeElement.parentElement.id;
+  WARNING_THRESHOLD = TIME_LIMIT / 2;
+  ALERT_THRESHOLD = TIME_LIMIT / 4;
+  COLOR_CODES = {
+    info: {
+      color: "green",
+      threshold: TIME_LIMIT
+    },
+    warning: {
+      color: "orange",
+      threshold: WARNING_THRESHOLD
+    },
+    alert: {
+      color: "red",
+      threshold: ALERT_THRESHOLD
+    }
+  };
   timeLeft = TIME_LIMIT;
   timerInterval = null;
   timerInterval = setInterval(function () {
@@ -103,9 +119,10 @@ function formatTime(time) {
 }
 
 function setRemainingPathColor(timeLeft, id) {
-  var alert = COLOR_CODES.alert,
-      warning = COLOR_CODES.warning,
-      info = COLOR_CODES.info;
+  var _COLOR_CODES = COLOR_CODES,
+      alert = _COLOR_CODES.alert,
+      warning = _COLOR_CODES.warning,
+      info = _COLOR_CODES.info;
 
   if (timeLeft <= alert.threshold) {
     document.getElementById("base-timer-path-remaining" + id).classList.remove(warning.color);
