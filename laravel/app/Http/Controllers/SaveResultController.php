@@ -234,7 +234,10 @@ class SaveResultController extends Controller
             if($test->ID_Test == 3)
             {
                 $resultExersise->ID_Result = $result->ID_Result;
-                $resultExersise->Name = $exercise->Name;
+                if($course == "муж")
+                    $resultExersise->Name = $exercise->Name.'муж';
+                else
+                    $resultExersise->Name = $exercise->Name.'жен';
                 $resultExersise->Description = $exercise->Description;
                 $resultExersise->ID_Exercise = $exercise->ID_Exercise;
 
@@ -243,11 +246,14 @@ class SaveResultController extends Controller
                 else
                     $norma = DB::select("select Value from normatives3 where gender = 'жен' AND id_exercise = ".$i+20);
 
-
-
                 $num = (float) ($valid_params[$exercise->getInputName()]);
 
-                if($i != 4)
+                if($i <= 1 && $i >= 6)
+                {
+                    $num_tmp += $num;
+                }
+
+                if($i != 9 && $i != 1 && $i != 2 && $i != 3 && $i != 4 && $i != 5)
                 {
                     if($num >= $norma[0]->Value)
                         $resultExersise->Norma = 5;
@@ -261,9 +267,10 @@ class SaveResultController extends Controller
                         $resultExersise->Norma = 1;
 
                     $resultExersise->Value = $num;
-                }else
-                {
 
+                    $resultExersise->save();
+                }else if ($i == 9)
+                {
                     if($num >= $norma[0]->Value)
                         $resultExersise->Norma = 5;
                     else if ($num < $norma[0]->Value && $num >= $norma[1]->Value)
@@ -274,9 +281,9 @@ class SaveResultController extends Controller
                         $resultExersise->Norma = 1;
 
                     $resultExersise->Value = $num;
-                }
 
-                $resultExersise->save();
+                    $resultExersise->save();
+                }
 
                 $i++;
             }

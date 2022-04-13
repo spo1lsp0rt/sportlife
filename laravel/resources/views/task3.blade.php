@@ -47,11 +47,11 @@
 
                         if(stripos($exercise->Name, 'муж'))
                         {
-                            $norma = DB::select("select Value from normatives3 where gender = 'муж' AND id_exercise = ".$i+20);
+                            $norma = DB::select("select Value from normatives3 where gender = 'муж' AND id_exercise = ".$i+25);
                         }
                         else
                         {
-                             $norma = DB::select("select Value from normatives3 where gender = 'муж' AND id_exercise = ".$i+20);
+                             $norma = DB::select("select Value from normatives3 where gender = 'муж' AND id_exercise = ".$i+25);
                         }
 
                         if($i != 4)
@@ -66,7 +66,7 @@
                                 echo $norma[2]->Value . " --- " . $exercise->Value . " --- " . $norma[3]->Value;
                             else if($exercise->Value < $norma[3]->Value)
                                 echo $exercise->Value . " < " . $norma[3]->Value;
-                        }else
+                        }else if ($i == 4)
                         {
 
                             if($exercise->Value > $norma[0]->Value)
