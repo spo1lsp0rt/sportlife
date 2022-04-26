@@ -136,9 +136,10 @@ class MainController extends Controller
 
     public function  updateStudent() {
         $id = DB::table('student')->where('FullName', $_POST['old_fio'])->value('ID_Student');
+        $id_class = DB::table('class')->where('Name', $_POST['group'])->value('ID_Class');
         DB::table('student')->where('ID_Student', $id)->update(array(
             'FullName' => $_POST['new_fio'],
-            'ID_Class' => $_POST['groups']
+            'ID_Class' => $id_class
         ));
         return Redirect::back()->with(['update_success' => 'Обновление студента прошло успешно!']);
     }

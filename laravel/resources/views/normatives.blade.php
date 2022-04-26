@@ -51,6 +51,12 @@
         </div>
     </div>
 
+    @php
+    $normatives = DB::select('select * from ofp_normatives');
+    $users = DB::select('select * from user where id_class = 1');
+    $n = 1;
+    @endphp
+
     <div class='container'>
         <div class='row'>
             <div class="table-responsive">
@@ -59,54 +65,33 @@
                         <tr>
                             <th scope="col">№</th>
                             <th scope="col">ФИО студента</th>
-                            <th scope="col">Группа</th>
-                            <th scope="col">Бег 2000/3000м<br>(мин.,с)</th>
-                            <th scope="col">Прыжок с разбега<br>(м, см)</th>
-                            <th scope="col">Прыжок дл./места<br>(м, см)</th>
-                            <th scope="col">Челночный бег 3 по 10<br>(мин.,с)</th>
-                            <th scope="col">Подтягивание выс./низк.<br>(см)</th>
-                            <th scope="col">Метание гранаты<br>(м)</th>
+                            @foreach($normatives as $normative)
+                                @php $norm = $normative->name . " " . $normative->female_normative . ($normative->female_normative ? "/" : "") . " " . $normative->male_normative . "\n" . $normative->unit;  @endphp
+                                <th scope="col">{{$norm}}</th>
+                            @endforeach
                         </tr>
                     </thead>
                     <tbody style="line-height: 3; white-space: nowrap;">
+                        @foreach($users as $user)
+                        @php $results = DB::select('select * from ofp where id_user = ' . $user->ID_User . ' order by id_normative'); @endphp
+                        @if($results == null) @continue @endif
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Иванов Иван Иванович</td>
-                            <td>ДИНРб31</td>
-                            <td>13,50</td>
-                            <td>300</td>
-                            <td>158</td>
-                            <td>8,5</td>
-                            <td>8</td>
-                            <td>11</td>
+                            <th scope="row">{{$n++}}</th>
+                            <td>{{$user->FullName}}</td>
+                            @for($i = 1, $j = 0; $i <= 6; $i++)
+                                @if($results[$j]->id_normative == $i)
+                                    <td>{{$results[$j]->result}}</td>
+                                    @php $j++ @endphp
+                                @else
+                                    <td></td>
+                                @endif
+                            @endfor
                         </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Петров Петр Петрович</td>
-                            <td>ДИНРб31</td>
-                            <td>12,2</td>
-                            <td>280</td>
-                            <td>146</td>
-                            <td>7,2</td>
-                            <td>5</td>
-                            <td>14</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Прогуляков Прогул Прогулович</td>
-                            <td>ДИНРб31</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
+                        @endforeach
                     </tbody>
                     <tfoot style="line-height: 2; white-space: nowrap;">
                         <tr>
                             <th scope="row" colspan="2">Итого</th>
-                            <td>ДИНРб31</td>
                             <td>12,85</td>
                             <td>290</td>
                             <td>152</td>
