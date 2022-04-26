@@ -4,7 +4,7 @@
 
 .parameters_panel {
   display: flex;
-  margin: 40px auto 0 auto;
+  margin: 40px auto 20px auto;
 }
 .parameters_panel .faculties_combobox {
   margin-right: 10px;

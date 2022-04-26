@@ -51,92 +51,71 @@
         </div>
     </div>
 
-    <div class='container statistic_table'>
+    <div class='container'>
         <div class='row'>
-            <div class='col col-md-4'>
-                <div class='title_field_head'>ФИО студента</div>
-            </div>
-            <div class='col col-md-1'>
-                <div class='title_field'>Группа</div>
-            </div>
-            <div class='col col-md-1'>
-                <div class='title_field'>Бег 2000/3000м<br>(мин.,с)</div>
-            </div>
-            <div class='col col-md-1'>
-                <div class='title_field'>Прыжок с разбега<br>(м, см)</div>
-            </div>
-            <div class='col col-md-1'>
-                <div class='title_field'>Прыжок дл./места<br>(м, см)</div>
-            </div>
-            <div class='col col-md-1'>
-                <div class='title_field'>Челночный бег 3 по 10</div>
-            </div>
-            <div class='col col-md-1'>
-                <div class='title_field'>Подтягивание выс./низк.<br>(см)</div>
-            </div>
-            <div class='col col-md-1'>
-                <div class='title_field'>Крос 3 или 5 км<br>(б/уч.вр.)</div>
-            </div>
-            <div class='col col-md-1'>
-                <div class='title_field'>Метание гранаты<br>(м)</div>
-            </div>
-        </div>
-        <div class='row'>
-            <div class='col col-md-4'>
-                <div class='data_field_head'>Алиева Татьяна Алексеевна</div>
-            </div>
-            <div class='col col-md-1'>
-                <div class='data_field'>ФЭБ31</div>
-            </div>
-            <div class='col col-md-1'>
-                <div class='data_field' contenteditable="true">13,50</div>
-            </div>
-            <div class='col col-md-1'>
-                <div class='data_field'>300</div>
-            </div>
-            <div class='col col-md-1'>
-                <div class='data_field'>158</div>
-            </div>
-            <div class='col col-md-1'>
-                <div class='data_field'>8,5</div>
-            </div>
-            <div class='col col-md-1'>
-                <div class='data_field'>8</div>
-            </div>
-            <div class='col col-md-1'>
-                <div class='data_field'></div>
-            </div>
-            <div class='col col-md-1'>
-                <div class='data_field'>11</div>
-            </div>
-        </div>
-        <div class='row'>
-            <div class='col col-md-4'>
-                <div class='total_field_head'>ИТОГО</div>
-            </div>
-            <div class='col col-md-1'>
-                <div class='total_field'></div>
-            </div>
-            <div class='col col-md-1'>
-                <div class='total_field'>13,50</div>
-            </div>
-            <div class='col col-md-1'>
-                <div class='total_field'>300</div>
-            </div>
-            <div class='col col-md-1'>
-                <div class='total_field'>158</div>
-            </div>
-            <div class='col col-md-1'>
-                <div class='total_field'>8,5</div>
-            </div>
-            <div class='col col-md-1'>
-                <div class='total_field'>8</div>
-            </div>
-            <div class='col col-md-1'>
-                <div class='total_field'></div>
-            </div>
-            <div class='col col-md-1'>
-                <div class='total_field_last'>11</div>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped align-middle text-center">
+                    <thead class="align-middle">
+                        <tr>
+                            <th scope="col">№</th>
+                            <th scope="col">ФИО студента</th>
+                            <th scope="col">Группа</th>
+                            <th scope="col">Бег 2000/3000м<br>(мин.,с)</th>
+                            <th scope="col">Прыжок с разбега<br>(м, см)</th>
+                            <th scope="col">Прыжок дл./места<br>(м, см)</th>
+                            <th scope="col">Челночный бег 3 по 10<br>(мин.,с)</th>
+                            <th scope="col">Подтягивание выс./низк.<br>(см)</th>
+                            <th scope="col">Метание гранаты<br>(м)</th>
+                        </tr>
+                    </thead>
+                    <tbody style="line-height: 3; white-space: nowrap;">
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Иванов Иван Иванович</td>
+                            <td>ДИНРб31</td>
+                            <td>13,50</td>
+                            <td>300</td>
+                            <td>158</td>
+                            <td>8,5</td>
+                            <td>8</td>
+                            <td>11</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Петров Петр Петрович</td>
+                            <td>ДИНРб31</td>
+                            <td>12,2</td>
+                            <td>280</td>
+                            <td>146</td>
+                            <td>7,2</td>
+                            <td>5</td>
+                            <td>14</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Прогуляков Прогул Прогулович</td>
+                            <td>ДИНРб31</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                    <tfoot style="line-height: 2; white-space: nowrap;">
+                        <tr>
+                            <th scope="row" colspan="2">Итого</th>
+                            <td>ДИНРб31</td>
+                            <td>12,85</td>
+                            <td>290</td>
+                            <td>152</td>
+                            <td>7,85</td>
+                            <td>6,5</td>
+                            <td>12,5</td>
+                        </tr>
+                    </tfoot>
+                </table>
             </div>
         </div>
     </div>
