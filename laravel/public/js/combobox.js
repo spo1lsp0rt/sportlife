@@ -153,7 +153,7 @@ function maintainScrollVisibility(activeElement, scrollParent) {
 var Combobox = function Combobox(el, options) {
   // element refs
   this.el = el;
-  this.inputEl = el.querySelector('input');
+  this.inputEl = el.querySelector('.combo-input');
   this.listboxEl = el.querySelector('[role=listbox]'); // data
 
   this.idBase = this.inputEl.id;
@@ -174,7 +174,7 @@ Combobox.prototype.init = function () {
   });
   this.inputEl.addEventListener('keydown', this.onInputKeyDown.bind(this));
   this.options.map(function (option, index) {
-    var optionEl = document.createElement('div');
+    var optionEl = document.createElement('option');
     optionEl.setAttribute('role', 'option');
     optionEl.id = "".concat(_this.idBase, "-").concat(index);
     optionEl.className = index === 0 ? 'combo-option option-current' : 'combo-option';

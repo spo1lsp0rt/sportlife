@@ -132,7 +132,7 @@ function maintainScrollVisibility(activeElement, scrollParent) {
 const Combobox = function (el, options) {
     // element refs
     this.el = el;
-    this.inputEl = el.querySelector('input');
+    this.inputEl = el.querySelector('.combo-input');
     this.listboxEl = el.querySelector('[role=listbox]');
 
     // data
@@ -153,7 +153,7 @@ Combobox.prototype.init = function () {
     this.inputEl.addEventListener('keydown', this.onInputKeyDown.bind(this));
 
     this.options.map((option, index) => {
-        const optionEl = document.createElement('div');
+        const optionEl = document.createElement('option');
         optionEl.setAttribute('role', 'option');
         optionEl.id = `${this.idBase}-${index}`;
         optionEl.className = index === 0 ? 'combo-option option-current' : 'combo-option';
