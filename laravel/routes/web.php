@@ -48,6 +48,8 @@ Route::post('/add_users', [ MainController::class, 'add_users' ]);
 
 Route::get('/privacy', [ MainController::class, 'privacy_policy' ]);
 
+Route::post('/out_ofp', [ MainController::class, 'out_ofp' ]);
+
 
 /*Route::get('/tests', [ MainController::class, 'tests' ]);*/
 

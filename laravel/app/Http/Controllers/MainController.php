@@ -134,6 +134,11 @@ class MainController extends Controller
         return redirect('/');
     }
 
+    public function  out_ofp()
+    {
+        echo 1;
+    }
+
     public function  updateStudent() {
         $id = DB::table('student')->where('FullName', $_POST['old_fio'])->value('ID_Student');
         $id_class = DB::table('class')->where('Name', $_POST['group'])->value('ID_Class');

@@ -40,12 +40,15 @@
                             <div class="combo-menu" role="listbox" id="faculties-listbox"></div>
                         </div>
                     </div>
-                    <div class="group_combobox">
-                        <div name="group" class="combo js-combobox">
-                            <input name="group" aria-autocomplete="none" aria-controls="groups-listbox" aria-haspopup="groups-listbox" id="groups-combo" class="combo-input" role="combobox" type="text">
-                            <div class="combo-menu" role="listbox" id="groups-listbox"></div>
+                    <form method="post" action="out_ofp">
+                        @csrf
+                        <div class="group_combobox">
+                            <div name="group" class="combo js-combobox">
+                                <input name="group" aria-autocomplete="none" aria-controls="groups-listbox" aria-haspopup="groups-listbox" id="groups-combo" class="combo-input" role="combobox" type="text">
+                                <div class="combo-menu" role="listbox" id="groups-listbox"></div>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
 
                 <div class="edit_panel">
