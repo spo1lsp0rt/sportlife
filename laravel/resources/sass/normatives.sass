@@ -2,6 +2,7 @@
   text-align: center
 
 .parameters_panel
+  float: left
   display: flex
   margin: 40px auto 20px auto
   .faculties_combobox
@@ -21,6 +22,39 @@
     margin: 2px 30px 0 0
   .form-select
     width: 150px
+
+.edit_panel
+  float: right
+  display: flex
+  margin: 40px auto 20px auto
+  .edit_btn, .cancel_btn, .save_btn
+    display: block
+    margin-right: 10px
+    font-size: 15px
+    text-align: center
+    text-transform: uppercase
+    color: #FFFFFF
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.21)
+    width: 250px
+    height: 38px
+    background-image: linear-gradient(to top, #111111 0%, #424852 100%)
+    box-shadow: inset 0px -3px 0px rgba(0, 0, 0, 0.12)
+    border: none
+    border-radius: 17px
+    &:hover
+      background-image: linear-gradient(to top, #2f2f2f 0%, #373f4b 100%)
+      color: #e5e5e5
+    &:last-child
+      margin-right: 0
+  .cancel_btn
+    display: none
+  .save_btn
+    display: none
+    background-image: linear-gradient(to top, #58a340 0%, #0cbb00 100%)
+    &:hover
+      background-image: linear-gradient(to top, #65ba48 0%, #0cd200 100%)
+      color: #e5e5e5
+
 
 .statistic_table
   margin: 27px auto 0 auto

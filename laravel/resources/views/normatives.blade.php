@@ -47,6 +47,42 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="edit_panel">
+                    <button class="edit_btn" id="edit_btn" onclick="edit()">Изменить результаты</button>
+                    <button class="cancel_btn" id="cancel_btn" onclick="cancel()">Отменить изменения</button>
+                    <button class="save_btn" id="save_btn" onclick="save()">Сохранить</button>
+                </div>
+
+                <script>
+                    var edit = function(){
+                        document.getElementById('edit_btn').style.display="none";  // for hide button
+                        document.getElementById('cancel_btn').style.display="block";
+                        document.getElementById('save_btn').style.display="block";
+                        const arr_rescells = document.querySelectorAll('.result_cell');
+                        arr_rescells.forEach(function (cell) {
+                            cell.setAttribute('contenteditable', 'true');
+                        });
+                    }
+                    var cancel = function(){
+                        document.getElementById('edit_btn').style.display="block";  // for hide button
+                        document.getElementById('cancel_btn').style.display="none";
+                        document.getElementById('save_btn').style.display="none";
+                        const arr_rescells = document.querySelectorAll('.result_cell');
+                        arr_rescells.forEach(function (cell) {
+                            cell.setAttribute('contenteditable', 'false');
+                        });
+                    }
+                    var save = function(){
+                        document.getElementById('edit_btn').style.display="block";  // for hide button
+                        document.getElementById('cancel_btn').style.display="none";
+                        document.getElementById('save_btn').style.display="none";
+                        const arr_rescells = document.querySelectorAll('.result_cell');
+                        arr_rescells.forEach(function (cell) {
+                            cell.setAttribute('contenteditable', 'false');
+                        });
+                    }
+                </script>
             </div>
         </div>
     </div>
@@ -80,10 +116,10 @@
                             <td>{{$user->FullName}}</td>
                             @for($i = 1, $j = 0; $i <= 6; $i++)
                                 @if($results[$j]->id_normative == $i)
-                                    <td>{{$results[$j]->result}}</td>
+                                    <td class="result_cell">{{$results[$j]->result}}</td>
                                     @php $j++ @endphp
                                 @else
-                                    <td></td>
+                                    <td class="result_cell"></td>
                                 @endif
                             @endfor
                         </tr>
