@@ -1,3 +1,24 @@
+@php
+    $allUsers = DB::select('select * from user');
+    $currentUser = null;
+        if (array_key_exists('login', $_COOKIE))
+            {
+                foreach($allUsers as $user)
+                {
+                    if($user->ID_User == $_COOKIE['ID_User'])
+                    {
+                        $currentUser = $user;
+                        break;
+                    }
+                }
+            }
+        else
+            {
+                header('Location: /authorization');
+                exit;
+            }
+@endphp
+
 @extends('layout')
 
 @section('title')Нормативы@endsection
@@ -9,70 +30,76 @@
 @endsection
 
 @section('main_content')
-    <div class="normatives_title">
-        <h2>Журнал нормативов</h2>
-    </div>
-    @php
-        $groups = DB::select('select * from class');
-        $arr_groups = array();
-        foreach ($groups as $group) {
-            $arr_groups[] = $group->Name;
-        }
 
-        $faculties = DB::select('select * from faculty');
-        $arr_faculties = array();
-        foreach ($faculties as $faculty)
-            $arr_faculties[] = $faculty->Name;
-    @endphp
-    <script type="text/javascript">
-        let arr_groups = <?php echo json_encode($arr_groups); ?>;
-        let arr_faculties = <?php echo json_encode($arr_faculties); ?>;
-        let arr_options = [arr_faculties, arr_groups];
-    </script>
+    @if($currentUser->ID_Role == 1)
+        @php
+        /*ИЛЮХА ТУТ КОРОЧЕ ПИСЮКАЙ СВОИ HTML CSS И ДРУГИЕ ШТУКИ ДРЮКИ*/
+        @endphp
+    @else
+        <div class="normatives_title">
+            <h2>Журнал нормативов</h2>
+        </div>
+        @php
+            $groups = DB::select('select * from class');
+            $arr_groups = array();
+            foreach ($groups as $group) {
+                $arr_groups[] = $group->Name;
+            }
 
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <div class="parameters_panel">
-                    <div class="faculties_combobox">
-                        <div name="faculty" class="combo js-combobox">
-                            <input name="group" aria-autocomplete="none" aria-controls="faculties-listbox" aria-haspopup="faculties-listbox" id="faculties-combo" class="combo-input" role="combobox" type="text">
-                            <div class="combo-menu" role="listbox" id="faculties-listbox"></div>
+            $faculties = DB::select('select * from faculty');
+            $arr_faculties = array();
+            foreach ($faculties as $faculty)
+                $arr_faculties[] = $faculty->Name;
+        @endphp
+        <script type="text/javascript">
+            let arr_groups = <?php echo json_encode($arr_groups); ?>;
+            let arr_faculties = <?php echo json_encode($arr_faculties); ?>;
+            let arr_options = [arr_faculties, arr_groups];
+        </script>
+
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div class="parameters_panel">
+                        <div class="faculties_combobox">
+                            <div name="faculty" class="combo js-combobox">
+                                <input name="group" aria-autocomplete="none" aria-controls="faculties-listbox" aria-haspopup="faculties-listbox" id="faculties-combo" class="combo-input" role="combobox" type="text">
+                                <div class="combo-menu" role="listbox" id="faculties-listbox"></div>
+                            </div>
+                        </div>
+                        <div class="group_combobox">
+                            <div name="group" class="combo js-combobox">
+                                <input name="group" autocomplete="off" aria-controls="groups-listbox" aria-haspopup="groups-listbox" id="groups-combo" class="combo-input" role="combobox" type="text">
+                                <div class="combo-menu" role="listbox" id="groups-listbox"></div>
+                            </div>
                         </div>
                     </div>
-                    <div class="group_combobox">
-                        <div name="group" class="combo js-combobox">
-                            <input name="group" autocomplete="off" aria-controls="groups-listbox" aria-haspopup="groups-listbox" id="groups-combo" class="combo-input" role="combobox" type="text">
-                            <div class="combo-menu" role="listbox" id="groups-listbox"></div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="edit_panel">
-                    <button class="edit_btn" id="edit_btn" onclick="edit()">Изменить результаты</button>
-                    <button class="cancel_btn" id="cancel_btn" onclick="cancel()">Отменить изменения</button>
-                    <button class="save_btn" id="save_btn" onclick="save()">Сохранить</button>
+                    <div class="edit_panel">
+                        <button class="edit_btn" id="edit_btn" onclick="edit()">Изменить результаты</button>
+                        <button class="cancel_btn" id="cancel_btn" onclick="cancel()">Отменить изменения</button>
+                        <button class="save_btn" id="save_btn" onclick="save()">Сохранить</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    @php
-    $normatives = DB::select('select * from ofp_normatives');
-    $users = DB::select('select * from user where id_class = 1');
-    $n = 1;
+        @php
+            $normatives = DB::select('select * from ofp_normatives');
+            $users = DB::select('select * from user where id_class = 1');
+            $n = 1;
 
-    $total = [];
-    for($i = 0; $i < count($normatives); $i++) {
-		$total[$i] = array(0, 0);
-	}
-    @endphp
+            $total = [];
+            for($i = 0; $i < count($normatives); $i++) {
+                $total[$i] = array(0, 0);
+            }
+        @endphp
 
-    <div class='container'>
-        <div class='row'>
-            <div class="table-responsive">
-                <table class="table table-bordered table-striped align-middle text-center">
-                    <thead class="align-middle">
+        <div class='container'>
+            <div class='row'>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped align-middle text-center">
+                        <thead class="align-middle">
                         <tr>
                             <th scope="col">№</th>
                             <th scope="col">ФИО студента</th>
@@ -81,37 +108,37 @@
                                 <th scope="col">{{$norm}}</th>
                             @endforeach
                         </tr>
-                    </thead>
-                    <tbody style="line-height: 3; white-space: nowrap;">
+                        </thead>
+                        <tbody style="line-height: 3; white-space: nowrap;">
                         @foreach($users as $user)
-                        @php
-                            $results = DB::select('select * from ofp where id_user =' . $user->ID_User . ' order by id_normative');
-                        @endphp
-                        <tr>
-                            <th scope="row">{{$n++}}</th>
-                            <td>{{$user->FullName}}</td>
-                            @if($results == null)
-                                @for($normative_num = 1; $normative_num <= count($normatives); $normative_num++)
-                                    <td class="result_cell"></td>
-                                @endfor
-                                @continue
-                            @endif
-                            @for($normative_num = 1, $res_indx = 0; $res_indx < count($results) && $normative_num <= count($normatives); $normative_num++)
-                                @if($results[$res_indx]->id_normative == $normative_num)
-                                    <td class="result_cell">{{$results[$res_indx]->result}}</td>
-                                    @php
-                                        $total[$normative_num - 1][0] += $results[$res_indx]->result;
-                                        $total[$normative_num - 1][1]++;
-                                        if($res_indx + 1 < count($results)) $res_indx++;
-                                    @endphp
-                                @else
-                                    <td class="result_cell"></td>
+                            @php
+                                $results = DB::select('select * from ofp where id_user =' . $user->ID_User . ' order by id_normative');
+                            @endphp
+                            <tr>
+                                <th scope="row">{{$n++}}</th>
+                                <td>{{$user->FullName}}</td>
+                                @if($results == null)
+                                    @for($normative_num = 1; $normative_num <= count($normatives); $normative_num++)
+                                        <td class="result_cell"></td>
+                                    @endfor
+                                    @continue
                                 @endif
-                            @endfor
-                        </tr>
+                                @for($normative_num = 1, $res_indx = 0; $res_indx < count($results) && $normative_num <= count($normatives); $normative_num++)
+                                    @if($results[$res_indx]->id_normative == $normative_num)
+                                        <td class="result_cell">{{$results[$res_indx]->result}}</td>
+                                        @php
+                                            $total[$normative_num - 1][0] += $results[$res_indx]->result;
+                                            $total[$normative_num - 1][1]++;
+                                            if($res_indx + 1 < count($results)) $res_indx++;
+                                        @endphp
+                                    @else
+                                        <td class="result_cell"></td>
+                                    @endif
+                                @endfor
+                            </tr>
                         @endforeach
-                    </tbody>
-                    <tfoot style="line-height: 2; white-space: nowrap;">
+                        </tbody>
+                        <tfoot style="line-height: 2; white-space: nowrap;">
                         <tr>
                             <th scope="row" colspan="2">Итого</th>
                             @for($i = 0; $i < count($total); $i++)
@@ -122,11 +149,13 @@
                                 @endif
                             @endfor
                         </tr>
-                    </tfoot>
-                </table>
+                        </tfoot>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
+    @endif
+
 @endsection
 
 @section('scriptsheet')
