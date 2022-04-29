@@ -71,9 +71,14 @@ class SaveResultController extends Controller
         if($test->ID_Test == 5){
             $normative = DB::select("select * from normatives5 where gender = 'муж'");
             if(array_key_exists('Gender', $_COOKIE))
-                $course = $_COOKIE["Gender"].  $_POST["btnradio2"];
+                $course = $_COOKIE["Gender"];
             else
-                $course = $_POST["btnradio"] . $_POST["btnradio2"];
+                $course = $_POST["btnradio"];
+        }
+
+        if($test->ID_Test == 6){
+            $normative = DB::select("select * from normatives3 where gender = 'муж'");
+            $course = '';
         }
 
         $valid = $request->validate($this->getRules($test));
@@ -425,6 +430,21 @@ class SaveResultController extends Controller
 
                     $count++;
                 }
+
+                $i++;
+            }
+
+            if($test->ID_Test == 6){
+                $norma = DB::select("select Value from normatives6 where id = ".$i);
+
+                $resultExersise->ID_Result = $result->ID_Result;
+                $resultExersise->Name = $exercise->Name;
+                $resultExersise->Description = $exercise->Description;
+                $resultExersise->ID_Exercise = $exercise->ID_Exercise;
+                $resultExersise->Value = $valid_params[$exercise->getInputName()];
+                $resultExersise->Norma = $valid_params[$exercise->getInputName()] * $norma[0]->Value;
+
+                $resultExersise->save();
 
                 $i++;
             }

@@ -4,6 +4,7 @@
 
 @section('stylesheet')
     <link rel="stylesheet" type="text/css" href="{{url('css/style_test.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url('css/statistic_table.css')}}">
 @endsection
 
 @section('main_content')
@@ -20,6 +21,7 @@
             @if($test->Explanation != '')
                 <div class="container test_task">{{$test->Explanation}}</div>
             @endif
+
             <div class="container">
                 @foreach($test->Exercises as $key => $exercise)
                     <div class="row">
@@ -83,9 +85,9 @@
                 </div>
             @endif
 
-
             <button class="result_btn">Получить результат</button>
         </section>
+
     </form>
 
 
