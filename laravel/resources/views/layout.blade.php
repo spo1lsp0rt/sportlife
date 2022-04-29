@@ -15,33 +15,37 @@
 <header>
     <nav>
         <div class="container">
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
             <div class="row">
                 <div class="col-7 col-sm-12 col-md-4 offset-md-0 col-lg-3">
                     <a class="logo_link" href="/"><img src="/img/logo.svg" alt="logo" class="menu_img"></a>
                 </div>
                 <div class="col-1 col-sm-9 offset-sm-0 col-md-6 offset-md-0 col-lg-6 offset-lg-0">
-                    <ul class="menu">
-                        <div class="mobile_menulogin">
-                            <a href="/profile">
-                                <div class="mobile_menulogin_round"><img src="/icons/user_log.png" alt="" class="mobile_menulogin_icon"></div>
-                            </a>
-                            @php if(array_key_exists('login', $_COOKIE)) { @endphp
-                            <a href="/exit" class="mobile_menulogin_link">Выйти</a>
-                            @php }else{ @endphp
-                            <a href="/authorization" class="mobile_menulogin_link">Войти</a>
-                            @php }@endphp
+                    <div class="hamburger_field">
+                        <div class="hamburger">
+                            <span></span>
+                            <span></span>
+                            <span></span>
                         </div>
-                        <li class="menu_item"><a href="/" class="menu_link">Главная</a></li>
-                        <li class="menu_item"><a href="/tests" class="menu_link">Тесты</a></li>
-                        <li class="menu_item"><a href="/normatives" class="menu_link">ОФП</a></li>
-                        <li class="menu_item"><a href="/about" class="menu_link">О сайте</a></li>
-                        <li class="menu_item"><a href="/contacts" class="menu_link">Контакты</a></li>
-                    </ul>
+                    </div>
+                    <div class="menu_field">
+                        <ul class="menu">
+                            <div class="mobile_menulogin">
+                                <a class="menu_element" href="/profile">
+                                    <div class="mobile_menulogin_round"><img src="/icons/user_log.png" alt="" class="mobile_menulogin_icon"></div>
+                                </a>
+                                @php if(array_key_exists('login', $_COOKIE)) { @endphp
+                                <a href="/exit" class="mobile_menulogin_link menu_element">Выйти</a>
+                                @php }else{ @endphp
+                                <a href="/authorization" class="mobile_menulogin_link menu_element">Войти</a>
+                                @php }@endphp
+                            </div>
+                            <li class="menu_item menu_element"><a href="/" class="menu_link">Главная</a></li>
+                            <li class="menu_item menu_element"><a href="/tests" class="menu_link">Тесты</a></li>
+                            <li class="menu_item menu_element"><a href="/normatives" class="menu_link">ОФП</a></li>
+                            <li class="menu_item menu_element"><a href="/about" class="menu_link">О сайте</a></li>
+                            <li class="menu_item menu_element"><a href="/contacts" class="menu_link">Контакты</a></li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="col-4 col-sm-2 offset-sm-0 col-md-2 offset-md-0 col-lg-2 offset-lg-1">
                     <div class="menulogin">

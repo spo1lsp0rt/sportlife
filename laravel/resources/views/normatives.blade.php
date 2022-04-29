@@ -88,7 +88,10 @@
             $normatives = DB::select('select * from ofp_normatives');
             $users = DB::select('select * from user where id_class = 1');
             $n = 1;
-
+            //Многомерный массив $total предназначен для подсчета
+            // суммы результатов студентов по кнокретному нормативу
+            // и
+            // количества студентов с результатами по конкретному нормативу
             $total = [];
             for($i = 0; $i < count($normatives); $i++) {
                 $total[$i] = array(0, 0);
@@ -107,6 +110,7 @@
                                 @php $norm = $normative->name . " " . $normative->female_normative . ($normative->female_normative ? "/" : "") . " " . $normative->male_normative . "\n" . $normative->unit;  @endphp
                                 <th scope="col">{{$norm}}</th>
                             @endforeach
+                            <th style="border-left: 2px solid black" scope="col">Итог баллов</th>
                         </tr>
                         </thead>
                         <tbody style="line-height: 3; white-space: nowrap;">
@@ -121,6 +125,7 @@
                                     @for($normative_num = 1; $normative_num <= count($normatives); $normative_num++)
                                         <td class="result_cell"></td>
                                     @endfor
+                                        <td style="border-left: 2px solid black"></td>
                                     @continue
                                 @endif
                                 @for($normative_num = 1, $res_indx = 0; $res_indx < count($results) && $normative_num <= count($normatives); $normative_num++)
@@ -135,6 +140,7 @@
                                         <td class="result_cell"></td>
                                     @endif
                                 @endfor
+                                <td style="border-left: 2px solid black"></td>
                             </tr>
                         @endforeach
                         </tbody>
@@ -148,6 +154,7 @@
                                     <td></td>
                                 @endif
                             @endfor
+                            <td style="border-left: 2px solid black"></td>
                         </tr>
                         </tfoot>
                     </table>

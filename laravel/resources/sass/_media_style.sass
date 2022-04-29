@@ -50,70 +50,99 @@
     margin-bottom: 80px
     nav
       height: 70px
-      .hamburger
-        display: block
+      margin-top: 15px
+      .hamburger_field
+        display: flex
+        justify-content: center
+        align-items: center
+        width: 45px
+        height: 45px
         position: absolute
         right: 12px
-        top: 20px
-        width: 26px
-        height: 12px
+        top: 26px
         z-index: 101
-        span
+        transition: 0.5s all
+        .hamburger
           display: block
-          height: 2px
-          width: 100%
-          background-color: black
-          margin-bottom: 2px
+          width: 30px
+          height: 15px
+          z-index: 101
           transition: 0.5s all
-        &_active
           span
-            margin-bottom: -2px
-            &:nth-child(1)
-              transform: translateY(3px) rotate(-45deg)
-            &:nth-child(2)
-              display: none
-            &:nth-child(3)
-              transform: translateY(3px) rotate(45deg)
+            display: block
+            height: 3px
+            width: 100%
+            background-color: black
+            margin-bottom: 3px
+            transition: 0.5s all
+            &:last-child
+              margin-bottom: 0
+          &_active
+            span
+              margin-bottom: -3px
+              &:nth-child(1)
+                margin-top: 4px
+                transform: translateY(3px) rotate(-45deg)
+              &:nth-child(2)
+                display: none
+              &:nth-child(3)
+                margin-bottom: 0
+                transform: translateY(3px) rotate(45deg)
+        &_active
+          right: 195px
+          background-color: rgba(250,250,250, 0.95)
+          border: black 1px solid
+          border-radius: 100%
+          transition: 0.5s all
       .logo_link
         .menu_img
           display: block
           margin: 0
           width: 200px
-      .menu
-        position: fixed
-        flex-direction: column
-        justify-content: center
-        align-items: center
-        top: 0
-        right: -100%
-        width: 50%
-        height: 100vh
-        background-color: rgba(250,250,250, 0.95)
-        border-left: black solid 1px
-        transition: 0.5s all
+      .menu_field
         &_active
-          z-index: 100
+          position: fixed
+          top: 0
           right: 0
-        .mobile_menulogin
-          display: flex
+          width: 100%
+          height: 100vh
+          z-index: 100
+          background-color: rgba(116, 116, 116, 0.31)
+        .menu
+          position: fixed
+          overflow-y: auto
           flex-direction: column
-          width: 100%
-          margin: 0
-          padding: 20px
-          border-top: black dotted 1px
-          border-bottom: black dotted 1px
-          .mobile_menulogin_link
-            padding-left: 0
-            margin-top: 15px
-        .menu_item
-          width: 100%
-          text-align: center
-          padding: 0
-          margin: 15px 0
-          .menu_link
-            display: block
-            padding: 10px 0
-            font-size: 20px
+          align-items: center
+          top: 0
+          right: -100%
+          width: 50%
+          height: 100vh
+          background-color: rgba(250,250,250, 0.95)
+          border-left: black solid 1px
+          transition: 0.5s all
+          &_active
+            z-index: 101
+            right: 0
+          .mobile_menulogin
+            display: flex
+            flex-direction: column
+            width: 100%
+            margin: 0
+            padding: 20px
+            border-top: black dotted 1px
+            border-bottom: black dotted 1px
+            .mobile_menulogin_link
+              padding-left: 0
+              margin-top: 15px
+          .menu_item
+            width: 100%
+            text-align: center
+            padding: 0
+            margin: 15px 0
+            .menu_link
+              display: block
+              padding: 10px 0
+              font-size: 20px
 
       .menulogin
         display: none
