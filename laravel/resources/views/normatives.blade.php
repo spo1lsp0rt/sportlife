@@ -32,9 +32,95 @@
 @section('main_content')
 
     @if($currentUser->ID_Role == 1)
-        @php
-        /*ИЛЮХА ТУТ КОРОЧЕ ПИСЮКАЙ СВОИ HTML CSS И ДРУГИЕ ШТУКИ ДРЮКИ*/
-        @endphp
+        <section class="ofp">
+            <div class="container">
+                <h1>Оценка уровня физической подготовленности</h1>
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    <div class="col">
+                        <div class="card">
+                            <img src="/img/run100.gif" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Бег 100м (сек.)</h5>
+                                <input type="text" placeholder="Введите результат" class="ofp_result" class="" name="" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                            <img src="/img/run_long.gif" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Бег 2000м/3000м (мин.,с)</h5>
+                                <input type="text" placeholder="Введите результат" class="ofp_result" class="" name="" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                            <img src="/img/run_shuttle.gif" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Челночный бег 3 по 10 (сек.)</h5>
+                                <input type="text" placeholder="Введите результат" class="ofp_result" class="" name="" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                            <img src="..." class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Прыжок с разбега (м,см)</h5>
+                                <input type="text" placeholder="Введите результат" class="ofp_result" class="" name="" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                            <img src="..." class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Прыжок в длину с места (м,см)</h5>
+                                <input type="text" placeholder="Введите результат" class="ofp_result" class="" name="" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                            <img src="..." class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Метание гранаты 500г/700г (м)</h5>
+                                <input type="text" placeholder="Введите результат" class="ofp_result" class="" name="" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                            <img src="..." class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Подтягивание на перекладине низная/высокая (кол-во раз)</h5>
+                                <input type="text" placeholder="Введите результат" class="ofp_result" class="" name="" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                            <img src="..." class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Наклон вперед из положения стоя с прямыми ногами на гимнастической скамье (см) </h5>
+                                <input type="text" placeholder="Введите результат" class="ofp_result" class="" name="" value="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                            <img src="..." class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Поднимание туловища из положения лежа на спине за 1 мин (кол-во раз)</h5>
+                                <input type="text" placeholder="Введите результат" class="ofp_result" class="" name="" value="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="result_btn">Получить результат</button>
+            </div>
+        </section>
     @else
         <div class="normatives_title">
             <h2>Журнал нормативов</h2>

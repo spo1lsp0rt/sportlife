@@ -17,7 +17,7 @@
                     <div class="info_text">Адрес: </div>
                 </div>
                 <div class="col">
-                    <div class="info_text">г.Астрахань, ул. Татищева, 16</div>
+                    <div class="info_text">г.Астрахань, ул. Татищева, 16 , <br>корпус 7, аудитория 107</div>
                 </div>
             </div>
             <div class="row">
@@ -33,7 +33,7 @@
                     <div class="info_text">Звоните: </div>
                 </div>
                 <div class="col">
-                    <div class="info_text"><a href="tel:8-800-555-01-21">8-800-555-01-21</a></div>
+                    <div class="info_text"><a href="tel:614-517">614-517</a></div>
                 </div>
             </div>
             <div class="row">
@@ -42,7 +42,7 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="info_text"><a href="mailto:sportlife@mail.ru">sportlife@mail.ru</a></div>
+                    <div class="info_text"><a href="mailto:a.burov@astu.org">a.burov@astu.org</a></div>
                 </div>
             </div>
         </div>
