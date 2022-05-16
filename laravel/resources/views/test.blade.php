@@ -45,11 +45,26 @@
                                                onclick="" id="timer_btn{{$key + 1}}" type="button">
                                     </div>
                                 @endif
+                                @if($test->ID_Test == 6)
+                                    <p>
+                                    <center>
+                                        <p>Введите число час и минуты начала занятия:</p>
+                                        <input type="text" name="{{$exercise->getInputName().'beghour'}}" size="3" min="5" max="23" value="9"  class="@error($exercise->getInputName().'beghour') is-invalid @enderror">
 
-                                <input type="text" placeholder="Введите результат" class="test_result"
-                                       class="@error($exercise->getInputName()) is-invalid @enderror" name="{{$exercise->getInputName()}}" value="{{$exercise->Value}}">
-                                @error($exercise->getInputName())
-                                <div class="alert alert-danger">{{ 'Поле заполнено некорректно' }}</div>
+                                        <input type="text" name="{{$exercise->getInputName().'begmin'}}" size="3" min="0" max="59" value="00">
+                                        <p>Введите число час и минуты конца занятия:</p>
+                                        <input type="text" name="{{$exercise->getInputName().'endhour'}}" size="3" name="num" min="5" max="23" value="9">
+                                        <input type="text" name="{{$exercise->getInputName().'endmin'}}" size="3" name="num" min="0" max="59" value="00">
+                                    </center>
+                                    </p>
+                                    @error($exercise->getInputName().'beghour')
+                                    <div class="alert alert-danger">{{ 'Поле заполнено некорректно' }} @enderror
+                                @else
+                                    <input type="text" placeholder="Введите результат" class="test_result"
+                                           class="@error($exercise->getInputName()) is-invalid @enderror" name="{{$exercise->getInputName()}}" value="{{$exercise->Value}}">
+                                    @error($exercise->getInputName())
+                                    <div class="alert alert-danger">{{ 'Поле заполнено некорректно' }}</div>
+                                @endif
                                 @enderror
                             </div>
                         </div>

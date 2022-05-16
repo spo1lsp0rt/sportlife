@@ -81,7 +81,11 @@ class SaveResultController extends Controller
             $course = '';
         }
 
-        $valid = $request->validate($this->getRules($test));
+        if ($test->ID_Test == 6)
+            $valid = $request->validate($this->getRulesTime($test, $request));
+        else
+            $valid = $request->validate($this->getRules($test));
+        //dd($valid);
 
         $result_id = $this->saveResult($test, $valid, $normative, $course);
 
@@ -439,10 +443,12 @@ class SaveResultController extends Controller
 
                 $resultExersise->ID_Result = $result->ID_Result;
                 $resultExersise->Name = $exercise->Name;
-                $resultExersise->Description = $exercise->Description;
+                $resultExersise->Description = $valid_params[$exercise->getInputName().'endhour'].':'.$valid_params[$exercise->getInputName().'endmin'].'-'.$valid_params[$exercise->getInputName().'beghour'].':'.$valid_params[$exercise->getInputName().'begmin'];
                 $resultExersise->ID_Exercise = $exercise->ID_Exercise;
-                $resultExersise->Value = $valid_params[$exercise->getInputName()];
-                $resultExersise->Norma = $valid_params[$exercise->getInputName()] * $norma[0]->Value;
+
+                $time = ($valid_params[$exercise->getInputName().'endhour'] * 60 + $valid_params[$exercise->getInputName().'endmin']) - ($valid_params[$exercise->getInputName().'beghour'] * 60 + $valid_params[$exercise->getInputName().'begmin']);
+                $resultExersise->Value = $time;
+                $resultExersise->Norma = $time * $norma[0]->Value;
 
                 $resultExersise->save();
 
@@ -467,6 +473,41 @@ class SaveResultController extends Controller
             if($test->ID_Test == 1)
                 $rules['age'] = 'required||integer|between:16,45';
         }
+        return $rules;
+    }
+
+    /**
+     * Составляет правила для вводимых пользователем значений
+     *
+     * @param Test $test Модель теста
+     * @param Request $request Полученные данные
+     * @return array
+     */
+    private function getRulesTime(Test $test, Request $request):array{
+        $rules = [];
+        foreach ($test->Exercises as $exercise){
+            $begtime = $request->input($exercise->getInputName().'beghour') * 60 + $request->input($exercise->getInputName().'begmin');
+            $endtime = $request->input($exercise->getInputName().'endhour') * 60 + $request->input($exercise->getInputName().'endmin');
+
+            if ($begtime > $endtime)
+                $rules[$exercise->getInputName().'beghour'] = 'required|email';
+            else{
+                $rules[$exercise->getInputName().'beghour'] = 'required';
+                $rules[$exercise->getInputName().'begmin'] = 'required';
+                $rules[$exercise->getInputName().'endhour'] = 'required';
+                $rules[$exercise->getInputName().'endmin'] = 'required';
+            }
+
+        }
+        $time = 0;
+        foreach ($test->Exercises as $exercise){
+            $time += ($request->input($exercise->getInputName().'endhour') * 60 + $request->input($exercise->getInputName().'endmin')) - ($request->input($exercise->getInputName().'beghour') * 60 + $request->input($exercise->getInputName().'begmin'));
+
+        }
+        if($time>1439){
+            $rules[$exercise->getInputName().'beghour'] = 'required|email';
+        }
+
         return $rules;
     }
 }

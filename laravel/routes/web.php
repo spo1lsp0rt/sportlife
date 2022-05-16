@@ -50,9 +50,6 @@ Route::get('/privacy', [ MainController::class, 'privacy_policy' ]);
 
 Route::post('/out_ofp', [ MainController::class, 'out_ofp' ]);
 
-
-/*Route::get('/tests', [ MainController::class, 'tests' ]);*/
-
 /**
  * Вывод списка тестов
  */

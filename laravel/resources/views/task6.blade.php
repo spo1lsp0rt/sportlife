@@ -26,7 +26,7 @@ $sum = 0;
                 <div class='data_field_head'>{{$exercise->Name}}</div>
             </div>
             <div class='col col-md-2'>
-                <div class='data_field'></div>
+                <div class='data_field'>{{$exercise->Description}}</div>
             </div>
             <div class='col col-md-3'>
                 <div class='data_field'>{{$exercise->Value}}</div>
