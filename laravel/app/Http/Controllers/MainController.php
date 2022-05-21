@@ -136,7 +136,23 @@ class MainController extends Controller
 
     public function  out_ofp()
     {
-        echo 1;
+        $id_class = DB::table('class')->where('Name', $_POST['group'])->value('ID_Class');
+        return Redirect::back()->with(['ofp_id_class' => $id_class]);
+    }
+
+    public function  ofp_table()
+    {
+        $keys = array_keys($_POST);
+        for($i = 1; $i < count($keys); $i++)
+        {
+            if($_POST[$keys[$i]] != "")
+            {
+                $data = explode('_', $keys[$i]);
+                $id_class = DB::table('user')->where('ID_User', $data[0])->value('id_class');
+                DB::insert("REPLACE INTO ofp (id_user, id_normative, result, date, actual_class_id) values (".$data[0].", ".$data[1].", ".$_POST[$keys[$i]].", CURRENT_DATE, ".$id_class.")");
+            }
+        }
+        return Redirect::back()->with(['success_update_ofp' => 'Данные обновлены!']);
     }
 
     public function  updateStudent() {

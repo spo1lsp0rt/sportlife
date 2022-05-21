@@ -23,3 +23,11 @@ if(!function_exists('key_gen'))
         return $sernum;
     }
 }
+
+if(!function_exists('unparse_normative'))
+{
+    function unparse_normative($norms)
+    {
+
+    }
+}
