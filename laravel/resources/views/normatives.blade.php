@@ -212,7 +212,13 @@
                                 @endphp
                                 <tr>
                                     <th scope="row">{{$n++}}</th>
-                                    <td>{{$user->FullName}}</td>
+                                    <td>
+                                        <div id="{{$user->FullName}}" class='data_field'>
+                                            <a data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                                                {{$user->FullName}}
+                                            </a>
+                                        </div>
+                                    </td>
                                     @if($results == null)
                                         @for($normative_num = 1; $normative_num <= count($normatives); $normative_num++)
                                             <td class="result_cell">
@@ -266,6 +272,55 @@
             </div>
         </div>
     @endif
+
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Информация</h5>
+                    <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="/updateStudent" method="post">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered align-middle text-center">
+                                        <thead class="align-middle">
+                                        <tr>
+                                            <th scope="col">Норматив</th>
+                                            <th style="border-left: 2px solid black" scope="col">Количество баллов</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody style="line-height: 3; white-space: nowrap;">
+                                        @foreach($normatives as $normative)
+                                            <tr>
+
+                                                @php $norm = $normative->name . " " . $normative->female_normative . ($normative->female_normative ? "/" : "") . " " . $normative->male_normative . "\n" . $normative->unit;  @endphp
+                                                <td style="text-align: left">{{$norm}}</td>
+
+                                                <td style="border-left: 2px solid black">баллы</td>
+
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                        <tfoot style="line-height: 2; white-space: nowrap;">
+                                        <tr>
+                                            <th style="text-align: left" scope="col">Итого</th>
+                                            <th style="border-left: 2px solid black" scope="col">баллы</th>
+                                        </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
 
 @endsection
 
