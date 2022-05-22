@@ -16,19 +16,27 @@
 .parameters_panel .faculties_combobox .combo .combo-input {
   width: 200px;
 }
-.parameters_panel .group_combobox .combo {
+.parameters_panel .form_parameters {
+  display: flex;
+}
+.parameters_panel .form_parameters .group_combobox {
+  margin-right: 10px;
+}
+.parameters_panel .form_parameters .group_combobox .combo {
   max-width: 200px;
 }
-.parameters_panel .group_combobox .combo .combo-input {
+.parameters_panel .form_parameters .group_combobox .combo .combo-input {
   width: 200px;
 }
-.parameters_panel .parameter_name {
-  font-size: 20px;
-  font-weight: 400;
-  margin: 2px 30px 0 0;
-}
-.parameters_panel .form-select {
+.parameters_panel .form_parameters .show_btn {
+  display: block;
   width: 150px;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+.parameters_panel .form_parameters .show_btn:hover {
+  background-image: linear-gradient(to top, #2f2f2f 0%, #373f4b 100%);
+  color: #e5e5e5;
 }
 
 .edit_panel {
@@ -68,6 +76,12 @@
 .edit_panel .save_btn:hover {
   background-image: linear-gradient(to top, #65ba48 0%, #0cd200 100%);
   color: #e5e5e5;
+}
+
+.table-responsive .table td .result_cell {
+  padding: 0;
+  border: 0;
+  text-align: center;
 }
 
 .statistic_table {

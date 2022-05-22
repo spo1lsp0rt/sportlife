@@ -11,17 +11,22 @@
       max-width: 200px
       .combo-input
         width: 200px
-  .group_combobox
-    .combo
-      max-width: 200px
-      .combo-input
-        width: 200px
-  .parameter_name
-    font-size: 20px
-    font-weight: 400
-    margin: 2px 30px 0 0
-  .form-select
-    width: 150px
+  .form_parameters
+    display: flex
+    .group_combobox
+      margin-right: 10px
+      .combo
+        max-width: 200px
+        .combo-input
+          width: 200px
+    .show_btn
+      display: block
+      width: 150px
+      border: 1px solid #ced4da
+      border-radius: 0.25rem
+      &:hover
+        background-image: linear-gradient(to top, #2f2f2f 0%, #373f4b 100%)
+        color: #e5e5e5
 
 .edit_panel
   float: right
@@ -55,6 +60,14 @@
       background-image: linear-gradient(to top, #65ba48 0%, #0cd200 100%)
       color: #e5e5e5
 
+
+.table-responsive
+  .table
+    td
+      .result_cell
+        padding: 0
+        border: 0
+        text-align: center
 
 .statistic_table
   margin: 27px auto 0 auto

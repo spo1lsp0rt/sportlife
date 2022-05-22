@@ -156,7 +156,7 @@
                                 <div class="combo-menu" role="listbox" id="faculties-listbox"></div>
                             </div>
                         </div>
-                        <form action="/out_ofp" method="post">
+                        <form class="form_parameters" action="/out_ofp" method="post">
                             @csrf
                             <div class="group_combobox">
                                 <div name="group" class="combo js-combobox">
@@ -164,8 +164,13 @@
                                     <div class="combo-menu" role="listbox" id="groups-listbox"></div>
                                 </div>
                             </div>
-                            <button type="submit" class="edit_btn">Вывести</button>
+                            <button type="submit" class="show_btn">Вывести</button>
                         </form>
+                    </div>
+                    <div class="edit_panel">
+                        <button type="button" class="edit_btn" id="edit_btn" onclick="edit()">Изменить результаты</button>
+                        <button type="button" class="cancel_btn" id="cancel_btn" onclick="cancel()">Отменить изменения</button>
+                        <button type="submit" class="save_btn" id="save_btn" onclick="save()">Сохранить</button>
                     </div>
                 </div>
             </div>
@@ -221,8 +226,8 @@
                                     </td>
                                     @if($results == null)
                                         @for($normative_num = 1; $normative_num <= count($normatives); $normative_num++)
-                                            <td class="result_cell">
-                                                <input class="result_cell" style="padding:0;border:0;text-align:center;" type="text" contenteditable="false" name="{{$user->ID_User . '_' . $normatives[$normative_num - 1]->id}}">
+                                            <td>
+                                                <input readonly class="result_cell" type="text" contenteditable="false" name="{{$user->ID_User . '_' . $normatives[$normative_num - 1]->id}}">
                                             </td>
                                         @endfor
                                             <td style="border-left: 2px solid black"></td>
@@ -231,7 +236,7 @@
                                     @for($normative_num = 1, $res_indx = 0; $res_indx < count($results) && $normative_num <= count($normatives); $normative_num++)
                                         @if($results[$res_indx]->id_normative == $normative_num)
                                             <td>
-                                                <input class="result_cell" style="padding:0;border:0;text-align:center;" type="text" contenteditable="false" name="{{$user->ID_User . '_' . $results[$res_indx]->id_normative}}" value="{{$results[$res_indx]->result}}">
+                                                <input readonly class="result_cell" type="text" contenteditable="false" name="{{$user->ID_User . '_' . $results[$res_indx]->id_normative}}" value="{{$results[$res_indx]->result}}">
                                             </td>
                                             @php
                                                 $total[$normative_num - 1][0] += $results[$res_indx]->result;
@@ -239,8 +244,8 @@
                                                 if($res_indx + 1 < count($results)) $res_indx++;
                                             @endphp
                                         @else
-                                            <td class="result_cell">
-                                                <input class="result_cell" style="padding:0;border:0;text-align:center;" type="text" contenteditable="false" name="{{$user->ID_User . '_' . $normatives[$normative_num - 1]->id}}">
+                                            <td>
+                                                <input readonly class="result_cell" type="text" contenteditable="false" name="{{$user->ID_User . '_' . $normatives[$normative_num - 1]->id}}">
                                             </td>
                                         @endif
                                     @endfor
@@ -264,9 +269,9 @@
                         </table>
                     </div>
                     <div class="edit_panel">
-                        <button type="button" class="edit_btn" id="edit_btn" onclick="edit()">Изменить результаты</button>
-                        <button type="button" class="cancel_btn" id="cancel_btn" onclick="cancel()">Отменить изменения</button>
-                        <button type="submit" class="save_btn" id="save_btn" onclick="save()">Сохранить</button>
+                        <button hidden type="button" id="edit_btn_primary" >Изменить результаты</button>
+                        <button hidden type="button" id="cancel_btn_primary">Отменить изменения</button>
+                        <button hidden type="submit" id="save_btn_primary">Сохранить</button>
                     </div>
                 </form>
             </div>
@@ -323,17 +328,22 @@
 
 @section('scriptsheet')
     <script>
+        var listener = function(event){
+            event.preventDefault();
+        }
+        document.querySelectorAll('.result_cell').forEach(function (cell) {
+            cell.addEventListener("mousedown", listener, false);
+        });
         var edit = function(){
             document.getElementById('edit_btn').style.display="none";  // for hide button
             document.getElementById('cancel_btn').style.display="block";
             document.getElementById('save_btn').style.display="block";
             const arr_rescells = document.querySelectorAll('.result_cell');
             arr_rescells.forEach(function (cell) {
-                cell.setAttribute('contenteditable', 'true');
-                /*cell.addEventListener("mousedown", function(event){
-                    event.preventDefault();
-                });*/
+                cell.removeAttribute('readonly');
+                cell.removeEventListener('mousedown', listener, false);
             });
+            document.getElementById('edit_btn_primary').click()
         }
         var cancel = function(){
             document.getElementById('edit_btn').style.display="block";  // for hide button
@@ -341,11 +351,10 @@
             document.getElementById('save_btn').style.display="none";
             const arr_rescells = document.querySelectorAll('.result_cell');
             arr_rescells.forEach(function (cell) {
-                cell.setAttribute('contenteditable', 'false');
-               /* cell.removeEventListener("mousedown", function(event){
-                    event.preventDefault();
-                });*/
+                cell.setAttribute('readonly', 'true');
+                cell.addEventListener("mousedown", listener, false);
             });
+            document.getElementById('cancel_btn_primary').click()
         }
         var save = function(){
             document.getElementById('edit_btn').style.display="block";  // for hide button
@@ -353,11 +362,10 @@
             document.getElementById('save_btn').style.display="none";
             const arr_rescells = document.querySelectorAll('.result_cell');
             arr_rescells.forEach(function (cell) {
-                cell.setAttribute('contenteditable', 'false');
-                /*cell.removeEventListener("mousedown", function(event){
-                    event.preventDefault();
-                });*/
+                cell.setAttribute('readonly', 'true');
+                cell.addEventListener("mousedown", listener, false);
             });
+            document.getElementById('save_btn_primary').click()
         }
     </script>
     <script src="{{ asset('js/combobox.js') }}"></script>
