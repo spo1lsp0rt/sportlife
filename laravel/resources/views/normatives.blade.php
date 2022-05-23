@@ -214,6 +214,54 @@
                             @foreach($users as $user)
                                 @php
                                     $results = DB::select('select * from ofp where id_user =' . $user->ID_User . ' order by id_normative');
+                                    $summbal = 0;
+                                   //Берем значения выполненных нормативом пользователем
+                                   foreach ($results as $test){
+                                       //Берем нормативы определенного задания
+                                       $ofp_test = DB::select('select * from ofp_assessment_tests where id_ofp_test ='. $test->id_normative);
+                                       $gender = DB::select('select gender from userdata where ID_User ='. $user->ID_User);
+                                       //dd($results);
+                                       if(isset($gender)){
+                                           if ($gender[0]->gender == 'муж')
+                                           {
+                                               if ($test->id_normative == 1 || $test->id_normative == 4 || $test->id_normative == 8)
+                                               {
+                                                   //Находим нужный балл
+                                                   if ($ofp_test[0]->male_normative < $test->result)
+                                                       $summbal+= 0;
+                                                   else if ($ofp_test[0]->male_normative >= $test->result && $ofp_test[1]->male_normative < $test->result)
+                                                       $summbal+= 1;
+                                                   else if ($ofp_test[1]->male_normative >= $test->result && $ofp_test[2]->male_normative < $test->result)
+                                                       $summbal+= 2;
+                                                   else if ($ofp_test[2]->male_normative >= $test->result && $ofp_test[3]->male_normative < $test->result)
+                                                       $summbal+= 3;
+                                                   else if ($ofp_test[3]->male_normative >= $test->result && $ofp_test[4]->male_normative < $test->result)
+                                                       $summbal+= 4;
+                                                   else if ($ofp_test[3]->male_normative >= $test->result)
+                                                       $summbal+= 5;
+                                               }else{
+                                                   //dd($ofp_test);
+                                                   //Находим нужный балл
+                                                   if ($ofp_test[0]->male_normative > $test->result)
+                                                       $summbal+= 0;
+                                                   else if ($ofp_test[0]->male_normative <= $test->result && $ofp_test[1]->male_normative > $test->result)
+                                                       $summbal+= 1;
+                                                   else if ($ofp_test[1]->male_normative <= $test->result && $ofp_test[2]->male_normative > $test->result)
+                                                       $summbal+= 2;
+                                                   else if ($ofp_test[2]->male_normative <= $test->result && $ofp_test[3]->male_normative > $test->result)
+                                                       $summbal+= 3;
+                                                   else if ($ofp_test[3]->male_normative <= $test->result && $ofp_test[4]->male_normative > $test->result)
+                                                       $summbal+= 4;
+                                                   else if ($ofp_test[3]->male_normative <= $test->result)
+                                                       $summbal+= 5;
+                                               }
+
+                                            }else{
+
+                                            }
+                                       }
+
+                                   }
                                 @endphp
                                 <tr>
                                     <th scope="row">{{$n++}}</th>
@@ -249,7 +297,7 @@
                                             </td>
                                         @endif
                                     @endfor
-                                    <td style="border-left: 2px solid black"></td>
+                                    <td style="border-left: 2px solid black">{{$summbal}}</td>
                                 </tr>
                             @endforeach
                             </tbody>
