@@ -17,6 +17,9 @@
                 header('Location: /authorization');
                 exit;
             }
+        $UserPoints = array();
+        $UserPoints_temp = array();
+        $keys = array();
 @endphp
 
 @extends('layout')
@@ -211,6 +214,8 @@
                                 @php
                                     $results = DB::select('select * from ofp where id_user =' . $user->ID_User . ' order by id_normative');
                                     $summbal = 0;
+                                    $points = array('-', '-', '-', '-', '-', '-', '-', '-', '-');
+                                    $keys[] = $user->ID_User;
                                    //Берем значения выполненных нормативом пользователем
                                    foreach ($results as $test){
                                        //Берем нормативы определенного задания
@@ -223,46 +228,128 @@
                                                if ($test->id_normative == 1 || $test->id_normative == 4 || $test->id_normative == 8)
                                                {
                                                    //Находим нужный балл
-                                                   if ($ofp_test[0]->male_normative < $test->result)
-                                                       $summbal+= 0;
-                                                   else if ($ofp_test[0]->male_normative >= $test->result && $ofp_test[1]->male_normative < $test->result)
+                                                   if ($ofp_test[0]->male_normative < $test->result){
+                                                       $points[$test->id_normative - 1] = 0;
+                                                       $summbal += 0;
+                                                   }
+                                                   else if ($ofp_test[0]->male_normative >= $test->result && $ofp_test[1]->male_normative < $test->result){
+                                                       $points[$test->id_normative - 1] = 1;
                                                        $summbal+= 1;
-                                                   else if ($ofp_test[1]->male_normative >= $test->result && $ofp_test[2]->male_normative < $test->result)
+                                                   }
+                                                   else if ($ofp_test[1]->male_normative >= $test->result && $ofp_test[2]->male_normative < $test->result){
+                                                       $points[$test->id_normative - 1] = 2;
                                                        $summbal+= 2;
-                                                   else if ($ofp_test[2]->male_normative >= $test->result && $ofp_test[3]->male_normative < $test->result)
+                                                   }
+                                                   else if ($ofp_test[2]->male_normative >= $test->result && $ofp_test[3]->male_normative < $test->result){
+                                                       $points[$test->id_normative - 1] = 3;
                                                        $summbal+= 3;
-                                                   else if ($ofp_test[3]->male_normative >= $test->result && $ofp_test[4]->male_normative < $test->result)
+                                                   }
+                                                   else if ($ofp_test[3]->male_normative >= $test->result && $ofp_test[4]->male_normative < $test->result){
+                                                       $points[$test->id_normative - 1] = 4;
                                                        $summbal+= 4;
-                                                   else if ($ofp_test[3]->male_normative >= $test->result)
+                                                   }
+                                                   else if ($ofp_test[3]->male_normative >= $test->result){
+                                                       $points[$test->id_normative - 1] = 5;
                                                        $summbal+= 5;
+                                                   }
                                                }else{
                                                    //dd($ofp_test);
                                                    //Находим нужный балл
-                                                   if ($ofp_test[0]->male_normative > $test->result)
+                                                   if ($ofp_test[0]->male_normative > $test->result){
                                                        $summbal+= 0;
-                                                   else if ($ofp_test[0]->male_normative <= $test->result && $ofp_test[1]->male_normative > $test->result)
-                                                       $summbal+= 1;
-                                                   else if ($ofp_test[1]->male_normative <= $test->result && $ofp_test[2]->male_normative > $test->result)
+                                                       $points[$test->id_normative - 1] = 0;
+                                                   }
+                                                   else if ($ofp_test[0]->male_normative <= $test->result && $ofp_test[1]->male_normative > $test->result){
+                                                       $summbal += 1;
+                                                       $points[$test->id_normative - 1] = 1;
+                                                   }
+                                                   else if ($ofp_test[1]->male_normative <= $test->result && $ofp_test[2]->male_normative > $test->result){
                                                        $summbal+= 2;
-                                                   else if ($ofp_test[2]->male_normative <= $test->result && $ofp_test[3]->male_normative > $test->result)
+                                                       $points[$test->id_normative - 1] = 2;
+                                                   }
+                                                   else if ($ofp_test[2]->male_normative <= $test->result && $ofp_test[3]->male_normative > $test->result){
                                                        $summbal+= 3;
-                                                   else if ($ofp_test[3]->male_normative <= $test->result && $ofp_test[4]->male_normative > $test->result)
+                                                       $points[$test->id_normative - 1] = 3;
+                                                   }
+                                                   else if ($ofp_test[3]->male_normative <= $test->result && $ofp_test[4]->male_normative > $test->result){
                                                        $summbal+= 4;
-                                                   else if ($ofp_test[3]->male_normative <= $test->result)
-                                                       $summbal+= 5;
+                                                       $points[$test->id_normative - 1] = 4;
+                                                   }
+                                                   else if ($ofp_test[3]->male_normative <= $test->result){
+                                                       $summbal += 5;
+                                                       $points[$test->id_normative - 1] = 5;
+                                                   }
                                                }
 
-                                            }else{
+                                           }else{
+                                               if ($test->id_normative == 1 || $test->id_normative == 4 || $test->id_normative == 8)
+                                               {
+                                                   //Находим нужный балл
+                                                   if ($ofp_test[0]->female_normative < $test->result){
+                                                       $points[$test->id_normative - 1] = 0;
+                                                       $summbal+= 0;
+                                                   }
+                                                   else if ($ofp_test[0]->female_normative >= $test->result && $ofp_test[1]->female_normative < $test->result){
+                                                       $points[$test->id_normative - 1] = 1;
+                                                       $summbal+= 1;
+                                                   }
+                                                   else if ($ofp_test[1]->female_normative >= $test->result && $ofp_test[2]->female_normative < $test->result){
+                                                       $points[$test->id_normative - 1] = 2;
+                                                       $summbal+= 2;
+                                                   }
+                                                   else if ($ofp_test[2]->female_normative >= $test->result && $ofp_test[3]->female_normative < $test->result){
+                                                       $points[$test->id_normative - 1] = 3;
+                                                       $summbal+= 3;
+                                                   }
+                                                   else if ($ofp_test[3]->female_normative >= $test->result && $ofp_test[4]->female_normative < $test->result){
+                                                       $points[$test->id_normative - 1] = 4;
+                                                       $summbal+= 4;
+                                                   }
+                                                   else if ($ofp_test[3]->female_normative >= $test->result){
+                                                       $points[$test->id_normative - 1] = 5;
+                                                       $summbal+= 5;
+                                                   }
+                                               }else{
+                                                   //dd($ofp_test);
+                                                   //Находим нужный балл
+                                                   if ($ofp_test[0]->female_normative > $test->result){
+                                                       $summbal+= 0;
+                                                       $points += 0;
+                                                   }
+                                                   else if ($ofp_test[0]->female_normative <= $test->result && $ofp_test[1]->female_normative > $test->result){
+                                                       $summbal+= 1;
+                                                       $points[$test->id_normative - 1] = 1;
+                                                   }
+                                                   else if ($ofp_test[1]->female_normative <= $test->result && $ofp_test[2]->female_normative > $test->result){
+                                                       $summbal+= 2;
+                                                       $points[$test->id_normative - 1] = 2;
+                                                   }
+                                                   else if ($ofp_test[2]->female_normative <= $test->result && $ofp_test[3]->female_normative > $test->result){
+                                                       $summbal+= 3;
+                                                       $points[$test->id_normative - 1] = 3;
+                                                   }
+                                                   else if ($ofp_test[3]->female_normative <= $test->result && $ofp_test[4]->female_normative > $test->result){
+                                                       $summbal+= 4;
+                                                       $points[$test->id_normative - 1] = 4;
+                                                   }
+                                                   else if ($ofp_test[3]->female_normative <= $test->result){
+                                                       $summbal+= 5;
+                                                       $points[$test->id_normative - 1] = 5;
+                                                   }
+                                               }
+                                           }
 
-                                            }
                                        }
 
                                    }
+                                   //$points = array_fill_keys($keys, $points);
+                                   /*$UserPoints[] = $points;*/
+                                   array_push($UserPoints, $points);
                                 @endphp
                                 <tr>
                                     <th scope="row">{{$n++}}</th>
                                     <td>
-                                        <div id="{{$user->FullName}}" class='data_field'>
+                                        <div id="{{$user->ID_User}}" class='data_field'>
                                             <a data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
                                                 {{$user->FullName}}
                                             </a>
@@ -344,10 +431,13 @@
                                     @foreach($normatives as $normative)
                                         <tr>
 
-                                            @php $norm = $normative->name . " " . $normative->female_normative . ($normative->female_normative ? "/" : "") . " " . $normative->male_normative . "\n" . $normative->unit;  @endphp
+                                            @php
+                                                $norm = $normative->name . " " . $normative->female_normative . ($normative->female_normative ? "/" : "") . " " . $normative->male_normative . "\n" . $normative->unit;  @endphp
                                             <td style="text-align: left">{{$norm}}</td>
 
-                                            <td style="border-left: 2px solid black">баллы</td>
+                                            <td style="border-left: 2px solid black">
+                                                <div id="out{{$normative->id}}" ></div>
+                                            </td>
 
                                         </tr>
                                     @endforeach
@@ -368,10 +458,33 @@
         </div>
     </div>
 
+    @php
+        $i = 0;
+        foreach ($UserPoints as $points){
+            $UserPoints_temp["$keys[$i]"] = $points;
+            $i++;
+        }
+    @endphp
 @endsection
 
 @section('scriptsheet')
     <script>
+
+        function setPoints(el) {
+            const id = el.parentElement.id;
+            let arr_groups = <?php echo json_encode($UserPoints_temp[14]); ?>;
+            for (let i = 0; i < arr_groups.length; i++) {
+                var t = i + 1;
+                document.getElementById('out' + t).innerHTML = `${arr_groups[i]}`;
+            }
+        }
+        let btns = document.querySelectorAll('a');
+        btns.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                setPoints(btn);
+            });
+        });
+
         var listener = function(event){
             event.preventDefault();
         }
