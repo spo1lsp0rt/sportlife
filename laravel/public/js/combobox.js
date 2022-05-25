@@ -166,20 +166,37 @@ var Combobox = function Combobox(el, options) {
 Combobox.prototype.init = function () {
   var _this = this;
 
-  this.inputEl.value = options[0];
   this.inputEl.addEventListener('input', this.onInput.bind(this));
   this.inputEl.addEventListener('blur', this.onInputBlur.bind(this));
   this.inputEl.addEventListener('click', function () {
     return _this.updateMenuState(true);
   });
   this.inputEl.addEventListener('keydown', this.onInputKeyDown.bind(this));
+  var aria_selected = false;
   this.options.map(function (option, index) {
     var optionEl = document.createElement('option');
-    optionEl.setAttribute('role', 'option');
+
+    if (option.startsWith('#')) {
+      optionEl.className = 'dropdown-header';
+      optionEl.innerText = option.slice(1);
+
+      _this.listboxEl.appendChild(optionEl);
+    } else {
+      if (!aria_selected) {
+        aria_selected = true;
+        optionEl.className = 'combo-option option-current';
+        optionEl.setAttribute('aria-selected', "true");
+        _this.inputEl.value = option;
+      } else {
+        optionEl.className = 'combo-option';
+        optionEl.setAttribute('aria-selected', "false");
+      }
+
+      optionEl.innerText = option;
+    }
+
     optionEl.id = "".concat(_this.idBase, "-").concat(index);
-    optionEl.className = index === 0 ? 'combo-option option-current' : 'combo-option';
-    optionEl.setAttribute('aria-selected', "".concat(index === 0));
-    optionEl.innerText = option;
+    optionEl.setAttribute('role', 'option');
     optionEl.addEventListener('click', function () {
       _this.onOptionClick(index);
     });
@@ -221,6 +238,7 @@ Combobox.prototype.onInputKeyDown = function (event) {
     case MenuActions.First:
     case MenuActions.Previous:
       event.preventDefault();
+      if (this.options[getUpdatedIndex(this.activeIndex, max, action)].startsWith('#')) return;
       return this.onOptionChange(getUpdatedIndex(this.activeIndex, max, action));
 
     case MenuActions.CloseSelect:
@@ -267,9 +285,11 @@ Combobox.prototype.onOptionChange = function (index) {
 };
 
 Combobox.prototype.onOptionClick = function (index) {
-  this.onOptionChange(index);
-  this.selectOption(index);
-  this.updateMenuState(false);
+  if (!this.options[index].startsWith('#')) {
+    this.onOptionChange(index);
+    this.selectOption(index);
+    this.updateMenuState(false);
+  }
 };
 
 Combobox.prototype.onOptionMouseDown = function () {
@@ -278,16 +298,19 @@ Combobox.prototype.onOptionMouseDown = function () {
 
 Combobox.prototype.selectOption = function (index) {
   var selected = this.options[index];
-  this.inputEl.value = selected;
-  this.activeIndex = index; // update aria-selected
 
-  var options = this.el.querySelectorAll('[role=option]');
+  if (!selected.startsWith('#')) {
+    this.inputEl.value = selected;
+    this.activeIndex = index; // update aria-selected
 
-  _toConsumableArray(options).forEach(function (optionEl) {
-    optionEl.setAttribute('aria-selected', 'false');
-  });
+    var _options = this.el.querySelectorAll('[role=option]');
 
-  options[index].setAttribute('aria-selected', 'true');
+    _toConsumableArray(_options).forEach(function (optionEl) {
+      optionEl.setAttribute('aria-selected', 'false');
+    });
+
+    _options[index].setAttribute('aria-selected', 'true');
+  }
 };
 
 Combobox.prototype.updateMenuState = function (open) {

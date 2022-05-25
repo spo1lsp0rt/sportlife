@@ -145,21 +145,34 @@ const Combobox = function (el, options) {
 };
 
 Combobox.prototype.init = function () {
-    this.inputEl.value = options[0];
-
     this.inputEl.addEventListener('input', this.onInput.bind(this));
     this.inputEl.addEventListener('blur', this.onInputBlur.bind(this));
     this.inputEl.addEventListener('click', () => this.updateMenuState(true));
     this.inputEl.addEventListener('keydown', this.onInputKeyDown.bind(this));
 
+    var aria_selected = false;
     this.options.map((option, index) => {
         const optionEl = document.createElement('option');
-        optionEl.setAttribute('role', 'option');
+        if (option.startsWith('#')) {
+            optionEl.className = 'dropdown-header';
+            optionEl.innerText = option.slice(1);
+            this.listboxEl.appendChild(optionEl);
+        }
+        else {
+            if (!aria_selected) {
+                aria_selected = true;
+                optionEl.className = 'combo-option option-current';
+                optionEl.setAttribute('aria-selected', `true`);
+                this.inputEl.value = option;
+            }
+            else {
+                optionEl.className = 'combo-option';
+                optionEl.setAttribute('aria-selected', `false`);
+            }
+            optionEl.innerText = option;
+        }
         optionEl.id = `${this.idBase}-${index}`;
-        optionEl.className = index === 0 ? 'combo-option option-current' : 'combo-option';
-        optionEl.setAttribute('aria-selected', `${index === 0}`);
-        optionEl.innerText = option;
-
+        optionEl.setAttribute('role', 'option');
         optionEl.addEventListener('click', () => {this.onOptionClick(index);});
         optionEl.addEventListener('mousedown', this.onOptionMouseDown.bind(this));
 
@@ -195,6 +208,7 @@ Combobox.prototype.onInputKeyDown = function (event) {
         case MenuActions.First:
         case MenuActions.Previous:
             event.preventDefault();
+            if (this.options[getUpdatedIndex(this.activeIndex, max, action)].startsWith('#')) return;
             return this.onOptionChange(getUpdatedIndex(this.activeIndex, max, action));
         case MenuActions.CloseSelect:
             event.preventDefault();
@@ -237,9 +251,11 @@ Combobox.prototype.onOptionChange = function (index) {
 };
 
 Combobox.prototype.onOptionClick = function (index) {
-    this.onOptionChange(index);
-    this.selectOption(index);
-    this.updateMenuState(false);
+    if (!this.options[index].startsWith('#')) {
+        this.onOptionChange(index);
+        this.selectOption(index);
+        this.updateMenuState(false);
+    }
 };
 
 Combobox.prototype.onOptionMouseDown = function () {
@@ -248,15 +264,16 @@ Combobox.prototype.onOptionMouseDown = function () {
 
 Combobox.prototype.selectOption = function (index) {
     const selected = this.options[index];
-    this.inputEl.value = selected;
-    this.activeIndex = index;
-
-    // update aria-selected
-    const options = this.el.querySelectorAll('[role=option]');
-    [...options].forEach(optionEl => {
-        optionEl.setAttribute('aria-selected', 'false');
-    });
-    options[index].setAttribute('aria-selected', 'true');
+    if (!selected.startsWith('#')) {
+        this.inputEl.value = selected;
+        this.activeIndex = index;
+        // update aria-selected
+        const options = this.el.querySelectorAll('[role=option]');
+        [...options].forEach(optionEl => {
+            optionEl.setAttribute('aria-selected', 'false');
+        });
+        options[index].setAttribute('aria-selected', 'true');
+    }
 };
 
 Combobox.prototype.updateMenuState = function (open, callFocus = true) {

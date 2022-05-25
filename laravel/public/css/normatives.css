@@ -7,15 +7,6 @@
   display: flex;
   margin: 40px auto 20px auto;
 }
-.parameters_panel .faculties_combobox {
-  margin-right: 10px;
-}
-.parameters_panel .faculties_combobox .combo {
-  max-width: 200px;
-}
-.parameters_panel .faculties_combobox .combo .combo-input {
-  width: 200px;
-}
 .parameters_panel .form_parameters {
   display: flex;
 }
@@ -26,6 +17,15 @@
   max-width: 200px;
 }
 .parameters_panel .form_parameters .group_combobox .combo .combo-input {
+  width: 200px;
+}
+.parameters_panel .form_parameters .gender_combobox {
+  margin-right: 10px;
+}
+.parameters_panel .form_parameters .gender_combobox .combo {
+  max-width: 200px;
+}
+.parameters_panel .form_parameters .gender_combobox .combo .combo-input {
   width: 200px;
 }
 .parameters_panel .form_parameters .show_btn {
