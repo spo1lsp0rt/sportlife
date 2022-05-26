@@ -183,7 +183,6 @@
             if(session('ofp_gender'))
                 $ofp_gender = session('ofp_gender');
             $normatives = DB::select('select * from ofp_normatives');
-            dd(session('ofp_gender'));
             $users = DB::table('user')->where('id_class', $ofp_id_class)->where('gender', $ofp_gender)->get()->toArray();
             $n = 1;
             //Многомерный массив $total предназначен для подсчета
