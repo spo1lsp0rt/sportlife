@@ -177,10 +177,13 @@
 
         @php
             $ofp_id_class = 1;
+            $ofp_gender = "муж";
             if(session('ofp_id_class'))
                 $ofp_id_class = session('ofp_id_class');
+            if(session('ofp_gender'))
+                $gender = session('ofp_gender');
             $normatives = DB::select('select * from ofp_normatives');
-            $users = DB::select('select * from user where id_class = ' . $ofp_id_class);
+            $users = DB::table('user')->where('id_class', $ofp_id_class)->where('gender', $ofp_gender)->get()->toArray();
             $n = 1;
             //Многомерный массив $total предназначен для подсчета
             // суммы результатов студентов по кнокретному нормативу

@@ -136,8 +136,13 @@ class MainController extends Controller
 
     public function  out_ofp()
     {
+        $gender = null;
+        if($_POST['gender'] == "Юноши")
+            $gender = "муж";
+        else
+            $gender = "жен";
         $id_class = DB::table('class')->where('Name', $_POST['group'])->value('ID_Class');
-        return Redirect::back()->with(['ofp_id_class' => $id_class]);
+        return Redirect::back()->with(['ofp_id_class' => $id_class], ['ofp_gender' => $gender]);
     }
 
     public function  ofp_table()
