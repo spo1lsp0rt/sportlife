@@ -83,6 +83,13 @@
   border: 0;
   text-align: center;
 }
+.table-responsive .table td .fio {
+  text-decoration: none;
+  color: black;
+}
+.table-responsive .table td .fio:hover {
+  cursor: pointer;
+}
 
 .ofp h1 {
   text-align: center;

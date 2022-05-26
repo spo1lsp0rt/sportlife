@@ -241,7 +241,7 @@
                                        $gender = DB::select('select gender from userdata where ID_User ='. $user->ID_User);
                                        //dd($results);
                                        if(isset($gender)){
-                                           $points = getPoints($test, $gender, $ofp_test, $summbal, $points);
+                                           getPoints($test, $gender, $ofp_test, $summbal, $points);
                                        }
                                    }
                                    //dd($points);
@@ -251,7 +251,7 @@
                                     <th scope="row">{{$n++}}</th>
                                     <td>
                                         <div id="{{$user->ID_User}}" class='data_field'>
-                                            <a data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                                            <a class="fio" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
                                                 {{$user->FullName}}
                                             </a>
                                         </div>
@@ -372,13 +372,23 @@
     <script>
         function setPoints(el) {
             const id = el.parentElement.id;
-            let arr_groups = <?php echo json_encode($UserPoints_temp[14]); ?>;
+            let matrix = <?php echo json_encode($UserPoints_temp); ?>;
+            console.log(matrix);
+            let arr_groups;
+            let keys = <?php echo json_encode($keys); ?>;
+            for(i = 0; i < keys.length; i++){
+                if(keys[i] == id)
+                {
+                    arr_groups = matrix[keys[i]];
+                    i = keys.length;
+                }
+            }
             for (let i = 0; i < arr_groups.length; i++) {
                 var t = i + 1;
                 document.getElementById('out' + t).innerHTML = `${arr_groups[i]}`;
             }
         }
-        let btns = document.querySelectorAll('a');
+        let btns = document.querySelectorAll('a.fio');
         btns.forEach((btn) => {
             btn.addEventListener('click', () => {
                 setPoints(btn);
