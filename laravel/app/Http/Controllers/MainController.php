@@ -137,7 +137,9 @@ class MainController extends Controller
     public function  out_ofp()
     {
         $gender = "";
-        if($_POST['gender'] == 'Юноши')
+        if($_POST['gender'] == 'Все')
+            $gender = "все";
+        else if($_POST['gender'] == 'Юноши')
             $gender = "муж";
         else if($_POST['gender'] = 'Девушки')
             $gender = "жен";

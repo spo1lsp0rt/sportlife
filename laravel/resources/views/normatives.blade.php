@@ -27,7 +27,6 @@
 @section('title')Нормативы@endsection
 
 @section('stylesheet')
-    <link rel="stylesheet" type="text/css" href="{{url('css/statistic_table.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url('css/normatives.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url('css/combobox.css')}}">
 @endsection
@@ -137,7 +136,7 @@
             foreach ($groups as $group) {
                 $arr_groups[] = $group->Name;
             }
-            $arr_genders = array('Юноши', 'Девушки');
+            $arr_genders = array('Все', 'Юноши', 'Девушки');
         @endphp
         <script type="text/javascript">
             let arr_groups = <?php echo json_encode($arr_groups); ?>;
@@ -177,13 +176,19 @@
 
         @php
             $ofp_id_class = 1;
-            $ofp_gender = "муж";
+            $ofp_gender = "все";
             if(session('ofp_id_class'))
                 $ofp_id_class = session('ofp_id_class');
             if(session('ofp_gender'))
                 $ofp_gender = session('ofp_gender');
             $normatives = DB::select('select * from ofp_normatives');
-            $users = DB::table('user')->where('id_class', $ofp_id_class)->where('gender', $ofp_gender)->get()->toArray();
+            $ofp_name_class = DB::select('select Name from class where id_class = ' .$ofp_id_class);
+            if ($ofp_gender == "все") {
+                $users = DB::table('user')->where('id_class', $ofp_id_class)->get()->toArray();
+            }
+            else {
+                $users = DB::table('user')->where('id_class', $ofp_id_class)->where('gender', $ofp_gender)->get()->toArray();
+            }
             $n = 1;
             //Многомерный массив $total предназначен для подсчета
             // суммы результатов студентов по кнокретному нормативу
@@ -206,7 +211,17 @@
                                 <th scope="col">№</th>
                                 <th scope="col">ФИО студента</th>
                                 @foreach($normatives as $normative)
-                                    @php $norm = $normative->name . " " . $normative->female_normative . ($normative->female_normative ? "/" : "") . " " . $normative->male_normative . "\n" . $normative->unit;  @endphp
+                                    @php
+                                        if($ofp_gender == "муж") {
+                                            $norm = $normative->name . " " . $normative->male_normative . "\n" . $normative->unit;
+                                        }
+                                        else if($ofp_gender == "жен") {
+                                            $norm = $normative->name . " " . $normative->female_normative . "\n" . $normative->unit;
+                                        }
+                                        else {
+                                            $norm = $normative->name . " " . $normative->female_normative . ($normative->female_normative ? "/" : "") . " " . $normative->male_normative . "\n" . $normative->unit;
+                                        }
+                                    @endphp
                                     <th scope="col">{{$norm}}</th>
                                 @endforeach
                                 <th style="border-left: 2px solid black" scope="col">Итог баллов</th>
@@ -251,7 +266,7 @@
                                                        $points[$test->id_normative - 1] = 4;
                                                        $summbal+= 4;
                                                    }
-                                                   else if ($ofp_test[3]->male_normative >= $test->result){
+                                                   else if ($ofp_test[4]->male_normative >= $test->result){
                                                        $points[$test->id_normative - 1] = 5;
                                                        $summbal+= 5;
                                                    }
@@ -278,7 +293,7 @@
                                                        $summbal+= 4;
                                                        $points[$test->id_normative - 1] = 4;
                                                    }
-                                                   else if ($ofp_test[3]->male_normative <= $test->result){
+                                                   else if ($ofp_test[4]->male_normative <= $test->result){
                                                        $summbal += 5;
                                                        $points[$test->id_normative - 1] = 5;
                                                    }
@@ -308,7 +323,7 @@
                                                        $points[$test->id_normative - 1] = 4;
                                                        $summbal+= 4;
                                                    }
-                                                   else if ($ofp_test[3]->female_normative >= $test->result){
+                                                   else if ($ofp_test[4]->female_normative >= $test->result){
                                                        $points[$test->id_normative - 1] = 5;
                                                        $summbal+= 5;
                                                    }
@@ -335,7 +350,7 @@
                                                        $summbal+= 4;
                                                        $points[$test->id_normative - 1] = 4;
                                                    }
-                                                   else if ($ofp_test[3]->female_normative <= $test->result){
+                                                   else if ($ofp_test[4]->female_normative <= $test->result){
                                                        $summbal+= 5;
                                                        $points[$test->id_normative - 1] = 5;
                                                    }
@@ -472,7 +487,6 @@
 
 @section('scriptsheet')
     <script>
-
         function setPoints(el) {
             const id = el.parentElement.id;
             let arr_groups = <?php echo json_encode($UserPoints_temp[14]); ?>;
@@ -529,4 +543,22 @@
         }
     </script>
     <script src="{{ asset('js/combobox.js') }}"></script>
+    <script>
+        const temp = <?php echo json_encode($ofp_gender)?>;
+        var ofp_gender = 'Все';
+        if (temp === 'муж') {
+            ofp_gender = 'Юноши';
+        }
+        else if (temp === 'жен') {
+            ofp_gender = 'Девушки';
+        }
+        const ofp_name_class = <?php echo json_encode($ofp_name_class)?>;
+        const arr_optionEl = document.querySelectorAll('.combo-option');
+        arr_optionEl.forEach(function (optionEl) {
+            if (optionEl.innerText === ofp_name_class[0].Name || optionEl.innerText === ofp_gender)
+            {
+                optionEl.click();
+            }
+        });
+    </script>
 @endsection
