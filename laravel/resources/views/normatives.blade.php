@@ -238,7 +238,7 @@
                                    foreach ($results as $test){
                                        //Берем нормативы определенного задания
                                        $ofp_test = DB::select('select * from ofp_assessment_tests where id_ofp_test ='. $test->id_normative);
-                                       $gender = DB::select('select gender from userdata where ID_User ='. $user->ID_User);
+                                       $gender = DB::select('select gender from user where ID_User ='. $user->ID_User);
                                        //dd($results);
                                        if(isset($gender)){
                                            getPoints($test, $gender, $ofp_test, $summbal, $points);

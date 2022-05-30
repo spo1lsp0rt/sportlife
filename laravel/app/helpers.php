@@ -127,7 +127,7 @@ if(!function_exists('getPoints'))
                 //Находим нужный балл
                 if ($ofp_test[0]->female_normative > $test->result){
                     $summbal+= 0;
-                    $points += 0;
+                    $points[$test->id_normative - 1] = 0;
                 }
                 else if ($ofp_test[0]->female_normative <= $test->result && $ofp_test[1]->female_normative > $test->result){
                     $summbal+= 1;
