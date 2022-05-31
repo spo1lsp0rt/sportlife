@@ -18,11 +18,7 @@
         foreach ($groups as $group) {
             $arr_groups[] = $group->Name;
         }
-
-        $faculties = DB::select('select * from faculty');
-        $arr_faculties = array();
-        foreach ($faculties as $faculty)
-            $arr_faculties[] = $faculty->Name;
+        $arr_genders = array('Юноша', 'Девушка');
 
         $key_success = false;
         $name = "";
@@ -39,8 +35,8 @@
     @endphp
     <script type="text/javascript">
         let arr_groups = <?php echo json_encode($arr_groups); ?>;
-        let arr_faculties = <?php echo json_encode($arr_faculties); ?>;
-        let arr_options = [arr_groups, arr_faculties];
+        let arr_genders = <?php echo json_encode($arr_genders); ?>;
+        let arr_options = [arr_groups, arr_genders];
     </script>
 
     <div class="container">
@@ -84,6 +80,12 @@
                             </div>
                         </div>
                         <div class="personal_info">
+                            <div name="gender" class="combo js-combobox">
+                                <input @if(!$key_success) disabled readonly @endif name="gender" aria-autocomplete="none" aria-autocomplete="none" aria-controls="gender-listbox" aria-haspopup="gender-listbox" id="gender-combo" class="combo-input" role="combobox" type="text">
+                                <div class="combo-menu" role="listbox" id="gender-listbox"></div>
+                            </div>
+                        </div>
+                        <div class="personal_info">
                             <input @if(!$key_success) disabled readonly @endif name="email" type="text" class="form-control email_input" autocomplete="off" placeholder="Email ⃰">
                         </div>
                         <div class="personal_info">
@@ -91,12 +93,6 @@
                         </div>
                         <div class="personal_info">
                             <input @if(!$key_success) disabled readonly @endif name="password_confirmation" type="password" class="form-control password_input" autocomplete="off" placeholder="Подтвердите пароль ⃰">
-                        </div>
-                        <div class="registration_agreement_field">
-                            <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                                <label class="form-check-label" for="flexSwitchCheckDefault">Я принимаю условия <a class="agreement_link" href="/privacy">Пользовательского соглашения</a></label>
-                            </div>
                         </div>
                         <button @if(!$key_success) disabled @endif type="submit" class="btn btn-dark registration_btn">Зарегистрироваться</button>
                     </form>

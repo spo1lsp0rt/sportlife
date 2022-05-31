@@ -101,11 +101,15 @@ class MainController extends Controller
                 ->with('fio', $fio);
         }
         $id_group = DB::table('class')->where('Name', $request->input('group'))->value('ID_Class');
+        $gender = 'муж';
+        if ($request->input('gender') == 'Девушка') {
+            $gender = 'жен';
+        }
         DB::table('user')->insert([
             'Fullname' => $fio,
             'ID_Role' => 1,
             'id_class' => $id_group,
-            'gender' => 'муж' // БРАТЬ ИЗ $_POST !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            'gender' => $gender
         ]);
         $id_user = DB::table('user')->where('FullName', $fio)->value('ID_User');
         DB::table('userdata')->insert([

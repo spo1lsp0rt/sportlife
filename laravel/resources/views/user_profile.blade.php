@@ -186,7 +186,7 @@
                     <div class="container">
                         <div class="row">
                             <div class="table-responsive">
-                                <table class="table table-bordered align-middle text-center">
+                                <table id="key_table" class="table table-bordered align-middle text-center">
                                     <thead class="align-middle">
                                     <tr>
                                         <th scope="col">ФИО</th>
@@ -259,48 +259,60 @@
                     </form>
                 </div>
 
-                    {{--Модальное окно по нажатии на студента--}}
-                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
-                         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalCenterTitle">Редактирование</h5>
-                                    <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <form action="/updateStudent" method="post">
-                                    @csrf
-                                    <div class="modal-body">
-                                        <div class="container-fluid">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <input type="text" name="new_fio" id="out1" class="form-control"
-                                                           value="">
-                                                    <input type="hidden" name="old_fio" id="out2" class="form-control"
-                                                           value="">
-                                                </div>
+                @php
+                    $groups = DB::select('select * from class');
+                    $arr_groups = array();
+                    foreach ($groups as $group) {
+                        $arr_groups[] = $group->Name;
+                    }
+                @endphp
+                <script type="text/javascript">
+                    let arr_groups = <?php echo json_encode($arr_groups); ?>;
+                    let arr_options = [arr_groups];
+                </script>
+
+                {{--Модальное окно по нажатии на студента--}}
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalCenterTitle">Редактирование</h5>
+                                <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <form action="/updateStudent" method="post">
+                                @csrf
+                                <div class="modal-body">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col">
+                                                <input type="text" name="new_fio" id="out1" class="form-control"
+                                                       value="">
+                                                <input type="hidden" name="old_fio" id="out2" class="form-control"
+                                                       value="">
                                             </div>
-                                            <div class="row">
-                                                <div class="col">
-                                                    <div name="group" class="combo js-combobox">
-                                                        <input name="group" aria-autocomplete="none"
-                                                               aria-controls="groups-listbox" aria-haspopup="groups-listbox"
-                                                               id="groups-combo" class="combo-input" role="combobox"
-                                                               type="text">
-                                                        <div class="combo-menu" role="listbox" id="groups-listbox"></div>
-                                                    </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div name="group" class="combo js-combobox">
+                                                    <input name="group" aria-autocomplete="none"
+                                                           aria-controls="groups-listbox" aria-haspopup="groups-listbox"
+                                                           id="groups-combo" class="combo-input" role="combobox"
+                                                           type="text">
+                                                    <div class="combo-menu" role="listbox" id="groups-listbox"></div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="modal-footer">
-                                        <button formaction="updateStudent" class="btn btn-success">Сохранить</button>
-                                    </div>
-                                </form>
-                            </div>
-
+                                </div>
+                                <div class="modal-footer">
+                                    <button formaction="updateStudent" class="btn btn-success">Сохранить</button>
+                                </div>
+                            </form>
                         </div>
+
                     </div>
+                </div>
 
                 <script>
                     var unhide_keys = function () {
@@ -318,12 +330,20 @@
                     }
                     var hide_some = function () {
                         var i = 0;
-                        document.querySelectorAll('.key_row').forEach(function (key) {
-                            if (i > 2) {
-                                key.style.display = "none";
-                            }
-                            i++;
-                        });
+                        const arr_keyrows = document.querySelectorAll('.key_row');
+                        // если количество ключей более 3, отображается кнопка Раскрыть, а в таблице отображается не более двух ключей
+                        if (arr_keyrows.length > 2) {
+                            document.getElementById('unhide_btn').style.display = "block";
+                            arr_keyrows.forEach(function (key) {
+                                if (i > 1) {
+                                    key.style.display = "none";
+                                }
+                                i++;
+                            });
+                        }
+                        else if (arr_keyrows.length === 0) {
+                            document.getElementById('key_table').style.display = "none";
+                        }
                     }
                     hide_some();
                 </script>

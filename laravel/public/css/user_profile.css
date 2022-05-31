@@ -121,7 +121,7 @@
   background-color: rgba(27, 92, 255, 0.5);
 }
 .user_profile .admin_panel .unhide_btn, .user_profile .admin_panel .hide_btn {
-  display: block;
+  display: none;
   margin: auto;
   height: 40px;
   width: 150px;
@@ -133,9 +133,6 @@
 }
 .user_profile .admin_panel .unhide_btn:hover, .user_profile .admin_panel .hide_btn:hover {
   background-color: rgba(193, 193, 193, 0.5);
-}
-.user_profile .admin_panel .hide_btn {
-  display: none;
 }
 .user_profile .admin_panel .user_delbtn {
   margin: 25px 0 0 0;

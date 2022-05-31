@@ -10,6 +10,11 @@
 .authorize_menu .alert {
   height: 55px;
 }
+.authorize_menu .login_btn {
+  display: block;
+  margin: 40px auto 0 auto;
+  width: 200px;
+}
 
 @media (max-width: 991px) {
   .authorize_menu {
