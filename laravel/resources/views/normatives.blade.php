@@ -34,91 +34,30 @@
 @section('main_content')
 
     @if($currentUser->ID_Role == 1)
+        @php
+            $normatives = DB::select('select * from ofp_normatives');
+
+        @endphp
+
+
         <section class="ofp">
             <div class="container">
                 <h1>Оценка уровня физической подготовленности</h1>
                 <div class="row row-cols-1 row-cols-md-3 g-4">
-                    <div class="col">
-                        <div class="card">
-                            <img src="/img/run100.gif" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Бег 100м (сек.)</h5>
-                                <input type="text" placeholder="Введите результат" class="ofp_result" class="" name="" value="">
+                    @foreach($normatives as $normative)
+                        @php
+                            $title = $normative->name . " " . $normative->female_normative . ($normative->female_normative ? "/" : "") . " " . $normative->male_normative . "\n" . $normative->unit;
+                        @endphp
+                        <div class="col">
+                            <div class="card">
+                                <img src="/img/run100.gif" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{$title}}</h5>
+                                    <input type="text" placeholder="Введите результат" class="ofp_result" class="" name="" value="">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <img src="/img/run_long.gif" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Бег 2000м/3000м (мин.,с)</h5>
-                                <input type="text" placeholder="Введите результат" class="ofp_result" class="" name="" value="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <img src="/img/run_shuttle.gif" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Челночный бег 3 по 10 (сек.)</h5>
-                                <input type="text" placeholder="Введите результат" class="ofp_result" class="" name="" value="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Прыжок с разбега (м,см)</h5>
-                                <input type="text" placeholder="Введите результат" class="ofp_result" class="" name="" value="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Прыжок в длину с места (м,см)</h5>
-                                <input type="text" placeholder="Введите результат" class="ofp_result" class="" name="" value="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Метание гранаты 500г/700г (м)</h5>
-                                <input type="text" placeholder="Введите результат" class="ofp_result" class="" name="" value="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Подтягивание на перекладине низная/высокая (кол-во раз)</h5>
-                                <input type="text" placeholder="Введите результат" class="ofp_result" class="" name="" value="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Наклон вперед из положения стоя с прямыми ногами на гимнастической скамье (см) </h5>
-                                <input type="text" placeholder="Введите результат" class="ofp_result" class="" name="" value="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Поднимание туловища из положения лежа на спине за 1 мин (кол-во раз)</h5>
-                                <input type="text" placeholder="Введите результат" class="ofp_result" class="" name="" value="">
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 <button class="result_btn">Получить результат</button>
             </div>
@@ -356,101 +295,100 @@
                 </div>
             </div>
         </div>
-    @endif
 
-    @php
-        $i = 0;
-        foreach ($UserPoints as $points){
-            $UserPoints_temp["$keys[$i]"] = $points;
-            $i++;
-        }
-    @endphp
-@endsection
+        @php
+            $i = 0;
+            foreach ($UserPoints as $points){
+                $UserPoints_temp["$keys[$i]"] = $points;
+                $i++;
+            }
+        @endphp
 
-@section('scriptsheet')
-    <script>
-        function setPoints(el) {
-            const id = el.parentElement.id;
-            let matrix = <?php echo json_encode($UserPoints_temp); ?>;
-            console.log(matrix);
-            let arr_groups;
-            let keys = <?php echo json_encode($keys); ?>;
-            for(i = 0; i < keys.length; i++){
-                if(keys[i] == id)
-                {
-                    arr_groups = matrix[keys[i]];
-                    i = keys.length;
+
+        <script>
+            function setPoints(el) {
+                const id = el.parentElement.id;
+                let matrix = <?php echo json_encode($UserPoints_temp); ?>;
+                console.log(matrix);
+                let arr_groups;
+                let keys = <?php echo json_encode($keys); ?>;
+                for(i = 0; i < keys.length; i++){
+                    if(keys[i] == id)
+                    {
+                        arr_groups = matrix[keys[i]];
+                        i = keys.length;
+                    }
+                }
+                for (let i = 0; i < arr_groups.length; i++) {
+                    var t = i + 1;
+                    document.getElementById('out' + t).innerHTML = `${arr_groups[i]}`;
                 }
             }
-            for (let i = 0; i < arr_groups.length; i++) {
-                var t = i + 1;
-                document.getElementById('out' + t).innerHTML = `${arr_groups[i]}`;
-            }
-        }
-        let btns = document.querySelectorAll('a.fio');
-        btns.forEach((btn) => {
-            btn.addEventListener('click', () => {
-                setPoints(btn);
+            let btns = document.querySelectorAll('a.fio');
+            btns.forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    setPoints(btn);
+                });
             });
-        });
 
-        var listener = function(event){
-            event.preventDefault();
-        }
-        document.querySelectorAll('.result_cell').forEach(function (cell) {
-            cell.addEventListener("mousedown", listener, false);
-        });
-        var edit = function(){
-            document.getElementById('edit_btn').style.display="none";  // for hide button
-            document.getElementById('cancel_btn').style.display="block";
-            document.getElementById('save_btn').style.display="block";
-            const arr_rescells = document.querySelectorAll('.result_cell');
-            arr_rescells.forEach(function (cell) {
-                cell.removeAttribute('readonly');
-                cell.removeEventListener('mousedown', listener, false);
-            });
-            document.getElementById('edit_btn_primary').click()
-        }
-        var cancel = function(){
-            document.getElementById('edit_btn').style.display="block";  // for hide button
-            document.getElementById('cancel_btn').style.display="none";
-            document.getElementById('save_btn').style.display="none";
-            const arr_rescells = document.querySelectorAll('.result_cell');
-            arr_rescells.forEach(function (cell) {
-                cell.setAttribute('readonly', 'true');
-                cell.addEventListener("mousedown", listener, false);
-            });
-            document.getElementById('cancel_btn_primary').click()
-        }
-        var save = function(){
-            document.getElementById('edit_btn').style.display="block";  // for hide button
-            document.getElementById('cancel_btn').style.display="none";
-            document.getElementById('save_btn').style.display="none";
-            const arr_rescells = document.querySelectorAll('.result_cell');
-            arr_rescells.forEach(function (cell) {
-                cell.setAttribute('readonly', 'true');
-                cell.addEventListener("mousedown", listener, false);
-            });
-            document.getElementById('save_btn_primary').click()
-        }
-    </script>
-    <script src="{{ asset('js/combobox.js') }}"></script>
-    <script>
-        const temp = <?php echo json_encode($ofp_gender)?>;
-        var ofp_gender = 'Все';
-        if (temp === 'муж') {
-            ofp_gender = 'Юноши';
-        }
-        else if (temp === 'жен') {
-            ofp_gender = 'Девушки';
-        }
-        const ofp_name_class = <?php echo json_encode($ofp_name_class)?>;
-        const arr_optionEl = document.querySelectorAll('.combo-option');
-        arr_optionEl.forEach(function (optionEl) {
-            if (optionEl.innerText === ofp_name_class[0].Name || optionEl.innerText === ofp_gender)
-            {
-                optionEl.click();
+            var listener = function(event){
+                event.preventDefault();
             }
-        });
-    </script>
+            document.querySelectorAll('.result_cell').forEach(function (cell) {
+                cell.addEventListener("mousedown", listener, false);
+            });
+            var edit = function(){
+                document.getElementById('edit_btn').style.display="none";  // for hide button
+                document.getElementById('cancel_btn').style.display="block";
+                document.getElementById('save_btn').style.display="block";
+                const arr_rescells = document.querySelectorAll('.result_cell');
+                arr_rescells.forEach(function (cell) {
+                    cell.removeAttribute('readonly');
+                    cell.removeEventListener('mousedown', listener, false);
+                });
+                document.getElementById('edit_btn_primary').click()
+            }
+            var cancel = function(){
+                document.getElementById('edit_btn').style.display="block";  // for hide button
+                document.getElementById('cancel_btn').style.display="none";
+                document.getElementById('save_btn').style.display="none";
+                const arr_rescells = document.querySelectorAll('.result_cell');
+                arr_rescells.forEach(function (cell) {
+                    cell.setAttribute('readonly', 'true');
+                    cell.addEventListener("mousedown", listener, false);
+                });
+                document.getElementById('cancel_btn_primary').click()
+            }
+            var save = function(){
+                document.getElementById('edit_btn').style.display="block";  // for hide button
+                document.getElementById('cancel_btn').style.display="none";
+                document.getElementById('save_btn').style.display="none";
+                const arr_rescells = document.querySelectorAll('.result_cell');
+                arr_rescells.forEach(function (cell) {
+                    cell.setAttribute('readonly', 'true');
+                    cell.addEventListener("mousedown", listener, false);
+                });
+                document.getElementById('save_btn_primary').click()
+            }
+        </script>
+        <script src="{{ asset('js/combobox.js') }}"></script>
+        <script>
+            const temp = <?php echo json_encode($ofp_gender)?>;
+            var ofp_gender = 'Все';
+            if (temp === 'муж') {
+                ofp_gender = 'Юноши';
+            }
+            else if (temp === 'жен') {
+                ofp_gender = 'Девушки';
+            }
+            const ofp_name_class = <?php echo json_encode($ofp_name_class)?>;
+            const arr_optionEl = document.querySelectorAll('.combo-option');
+            arr_optionEl.forEach(function (optionEl) {
+                if (optionEl.innerText === ofp_name_class[0].Name || optionEl.innerText === ofp_gender)
+                {
+                    optionEl.click();
+                }
+            });
+        </script>
+    @endif
 @endsection
