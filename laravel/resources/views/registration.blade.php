@@ -69,13 +69,13 @@
                     <form class="registration_form_border" method="post" action="/reg">
                         @csrf
                         <div class="personal_info">
-                            <input disabled readonly name="secondname" type="text" class="form-control second-name_input" autocomplete="off" value="{{$surname}}" placeholder="Фамилия ">
+                            <input readonly name="secondname" type="text" class="form-control second-name_input" autocomplete="off" value="{{$surname}}" placeholder="Фамилия ">
                         </div>
                         <div class="personal_info">
-                            <input disabled readonly name="firstname" type="text" class="form-control first-name_input" value="{{$name}}" placeholder="Имя ⃰">
+                            <input readonly name="firstname" type="text" class="form-control first-name_input" value="{{$name}}" placeholder="Имя ⃰">
                         </div>
                         <div class="personal_info">
-                            <input disabled readonly name="lastname" type="text" class="form-control patronymic_input" value="{{$lastname}}" placeholder="Отчество">
+                            <input readonly name="lastname" type="text" class="form-control patronymic_input" value="{{$lastname}}" placeholder="Отчество">
                         </div>
                         <div class="personal_info">
                             <div name="group" class="combo js-combobox">

@@ -1,6 +1,8 @@
 @extends('layout')
 
-@section('title')Ваш профиль@endsection
+@section('title')
+    Ваш профиль
+@endsection
 
 @section('stylesheet')
     <link rel="stylesheet" type="text/css" href="{{url('css/statistic_table.css')}}">
@@ -34,12 +36,20 @@
 
     <div class="container">
         @if(session('add_success'))
-                <div class="alert alert-success">{{session('add_success')}}</div>
+            <div class="alert alert-success">{{session('add_success')}}</div>
         @endif
-            @if(session('update_success'))
-                <div class="alert alert-success">{{session('update_success')}}</div>
-            @endif
-        <div class="user_profile">
+        @if(session('update_success'))
+            <div class="alert alert-success">{{session('update_success')}}</div>
+        @endif
+        @if(session('delete_success'))
+            <div class="alert alert-success">{{session('delete_success')}}</div>
+        @endif
+        @foreach($errors->all() as $error)
+            <div class="alert alert-danger">
+                <li>{{$error}}</li>
+            </div>
+        @endforeach
+            <div class="user_profile">
             <div class="profile_title"><h2>Профиль</h2></div>
             <div class="profile_img">
                 <img src="/img/profile_img.png" alt="profile">
@@ -89,8 +99,10 @@
                                         $name_test = DB::table('tests')->where('ID_Test', $stat->ID_Test)->value('Name');
                                     @endphp
                                     <tr>
-                                        <th class="p-0" scope="row"><a href="/test_result/{{$stat->ID_Result}}">{{$stat->date_test}}</a></th>
-                                        <td class="p-0"><a href="/test_result/{{$stat->ID_Result}}">{{$name_test}}</a></td>
+                                        <th class="p-0" scope="row"><a
+                                                href="/test_result/{{$stat->ID_Result}}">{{$stat->date_test}}</a></th>
+                                        <td class="p-0"><a href="/test_result/{{$stat->ID_Result}}">{{$name_test}}</a>
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -121,23 +133,25 @@
                         <form class="form_parameters" action="/out_ofp" method="post">
                             @csrf
                             <div class="parameters_panel">
-                                    <div class="group_combobox">
-                                        <div name="group" class="combo js-combobox">
-                                            <input name="group" autocomplete="off" aria-controls="groups-listbox" aria-haspopup="groups-listbox" id="groups-combo" class="combo-input" role="combobox" type="text">
-                                            <div class="combo-menu" role="listbox" id="groups-listbox"></div>
-                                        </div>
+                                <div class="group_combobox">
+                                    <div name="group" class="combo js-combobox">
+                                        <input name="group" autocomplete="off" aria-controls="groups-listbox"
+                                               aria-haspopup="groups-listbox" id="groups-combo" class="combo-input"
+                                               role="combobox" type="text">
+                                        <div class="combo-menu" role="listbox" id="groups-listbox"></div>
                                     </div>
-                                    <button type="submit" class="show_btn">Вывести</button>
+                                </div>
+                                <button type="submit" class="show_btn">Вывести</button>
                             </div>
                         </form>
                         <div class="table-responsive">
                             <table class="table table-bordered align-middle text-center">
                                 <thead class="align-middle">
-                                    <tr>
-                                        <th scope="col">Дата</th>
-                                        <th scope="col">ФИО</th>
-                                        <th scope="col">Название</th>
-                                    </tr>
+                                <tr>
+                                    <th scope="col">Дата</th>
+                                    <th scope="col">ФИО</th>
+                                    <th scope="col">Название</th>
+                                </tr>
                                 </thead>
                                 <tbody style="line-height: 3; white-space: nowrap;">
                                 @foreach($allStat as $stat)
@@ -147,50 +161,17 @@
                                     @endphp
 
                                     <tr>
-                                        <th class="p-0" scope="row"><a href="/test_result/{{$stat->ID_Result}}">{{$stat->date_test}}</a></th>
-                                        <td class="p-0"><a href="/test_result/{{$stat->ID_Result}}">{{$name_user}}</a></td>
-                                        <td class="p-0"><a href="/test_result/{{$stat->ID_Result}}">{{$name_test}}</a></td>
+                                        <th class="p-0" scope="row"><a
+                                                href="/test_result/{{$stat->ID_Result}}">{{$stat->date_test}}</a></th>
+                                        <td class="p-0"><a href="/test_result/{{$stat->ID_Result}}">{{$name_user}}</a>
+                                        </td>
+                                        <td class="p-0"><a href="/test_result/{{$stat->ID_Result}}">{{$name_test}}</a>
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
                             </table>
                         </div>
-                    </div>
-                </div>
-                {{--Модальное окно по нажатии на студента--}}
-                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalCenterTitle">Редактирование</h5>
-                                <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <form action="/updateStudent" method="post">
-                                @csrf
-                                <div class="modal-body">
-                                    <div class="container-fluid">
-                                        <div class="row">
-                                            <div class="col">
-                                                <input type="text" name="new_fio" id="out1" class="form-control" value="" >
-                                                <input type="hidden" name="old_fio" id="out2" class="form-control" value="" >
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col">
-                                                <div name="group" class="combo js-combobox">
-                                                    <input name="group" aria-autocomplete="none" aria-controls="groups-listbox" aria-haspopup="groups-listbox" id="groups-combo" class="combo-input" role="combobox" type="text">
-                                                    <div class="combo-menu" role="listbox" id="groups-listbox"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button formaction="updateStudent" class="btn btn-success">Сохранить</button>
-                                </div>
-                            </form>
-                        </div>
-
                     </div>
                 </div>
             @endif
@@ -208,18 +189,16 @@
                                 <table class="table table-bordered align-middle text-center">
                                     <thead class="align-middle">
                                     <tr>
-                                        <th scope="col">ID</th>
                                         <th scope="col">ФИО</th>
                                         <th scope="col">Ключ</th>
                                     </tr>
                                     </thead>
                                     <tbody style="line-height: 3; white-space: nowrap;">
                                     @php
-                                        $reg_keys = @DB::select('select * from reg_key');
+                                        $reg_keys = DB::select('select * from reg_key');
                                     @endphp
                                     @foreach($reg_keys as $reg_key)
                                         <tr class="key_row">
-                                            <th scope="row">{{$reg_key->id}}</th>
                                             <td>{{$reg_key->fio}}</td>
                                             <td>{{$reg_key->key}}</td>
                                         </tr>
@@ -250,20 +229,22 @@
                                         </thead>
                                         <tbody style="line-height: 3; white-space: nowrap;">
                                         @php
-                                            $students = @DB::select('select * from student');
+                                            $students = DB::select('select * from user where ID_Role = 1');
                                         @endphp
                                         @foreach($students as $student)
                                             @php
-                                                $class = DB::table('class')->where('ID_Class', $student->ID_Class)->value('Name');
-                                                $faculty = DB::table('faculty')->where('id_faculty', DB::table('class')->where('ID_Class', $student->ID_Class)->value('id_faculty'))->value('Name');
+                                                $className = DB::table('class')->where('ID_Class', $student->id_class)->value('Name');
+                                                $facultyName = DB::table('faculty')->where('id_faculty', DB::table('class')->where('ID_Class', $student->id_class)->value('id_faculty'))->value('Name');
                                             @endphp
                                             <tr>
-                                                <th scope="row"><input name="{{$student->ID_Student}}" type="checkbox" style="transform:scale(1.4);"></th>
+                                                <th scope="row"><input name="{{$student->ID_User}}" type="checkbox"
+                                                                       style="transform:scale(1.4);"></th>
                                                 <td>{{$student->FullName}}</td>
-                                                <td>{{$faculty}}</td>
-                                                <td>{{$class}}</td>
+                                                <td>{{$facultyName}}</td>
+                                                <td>{{$className}}</td>
                                                 <td id="{{$student->FullName}}">
-                                                    <button class="modal_btn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                                                    <button class="modal_btn" type="button" data-bs-toggle="modal"
+                                                            data-bs-target="#exampleModalCenter">
                                                         Редактировать
                                                     </button>
                                                 </td>
@@ -277,22 +258,65 @@
                         </div>
                     </form>
                 </div>
-            
+
+                    {{--Модальное окно по нажатии на студента--}}
+                    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalCenterTitle">Редактирование</h5>
+                                    <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <form action="/updateStudent" method="post">
+                                    @csrf
+                                    <div class="modal-body">
+                                        <div class="container-fluid">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <input type="text" name="new_fio" id="out1" class="form-control"
+                                                           value="">
+                                                    <input type="hidden" name="old_fio" id="out2" class="form-control"
+                                                           value="">
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col">
+                                                    <div name="group" class="combo js-combobox">
+                                                        <input name="group" aria-autocomplete="none"
+                                                               aria-controls="groups-listbox" aria-haspopup="groups-listbox"
+                                                               id="groups-combo" class="combo-input" role="combobox"
+                                                               type="text">
+                                                        <div class="combo-menu" role="listbox" id="groups-listbox"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button formaction="updateStudent" class="btn btn-success">Сохранить</button>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+
                 <script>
-                    var unhide_keys = function(){
-                        document.getElementById('unhide_btn').style.display="none";
-                        document.getElementById('hide_btn').style.display="block";
+                    var unhide_keys = function () {
+                        document.getElementById('unhide_btn').style.display = "none";
+                        document.getElementById('hide_btn').style.display = "block";
                         const arr_keyrows = document.querySelectorAll('.key_row');
                         arr_keyrows.forEach(function (key) {
                             key.style.display = "table-row";
                         });
                     }
-                    var hide_keys = function(){
-                        document.getElementById('unhide_btn').style.display="block";
-                        document.getElementById('hide_btn').style.display="none";
+                    var hide_keys = function () {
+                        document.getElementById('unhide_btn').style.display = "block";
+                        document.getElementById('hide_btn').style.display = "none";
                         hide_some();
                     }
-                    var hide_some = function() {
+                    var hide_some = function () {
                         var i = 0;
                         document.querySelectorAll('.key_row').forEach(function (key) {
                             if (i > 2) {

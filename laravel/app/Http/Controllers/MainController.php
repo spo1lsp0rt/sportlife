@@ -101,25 +101,20 @@ class MainController extends Controller
                 ->with('fio', $fio);
         }
         $id_group = DB::table('class')->where('Name', $request->input('group'))->value('ID_Class');
-        $id_student = DB::table('student')->max('ID_Student');
-        DB::table('student')->insert([
-            'ID_Student' => $id_student + 1,
-            'Fullname' => $fio,
-            'ID_Class' => $id_group
-        ]);
-        $id_user = DB::table('user')->max('ID_User');
         DB::table('user')->insert([
-            'ID_User' => $id_user + 1,
-            'FullName' => $fio,
-            'ID_Role' => 1
+            'Fullname' => $fio,
+            'ID_Role' => 1,
+            'id_class' => $id_group,
+            'gender' => 'муж' // БРАТЬ ИЗ $_POST !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         ]);
+        $id_user = DB::table('user')->where('FullName', $fio)->value('ID_User');
         DB::table('userdata')->insert([
-            'ID_User' => $id_user + 1,
+            'ID_User' => $id_user,
             'Login' => $request->input('email'),
             'Password' => hash('sha512', $request->input('password'))
         ]);
         DB::table('reg_key')->where('fio', $fio)->delete();
-        return redirect('authorization');
+        return redirect('authorization')->with(['reg_success' => 'Регистрация прошла успешно!']);
     }
 
     public function  exit()
@@ -159,9 +154,9 @@ class MainController extends Controller
     }
 
     public function  updateStudent() {
-        $id = DB::table('student')->where('FullName', $_POST['old_fio'])->value('ID_Student');
+        $id = DB::table('user')->where('FullName', $_POST['old_fio'])->value('ID_User');
         $id_class = DB::table('class')->where('Name', $_POST['group'])->value('ID_Class');
-        DB::table('student')->where('ID_Student', $id)->update(array(
+        DB::table('user')->where('ID_User', $id)->update(array(
             'FullName' => $_POST['new_fio'],
             'ID_Class' => $id_class
         ));
@@ -169,14 +164,13 @@ class MainController extends Controller
     }
 
     public function  delete_student(Request $request) {
-       $students = DB::select('select * from student');
+       $users = DB::select('select * from user where ID_Role = 1');
        $success = false;
-       foreach ($students as $student)
+       foreach ($users as $user)
        {
-           if($request->input((string)$student->ID_Student) == "on")
+           if($request->input((string)$user->ID_User) == "on")
            {
-               DB::table('student')->where('ID_Student', $student->ID_Student)->delete();
-               DB::table('user')->where('FullName', $student->FullName)->delete();
+               DB::table('user')->where('ID_User', $user->ID_User)->delete();
                $success = true;
            }
        }

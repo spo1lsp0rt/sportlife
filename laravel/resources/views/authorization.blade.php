@@ -8,6 +8,9 @@
 
 @section('main_content')
 
+    @if(session('reg_success'))
+        <div class="alert alert-success">{{session('reg_success')}}</div>
+    @endif
     <div class="container">
         <div class="row">
             <div class="col">
