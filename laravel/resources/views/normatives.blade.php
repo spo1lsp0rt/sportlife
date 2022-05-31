@@ -36,34 +36,48 @@
     @if($currentUser->ID_Role == 1)
         @php
             $normatives = DB::select('select * from ofp_normatives');
+            $results = DB::select('select * from ofp where id_user =' . $currentUser->ID_User . ' order by id_normative');
         @endphp
-
 
         <section class="ofp">
             <div class="container">
                 <h1>Оценка уровня физической подготовленности</h1>
-                <div class="row row-cols-1 row-cols-md-3 g-4">
-                    @foreach($normatives as $normative)
-                        @php
-                            if($currentUser->gender == "муж") {
-                                $norm = $normative->name . " " . $normative->male_normative . "\n" . $normative->unit;
-                            }
-                            else {
-                                $norm = $normative->name . " " . $normative->female_normative . "\n" . $normative->unit;
-                            }
-                        @endphp
-                        <div class="col">
-                            <div class="card">
-                                <img src="/img/run100.gif" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{$norm}}</h5>
-                                    <input type="text" placeholder="Введите результат" class="ofp_result" class="" name="" value="">
+                <form action="ofp_table" method="post">
+                    @csrf
+                    <div class="row row-cols-1 row-cols-md-3 g-4">
+                        @foreach($normatives as $normative)
+                            @php
+                                if($currentUser->gender == "муж") {
+                                    $norm = $normative->name . " " . $normative->male_normative . "\n" . $normative->unit;
+                                }
+                                else {
+                                    $norm = $normative->name . " " . $normative->female_normative . "\n" . $normative->unit;
+                                }
+                                $res_val = null;
+                                foreach ($results as $result) {
+                                    if ($result->id_normative == $normative->id){
+                                        $res_val = $result->result;
+                                        break;
+                                    }
+                                }
+                            @endphp
+                            <div class="col">
+                                <div class="card">
+                                    <img src="/img/run100.gif" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{$norm}}</h5>
+                                        @if ($res_val == null)
+                                            <input type="text" placeholder="Введите результат" class="ofp_result" name="{{$currentUser->ID_User . '_' . $normative->id}}">
+                                        @else
+                                            <input readonly contenteditable="false" type="text" placeholder="Введите результат" class="ofp_result" name="{{$currentUser->ID_User . '_' . $normative->id}}" value="{{$res_val}}">
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
-                </div>
-                <button class="result_btn">Получить результат</button>
+                        @endforeach
+                    </div>
+                    <button type="submit" class="result_btn">Получить результат</button>
+                </form>
             </div>
         </section>
     @else
