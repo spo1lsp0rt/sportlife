@@ -21,7 +21,7 @@
 }
 .user_profile .profile_panel {
   margin-top: 30px;
-  margin-bottom: 50px;
+  margin-bottom: 10px;
   display: flex;
   justify-content: center;
 }
@@ -56,16 +56,10 @@
 }
 .user_profile .parameters_panel {
   display: flex;
-  margin: 40px auto 0 auto;
+  margin-top: 40px;
 }
-.user_profile .parameters_panel .faculties_combobox {
+.user_profile .parameters_panel .group_combobox {
   margin-right: 10px;
-}
-.user_profile .parameters_panel .faculties_combobox .combo {
-  max-width: 200px;
-}
-.user_profile .parameters_panel .faculties_combobox .combo .combo-input {
-  width: 200px;
 }
 .user_profile .parameters_panel .group_combobox .combo {
   max-width: 200px;
@@ -73,9 +67,19 @@
 .user_profile .parameters_panel .group_combobox .combo .combo-input {
   width: 200px;
 }
+.user_profile .parameters_panel .show_btn {
+  display: block;
+  width: 150px;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+.user_profile .parameters_panel .show_btn:hover {
+  background-image: linear-gradient(to top, #2f2f2f 0%, #373f4b 100%);
+  color: #e5e5e5;
+}
 .user_profile .admin_panel {
   display: block;
-  margin: 0 auto;
+  margin: 40px auto 0 auto;
 }
 .user_profile .admin_panel h3 {
   display: flex;
@@ -116,6 +120,15 @@
 }
 .user_profile .admin_panel .user_delbtn:hover {
   background-color: #dde0e3;
+}
+.user_profile .table {
+  margin-top: 40px;
+}
+.user_profile .table a {
+  display: block;
+  color: black;
+  padding: 0.5rem;
+  text-decoration: none;
 }
 
 @media (max-width: 1200px) {

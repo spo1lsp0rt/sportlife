@@ -22,7 +22,7 @@
 
     .profile_panel
         margin-top: 30px
-        margin-bottom: 50px
+        margin-bottom: 10px
         display: flex
         justify-content: center
 
@@ -57,22 +57,25 @@
 
     .parameters_panel
         display: flex
-        margin: 40px auto 0 auto
-        .faculties_combobox
+        margin-top: 40px
+        .group_combobox
             margin-right: 10px
             .combo
                 max-width: 200px
                 .combo-input
                     width: 200px
-        .group_combobox
-            .combo
-                max-width: 200px
-                .combo-input
-                    width: 200px
+        .show_btn
+            display: block
+            width: 150px
+            border: 1px solid #ced4da
+            border-radius: 0.25rem
+            &:hover
+                background-image: linear-gradient(to top, #2f2f2f 0%, #373f4b 100%)
+                color: #e5e5e5
 
     .admin_panel
         display: block
-        margin: 0 auto
+        margin: 40px auto 0 auto
         h3
             display: flex
             width: 335px
@@ -106,6 +109,12 @@
             font-size: 18px
             &:hover
                 background-color: rgb(221, 224, 227)
-
+    .table
+        margin-top: 40px
+        a
+            display: block
+            color: black
+            padding: 0.5rem
+            text-decoration: none
 
 @import "media_user_profile"

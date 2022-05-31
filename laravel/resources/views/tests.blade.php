@@ -34,22 +34,6 @@
     @if($currentUser->ID_Role == 1 || $currentUser->ID_Role == 2 || $currentUser->ID_Role == 3)
         <div class="tests">
             <div class="tests_title"><h2>Выбор нужного теста</h2></div>
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <div class="tests_search">
-                            <input type="text" placeholder="Введите название теста" class="search_field" />
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-4 offset-lg-8">
-                        <div class="tests_vision">
-                            <div class="vision_title">Отображение:</div>
-                            <a href="#" class="vision_link"><div class="vision_columns"><img src="/icons/columns_grid.png" alt="columns" class="columns_img"></div></a>
-                            <a href="#" class="vision_link"><div class="vision_rows"><img src="/icons/rows_grid.png" alt="rows" class="rows_img"></div></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
 
         @php

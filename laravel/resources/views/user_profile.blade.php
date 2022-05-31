@@ -48,7 +48,56 @@
                 <div class="profile_name">{{$currentUser->FullName}}</div>
             </div>
             @if($currentUser->ID_Role == 1)
-                @yield('user_statistic')
+                @php
+                    if(!array_key_exists('login', $_COOKIE))
+                    {
+                        header('Location: /authorization');
+                        exit;
+                    }
+
+                    $stats = array();
+
+                    $allStat = DB::select('select * from statistic');
+                    $allUsers = DB::select('select * from user');
+                    $currentUser = null;
+                    foreach($allUsers as $user)
+                    {
+                        if($user->ID_User == $_COOKIE['ID_User'])
+                        {
+                            $currentUser = $user;
+                            break;
+                        }
+                    }
+                @endphp
+
+                <div class="container">
+                    <div class="row">
+                        <div class="table-responsive">
+                            <table class="table table-bordered align-middle text-center">
+                                <thead class="align-middle">
+                                <tr>
+                                    <th scope="col">Дата</th>
+                                    <th scope="col">Название</th>
+                                </tr>
+                                </thead>
+                                <tbody style="line-height: 3; white-space: nowrap;">
+                                @foreach($allStat as $stat)
+                                    @if($stat->ID_User != $currentUser->ID_User)
+                                        @continue
+                                    @endif
+                                    @php
+                                        $name_test = DB::table('tests')->where('ID_Test', $stat->ID_Test)->value('Name');
+                                    @endphp
+                                    <tr>
+                                        <th class="p-0" scope="row"><a href="/test_result/{{$stat->ID_Result}}">{{$stat->date_test}}</a></th>
+                                        <td class="p-0"><a href="/test_result/{{$stat->ID_Result}}">{{$name_test}}</a></td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             @endif
             @if($currentUser->ID_Role == 2)
                 @php
@@ -57,72 +106,56 @@
                     foreach ($groups as $group) {
                         $arr_groups[] = $group->Name;
                     }
-
-                    $faculties = DB::select('select * from faculty');
-                    $arr_faculties = array();
-                    foreach ($faculties as $faculty)
-                        $arr_faculties[] = $faculty->Name;
                 @endphp
                 <script type="text/javascript">
                     let arr_groups = <?php echo json_encode($arr_groups); ?>;
-                    let arr_faculties = <?php echo json_encode($arr_faculties); ?>;
-                    let arr_options = [arr_faculties, arr_groups];
+                    let arr_options = [arr_groups];
                 </script>
-                <div class="parameters_panel">
-                    <div class="faculties_combobox">
-                        <div name="faculty" class="combo js-combobox">
-                            <input name="group" aria-autocomplete="none" aria-controls="faculties-listbox" aria-haspopup="faculties-listbox" id="faculties-combo" class="combo-input" role="combobox" type="text">
-                            <div class="combo-menu" role="listbox" id="faculties-listbox"></div>
-                        </div>
-                    </div>
-                    <div class="group_combobox">
-                        <div name="group" class="combo js-combobox">
-                            <input name="group" aria-autocomplete="none" aria-controls="groups-listbox" aria-haspopup="groups-listbox" id="groups-combo" class="combo-input" role="combobox" type="text">
-                            <div class="combo-menu" role="listbox" id="groups-listbox"></div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class='container statistic_table'>
-                    <div class='row'>
-                        <div class='col col-md-2'>
-                            <div class='title_field_head'>Дата</div>
-                        </div>
-                        <div class='col col-md-4'>
-                            <div class='title_field'>ФИО</div>
-                        </div>
-                        <div class='col col-md-4'>
-                            <div class='title_field'>Название</div>
-                        </div>
-                        <div class='col col-md-2'>
-                            <div class='title_field'>Результат</div>
+                @php
+                    $allStat = DB::select("select * from statistic");
+                @endphp
+
+                <div class="container">
+                    <div class="row">
+                        <form class="form_parameters" action="/out_ofp" method="post">
+                            @csrf
+                            <div class="parameters_panel">
+                                    <div class="group_combobox">
+                                        <div name="group" class="combo js-combobox">
+                                            <input name="group" autocomplete="off" aria-controls="groups-listbox" aria-haspopup="groups-listbox" id="groups-combo" class="combo-input" role="combobox" type="text">
+                                            <div class="combo-menu" role="listbox" id="groups-listbox"></div>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="show_btn">Вывести</button>
+                            </div>
+                        </form>
+                        <div class="table-responsive">
+                            <table class="table table-bordered align-middle text-center">
+                                <thead class="align-middle">
+                                    <tr>
+                                        <th scope="col">Дата</th>
+                                        <th scope="col">ФИО</th>
+                                        <th scope="col">Название</th>
+                                    </tr>
+                                </thead>
+                                <tbody style="line-height: 3; white-space: nowrap;">
+                                @foreach($allStat as $stat)
+                                    @php
+                                        $name_user = DB::table('user')->where('ID_User', $stat->ID_User)->value('FullName');
+                                        $name_test = DB::table('tests')->where('ID_Test', $stat->ID_Test)->value('Name');
+                                    @endphp
+
+                                    <tr>
+                                        <th class="p-0" scope="row"><a href="/test_result/{{$stat->ID_Result}}">{{$stat->date_test}}</a></th>
+                                        <td class="p-0"><a href="/test_result/{{$stat->ID_Result}}">{{$name_user}}</a></td>
+                                        <td class="p-0"><a href="/test_result/{{$stat->ID_Result}}">{{$name_test}}</a></td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                    @php
-                        $allStat = DB::select("select * from statistic");
-                    @endphp
-                    @foreach($allStat as $stat)
-                        @php
-                            $name_user = DB::table('user')->where('ID_User', $stat->ID_User)->value('FullName');
-                            $name_test = DB::table('tests')->where('ID_Test', $stat->ID_Test)->value('Name');
-                        @endphp
-                        <a href='/test_result/{{$stat->ID_Result}}'>
-                            <div class='row'>
-                                <div class='col col-md-2'>
-                                    <div class='data_field_head'>{{$stat->date_test}}</div>
-                                </div>
-                                <div class='col col-md-4'>
-                                    <div class='data_field'>{{$name_user}}</div>
-                                </div>
-                                <div class='col col-md-4'>
-                                    <div class='data_field textX_left'>{{$name_test}}</div>
-                                </div>
-                                <div class='col col-md-2'>
-                                    <div class='data_field'>5 баллов</div>
-                                </div>
-                            </div>
-                        </a>
-                    @endforeach
                 </div>
             @endif
             @if($currentUser->ID_Role == 3)
