@@ -36,7 +36,6 @@
     @if($currentUser->ID_Role == 1)
         @php
             $normatives = DB::select('select * from ofp_normatives');
-
         @endphp
 
 
@@ -46,13 +45,18 @@
                 <div class="row row-cols-1 row-cols-md-3 g-4">
                     @foreach($normatives as $normative)
                         @php
-                            $title = $normative->name . " " . $normative->female_normative . ($normative->female_normative ? "/" : "") . " " . $normative->male_normative . "\n" . $normative->unit;
+                            if($currentUser->gender == "муж") {
+                                $norm = $normative->name . " " . $normative->male_normative . "\n" . $normative->unit;
+                            }
+                            else {
+                                $norm = $normative->name . " " . $normative->female_normative . "\n" . $normative->unit;
+                            }
                         @endphp
                         <div class="col">
                             <div class="card">
                                 <img src="/img/run100.gif" class="card-img-top" alt="...">
                                 <div class="card-body">
-                                    <h5 class="card-title">{{$title}}</h5>
+                                    <h5 class="card-title">{{$norm}}</h5>
                                     <input type="text" placeholder="Введите результат" class="ofp_result" class="" name="" value="">
                                 </div>
                             </div>
