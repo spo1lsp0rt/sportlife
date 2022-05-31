@@ -7,34 +7,31 @@
   display: flex;
   margin: 40px auto 20px auto;
 }
-.parameters_panel .form_parameters {
-  display: flex;
-}
-.parameters_panel .form_parameters .group_combobox {
+.parameters_panel .group_combobox {
   margin-right: 10px;
 }
-.parameters_panel .form_parameters .group_combobox .combo {
+.parameters_panel .group_combobox .combo {
   max-width: 200px;
 }
-.parameters_panel .form_parameters .group_combobox .combo .combo-input {
+.parameters_panel .group_combobox .combo .combo-input {
   width: 200px;
 }
-.parameters_panel .form_parameters .gender_combobox {
+.parameters_panel .gender_combobox {
   margin-right: 10px;
 }
-.parameters_panel .form_parameters .gender_combobox .combo {
+.parameters_panel .gender_combobox .combo {
   max-width: 200px;
 }
-.parameters_panel .form_parameters .gender_combobox .combo .combo-input {
+.parameters_panel .gender_combobox .combo .combo-input {
   width: 200px;
 }
-.parameters_panel .form_parameters .show_btn {
+.parameters_panel .show_btn {
   display: block;
   width: 150px;
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
 }
-.parameters_panel .form_parameters .show_btn:hover {
+.parameters_panel .show_btn:hover {
   background-image: linear-gradient(to top, #2f2f2f 0%, #373f4b 100%);
   color: #e5e5e5;
 }

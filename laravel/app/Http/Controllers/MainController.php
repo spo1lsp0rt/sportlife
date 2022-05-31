@@ -29,10 +29,6 @@ class MainController extends Controller
         return view('user_profile',);
     }
 
-    public function  statistic_table() {
-        return view('statistic_table');
-    }
-
     public function  privacy_policy() {
         return view('privacy_policy');
     }

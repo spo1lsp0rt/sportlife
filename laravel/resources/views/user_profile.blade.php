@@ -157,6 +157,42 @@
                         </div>
                     </div>
                 </div>
+                {{--Модальное окно по нажатии на студента--}}
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalCenterTitle">Редактирование</h5>
+                                <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <form action="/updateStudent" method="post">
+                                @csrf
+                                <div class="modal-body">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col">
+                                                <input type="text" name="new_fio" id="out1" class="form-control" value="" >
+                                                <input type="hidden" name="old_fio" id="out2" class="form-control" value="" >
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div name="group" class="combo js-combobox">
+                                                    <input name="group" aria-autocomplete="none" aria-controls="groups-listbox" aria-haspopup="groups-listbox" id="groups-combo" class="combo-input" role="combobox" type="text">
+                                                    <div class="combo-menu" role="listbox" id="groups-listbox"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button formaction="updateStudent" class="btn btn-success">Сохранить</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
             @endif
             @if($currentUser->ID_Role == 3)
                 <div class="admin_panel">
@@ -164,130 +200,125 @@
                     <form class="upload_form" action="/add_users" method="post" enctype="multipart/form-data">
                         @csrf
                         <input class="form-control" type="file" id="formFile" name="uploadfile">
-                        {{--<input type="file" name="uploadfile">--}}
                         <input class="sumbit-upload" type="submit" value="Загрузить">
                     </form>
+                    <div class="container">
+                        <div class="row">
+                            <div class="table-responsive">
+                                <table class="table table-bordered align-middle text-center">
+                                    <thead class="align-middle">
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">ФИО</th>
+                                        <th scope="col">Ключ</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody style="line-height: 3; white-space: nowrap;">
+                                    @php
+                                        $reg_keys = @DB::select('select * from reg_key');
+                                    @endphp
+                                    @foreach($reg_keys as $reg_key)
+                                        <tr class="key_row">
+                                            <th scope="row">{{$reg_key->id}}</th>
+                                            <td>{{$reg_key->fio}}</td>
+                                            <td>{{$reg_key->key}}</td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                                <button id="unhide_btn" class="unhide_btn" onclick="unhide_keys()">Раскрыть</button>
+                                <button id="hide_btn" class="hide_btn" onclick="hide_keys()">Скрыть</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>Список студентов</h3>
                     <form method="post" action="delete_student">
                         @csrf
-                    <div class='admin_table'>
-                        <div class='container statistic_table'>
-                            <div class='row'>
-                                <div class='col col-md-1'>
-                                    <div class='title_field_head'>№</div>
-                                </div>
-                                <div class='col col-md-4'>
-                                    <div class='title_field'>ФИО</div>
-                                </div>
-                                <div class='col col-md-2'>
-                                    <div class='title_field'>Факультет</div>
-                                </div>
-                                <div class='col col-md-2'>
-                                    <div class='title_field'>Группа</div>
-                                </div>
-                                <div class='col col-md-3'>
-                                    <div class='title_field'>Действия</div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered align-middle text-center">
+                                        <thead class="align-middle">
+                                        <tr>
+                                            <th scope="col">№</th>
+                                            <th scope="col">ФИО</th>
+                                            <th scope="col">Факультет</th>
+                                            <th scope="col">Группа</th>
+                                            <th scope="col">Действия</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody style="line-height: 3; white-space: nowrap;">
+                                        @php
+                                            $students = @DB::select('select * from student');
+                                        @endphp
+                                        @foreach($students as $student)
+                                            @php
+                                                $class = DB::table('class')->where('ID_Class', $student->ID_Class)->value('Name');
+                                                $faculty = DB::table('faculty')->where('id_faculty', DB::table('class')->where('ID_Class', $student->ID_Class)->value('id_faculty'))->value('Name');
+                                            @endphp
+                                            <tr>
+                                                <th scope="row"><input name="{{$student->ID_Student}}" type="checkbox" style="transform:scale(1.4);"></th>
+                                                <td>{{$student->FullName}}</td>
+                                                <td>{{$faculty}}</td>
+                                                <td>{{$class}}</td>
+                                                <td id="{{$student->FullName}}">
+                                                    <button class="modal_btn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                                                        Редактировать
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
-                            @php
-                                $students = @DB::select('select * from student');
-                            @endphp
-                            @foreach($students as $student)
-                                @php
-                                    $class = DB::table('class')->where('ID_Class', $student->ID_Class)->value('Name');
-                                    $faculty = DB::table('faculty')->where('id_faculty', DB::table('class')->where('ID_Class', $student->ID_Class)->value('id_faculty'))->value('Name');
-                                @endphp
-                                    <div class='row'>
-                                        <div class='col col-md-1'>
-                                            <div  class='data_field_head'><input name="{{$student->ID_Student}}" type="checkbox" style="transform:scale(1.4);">
-                                            </div>
-                                        </div>
-                                        <div class='col col-md-4'>
-                                            <div class='data_field textX_left'>{{$student->FullName}}</div>
-                                        </div>
-                                        <div class='col col-md-2'>
-                                            <div class='data_field'>{{$faculty}}</div>
-                                        </div>
-                                        <div class='col col-md-2'>
-                                            <div class='data_field'>{{$class}}</div>
-                                        </div>
-                                        <div class='col col-md-3'>
-                                            <div id="{{$student->FullName}}" class='data_field'>
-                                                <button class="modal_btn" type="button" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
-                                                    Редактировать
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                            @endforeach
+                            <button class="user_delbtn">Удалить пользователя(-ей)</button>
                         </div>
-                    </div>
-                        <button class="user_delbtn">Удалить пользователя(-ей)</button>
                     </form>
                 </div>
+            
+                <script>
+                    var unhide_keys = function(){
+                        document.getElementById('unhide_btn').style.display="none";
+                        document.getElementById('hide_btn').style.display="block";
+                        const arr_keyrows = document.querySelectorAll('.key_row');
+                        arr_keyrows.forEach(function (key) {
+                            key.style.display = "table-row";
+                        });
+                    }
+                    var hide_keys = function(){
+                        document.getElementById('unhide_btn').style.display="block";
+                        document.getElementById('hide_btn').style.display="none";
+                        hide_some();
+                    }
+                    var hide_some = function() {
+                        var i = 0;
+                        document.querySelectorAll('.key_row').forEach(function (key) {
+                            if (i > 2) {
+                                key.style.display = "none";
+                            }
+                            i++;
+                        });
+                    }
+                    hide_some();
+                </script>
+
+                <script>
+                    function getParentId(el) {
+                        const id = el.parentElement.id;
+                        document.getElementById('out1').value = `${id}`;
+                        document.getElementById('out2').value = `${id}`;
+                    }
+
+                    let btns = document.querySelectorAll('button');
+                    btns.forEach((btn) => {
+                        btn.addEventListener('click', () => {
+                            getParentId(btn);
+                        });
+                    });
+                </script>
             @endif
-        </div>
-    </div>
-
-    @php
-        $groups = DB::select('select * from class');
-        $arr_groups = array();
-        foreach ($groups as $group) {
-            $arr_groups[] = $group->Name;
-        }
-    @endphp
-    <script type="text/javascript">
-        let arr_groups = <?php echo json_encode($arr_groups); ?>;
-        let arr_options = [arr_groups];
-    </script>
-
-    <script>
-        function getParentId(el) {
-            const id = el.parentElement.id;
-            document.getElementById('out1').value = `${id}`;
-            document.getElementById('out2').value = `${id}`;
-        }
-
-        let btns = document.querySelectorAll('button');
-        btns.forEach((btn) => {
-            btn.addEventListener('click', () => {
-                getParentId(btn);
-            });
-        });
-    </script>
-
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Редактирование</h5>
-                    <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form action="/updateStudent" method="post">
-                    @csrf
-                    <div class="modal-body">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col">
-                                    <input type="text" name="new_fio" id="out1" class="form-control" value="" >
-                                    <input type="hidden" name="old_fio" id="out2" class="form-control" value="" >
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <div name="group" class="combo js-combobox">
-                                        <input name="group" aria-autocomplete="none" aria-controls="groups-listbox" aria-haspopup="groups-listbox" id="groups-combo" class="combo-input" role="combobox" type="text">
-                                        <div class="combo-menu" role="listbox" id="groups-listbox"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button formaction="updateStudent" class="btn btn-success">Сохранить</button>
-                    </div>
-                </form>
-            </div>
-
         </div>
     </div>
 @endsection

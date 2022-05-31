@@ -147,24 +147,24 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <div class="parameters_panel">
-                        <form class="form_parameters" action="/out_ofp" method="post">
-                            @csrf
-                            <div class="group_combobox">
-                                <div name="group" class="combo js-combobox">
-                                    <input name="group" autocomplete="off" aria-controls="groups-listbox" aria-haspopup="groups-listbox" id="groups-combo" class="combo-input" role="combobox" type="text">
-                                    <div class="combo-menu" role="listbox" id="groups-listbox"></div>
+                    <form class="form_parameters" action="/out_ofp" method="post">
+                        @csrf
+                        <div class="parameters_panel">
+                                <div class="group_combobox">
+                                    <div name="group" class="combo js-combobox">
+                                        <input name="group" autocomplete="off" aria-controls="groups-listbox" aria-haspopup="groups-listbox" id="groups-combo" class="combo-input" role="combobox" type="text">
+                                        <div class="combo-menu" role="listbox" id="groups-listbox"></div>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="gender_combobox">
-                                <div name="gender" class="combo js-combobox">
-                                    <input name="gender" aria-autocomplete="none" aria-controls="gender-listbox" aria-haspopup="gender-listbox" id="gender-combo" class="combo-input" role="combobox" type="text">
-                                    <div class="combo-menu" role="listbox" id="gender-listbox"></div>
+                                <div class="gender_combobox">
+                                    <div name="gender" class="combo js-combobox">
+                                        <input name="gender" aria-autocomplete="none" aria-controls="gender-listbox" aria-haspopup="gender-listbox" id="gender-combo" class="combo-input" role="combobox" type="text">
+                                        <div class="combo-menu" role="listbox" id="gender-listbox"></div>
+                                    </div>
                                 </div>
-                            </div>
-                            <button type="submit" class="show_btn">Вывести</button>
-                        </form>
-                    </div>
+                                <button type="submit" class="show_btn">Вывести</button>
+                        </div>
+                    </form>
                     <div class="edit_panel">
                         <button type="button" class="edit_btn" id="edit_btn" onclick="edit()">Изменить результаты</button>
                         <button type="button" class="cancel_btn" id="cancel_btn" onclick="cancel()">Отменить изменения</button>
@@ -308,56 +308,55 @@
                 </form>
             </div>
         </div>
-    @endif
 
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Информация</h5>
-                    <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="table-responsive">
-                                <table class="table table-bordered align-middle text-center">
-                                    <thead class="align-middle">
-                                    <tr>
-                                        <th scope="col">Норматив</th>
-                                        <th style="border-left: 2px solid black" scope="col">Количество баллов</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody style="line-height: 3; white-space: nowrap;">
-                                    @foreach($normatives as $normative)
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenterTitle">Информация</h5>
+                        <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered align-middle text-center">
+                                        <thead class="align-middle">
                                         <tr>
-
-                                            @php
-                                                $norm = $normative->name . " " . $normative->female_normative . ($normative->female_normative ? "/" : "") . " " . $normative->male_normative . "\n" . $normative->unit;  @endphp
-                                            <td style="text-align: left">{{$norm}}</td>
-
-                                            <td style="border-left: 2px solid black">
-                                                <div id="out{{$normative->id}}" ></div>
-                                            </td>
-
+                                            <th scope="col">Норматив</th>
+                                            <th style="border-left: 2px solid black" scope="col">Количество баллов</th>
                                         </tr>
-                                    @endforeach
-                                    </tbody>
-                                    <tfoot style="line-height: 2; white-space: nowrap;">
-                                    <tr>
-                                        <th style="text-align: left" scope="col">Итого</th>
-                                        <th style="border-left: 2px solid black" scope="col">баллы</th>
-                                    </tr>
-                                    </tfoot>
-                                </table>
+                                        </thead>
+                                        <tbody style="line-height: 3; white-space: nowrap;">
+                                        @foreach($normatives as $normative)
+                                            <tr>
+
+                                                @php
+                                                    $norm = $normative->name . " " . $normative->female_normative . ($normative->female_normative ? "/" : "") . " " . $normative->male_normative . "\n" . $normative->unit;  @endphp
+                                                <td style="text-align: left">{{$norm}}</td>
+
+                                                <td style="border-left: 2px solid black">
+                                                    <div id="out{{$normative->id}}" ></div>
+                                                </td>
+
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                        <tfoot style="line-height: 2; white-space: nowrap;">
+                                        <tr>
+                                            <th style="text-align: left" scope="col">Итого</th>
+                                            <th style="border-left: 2px solid black" scope="col">баллы</th>
+                                        </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
-    </div>
+    @endif
 
     @php
         $i = 0;
