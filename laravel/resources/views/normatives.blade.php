@@ -67,9 +67,9 @@
                                     <div class="card-body">
                                         <h5 class="card-title">{{$norm}}</h5>
                                         @if ($res_val == null)
-                                            <input type="text" placeholder="Введите результат" class="ofp_result" name="{{$currentUser->ID_User . '_' . $normative->id}}">
+                                            <input step="any" type="number" lang="en" placeholder="Введите результат" class="input_number ofp_result" name="{{$currentUser->ID_User . '_' . $normative->id}}">
                                         @else
-                                            <input readonly contenteditable="false" type="text" placeholder="Введите результат" class="ofp_result" name="{{$currentUser->ID_User . '_' . $normative->id}}" value="{{$res_val}}">
+                                            <input readonly contenteditable="false" type="number" lang="en" placeholder="Введите результат" class="input_number ofp_result" name="{{$currentUser->ID_User . '_' . $normative->id}}" value="{{$res_val}}">
                                         @endif
                                     </div>
                                 </div>
@@ -216,7 +216,7 @@
                                     @if($results == null)
                                         @for($normative_num = 1; $normative_num <= count($normatives); $normative_num++)
                                             <td>
-                                                <input readonly class="result_cell" type="text" contenteditable="false" name="{{$user->ID_User . '_' . $normatives[$normative_num - 1]->id}}">
+                                                <input step="any"  readonly class="input_number result_cell" type="number" lang="en" contenteditable="false" name="{{$user->ID_User . '_' . $normatives[$normative_num - 1]->id}}">
                                             </td>
                                         @endfor
                                             <td style="border-left: 2px solid black"></td>
@@ -225,7 +225,7 @@
                                     @for($normative_num = 1, $res_indx = 0; $res_indx < count($results) && $normative_num <= count($normatives); $normative_num++)
                                         @if($results[$res_indx]->id_normative == $normative_num)
                                             <td>
-                                                <input readonly class="result_cell" type="text" contenteditable="false" name="{{$user->ID_User . '_' . $results[$res_indx]->id_normative}}" value="{{$results[$res_indx]->result}}">
+                                                <input step="any"  readonly class="input_number result_cell" type="number" lang="en" contenteditable="false" name="{{$user->ID_User . '_' . $results[$res_indx]->id_normative}}" value="{{$results[$res_indx]->result}}">
                                             </td>
                                             @php
                                                 $total[$normative_num - 1][0] += $results[$res_indx]->result;
@@ -234,7 +234,7 @@
                                             @endphp
                                         @else
                                             <td>
-                                                <input readonly class="result_cell" type="text" contenteditable="false" name="{{$user->ID_User . '_' . $normatives[$normative_num - 1]->id}}">
+                                                <input step="any"  readonly class="input_number result_cell" type="number" lang="en" contenteditable="false" name="{{$user->ID_User . '_' . $normatives[$normative_num - 1]->id}}">
                                             </td>
                                         @endif
                                     @endfor
@@ -389,7 +389,6 @@
                 document.getElementById('save_btn_primary').click()
             }
         </script>
-        <script src="{{ asset('js/combobox.js') }}"></script>
         <script>
             const temp = <?php echo json_encode($ofp_gender)?>;
             var ofp_gender = 'Все';
@@ -408,5 +407,10 @@
                 }
             });
         </script>
+        <script src="{{ asset('js/combobox.js') }}"></script>
     @endif
+@endsection
+
+@section('scriptsheet')
+    <script src="{{ asset('js/number_handler.js') }}"></script>
 @endsection

@@ -1,6 +1,7 @@
 {
     "/js/app.js": "/js/app.js",
     "/js/hamburger.js": "/js/hamburger.js",
+    "/js/number_handler.js": "/js/number_handler.js",
     "/js/combobox.js": "/js/combobox.js",
     "/js/timer.js": "/js/timer.js",
     "/css/app.css": "/css/app.css",
