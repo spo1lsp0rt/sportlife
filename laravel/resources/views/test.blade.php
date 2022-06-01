@@ -1,3 +1,24 @@
+@php
+    $allUsers = DB::select('select * from user');
+    $currentUser = null;
+        if (array_key_exists('login', $_COOKIE))
+            {
+                foreach($allUsers as $user)
+                {
+                    if($user->ID_User == $_COOKIE['ID_User'])
+                    {
+                        $currentUser = $user;
+                        break;
+                    }
+                }
+            }
+        else
+            {
+                header('Location: /authorization');
+                exit;
+            }
+@endphp
+
 @extends('layout')
 
 @section('title'){{$test->Name}}@endsection

@@ -61,5 +61,5 @@
 
 <div class="result_total">
     <h3>Общий уровень развития физических кондиций</h3>
-    <div class="total_counting">ОУФК = (О + ПТ + Н + У + ЛЛ + УР + ТТ) : 7 = {{$OYFK}}</div>
+    <div class="total_counting">ОУФК = (О + ПТ + Н + У + ЛЛ + УР + ТТ) : 7 = {{round($OYFK, 2)}}</div>
 </div>
