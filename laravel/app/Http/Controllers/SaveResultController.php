@@ -441,12 +441,13 @@ class SaveResultController extends Controller
             if($test->ID_Test == 6){
                 $norma = DB::select("select Value from normatives6 where id = ".$i);
 
+                $endtime = explode(':', $valid_params[$exercise->getInputName().'endtime']);
+                $begtime = explode(':', $valid_params[$exercise->getInputName().'begtime']);
                 $resultExersise->ID_Result = $result->ID_Result;
                 $resultExersise->Name = $exercise->Name;
-                $resultExersise->Description = $valid_params[$exercise->getInputName().'endhour'].':'.$valid_params[$exercise->getInputName().'endmin'].'-'.$valid_params[$exercise->getInputName().'beghour'].':'.$valid_params[$exercise->getInputName().'begmin'];
+                $resultExersise->Description = $begtime[0].':'.$begtime[1].'-'.$endtime[0].':'.$endtime[1];
                 $resultExersise->ID_Exercise = $exercise->ID_Exercise;
-
-                $time = ($valid_params[$exercise->getInputName().'endhour'] * 60 + $valid_params[$exercise->getInputName().'endmin']) - ($valid_params[$exercise->getInputName().'beghour'] * 60 + $valid_params[$exercise->getInputName().'begmin']);
+                $time = ((int)$endtime[0] * 60 + (int)$endtime[1]) - ((int)$begtime[0] * 60 + (int)$begtime[1]);
                 $resultExersise->Value = $time;
                 $resultExersise->Norma = $time * $norma[0]->Value;
 
@@ -486,26 +487,28 @@ class SaveResultController extends Controller
     private function getRulesTime(Test $test, Request $request):array{
         $rules = [];
         foreach ($test->Exercises as $exercise){
-            $begtime = $request->input($exercise->getInputName().'beghour') * 60 + $request->input($exercise->getInputName().'begmin');
-            $endtime = $request->input($exercise->getInputName().'endhour') * 60 + $request->input($exercise->getInputName().'endmin');
+            $begtemp = explode(':', $request->input($exercise->getInputName().'begtime'));
+            $endtemp = explode(':', $request->input($exercise->getInputName().'endtime'));
+            $begtime = (int)$begtemp[0] * 60 + (int)$begtemp[1];
+            $endtime = (int)$endtemp[0] * 60 + (int)$endtemp[1];
 
-            if ($begtime > $endtime)
-                $rules[$exercise->getInputName().'beghour'] = 'required|email';
+            if ((int)$begtime > (int)$endtime)
+                $rules[$exercise->getInputName().'begtime'] = 'required|email';
             else{
-                $rules[$exercise->getInputName().'beghour'] = 'required';
-                $rules[$exercise->getInputName().'begmin'] = 'required';
-                $rules[$exercise->getInputName().'endhour'] = 'required';
-                $rules[$exercise->getInputName().'endmin'] = 'required';
+                $rules[$exercise->getInputName().'begtime'] = 'required';
+                $rules[$exercise->getInputName().'endtime'] = 'required';
             }
 
         }
         $time = 0;
         foreach ($test->Exercises as $exercise){
-            $time += ($request->input($exercise->getInputName().'endhour') * 60 + $request->input($exercise->getInputName().'endmin')) - ($request->input($exercise->getInputName().'beghour') * 60 + $request->input($exercise->getInputName().'begmin'));
+            $begtime = explode(':', $request->input($exercise->getInputName().'begtime'));
+            $endtime = explode(':', $request->input($exercise->getInputName().'endtime'));
+            $time += ((int)$endtime[0] * 60 + (int)$endtime[1]) - ((int)$begtime[0] * 60 + (int)$begtime[1]);
 
         }
         if($time>1439){
-            $rules[$exercise->getInputName().'beghour'] = 'required|email';
+            $rules[$exercise->getInputName().'begtime'] = 'required|email';
         }
 
         return $rules;

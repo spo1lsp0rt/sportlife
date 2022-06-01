@@ -14,7 +14,7 @@ for(var i = 0; i < inputBox.length; i++) {
         validateInput(this, e);
     });
     input.addEventListener("blur", function() {
-        if (this.value[0].toString().length > 0) {
+        if (this.value.toString().length > 0) {
             if (this.value[0].toString() === ".") {
                 this.value = "0" + this.value.toString();
             }

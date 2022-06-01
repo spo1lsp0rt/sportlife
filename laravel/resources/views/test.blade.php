@@ -49,19 +49,15 @@
                                     <p>
                                     <center>
                                         <p>Введите число час и минуты начала занятия:</p>
-                                        <input type="text" name="{{$exercise->getInputName().'beghour'}}" size="3" min="5" max="23" value="9"  class="@error($exercise->getInputName().'beghour') is-invalid @enderror">
-
-                                        <input type="text" name="{{$exercise->getInputName().'begmin'}}" size="3" min="0" max="59" value="00">
+                                        <input type="time" name="{{$exercise->getInputName().'begtime'}}" min="09:00" max="18:00" required  class="@error($exercise->getInputName().'begtime') is-invalid @enderror" value="09:00">
                                         <p>Введите число час и минуты конца занятия:</p>
-                                        <input type="text" name="{{$exercise->getInputName().'endhour'}}" size="3" name="num" min="5" max="23" value="9">
-                                        <input type="text" name="{{$exercise->getInputName().'endmin'}}" size="3" name="num" min="0" max="59" value="00">
+                                        <input type="time" name="{{$exercise->getInputName().'endtime'}}" min="09:00" max="18:00" required value="09:00">
                                     </center>
                                     </p>
-                                    @error($exercise->getInputName().'beghour')
+                                    @error($exercise->getInputName().'begtime')
                                     <div class="alert alert-danger">{{ 'Поле заполнено некорректно' }} @enderror
                                 @else
-                                    <input type="text" placeholder="Введите результат" class="test_result"
-                                           class="@error($exercise->getInputName()) is-invalid @enderror" name="{{$exercise->getInputName()}}" value="{{$exercise->Value}}">
+                                    <input type="number" step="any" placeholder="Введите результат" class="input_number test_result @error($exercise->getInputName()) is-invalid @enderror" name="{{$exercise->getInputName()}}" value="{{$exercise->Value}}">
                                     @error($exercise->getInputName())
                                     <div class="alert alert-danger">{{ 'Поле заполнено некорректно' }}</div>
                                 @endif
@@ -89,7 +85,7 @@
                     @if($test->ID_Test == 1)
                         <div class="age_info">
                             <div class="age_title">Введите ваш возраст:</div>
-                            <input type="text" placeholder="Например: 18" class="age_input" name = "age"
+                            <input type="number" min="17" max="23" placeholder="Например: 18" class="age_input" name = "age"
                                    class="@error("age") is-invalid @enderror" value= >
                         </div>
                         @error("age")
@@ -110,4 +106,5 @@
 
 @section('scriptsheet')
     <script src="{{ asset('js/timer.js') }}"></script>
+    <script src="{{ asset('js/number_handler.js') }}"></script>
 @endsection
