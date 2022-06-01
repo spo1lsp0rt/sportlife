@@ -161,8 +161,8 @@ class MainController extends Controller
     {
         $id_class = DB::table('class')->where('Name', $request->input('group'))->value('ID_Class');
         $statistic = DB::select('CALL getStatistic(' . $id_class . ')');
-        return Redirect::back()->with(['statistic' => $statistic]);
-
+        $id_class = DB::table('class')->where('Name', $_POST['group'])->value('ID_Class');
+        return Redirect::back()->with(['statistic' => $statistic, 'ofp_id_class' => $id_class]);
     }
 
     public function  updateStudent() {

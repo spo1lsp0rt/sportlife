@@ -67,9 +67,9 @@
                                     <div class="card-body">
                                         <h5 class="card-title">{{$norm}}</h5>
                                         @if ($res_val == null)
-                                            <input step="any" type="number" lang="en" placeholder="Введите результат" class="input_number ofp_result" name="{{$currentUser->ID_User . '_' . $normative->id}}">
+                                            <input step="any" spellcheck="false" type="number" lang="en" placeholder="Введите результат" class="input_number ofp_result" name="{{$currentUser->ID_User . '_' . $normative->id}}">
                                         @else
-                                            <input readonly contenteditable="false" type="number" lang="en" placeholder="Введите результат" class="input_number ofp_result" name="{{$currentUser->ID_User . '_' . $normative->id}}" value="{{$res_val}}">
+                                            <input readonly spellcheck="false" contenteditable="false" type="number" lang="en" placeholder="Введите результат" class="input_number ofp_result" name="{{$currentUser->ID_User . '_' . $normative->id}}" value="{{$res_val}}">
                                         @endif
                                     </div>
                                 </div>
@@ -109,13 +109,13 @@
                         <div class="parameters_panel">
                                 <div class="group_combobox">
                                     <div name="group" class="combo js-combobox">
-                                        <input name="group" autocomplete="off" aria-controls="groups-listbox" aria-haspopup="groups-listbox" id="groups-combo" class="combo-input" role="combobox" type="text">
+                                        <input name="group" spellcheck="false" autocomplete="off" aria-controls="groups-listbox" aria-haspopup="groups-listbox" id="groups-combo" class="combo-input" role="combobox" type="text">
                                         <div class="combo-menu" role="listbox" id="groups-listbox"></div>
                                     </div>
                                 </div>
                                 <div class="gender_combobox">
                                     <div name="gender" class="combo js-combobox">
-                                        <input name="gender" aria-autocomplete="none" aria-controls="gender-listbox" aria-haspopup="gender-listbox" id="gender-combo" class="combo-input" role="combobox" type="text">
+                                        <input name="gender" spellcheck="false" aria-autocomplete="none" aria-controls="gender-listbox" aria-haspopup="gender-listbox" id="gender-combo" class="combo-input" role="combobox" type="text">
                                         <div class="combo-menu" role="listbox" id="gender-listbox"></div>
                                     </div>
                                 </div>
@@ -139,7 +139,7 @@
             if(session('ofp_gender'))
                 $ofp_gender = session('ofp_gender');
             $normatives = DB::select('select * from ofp_normatives');
-            $ofp_name_class = DB::select('select Name from class where id_class = ' .$ofp_id_class);
+            $ofp_name_class = DB::table('class')->where('id_class', $ofp_id_class)->value('Name');
             if ($ofp_gender == "все") {
                 $users = DB::table('user')->where('id_class', $ofp_id_class)->get()->toArray();
             }
@@ -155,6 +155,16 @@
             for($i = 0; $i < count($normatives); $i++) {
                 $total[$i] = array(0, 0);
             }
+
+            //Сбор данных для активации нужных значений комбобокса
+            $gender_name = "Все";
+            if ($ofp_gender == "муж") {
+                $gender_name = "Юноши";
+            }
+            else if ($ofp_gender == "жен") {
+                $gender_name = "Девушки";
+            }
+            $active_comboval = array($ofp_name_class, $gender_name);
         @endphp
 
         <div class='container'>
@@ -216,7 +226,7 @@
                                     @if($results == null)
                                         @for($normative_num = 1; $normative_num <= count($normatives); $normative_num++)
                                             <td>
-                                                <input step="any"  readonly class="input_number result_cell" type="number" lang="en" contenteditable="false" name="{{$user->ID_User . '_' . $normatives[$normative_num - 1]->id}}">
+                                                <input step="any" spellcheck="false" readonly class="input_number result_cell" type="number" lang="en" contenteditable="false" name="{{$user->ID_User . '_' . $normatives[$normative_num - 1]->id}}">
                                             </td>
                                         @endfor
                                             <td style="border-left: 2px solid black"></td>
@@ -225,7 +235,7 @@
                                     @for($normative_num = 1, $res_indx = 0; $res_indx < count($results) && $normative_num <= count($normatives); $normative_num++)
                                         @if($results[$res_indx]->id_normative == $normative_num)
                                             <td>
-                                                <input step="any"  readonly class="input_number result_cell" type="number" lang="en" contenteditable="false" name="{{$user->ID_User . '_' . $results[$res_indx]->id_normative}}" value="{{$results[$res_indx]->result}}">
+                                                <input step="any" spellcheck="false" readonly class="input_number result_cell" type="number" lang="en" contenteditable="false" name="{{$user->ID_User . '_' . $results[$res_indx]->id_normative}}" value="{{$results[$res_indx]->result}}">
                                             </td>
                                             @php
                                                 $total[$normative_num - 1][0] += $results[$res_indx]->result;
@@ -234,7 +244,7 @@
                                             @endphp
                                         @else
                                             <td>
-                                                <input step="any"  readonly class="input_number result_cell" type="number" lang="en" contenteditable="false" name="{{$user->ID_User . '_' . $normatives[$normative_num - 1]->id}}">
+                                                <input step="any" spellcheck="false" readonly class="input_number result_cell" type="number" lang="en" contenteditable="false" name="{{$user->ID_User . '_' . $normatives[$normative_num - 1]->id}}">
                                             </td>
                                         @endif
                                     @endfor
@@ -323,6 +333,7 @@
         @endphp
 
 
+        <script src="{{ asset('js/combobox.js') }}"></script>
         <script>
             function setPoints(el) {
                 const id = el.parentElement.id;
@@ -390,24 +401,15 @@
             }
         </script>
         <script>
-            const temp = <?php echo json_encode($ofp_gender)?>;
-            var ofp_gender = 'Все';
-            if (temp === 'муж') {
-                ofp_gender = 'Юноши';
-            }
-            else if (temp === 'жен') {
-                ofp_gender = 'Девушки';
-            }
-            const ofp_name_class = <?php echo json_encode($ofp_name_class)?>;
+            const active_comboval = <?php echo json_encode($active_comboval); ?>;
             const arr_optionEl = document.querySelectorAll('.combo-option');
             arr_optionEl.forEach(function (optionEl) {
-                if (optionEl.innerText === ofp_name_class[0].Name || optionEl.innerText === ofp_gender)
+                if (active_comboval.includes(optionEl.innerText))
                 {
                     optionEl.click();
                 }
             });
         </script>
-        <script src="{{ asset('js/combobox.js') }}"></script>
     @endif
 @endsection
 

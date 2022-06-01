@@ -126,8 +126,13 @@
 
                 @php
                     $allStat = DB::select("CALL getStatistic(1)");
+                    $ofp_id_class = 1;
                     if(session('statistic'))
                         $allStat = session('statistic');
+                    if(session('ofp_id_class'))
+                        $ofp_id_class = session('ofp_id_class');
+                    $ofp_name_class = DB::table('class')->where('id_class', $ofp_id_class)->value('Name');
+                    $active_comboval = array($ofp_name_class);
                 @endphp
 
                 <div class="container">
@@ -137,7 +142,7 @@
                             <div class="parameters_panel">
                                 <div class="group_combobox">
                                     <div name="group" class="combo js-combobox">
-                                        <input name="group" autocomplete="off" aria-controls="groups-listbox"
+                                        <input spellcheck="false" name="group" autocomplete="off" aria-controls="groups-listbox"
                                                aria-haspopup="groups-listbox" id="groups-combo" class="combo-input"
                                                role="combobox" type="text">
                                         <div class="combo-menu" role="listbox" id="groups-listbox"></div>
@@ -239,7 +244,7 @@
                                                 $facultyName = DB::table('faculty')->where('id_faculty', DB::table('class')->where('ID_Class', $student->id_class)->value('id_faculty'))->value('Name');
                                             @endphp
                                             <tr>
-                                                <th scope="row"><input name="{{$student->ID_User}}" type="checkbox"
+                                                <th scope="row"><input spellcheck="false" name="{{$student->ID_User}}" type="checkbox"
                                                                        style="transform:scale(1.4);"></th>
                                                 <td>{{$student->FullName}}</td>
                                                 <td>{{$facultyName}}</td>
@@ -288,16 +293,16 @@
                                     <div class="container-fluid">
                                         <div class="row">
                                             <div class="col">
-                                                <input type="text" name="new_fio" id="out1" class="form-control"
+                                                <input spellcheck="false" type="text" name="new_fio" id="out1" class="form-control"
                                                        value="">
-                                                <input type="hidden" name="old_fio" id="out2" class="form-control"
+                                                <input spellcheck="false" type="hidden" name="old_fio" id="out2" class="form-control"
                                                        value="">
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col">
                                                 <div name="group" class="combo js-combobox">
-                                                    <input name="group" aria-autocomplete="none"
+                                                    <input spellcheck="false" name="group" aria-autocomplete="none"
                                                            aria-controls="groups-listbox" aria-haspopup="groups-listbox"
                                                            id="groups-combo" class="combo-input" role="combobox"
                                                            type="text">
@@ -349,7 +354,6 @@
                     }
                     hide_some();
                 </script>
-
                 <script>
                     function getParentId(el) {
                         const id = el.parentElement.id;
@@ -367,8 +371,18 @@
             @endif
         </div>
     </div>
-@endsection
 
-@section('scriptsheet')
     <script src="{{ asset('js/combobox.js') }}"></script>
+    @if($currentUser->ID_Role == 2)
+        <script>
+            const active_comboval = <?php echo json_encode($active_comboval); ?>;
+            const arr_optionEl = document.querySelectorAll('.combo-option');
+            arr_optionEl.forEach(function (optionEl) {
+                if (active_comboval.includes(optionEl.innerText))
+                {
+                    optionEl.click();
+                }
+            });
+        </script>
+    @endif
 @endsection
