@@ -157,6 +157,14 @@ class MainController extends Controller
         return Redirect::back()->with(['success_update_ofp' => 'Данные обновлены!']);
     }
 
+    public function  out_testResults(Request $request)
+    {
+        $id_class = DB::table('class')->where('Name', $request->input('group'))->value('ID_Class');
+        $statistic = DB::select('CALL getStatistic(' . $id_class . ')');
+        return Redirect::back()->with(['statistic' => $statistic]);
+
+    }
+
     public function  updateStudent() {
         $id = DB::table('user')->where('FullName', $_POST['old_fio'])->value('ID_User');
         $id_class = DB::table('class')->where('Name', $_POST['group'])->value('ID_Class');

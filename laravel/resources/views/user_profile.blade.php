@@ -125,12 +125,14 @@
                 </script>
 
                 @php
-                    $allStat = DB::select("select * from statistic");
+                    $allStat = DB::select("CALL getStatistic(1)");
+                    if(session('statistic'))
+                        $allStat = session('statistic');
                 @endphp
 
                 <div class="container">
                     <div class="row">
-                        <form class="form_parameters" action="/out_ofp" method="post">
+                        <form class="form_parameters" action="/out_testResults" method="post">
                             @csrf
                             <div class="parameters_panel">
                                 <div class="group_combobox">
