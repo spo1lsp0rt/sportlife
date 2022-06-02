@@ -486,9 +486,13 @@ class SaveResultController extends Controller
      */
     private function getRulesTime(Test $test, Request $request):array{
         $rules = [];
+        $arrtime = array();
         foreach ($test->Exercises as $exercise){
             $begtemp = explode(':', $request->input($exercise->getInputName().'begtime'));
             $endtemp = explode(':', $request->input($exercise->getInputName().'endtime'));
+            $arrtime[] = $begtemp;
+            $arrtime[] = $endtemp;
+
             $begtime = (int)$begtemp[0] * 60 + (int)$begtemp[1];
             $endtime = (int)$endtemp[0] * 60 + (int)$endtemp[1];
 
@@ -500,6 +504,16 @@ class SaveResultController extends Controller
             }
 
         }
+        //dd($arrtime);
+        /*for($i = 0; $i < sizeof($arrtime) - 1; $i++){
+            for($j = $i + 1; $j < sizeof($arrtime); $j++){
+                if ($arrtime[$i][0] != $arrtime[$j][0]){
+                    if (){
+
+                    }
+                }
+            }
+        }*/
         $time = 0;
         foreach ($test->Exercises as $exercise){
             $begtime = explode(':', $request->input($exercise->getInputName().'begtime'));
