@@ -63,7 +63,7 @@
                             @endphp
                             <div class="col">
                                 <div class="card">
-                                    <img src="/img/run100.gif" class="card-img-top" alt="...">
+                                    <img src="/img/ofp/{{$normative->img}}" class="card-img-top" alt="...">
                                     <div class="card-body">
                                         <h5 class="card-title">{{$norm}}</h5>
                                         @if ($res_val == null)
