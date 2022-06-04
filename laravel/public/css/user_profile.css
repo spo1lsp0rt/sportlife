@@ -55,27 +55,46 @@
   width: 21px;
 }
 .user_profile .parameters_panel {
-  display: flex;
+  display: inline;
+  width: 100%;
   margin-top: 40px;
 }
-.user_profile .parameters_panel .group_combobox {
+.user_profile .parameters_panel .form_parameters {
+  display: flex;
+  float: left;
+}
+.user_profile .parameters_panel .form_parameters .group_combobox {
   margin-right: 10px;
 }
-.user_profile .parameters_panel .group_combobox .combo {
+.user_profile .parameters_panel .form_parameters .group_combobox .combo {
   max-width: 200px;
 }
-.user_profile .parameters_panel .group_combobox .combo .combo-input {
+.user_profile .parameters_panel .form_parameters .group_combobox .combo .combo-input {
   width: 200px;
 }
-.user_profile .parameters_panel .show_btn {
+.user_profile .parameters_panel .form_parameters .show_btn {
   display: block;
   width: 150px;
   border: 1px solid #ced4da;
   border-radius: 0.25rem;
 }
-.user_profile .parameters_panel .show_btn:hover {
+.user_profile .parameters_panel .form_parameters .show_btn:hover {
   background-image: linear-gradient(to top, #2f2f2f 0%, #373f4b 100%);
   color: #e5e5e5;
+}
+.user_profile .parameters_panel .stat_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  float: right;
+  width: 48px;
+  height: 38px;
+  border: 1px solid #ced4da;
+  background-color: rgba(233, 236, 239, 0.6);
+  border-radius: 0.25rem;
+}
+.user_profile .parameters_panel .stat_btn img {
+  width: 35px;
 }
 .user_profile .admin_panel {
   display: block;

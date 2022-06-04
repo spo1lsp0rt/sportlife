@@ -41,7 +41,7 @@
 
         <section class="ofp">
             <div class="container">
-                <h1>Оценка уровня физической подготовленности</h1>
+                <h2>Оценка уровня физической подготовленности</h2>
                 <form action="ofp_table" method="post">
                     @csrf
                     <div class="row row-cols-1 row-cols-md-3 g-4">

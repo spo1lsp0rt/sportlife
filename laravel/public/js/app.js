@@ -27535,6 +27535,19 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
 
 /***/ }),
 
+/***/ "./resources/sass/style.sass":
+/*!***********************************!*\
+  !*** ./resources/sass/style.sass ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
 /***/ "./resources/sass/about.sass":
 /*!***********************************!*\
   !*** ./resources/sass/about.sass ***!
@@ -27704,10 +27717,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/sass/home.sass":
-/*!**********************************!*\
-  !*** ./resources/sass/home.sass ***!
-  \**********************************/
+/***/ "./resources/sass/statistics.sass":
+/*!****************************************!*\
+  !*** ./resources/sass/statistics.sass ***!
+  \****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -27717,10 +27730,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/sass/style.sass":
-/*!***********************************!*\
-  !*** ./resources/sass/style.sass ***!
-  \***********************************/
+/***/ "./resources/sass/home.sass":
+/*!**********************************!*\
+  !*** ./resources/sass/home.sass ***!
+  \**********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
@@ -28059,8 +28072,8 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 		var installedChunks = {
 /******/ 			"/js/app": 0,
 /******/ 			"css/app": 0,
-/******/ 			"css/style": 0,
 /******/ 			"css/home": 0,
+/******/ 			"css/statistics": 0,
 /******/ 			"css/normatives": 0,
 /******/ 			"css/combobox": 0,
 /******/ 			"css/modal": 0,
@@ -28072,7 +28085,8 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 			"css/contacts": 0,
 /******/ 			"css/authorization": 0,
 /******/ 			"css/registration": 0,
-/******/ 			"css/about": 0
+/******/ 			"css/about": 0,
+/******/ 			"css/style": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -28122,22 +28136,23 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/style","css/home","css/normatives","css/combobox","css/modal","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/authorization","css/registration","css/about"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/style","css/home","css/normatives","css/combobox","css/modal","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/authorization","css/registration","css/about"], () => (__webpack_require__("./resources/sass/combobox.sass")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/style","css/home","css/normatives","css/combobox","css/modal","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/authorization","css/registration","css/about"], () => (__webpack_require__("./resources/sass/app.sass")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/style","css/home","css/normatives","css/combobox","css/modal","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/authorization","css/registration","css/about"], () => (__webpack_require__("./resources/sass/normatives.sass")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/style","css/home","css/normatives","css/combobox","css/modal","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/authorization","css/registration","css/about"], () => (__webpack_require__("./resources/sass/home.sass")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/style","css/home","css/normatives","css/combobox","css/modal","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/authorization","css/registration","css/about"], () => (__webpack_require__("./resources/sass/style.sass")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/style","css/home","css/normatives","css/combobox","css/modal","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/authorization","css/registration","css/about"], () => (__webpack_require__("./resources/sass/about.sass")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/style","css/home","css/normatives","css/combobox","css/modal","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/authorization","css/registration","css/about"], () => (__webpack_require__("./resources/sass/registration.sass")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/style","css/home","css/normatives","css/combobox","css/modal","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/authorization","css/registration","css/about"], () => (__webpack_require__("./resources/sass/authorization.sass")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/style","css/home","css/normatives","css/combobox","css/modal","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/authorization","css/registration","css/about"], () => (__webpack_require__("./resources/sass/contacts.sass")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/style","css/home","css/normatives","css/combobox","css/modal","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/authorization","css/registration","css/about"], () => (__webpack_require__("./resources/sass/statistic_table.sass")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/style","css/home","css/normatives","css/combobox","css/modal","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/authorization","css/registration","css/about"], () => (__webpack_require__("./resources/sass/style_result.sass")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/style","css/home","css/normatives","css/combobox","css/modal","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/authorization","css/registration","css/about"], () => (__webpack_require__("./resources/sass/style_test.sass")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/style","css/home","css/normatives","css/combobox","css/modal","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/authorization","css/registration","css/about"], () => (__webpack_require__("./resources/sass/tests.sass")))
-/******/ 	__webpack_require__.O(undefined, ["css/app","css/style","css/home","css/normatives","css/combobox","css/modal","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/authorization","css/registration","css/about"], () => (__webpack_require__("./resources/sass/user_profile.sass")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app","css/style","css/home","css/normatives","css/combobox","css/modal","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/authorization","css/registration","css/about"], () => (__webpack_require__("./resources/sass/modal.sass")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/home","css/statistics","css/normatives","css/combobox","css/modal","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/authorization","css/registration","css/about","css/style"], () => (__webpack_require__("./resources/js/app.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/home","css/statistics","css/normatives","css/combobox","css/modal","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/authorization","css/registration","css/about","css/style"], () => (__webpack_require__("./resources/sass/combobox.sass")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/home","css/statistics","css/normatives","css/combobox","css/modal","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/authorization","css/registration","css/about","css/style"], () => (__webpack_require__("./resources/sass/app.sass")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/home","css/statistics","css/normatives","css/combobox","css/modal","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/authorization","css/registration","css/about","css/style"], () => (__webpack_require__("./resources/sass/normatives.sass")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/home","css/statistics","css/normatives","css/combobox","css/modal","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/authorization","css/registration","css/about","css/style"], () => (__webpack_require__("./resources/sass/statistics.sass")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/home","css/statistics","css/normatives","css/combobox","css/modal","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/authorization","css/registration","css/about","css/style"], () => (__webpack_require__("./resources/sass/home.sass")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/home","css/statistics","css/normatives","css/combobox","css/modal","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/authorization","css/registration","css/about","css/style"], () => (__webpack_require__("./resources/sass/style.sass")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/home","css/statistics","css/normatives","css/combobox","css/modal","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/authorization","css/registration","css/about","css/style"], () => (__webpack_require__("./resources/sass/about.sass")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/home","css/statistics","css/normatives","css/combobox","css/modal","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/authorization","css/registration","css/about","css/style"], () => (__webpack_require__("./resources/sass/registration.sass")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/home","css/statistics","css/normatives","css/combobox","css/modal","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/authorization","css/registration","css/about","css/style"], () => (__webpack_require__("./resources/sass/authorization.sass")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/home","css/statistics","css/normatives","css/combobox","css/modal","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/authorization","css/registration","css/about","css/style"], () => (__webpack_require__("./resources/sass/contacts.sass")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/home","css/statistics","css/normatives","css/combobox","css/modal","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/authorization","css/registration","css/about","css/style"], () => (__webpack_require__("./resources/sass/statistic_table.sass")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/home","css/statistics","css/normatives","css/combobox","css/modal","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/authorization","css/registration","css/about","css/style"], () => (__webpack_require__("./resources/sass/style_result.sass")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/home","css/statistics","css/normatives","css/combobox","css/modal","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/authorization","css/registration","css/about","css/style"], () => (__webpack_require__("./resources/sass/style_test.sass")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/home","css/statistics","css/normatives","css/combobox","css/modal","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/authorization","css/registration","css/about","css/style"], () => (__webpack_require__("./resources/sass/tests.sass")))
+/******/ 	__webpack_require__.O(undefined, ["css/app","css/home","css/statistics","css/normatives","css/combobox","css/modal","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/authorization","css/registration","css/about","css/style"], () => (__webpack_require__("./resources/sass/user_profile.sass")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app","css/home","css/statistics","css/normatives","css/combobox","css/modal","css/user_profile","css/tests","css/style_test","css/style_result","css/statistic_table","css/contacts","css/authorization","css/registration","css/about","css/style"], () => (__webpack_require__("./resources/sass/modal.sass")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

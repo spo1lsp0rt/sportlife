@@ -25,6 +25,10 @@ class MainController extends Controller
         return view('normatives');
     }
 
+    public function  statistics() {
+        return view('statistics');
+    }
+
     public function  profile() {
         return view('user_profile',);
     }

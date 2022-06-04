@@ -5,8 +5,8 @@
     "/js/combobox.js": "/js/combobox.js",
     "/js/timer.js": "/js/timer.js",
     "/css/app.css": "/css/app.css",
-    "/css/style.css": "/css/style.css",
     "/css/home.css": "/css/home.css",
+    "/css/statistics.css": "/css/statistics.css",
     "/css/normatives.css": "/css/normatives.css",
     "/css/combobox.css": "/css/combobox.css",
     "/css/modal.css": "/css/modal.css",
@@ -18,5 +18,6 @@
     "/css/contacts.css": "/css/contacts.css",
     "/css/authorization.css": "/css/authorization.css",
     "/css/registration.css": "/css/registration.css",
-    "/css/about.css": "/css/about.css"
+    "/css/about.css": "/css/about.css",
+    "/css/style.css": "/css/style.css"
 }

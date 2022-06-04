@@ -56,22 +56,38 @@
                 width: 21px
 
     .parameters_panel
-        display: flex
+        display: inline
+        width: 100%
         margin-top: 40px
-        .group_combobox
-            margin-right: 10px
-            .combo
-                max-width: 200px
-                .combo-input
-                    width: 200px
-        .show_btn
-            display: block
-            width: 150px
+        .form_parameters
+            display: flex
+            float: left
+            .group_combobox
+                margin-right: 10px
+                .combo
+                    max-width: 200px
+                    .combo-input
+                        width: 200px
+            .show_btn
+                display: block
+                width: 150px
+                border: 1px solid #ced4da
+                border-radius: 0.25rem
+                &:hover
+                    background-image: linear-gradient(to top, #2f2f2f 0%, #373f4b 100%)
+                    color: #e5e5e5
+        .stat_btn
+            display: flex
+            justify-content: center
+            align-items: center
+            float: right
+            width: 48px
+            height: 38px
             border: 1px solid #ced4da
+            background-color: rgba(233, 236, 239, 0.6)
             border-radius: 0.25rem
-            &:hover
-                background-image: linear-gradient(to top, #2f2f2f 0%, #373f4b 100%)
-                color: #e5e5e5
+            img
+                width: 35px
 
     .admin_panel
         display: block

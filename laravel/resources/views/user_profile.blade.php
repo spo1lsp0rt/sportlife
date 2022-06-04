@@ -137,20 +137,25 @@
 
                 <div class="container">
                     <div class="row">
-                        <form class="form_parameters" action="/out_testResults" method="post">
-                            @csrf
+                        <div class="col">
                             <div class="parameters_panel">
-                                <div class="group_combobox">
-                                    <div name="group" class="combo js-combobox">
-                                        <input spellcheck="false" name="group" autocomplete="off" aria-controls="groups-listbox"
-                                               aria-haspopup="groups-listbox" id="groups-combo" class="combo-input"
-                                               role="combobox" type="text">
-                                        <div class="combo-menu" role="listbox" id="groups-listbox"></div>
-                                    </div>
-                                </div>
-                                <button type="submit" class="show_btn">Вывести</button>
+                                <form class="form_parameters" action="/out_testResults" method="post">
+                                    @csrf
+                                        <div class="group_combobox">
+                                            <div name="group" class="combo js-combobox">
+                                                <input spellcheck="false" name="group" autocomplete="off" aria-controls="groups-listbox"
+                                                       aria-haspopup="groups-listbox" id="groups-combo" class="combo-input"
+                                                       role="combobox" type="text">
+                                                <div class="combo-menu" role="listbox" id="groups-listbox"></div>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="show_btn">Вывести</button>
+                                </form>
+                                <a href="/statistics" class="stat_btn"><img src="img/statistic_icon.png" alt="Статистика"></a>
                             </div>
-                        </form>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="table-responsive">
                             <table class="table table-bordered align-middle text-center">
                                 <thead class="align-middle">
