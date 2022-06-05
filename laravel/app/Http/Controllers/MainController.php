@@ -207,10 +207,11 @@ class MainController extends Controller
                 $allStat = new statistic();
                 $allTests = new Test();
                 $allUsers = new users();
+                $gender = DB::table('user')->where('ID_User', $user->ID_User)->value('gender');
                 $currentData = array($allStat->all(), $allTests->all(), $allUsers->all());
                 setcookie('login', $login, 0, '/');
                 setcookie('ID_User', $user->ID_User, 0, '/');
-                setcookie('Gender', $user->gender, 0, '/');
+                setcookie('Gender', $gender, 0, '/');
                 return redirect('/profile');
             }
         }
