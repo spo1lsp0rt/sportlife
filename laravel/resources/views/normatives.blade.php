@@ -69,7 +69,7 @@
                                         @if ($res_val == null)
                                             <input step="any" spellcheck="false" type="number" lang="en" placeholder="Введите результат" class="input_number ofp_result" name="{{$currentUser->ID_User . '_' . $normative->id}}">
                                         @else
-                                            <input readonly spellcheck="false" contenteditable="false" type="number" lang="en" placeholder="Введите результат" class="input_number ofp_result" name="{{$currentUser->ID_User . '_' . $normative->id}}" value="{{$res_val}}">
+                                            <input readonly spellcheck="false" contenteditable="false" type="number" lang="en" placeholder="Введите результат" class="input_number ofp_result" name="{{$currentUser->ID_User . '_' . $normative->id}}" value="{{$res_val}}" autocomplete="off">
                                         @endif
                                     </div>
                                 </div>

@@ -9,7 +9,7 @@
 @section('main_content')
 
     @if(session('reg_success'))
-        <div class="alert alert-success">{{session('reg_success')}}</div>
+        <div class="alert alert-success text-center">{{session('reg_success')}}</div>
     @endif
     <div class="container">
         <div class="row">

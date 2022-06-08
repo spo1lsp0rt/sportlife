@@ -45,7 +45,7 @@
         </script>
         <div class="row">
             <div class="parameters_panel">
-                <form action="/getStatistic" method="post">
+                <form class="parameters_form" action="/getStatistic" method="post">
                     @csrf
                     <div class="group_combobox">
                         <div name="group" class="combo js-combobox">

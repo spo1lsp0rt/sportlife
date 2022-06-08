@@ -56,7 +56,7 @@
                         @csrf
                         <div class="token_field">
                             <div class="token_title">Введите ключ:</div>
-                            <input @if($key_success) readonly @endif name="key" type="text" id="d1" class="form-control token_input" placeholder="XXX-XXX-XXX-XXX">
+                            <input @if($key_success) readonly @endif name="key" type="text" id="d1" class="form-control token_input" placeholder="XXX-XXX-XXX-XXX" autocomplete="off">
                             <button @if($key_success) disabled  @endif type="submit" class="token_check_btn">
                                 <img src="/icons/tokencheck.svg" alt="" class="token_check_icon">
                             </button>
@@ -86,7 +86,7 @@
                             </div>
                         </div>
                         <div class="personal_info">
-                            <input @if(!$key_success) disabled readonly @endif name="email" type="text" class="form-control email_input" autocomplete="off" placeholder="Email ⃰">
+                            <input @if(!$key_success) disabled readonly @endif name="email" type="text" class="form-control email_input" autocomplete="off" placeholder="Логин ⃰">
                         </div>
                         <div class="personal_info">
                             <input @if(!$key_success) disabled readonly @endif name="password" type="password" class="form-control password_input" autocomplete="off" placeholder="Пароль ⃰">

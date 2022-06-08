@@ -36,16 +36,16 @@
 
     <div class="container">
         @if(session('add_success'))
-            <div class="alert alert-success">{{session('add_success')}}</div>
+            <div class="alert alert-success text-center">{{session('add_success')}}</div>
         @endif
         @if(session('update_success'))
-            <div class="alert alert-success">{{session('update_success')}}</div>
+            <div class="alert alert-success text-center">{{session('update_success')}}</div>
         @endif
         @if(session('delete_success'))
-            <div class="alert alert-success">{{session('delete_success')}}</div>
+            <div class="alert alert-success text-center">{{session('delete_success')}}</div>
         @endif
         @foreach($errors->all() as $error)
-            <div class="alert alert-danger">
+            <div class="alert alert-danger text-center">
                 <li>{{$error}}</li>
             </div>
         @endforeach

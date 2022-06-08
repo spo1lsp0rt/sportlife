@@ -95,7 +95,7 @@ class MainController extends Controller
 
     public function  reg(Request $request) {
         $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
+            'email' => 'required',
             'password' => 'required|confirmed'
         ]);
         $fio = $request->input('secondname') . " " . $request->input('firstname') . " " . $request->input('lastname');

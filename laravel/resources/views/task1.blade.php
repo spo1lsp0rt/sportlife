@@ -37,7 +37,13 @@
                     <div class='data_field'>
                         @php
                             if ($exercise->Name == "Ловля падающей линейки."){
-                                echo((-1) * round(( $exercise->Value - $exercise->Norma) / $exercise->Norma, 2));
+                                $numerator = $exercise->Value - $exercise->Norma;
+                                if ($numerator === 0.0) {
+                                    echo(round( $numerator / $exercise->Norma, 2));
+                                }
+                                else {
+                                    echo((-1) * round( $numerator / $exercise->Norma, 2));
+                                }
                             }
                             else{
                                 echo(round(( $exercise->Value - $exercise->Norma) / $exercise->Norma, 2));
