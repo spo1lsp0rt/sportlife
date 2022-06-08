@@ -211,7 +211,9 @@
                                            getPoints($test, $gender, $ofp_test, $summbal, $points);
                                        }
                                    }
-                                   //dd($points);
+
+                                   $points[] = $summbal;
+                                   /*dd($points);*/
                                    array_push($UserPoints, $points);
                                 @endphp
                                 <tr>
@@ -305,14 +307,15 @@
                                                 <td style="border-left: 2px solid black">
                                                     <div id="out{{$normative->id}}" ></div>
                                                 </td>
-
                                             </tr>
                                         @endforeach
                                         </tbody>
                                         <tfoot style="line-height: 2; white-space: nowrap;">
                                         <tr>
                                             <th style="text-align: left" scope="col">Итого</th>
-                                            <th style="border-left: 2px solid black" scope="col">баллы</th>
+                                            <th style="border-left: 2px solid black" scope="col">
+                                                <div id="out10"></div>
+                                            </th>
                                         </tr>
                                         </tfoot>
                                     </table>
