@@ -129,19 +129,20 @@
                                 @csrf
                                 <div class="modal-body">
                                     <div class="container-fluid">
+                                        <div class="row"><h5 class="text-center"><u>Изменение пароля</u></h5></div>
                                         <div class="row">
-                                            <div class="col-md-7">
-                                                <input spellcheck="false" type="text" name="new_email" id="out1" class="form-control" placeholder="Введите новый E-mail"
-                                                       value="">
-                                            </div>
-                                            <div class="col-md-5">
-                                                <button>Отправить код</button>
+                                            <div class="col">
+                                                <input spellcheck="false" type="password" name="new_email" id="out1" class="form-control" placeholder="Введите старый пароль" autocomplete="off" value="">
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-7">
-                                                <input spellcheck="false" type="text" name="new_email" id="out2" class="form-control"
-                                                       placeholder="Введите код из письма" value="">
+                                            <div class="col">
+                                                <input spellcheck="false" type="password" name="new_email" id="out2" class="form-control" placeholder="Введите новый пароль" autocomplete="off" value="">
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <input spellcheck="false" type="password" name="new_email" id="out3" class="form-control" placeholder="Введите новый пароль повторно" autocomplete="off" value="">
                                             </div>
                                         </div>
                                     </div>
