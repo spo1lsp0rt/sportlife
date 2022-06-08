@@ -513,23 +513,21 @@ class SaveResultController extends Controller
             }
 
         }
-        //dd($arrtime);
+        //dd(sizeof($arrtime));
         for ($i = 0; $i < sizeof($arrtime); $i++){
             for ($j = $i + 1; $j < sizeof($arrtime); $j++){
                 //Проверка на совпадение часа во временных промежутках начала, если равны, то
-                if ($arrtime[$i][0] ==$arrtime[$j][0]){
+                if ($arrtime[$i][0] <= $arrtime[$j][0] && $arrtime[$i][1] <= $arrtime[$j][2]){
                     //Прверка на совпадение минут во временных промежутках
-                    if ($arrtime[$i][1] > $arrtime[$j][1]){
-                        $rules[$exercise->getInputName().'begtime'] = 'required|email';
+                    if ($arrtime[$i][0] == $arrtime[$j][0]){
+                        if ($arrtime[$i][1] > $arrtime[$j][1]) $rules[$exercise->getInputName().'begtime'] = 'required|email';
+                    }
+                    else
+                    {
+                        if ($arrtime[$i][3] > $arrtime[$j][1]) $rules[$exercise->getInputName().'begtime'] = 'required|email';
                     }
                 }
-                //Проверка на совпадение часа во временных промежутках конца, если равны, то
-                if ($arrtime[$i][2] ==$arrtime[$j][2]){
-                    //Прверка на совпадение минут во временных промежутках
-                    if ($arrtime[$i][3] > $arrtime[$j][3]){
-                        $rules[$exercise->getInputName().'begtime'] = 'required|email';
-                    }
-                }
+                else $rules[$exercise->getInputName().'begtime'] = 'required|email';
             }
         }
         $time = 0;
