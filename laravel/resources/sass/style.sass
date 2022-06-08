@@ -1,123 +1,133 @@
 *
-  font-family: 'Montserrat', sans-serif
+    font-family: 'Montserrat', sans-serif
 
 html
-  height: 100%
+    height:	100%
 
 body
-  margin: 0
-  min-height: 100%
-  display: grid
-  grid-template-rows: auto 1fr auto
+    margin:	0
+    min-height:	100%
+    display: grid
+    grid-template-rows:	auto 1fr auto
 
 header
-  margin-bottom: 70px
+    margin-bottom: 70px
 
-  nav
-    width: 100%
-    height: 70px
-    margin-top: 28px
+    nav
+        width: 100%
+        height:	70px
+        margin-top:	28px
 
-    .hamburger_field
-      display: none
-
-    .logo_link
-      display: contents
-
-    .menu_field
-      .menu
-        display: flex
-        align-items: center
-        height: 72px
-        list-style-type: none
-
-        .mobile_menulogin
-          display: none
-          align-items: center
-          margin: 30px 0
-
-          .mobile_menulogin_round
+        .header_menu
             display: flex
-            justify-content: center
-            align-items: center
-            background: black
-            width: 40px
-            height: 40px
-            border-radius: 100%
+            justify-content: space-between
 
-          .mobile_menulogin_link
-            color: black
-            text-decoration: none
-            padding-left: 16px
-            font-weight: 400
-            font-size: 19px
+            .hamburger_field
+                display: none
 
-        .menu_item
-          line-height: 20px
-          padding-right: 50px
+            .logo_link
+                display: contents
+                float: left
 
-          &:last-child
-            padding-right: 0
+            .menu_field
+                .menu
+                    display: flex
+                    align-items: center
+                    justify-content: center
+                    height:	72px
+                    list-style-type: none
+                    margin-bottom: 0
+                    padding-left: 0
+                    padding-right: 50px
 
-          .menu_link
-            color: black
-            text-decoration: none
-            font-weight: 400
-            font-size: 18px
+                    .mobile_menulogin
+                        display: none
+                        align-items: center
+                        margin:	30px 0
 
-            &:hover
-              text-decoration: underline
+                        .mobile_menulogin_round
+                            display: flex
+                            justify-content: center
+                            align-items: center
+                            background:	black
+                            width: 40px
+                            height:	40px
+                            border-radius: 100%
 
-    .menulogin
-      height: 70px
-      display: flex
-      margin-left: 70px
-      align-items: center
+                        .mobile_menulogin_link
+                            color:	black
+                            text-decoration: none
+                            padding-left: 16px
+                            font-weight: 400
+                            font-size: 19px
 
-      .menulogin_round
-        display: flex
-        justify-content: center
-        align-items: center
-        background: black
-        width: 40px
-        height: 40px
-        border-radius: 100%
+                    .menu_item
+                        line-height: 20px
+                        padding-right: 50px
+                        white-space: nowrap
 
-      .menulogin_link
-        color: black
-        text-decoration: none
-        padding-left: 16px
-        padding-right: 11px
-        font-weight: 400
-        font-size: 19px
+                        &:last-child
+                            padding-right: 0
+
+                        .menu_link
+                            color: black
+                            text-decoration: none
+                            font-weight: 400
+                            font-size: 18px
+
+                            &:hover
+                                text-decoration: underline
+
+            .menulogin
+                height:	70px
+                display: flex
+                float: right
+                align-items: center
+
+                .menulogin_round
+                    display: flex
+                    justify-content: center
+                    align-items: center
+                    background:	black
+                    width: 40px
+                    height:	40px
+                    border-radius: 100%
+
+                .menulogin_link
+                    color: black
+                    text-decoration: none
+                    padding-left: 16px
+                    padding-right: 1px
+                    font-weight: 400
+                    font-size:	19px
 
 input[type=number]
-  &::-webkit-inner-spin-button, &::-webkit-outer-spin-button
-    -webkit-appearance: none
+    &::-webkit-inner-spin-button, &::-webkit-outer-spin-button
+        -webkit-appearance:	none
 
 footer
-  height: 168px
-  margin-top: 50px
-  padding: 69px 0 57px 0
-  background: #1A1A1A
+    height:	168px
+    margin-top:	50px
+    padding: 69px 0 57px 0
+    background:	#1A1A1A
 
-  .footer_descr
-    margin: 0 auto
-    font-weight: 300
-    font-size: 15px
-    line-height: 21px
-    text-align: center
-    color: #888888
+    .footer_descr
+        margin:	0 auto
+        font-weight: 300
+        font-size: 15px
+        line-height: 21px
+        text-align:	center
+        color: #888888
 
-    a
-      text-decoration-line: underline
-      color: #888888
-      text-decoration-color: #888888
-      cursor: pointer
-      padding-right: 5px
-      border-right: #888888 solid 1px
-      &:nth-child(2)
-        padding-right: 0
-        border-right: none
+        a
+            text-decoration-line: underline
+            color: #888888
+            text-decoration-color: #888888
+            cursor:	pointer
+            padding-right: 5px
+            border-right: #888888 solid 1px
+            &:nth-child(2)
+                padding-right: 0
+                border-right: none
 
-@import "media_style"
+@import	"media_style"

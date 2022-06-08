@@ -16,10 +16,9 @@
     <nav>
         <div class="container">
             <div class="row">
-                <div class="col-7 col-sm-12 col-md-4 offset-md-0 col-lg-3">
+                <div class="header_menu">
                     <a class="logo_link" href="/"><img src="/img/logo.svg" alt="logo" class="menu_img"></a>
-                </div>
-                <div class="col-1 col-sm-9 offset-sm-0 col-md-6 offset-md-0 col-lg-6 offset-lg-0">
+
                     <div class="hamburger_field">
                         <div class="hamburger">
                             <span></span>
@@ -27,6 +26,7 @@
                             <span></span>
                         </div>
                     </div>
+
                     <div class="menu_field">
                         <ul class="menu">
                             <div class="mobile_menulogin">
@@ -46,8 +46,7 @@
                             <li class="menu_item menu_element"><a href="/contacts" class="menu_link">Контакты</a></li>
                         </ul>
                     </div>
-                </div>
-                <div class="col-4 col-sm-2 offset-sm-0 col-md-2 offset-md-0 col-lg-2 offset-lg-1">
+
                     <div class="menulogin">
                         <a href="/profile">
                             <div class="menulogin_round"><img src="/icons/user_log.png" alt="" class="menulogin_icon"></div>
