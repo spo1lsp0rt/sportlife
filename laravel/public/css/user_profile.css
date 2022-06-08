@@ -38,9 +38,10 @@
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 40px;
 }
-.user_profile .profile_panel .edit_profile_btn {
+.user_profile .profile_panel .modal_btn {
   width: 40px;
   height: 40px;
+  margin-left: 20px;
   background: #FFFFFF;
   border: 1px solid #000000;
   box-sizing: border-box;
@@ -50,7 +51,7 @@
   justify-content: center;
   align-items: center;
 }
-.user_profile .profile_panel .edit_profile_btn img {
+.user_profile .profile_panel .modal_btn img {
   height: 21px;
   width: 21px;
 }

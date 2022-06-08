@@ -56,6 +56,12 @@
             </div>
             <div class="profile_panel">
                 <div class="profile_name">{{$currentUser->FullName}}</div>
+                @if($currentUser->ID_Role == 1)
+                <button class="modal_btn" type="button" data-bs-toggle="modal"
+                        data-bs-target="#exampleModalCenter">
+                    <img src="img/edit.png" alt="Редактировать">
+                </button>
+                @endif
             </div>
             @if($currentUser->ID_Role == 1)
                 @php
@@ -110,6 +116,45 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+                     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalCenterTitle">Редактирование</h5>
+                                <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <form>
+                                @csrf
+                                <div class="modal-body">
+                                    <div class="container-fluid">
+                                        <div class="row">
+                                            <div class="col-md-7">
+                                                <input spellcheck="false" type="text" name="new_email" id="out1" class="form-control" placeholder="Введите новый E-mail"
+                                                       value="">
+                                            </div>
+                                            <div class="col-md-5">
+                                                <button>Отправить код</button>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-7">
+                                                <input spellcheck="false" type="text" name="new_email" id="out2" class="form-control"
+                                                       placeholder="Введите код из письма" value="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button formaction="updateStudent" class="btn btn-success">Сохранить</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
             @endif
             @if($currentUser->ID_Role == 2)
                 @php
@@ -283,7 +328,7 @@
                     let arr_options = [arr_groups];
                 </script>
 
-                {{--Модальное окно по нажатии на студента--}}
+                {{--Модальное окно по нажатии на Редактирование в админ профиле--}}
                 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
                      aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -377,7 +422,9 @@
         </div>
     </div>
 
-    <script src="{{ asset('js/combobox.js') }}"></script>
+    @if($currentUser->ID_Role != 1)
+        <script src="{{ asset('js/combobox.js') }}"></script>
+    @endif
     @if($currentUser->ID_Role == 2)
         <script>
             const active_comboval = <?php echo json_encode($active_comboval); ?>;

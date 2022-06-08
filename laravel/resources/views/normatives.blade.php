@@ -119,7 +119,7 @@
                                         <div class="combo-menu" role="listbox" id="gender-listbox"></div>
                                     </div>
                                 </div>
-                                <button type="submit" class="show_btn">Вывести</button>
+                                <button type="submit" class="show_btn" id="show_btn">Вывести</button>
                         </div>
                     </form>
                     <div class="edit_panel">
@@ -386,7 +386,7 @@
                     cell.setAttribute('readonly', 'true');
                     cell.addEventListener("mousedown", listener, false);
                 });
-                document.getElementById('cancel_btn_primary').click()
+                document.getElementById('show_btn').click()
             }
             var save = function(){
                 document.getElementById('edit_btn').style.display="block";  // for hide button
