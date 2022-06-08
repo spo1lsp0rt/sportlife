@@ -169,6 +169,19 @@ class MainController extends Controller
         return Redirect::back()->with(['statistic' => $statistic, 'ofp_id_class' => $id_class]);
     }
 
+    public function  getStatistic(Request $request)
+    {
+        $gender = "";
+        if($request->input('gender') == "Юноши")
+            $gender = "муж";
+        else if($request->input('gender') == "Девушки")
+            $gender = "жен";
+        $statistic = array();
+        $statistic['test1'] = DB::select('CALL getAllStatFromTest1("' . $gender . '", "' . $request->input('group') . '")');
+        $statistic['normativesForTest1'] = DB::select('CALL 	getNormativesForTest1("' . $gender . '")');
+        return Redirect::back()->with(['statistic' => $statistic, 'gender' => $request->input('gender')]);
+    }
+
     public function  updateStudent() {
         $id = DB::table('user')->where('FullName', $_POST['old_fio'])->value('ID_User');
         $id_class = DB::table('class')->where('Name', $_POST['group'])->value('ID_Class');
