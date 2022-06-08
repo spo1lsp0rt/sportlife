@@ -56,6 +56,8 @@ Route::post('/ofp_table', [ MainController::class, 'ofp_table' ]);
 
 Route::post('/out_testResults', [ MainController::class, 'out_testResults' ]);
 
+Route::post('/getStatistic', [ MainController::class, 'getStatistic' ]);
+
 /**
  * Вывод списка тестов
  */

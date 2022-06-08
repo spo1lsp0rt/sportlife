@@ -10,6 +10,11 @@
 
 @section('main_content')
 
+    @if(!session('statistic'))
+        <div class="alert alert-info text-center">
+                Выберите Факультет/группу и пол
+        </div>
+    @endif
     <div class="container">
         <div class="row">
             <div class="statistics_title">
@@ -38,24 +43,32 @@
             let arr_genders = <?php echo json_encode($arr_genders); ?>;
             let arr_options = [arr_faculties.concat(arr_groups), arr_genders];
         </script>
-
         <div class="row">
             <div class="parameters_panel">
-                <div class="group_combobox">
-                    <div name="group" class="combo js-combobox">
-                        <input name="group" spellcheck="false" autocomplete="off" aria-controls="groups-listbox" aria-haspopup="groups-listbox" id="groups-combo" class="combo-input" role="combobox" type="text">
-                        <div class="combo-menu" role="listbox" id="groups-listbox"></div>
+                <form action="/getStatistic" method="post">
+                    @csrf
+                    <div class="group_combobox">
+                        <div name="group" class="combo js-combobox">
+                            <input name="group" spellcheck="false" autocomplete="off" aria-controls="groups-listbox" aria-haspopup="groups-listbox" id="groups-combo" class="combo-input" role="combobox" type="text">
+                            <div class="combo-menu" role="listbox" id="groups-listbox"></div>
+                        </div>
                     </div>
-                </div>
-                <div class="gender_combobox">
-                    <div name="gender" class="combo js-combobox">
-                        <input name="gender" spellcheck="false" aria-autocomplete="none" aria-controls="gender-listbox" aria-haspopup="gender-listbox" id="gender-combo" class="combo-input" role="combobox" type="text">
-                        <div class="combo-menu" role="listbox" id="gender-listbox"></div>
+                    <div class="gender_combobox">
+                        <div name="gender" class="combo js-combobox">
+                            <input name="gender" spellcheck="false" aria-autocomplete="none" aria-controls="gender-listbox" aria-haspopup="gender-listbox" id="gender-combo" class="combo-input" role="combobox" type="text">
+                            <div class="combo-menu" role="listbox" id="gender-listbox"></div>
+                        </div>
                     </div>
-                </div>
-                <button type="submit" class="show_btn">Вывести</button>
+                    <button type="submit" class="show_btn">Вывести</button>
+                </form>
             </div>
         </div>
+        @php
+            $statistic = null;
+            if(session('statistic'))
+                $statistic = session('statistic');
+
+        @endphp
         <div class="row">
             <div class="table-responsive">
                 <table class="table table-bordered align-middle text-center">
@@ -70,14 +83,18 @@
                     </tr>
                     </thead>
                     <tbody style="line-height: 3; white-space: nowrap;">
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Сгибание и разгибание рук в упоре лежа (раз)</td>
-                        <td>Юноши</td>
-                        <td>481</td>
-                        <td>30,26</td>
-                        <td>40-43</td>
-                    </tr>
+                    @if($statistic && $statistic['normativesForTest1'] && $statistic['test1'])
+                        @for($i = 0; $i < 6; $i++)
+                            <tr>
+                                <th scope="row">{{$statistic['normativesForTest1'][$i]->ID_Exercise}}</th>
+                                <td>{{$statistic['test1'][$i]->Name}}</td>
+                                <td>{{session('gender')}}</td>
+                                <td>{{$statistic['test1'][$i]->count}}</td>
+                                <td>{{$statistic['test1'][$i]->avg}}</td>
+                                <td>{{$statistic['normativesForTest1'][$i]->min}}-{{$statistic['normativesForTest1'][$i]->max}}</td>
+                            </tr>
+                        @endfor
+                    @endif
                     </tbody>
                 </table>
             </div>
