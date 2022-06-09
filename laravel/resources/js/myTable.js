@@ -1,13 +1,10 @@
-
-
-
 jQuery.fn.pageMe = function(opts){
     var $this = this;
     var defaults = {
-            perPage: 5,
-            showPrevNext: true,
-            hidePageNumbers: false
-        }
+        perPage: 5,
+        showPrevNext: true,
+        hidePageNumbers: false
+    }
     var settings = jQuery.extend(defaults, opts);
 
     var listElement = $this;
@@ -102,4 +99,3 @@ jQuery.fn.pageMe = function(opts){
 
     }
 };
-

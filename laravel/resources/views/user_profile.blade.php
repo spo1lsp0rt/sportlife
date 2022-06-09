@@ -276,10 +276,14 @@
                         <div class="container">
                             <div class="row">
                                 <div class="col">
-                                    <div class="table_parameters d-flex">
+                                    <div class="table_parameters">
                                         <button class="user_delbtn">Удалить выбранных</button>
-                                        <input type="text" id="myInput" onkeyup="searchMe()" placeholder="Search for names..">
+                                        <input type="text" id="myInput" class="table_searcher" onkeyup="searchMe(0)" placeholder="Поиск по имени...">
                                     </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
                                     <div class="table-responsive">
                                         <table class="table table-bordered align-middle text-center">
                                             <thead class="align-middle">
@@ -457,24 +461,31 @@
             });
         </script>
         <script>
-
-            function searchMe() {
+            function searchMe(col, viewCount = 5, myInput = "myInput", myTable = "myTable", myPager = "myPager") {
                 // Declare variables
                 var input, filter, table, tr, td, i, txtValue;
-                input = document.getElementById("myInput");
+                input = document.getElementById(myInput);
                 filter = input.value.toUpperCase();
-                table = document.getElementById("myTable");
-                tr = table.getElementsByTagName("tr");
-
-                // Loop through all table rows, and hide those who don't match the search query
-                for (i = 0; i < tr.length; i++) {
-                    td = tr[i].getElementsByTagName("td")[0];
-                    if (td) {
-                        txtValue = td.textContent || td.innerText;
-                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                            tr[i].style.display = "";
-                        } else {
-                            tr[i].style.display = "none";
+                table = document.getElementById(myTable);
+                if (filter === "") {
+                    var pager = document.getElementById(myPager);
+                    var li = pager.querySelector("li.active");
+                    li.getElementsByTagName("a")[0].click();
+                }
+                else {
+                    tr = table.getElementsByTagName("tr");
+                    // Loop through all table rows, and hide those who don't match the search query
+                    var viewed = 0;
+                    for (i = 0; i < tr.length; i++) {
+                        td = tr[i].getElementsByTagName("td")[col];
+                        if (td) {
+                            txtValue = td.textContent || td.innerText;
+                            if (txtValue.toUpperCase().indexOf(filter) > -1 && viewed < viewCount) {
+                                tr[i].style.display = "";
+                                viewed++;
+                            } else {
+                                tr[i].style.display = "none";
+                            }
                         }
                     }
                 }
