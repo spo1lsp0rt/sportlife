@@ -68,39 +68,38 @@
                 </div>
             </div>
         </div>
-        @endif
-        @if($currentUser->ID_Role == 1)
-        <div class="row">
-            <div class="col">
-                <div class="content_field">
-                    <div class="content_field_header">Заполнение результатов ОФП (ГТО)</div>
-                    <div class="content_field_info">В течение сессии студенты выполняют нормативы, подготовленные преподавателем. Данные нормативы позволяют оценить подготовленность студента к физическим нагрузкам. Во вкладке "ОФП" студенту необходимо ввести свои результаты по сданному нормативу, чтобы преподаватель мог записать их в журнал.</div>
-                    <img class="content_field_img" src="/img/about/ofp_usage.gif" alt="">
-                </div>
-            </div>
-        </div>
-        @elseif($currentUser->ID_Role == 2)
-            <div class="row">
-                <div class="col">
-                    <div class="content_field">
-                        <div class="content_field_header">Открытие доступа к тесту</div>
-                        <div class="content_field_info">После прохождения теста студент получает результаты тестирования и лишается возможности снова проходить тест без разрешения преподавателя. Преподавателю необходимо выбрать в профиле строку с содержанием соответствующего теста и студента, после чего откроется страница с результатами. На этой же странице преподаватель может открыть доступ студенту к тесту.</div>
-                        <img class="content_field_img" src="/img/about/ofp_teacher_usage.gif" alt="">
-                        <div class="content_field_info"><span class="text-danger"><b>Важно!</b></span><br>После открытия доступа к повторному прохождению теста старые результаты студента пропадут.</div>
-                    </div>
-                </div>
-            </div>
+            @if($currentUser->ID_Role == 1)
             <div class="row">
                 <div class="col">
                     <div class="content_field">
                         <div class="content_field_header">Заполнение результатов ОФП (ГТО)</div>
-                        <div class="content_field_info">В течение сессии студенты выполняют нормативы, подготовленные преподавателем. Данные нормативы позволяют оценить подготовленность студента к физическим нагрузкам. Во вкладке "ОФП" преподаватель может посмотреть и изменить результаты по нормативам у необходимой группы.</div>
-                        <img class="content_field_img" src="/img/about/ofp_teacher_usage.gif" alt="">
+                        <div class="content_field_info">В течение сессии студенты выполняют нормативы, подготовленные преподавателем. Данные нормативы позволяют оценить подготовленность студента к физическим нагрузкам. Во вкладке "ОФП" студенту необходимо ввести свои результаты по сданному нормативу, чтобы преподаватель мог записать их в журнал.</div>
+                        <img class="content_field_img" src="/img/about/ofp_usage.gif" alt="">
                     </div>
                 </div>
             </div>
+            @elseif($currentUser->ID_Role == 2)
+                <div class="row">
+                    <div class="col">
+                        <div class="content_field">
+                            <div class="content_field_header">Открытие доступа к тесту</div>
+                            <div class="content_field_info">После прохождения теста студент получает результаты тестирования и лишается возможности снова проходить тест без разрешения преподавателя. Преподавателю необходимо выбрать в профиле строку с содержанием соответствующего теста и студента, после чего откроется страница с результатами. На этой же странице преподаватель может открыть доступ студенту к тесту.</div>
+                            <img class="content_field_img" src="/img/about/test_access.gif" alt="">
+                            <div class="content_field_info"><span class="text-danger"><b>Важно!</b></span><br>После открытия доступа к повторному прохождению теста старые результаты студента пропадут.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="content_field">
+                            <div class="content_field_header">Заполнение результатов ОФП (ГТО)</div>
+                            <div class="content_field_info">В течение сессии студенты выполняют нормативы, подготовленные преподавателем. Данные нормативы позволяют оценить подготовленность студента к физическим нагрузкам. Во вкладке "ОФП" преподаватель может посмотреть и изменить результаты по нормативам у необходимой группы.</div>
+                            <img class="content_field_img" src="/img/about/ofp_teacher_usage.gif" alt="">
+                        </div>
+                    </div>
+                </div>
+            @endif
         @endif
-
     </div>
 
 @endsection
