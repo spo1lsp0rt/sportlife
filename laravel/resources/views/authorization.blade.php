@@ -1,3 +1,11 @@
+@php
+    if (array_key_exists('login', $_COOKIE)){
+        header('Location: /');
+        exit;
+    }
+@endphp
+
+
 @extends('layout')
 
 @section('title')Авторизация@endsection
