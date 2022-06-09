@@ -134,6 +134,12 @@
 }
 
 @media (max-width: 991px) {
+  .tests {
+    margin-bottom: 0;
+  }
+  .tests .tests_title h2 {
+    margin-bottom: 0;
+  }
   .tests .tests_vision .vision_title {
     padding-left: 8px;
   }
@@ -153,6 +159,9 @@
     padding-left: 0;
   }
 
+  .tests_form {
+    width: 90%;
+  }
   .tests_form .lock_img {
     width: 10%;
   }
