@@ -113,14 +113,14 @@
 }
 .user_profile .admin_panel .upload_form .form-control {
   margin-right: 10px;
-  font-size: 16px;
+  font-size: 18px;
 }
 .user_profile .admin_panel .upload_form .sumbit-upload {
   background-color: #e9ecef;
   border: #ced4da solid 1px;
   border-radius: 5px;
   transition: 0.2s;
-  font-size: 16px;
+  font-size: 18px;
   width: 200px;
 }
 .user_profile .admin_panel .upload_form .sumbit-upload:hover {
@@ -149,7 +149,7 @@
   border: #ced4da solid 1px;
   border-radius: 5px;
   transition: 0.2s;
-  font-size: 16px;
+  font-size: 18px;
 }
 .user_profile .admin_panel .unhide_btn:hover, .user_profile .admin_panel .hide_btn:hover {
   background-color: rgba(193, 193, 193, 0.5);
@@ -162,7 +162,7 @@
   border: #ced4da solid 1px;
   border-radius: 5px;
   transition: 0.2s;
-  font-size: 16px;
+  font-size: 18px;
 }
 .user_profile .admin_panel .user_delbtn:hover {
   background-color: rgba(255, 27, 27, 0.5);

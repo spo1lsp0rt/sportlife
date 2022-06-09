@@ -29,7 +29,7 @@
     <link rel="stylesheet" type="text/css" href="{{url('css/statistic_table.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url('css/modal.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url('css/combobox.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{url('css/pagination.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url('css/myTable.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url('css/user_profile.css')}}">
 @endsection
 
@@ -270,12 +270,16 @@
                     </div>
 
                     <h3>Список студентов</h3>
+
                     <form method="post" action="delete_student">
                         @csrf
                         <div class="container">
                             <div class="row">
                                 <div class="col">
-                                    <button class="user_delbtn">Удалить пользователя(-ей)</button>
+                                    <div class="table_parameters d-flex">
+                                        <button class="user_delbtn">Удалить выбранных</button>
+                                        <input type="text" id="myInput" onkeyup="searchMe()" placeholder="Search for names..">
+                                    </div>
                                     <div class="table-responsive">
                                         <table class="table table-bordered align-middle text-center">
                                             <thead class="align-middle">
@@ -444,13 +448,37 @@
                 });
             });
         </script>
-        <script src="{{ asset('js/pageMe.js') }}"></script>
+        <script src="{{ asset('js/myTable.js') }}"></script>
         <script>
             jQuery(document).ready(function(){
 
                 jQuery('#myTable').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:5});
 
             });
+        </script>
+        <script>
+
+            function searchMe() {
+                // Declare variables
+                var input, filter, table, tr, td, i, txtValue;
+                input = document.getElementById("myInput");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("myTable");
+                tr = table.getElementsByTagName("tr");
+
+                // Loop through all table rows, and hide those who don't match the search query
+                for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[0];
+                    if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
+            }
         </script>
     @endif
 
