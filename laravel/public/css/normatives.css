@@ -126,3 +126,74 @@
   background-image: linear-gradient(to top, #2f2f2f 0%, #373f4b 100%);
   color: #e5e5e5;
 }
+
+@media (max-width: 991.5px) {
+  .form_parameters {
+    display: flex;
+    align-items: center;
+  }
+
+  .form_edit {
+    display: flex;
+    align-items: center;
+  }
+}
+@media (max-width: 767.5px) {
+  .parameters_panel .group_combobox {
+    margin-right: 10px;
+  }
+  .parameters_panel .group_combobox .combo {
+    max-width: 160px;
+  }
+  .parameters_panel .group_combobox .combo .combo-input {
+    width: 160px;
+  }
+  .parameters_panel .gender_combobox {
+    margin-right: 10px;
+  }
+  .parameters_panel .gender_combobox .combo {
+    max-width: 160px;
+  }
+  .parameters_panel .gender_combobox .combo .combo-input {
+    width: 160px;
+  }
+  .parameters_panel .show_btn {
+    width: 150px;
+  }
+
+  .edit_panel {
+    margin: 0 auto 20px auto;
+  }
+}
+@media (max-width: 575.5px) {
+  .parameters_panel .group_combobox {
+    margin-right: 10px;
+  }
+  .parameters_panel .group_combobox .combo {
+    max-width: 130px;
+  }
+  .parameters_panel .group_combobox .combo .combo-input {
+    width: 130px;
+  }
+  .parameters_panel .gender_combobox {
+    margin-right: 10px;
+  }
+  .parameters_panel .gender_combobox .combo {
+    max-width: 130px;
+  }
+  .parameters_panel .gender_combobox .combo .combo-input {
+    width: 130px;
+  }
+  .parameters_panel .show_btn {
+    width: 120px;
+  }
+
+  .edit_panel .cancel_btn, .edit_panel .save_btn {
+    font-size: 13px;
+    width: 130px;
+  }
+
+  .table-responsive .table td .result_cell {
+    width: 100px;
+  }
+}

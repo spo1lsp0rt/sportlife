@@ -122,10 +122,12 @@
                                 <button type="submit" class="show_btn" id="show_btn">Вывести</button>
                         </div>
                     </form>
-                    <div class="edit_panel">
-                        <button type="button" class="edit_btn" id="edit_btn" onclick="edit()">Изменить результаты</button>
-                        <button type="button" class="cancel_btn" id="cancel_btn" onclick="cancel()">Отменить изменения</button>
-                        <button type="submit" class="save_btn" id="save_btn" onclick="save()">Сохранить</button>
+                    <div class="form_edit">
+                        <div class="edit_panel">
+                            <button type="button" class="edit_btn" id="edit_btn" onclick="edit()">Изменить результаты</button>
+                            <button type="button" class="cancel_btn" id="cancel_btn" onclick="cancel()">Отменить изменения</button>
+                            <button type="submit" class="save_btn" id="save_btn" onclick="save()">Сохранить</button>
+                        </div>
                     </div>
                 </div>
             </div>
