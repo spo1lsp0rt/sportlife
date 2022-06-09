@@ -54,7 +54,7 @@
   background-image: linear-gradient(to top, #111111 0%, #424852 100%);
   box-shadow: inset 0px -3px 0px rgba(0, 0, 0, 0.12);
   border: none;
-  border-radius: 17px;
+  border-radius: 0.25rem;
 }
 .edit_panel .edit_btn:hover, .edit_panel .cancel_btn:hover, .edit_panel .save_btn:hover {
   background-image: linear-gradient(to top, #2f2f2f 0%, #373f4b 100%);

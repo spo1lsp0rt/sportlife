@@ -1,3 +1,24 @@
+@php
+    $allUsers = DB::select('select * from user');
+    $currentUser = null;
+        if (array_key_exists('login', $_COOKIE))
+            {
+                foreach($allUsers as $user)
+                {
+                    if($user->ID_User == $_COOKIE['ID_User'])
+                    {
+                        $currentUser = $user;
+                        break;
+                    }
+                }
+            }
+        else
+            {
+                header('Location: /authorization');
+                exit;
+            }
+@endphp
+
 @extends('layout')
 
 @section('title')
@@ -8,32 +29,11 @@
     <link rel="stylesheet" type="text/css" href="{{url('css/statistic_table.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url('css/modal.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url('css/combobox.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url('css/pagination.css')}}">
     <link rel="stylesheet" type="text/css" href="{{url('css/user_profile.css')}}">
 @endsection
 
 @section('main_content')
-
-    @php
-        $allUsers = DB::select('select * from user');
-        $currentUser = null;
-            if (array_key_exists('login', $_COOKIE))
-                {
-                    foreach($allUsers as $user)
-                    {
-                        if($user->ID_User == $_COOKIE['ID_User'])
-                        {
-                            $currentUser = $user;
-                            break;
-                        }
-                    }
-                }
-            else
-                {
-                    header('Location: /authorization');
-                    exit;
-                }
-    @endphp
-
     <div class="container">
         @if(session('add_success'))
             <div class="alert alert-success text-center">{{session('add_success')}}</div>
@@ -50,19 +50,19 @@
             </div>
         @endforeach
             <div class="user_profile">
-            <div class="profile_title"><h2>Профиль</h2></div>
-            <div class="profile_img">
-                <img src="/img/profile_img.png" alt="profile">
-            </div>
-            <div class="profile_panel">
-                <div class="profile_name">{{$currentUser->FullName}}</div>
-                @if($currentUser->ID_Role == 1)
-                <button class="modal_btn" type="button" data-bs-toggle="modal"
-                        data-bs-target="#exampleModalCenter">
-                    <img src="img/edit.png" alt="Редактировать">
-                </button>
-                @endif
-            </div>
+                <div class="profile_title"><h2>Профиль</h2></div>
+                <div class="profile_img">
+                    <img src="/img/profile_img.png" alt="profile">
+                </div>
+                <div class="profile_panel">
+                    <div class="profile_name">{{$currentUser->FullName}}</div>
+                    @if($currentUser->ID_Role == 1)
+                    <button class="modal_btn" type="button" data-bs-toggle="modal"
+                            data-bs-target="#exampleModalCenter">
+                        <img src="img/edit.png" alt="Редактировать">
+                    </button>
+                    @endif
+                </div>
             @if($currentUser->ID_Role == 1)
                 @php
                     if(!array_key_exists('login', $_COOKIE))
@@ -274,45 +274,50 @@
                         @csrf
                         <div class="container">
                             <div class="row">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered align-middle text-center">
-                                        <thead class="align-middle">
-                                        <tr>
-                                            <th scope="col">№</th>
-                                            <th scope="col">ФИО</th>
-                                            <th scope="col">Факультет</th>
-                                            <th scope="col">Группа</th>
-                                            <th scope="col">Действия</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody style="line-height: 3; white-space: nowrap;">
-                                        @php
-                                            $students = DB::select('select * from user where ID_Role = 1');
-                                        @endphp
-                                        @foreach($students as $student)
-                                            @php
-                                                $className = DB::table('class')->where('ID_Class', $student->id_class)->value('Name');
-                                                $facultyName = DB::table('faculty')->where('id_faculty', DB::table('class')->where('ID_Class', $student->id_class)->value('id_faculty'))->value('Name');
-                                            @endphp
+                                <div class="col">
+                                    <button class="user_delbtn">Удалить пользователя(-ей)</button>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered align-middle text-center">
+                                            <thead class="align-middle">
                                             <tr>
-                                                <th scope="row"><input spellcheck="false" name="{{$student->ID_User}}" type="checkbox"
-                                                                       style="transform:scale(1.4);"></th>
-                                                <td>{{$student->FullName}}</td>
-                                                <td>{{$facultyName}}</td>
-                                                <td>{{$className}}</td>
-                                                <td id="{{$student->FullName}}">
-                                                    <button class="modal_btn" type="button" data-bs-toggle="modal"
-                                                            data-bs-target="#exampleModalCenter">
-                                                        Редактировать
-                                                    </button>
-                                                </td>
+                                                <th scope="col">№</th>
+                                                <th scope="col">ФИО</th>
+                                                <th scope="col">Факультет</th>
+                                                <th scope="col">Группа</th>
+                                                <th scope="col">Действия</th>
                                             </tr>
-                                        @endforeach
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody id="myTable" style="line-height: 3; white-space: nowrap;">
+                                            @php
+                                                $students = DB::select('select * from user where ID_Role = 1');
+                                            @endphp
+                                            @foreach($students as $student)
+                                                @php
+                                                    $className = DB::table('class')->where('ID_Class', $student->id_class)->value('Name');
+                                                    $facultyName = DB::table('faculty')->where('id_faculty', DB::table('class')->where('ID_Class', $student->id_class)->value('id_faculty'))->value('Name');
+                                                @endphp
+                                                <tr>
+                                                    <th scope="row"><input spellcheck="false" name="{{$student->ID_User}}" type="checkbox"
+                                                                           style="transform:scale(1.4);"></th>
+                                                    <td>{{$student->FullName}}</td>
+                                                    <td>{{$facultyName}}</td>
+                                                    <td>{{$className}}</td>
+                                                    <td id="{{$student->FullName}}">
+                                                        <button class="modal_btn" type="button" data-bs-toggle="modal"
+                                                                data-bs-target="#exampleModalCenter">
+                                                            Редактировать
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="col-md-12 text-center">
+                                        <ul class="pagination pagination-lg pager" id="myPager"></ul>
+                                    </div>
                                 </div>
                             </div>
-                            <button class="user_delbtn">Удалить пользователя(-ей)</button>
                         </div>
                     </form>
                 </div>
@@ -371,62 +376,16 @@
 
                     </div>
                 </div>
-
-                <script>
-                    var unhide_keys = function () {
-                        document.getElementById('unhide_btn').style.display = "none";
-                        document.getElementById('hide_btn').style.display = "block";
-                        const arr_keyrows = document.querySelectorAll('.key_row');
-                        arr_keyrows.forEach(function (key) {
-                            key.style.display = "table-row";
-                        });
-                    }
-                    var hide_keys = function () {
-                        document.getElementById('unhide_btn').style.display = "block";
-                        document.getElementById('hide_btn').style.display = "none";
-                        hide_some();
-                    }
-                    var hide_some = function () {
-                        var i = 0;
-                        const arr_keyrows = document.querySelectorAll('.key_row');
-                        // если количество ключей более 3, отображается кнопка Раскрыть, а в таблице отображается не более двух ключей
-                        if (arr_keyrows.length > 2) {
-                            document.getElementById('unhide_btn').style.display = "block";
-                            arr_keyrows.forEach(function (key) {
-                                if (i > 1) {
-                                    key.style.display = "none";
-                                }
-                                i++;
-                            });
-                        }
-                        else if (arr_keyrows.length === 0) {
-                            document.getElementById('key_table').style.display = "none";
-                        }
-                    }
-                    hide_some();
-                </script>
-                <script>
-                    function getParentId(el) {
-                        const id = el.parentElement.id;
-                        document.getElementById('out1').value = `${id}`;
-                        document.getElementById('out2').value = `${id}`;
-                    }
-
-                    let btns = document.querySelectorAll('button');
-                    btns.forEach((btn) => {
-                        btn.addEventListener('click', () => {
-                            getParentId(btn);
-                        });
-                    });
-                </script>
             @endif
         </div>
     </div>
 
-    @if($currentUser->ID_Role != 1)
+@endsection
+
+@section('scriptsheet')
+    @if($currentUser->ID_Role == 1)
         <script src="{{ asset('js/combobox.js') }}"></script>
-    @endif
-    @if($currentUser->ID_Role == 2)
+    @elseif($currentUser->ID_Role == 2)
         <script>
             const active_comboval = <?php echo json_encode($active_comboval); ?>;
             const arr_optionEl = document.querySelectorAll('.combo-option');
@@ -437,5 +396,63 @@
                 }
             });
         </script>
+    @elseif($currentUser->ID_Role == 3)
+        <script>
+            var unhide_keys = function () {
+                document.getElementById('unhide_btn').style.display = "none";
+                document.getElementById('hide_btn').style.display = "block";
+                const arr_keyrows = document.querySelectorAll('.key_row');
+                arr_keyrows.forEach(function (key) {
+                    key.style.display = "table-row";
+                });
+            }
+            var hide_keys = function () {
+                document.getElementById('unhide_btn').style.display = "block";
+                document.getElementById('hide_btn').style.display = "none";
+                hide_some();
+            }
+            var hide_some = function () {
+                var i = 0;
+                const arr_keyrows = document.querySelectorAll('.key_row');
+                // если количество ключей более 3, отображается кнопка Раскрыть, а в таблице отображается не более двух ключей
+                if (arr_keyrows.length > 2) {
+                    document.getElementById('unhide_btn').style.display = "block";
+                    arr_keyrows.forEach(function (key) {
+                        if (i > 1) {
+                            key.style.display = "none";
+                        }
+                        i++;
+                    });
+                }
+                else if (arr_keyrows.length === 0) {
+                    document.getElementById('key_table').style.display = "none";
+                }
+            }
+            hide_some();
+        </script>
+        <script>
+            function getParentId(el) {
+                const id = el.parentElement.id;
+                document.getElementById('out1').value = `${id}`;
+                document.getElementById('out2').value = `${id}`;
+            }
+
+            let btns = document.querySelectorAll('button');
+            btns.forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    getParentId(btn);
+                });
+            });
+        </script>
+        <script src="{{ asset('js/pageMe.js') }}"></script>
+        <script>
+            jQuery(document).ready(function(){
+
+                jQuery('#myTable').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:5});
+
+            });
+        </script>
     @endif
+
+
 @endsection
