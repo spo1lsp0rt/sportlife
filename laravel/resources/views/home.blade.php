@@ -16,7 +16,7 @@
                         <div class="home_descr">Онлайн тестирование на основе упражнений,
                             предназначенных для проверки различных
                             областей вашего тела.</div>
-                        <form action="/tests">
+                        <form action="/tests" class="home_btn_block">
                             <button formaction="/tests" class="home_btn">Пройти тестирование</button>
                         </form>
                     </div>

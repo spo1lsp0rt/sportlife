@@ -19,14 +19,6 @@
                 <div class="header_menu">
                     <a class="logo_link" href="/"><img src="/img/logo.svg" alt="logo" class="menu_img"></a>
 
-                    <div class="hamburger_field">
-                        <div class="hamburger">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                    </div>
-
                     <div class="menu_field">
                         <ul class="menu">
                             <div class="mobile_menulogin">
@@ -57,6 +49,15 @@
                         <a href="/authorization" class="menulogin_link">Войти</a>
                         @php }@endphp
                     </div>
+
+                    <div class="hamburger_field">
+                        <div class="hamburger">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>

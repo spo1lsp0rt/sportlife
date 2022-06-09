@@ -1,5 +1,6 @@
 @media	(max-width:	1199.5px)
     header
+        margin-bottom: 40px
         nav
             .header_menu
                 .menu_field
@@ -16,106 +17,70 @@
 
 @media	(max-width:	991.5px)
     header
-        nav
-            .menu
-                padding-left:	10px
-                .menu_item
-                    padding-right:	18px
-                    .menu_link
-                        font-size:	15px
-            .menulogin
-                margin-left:	0
-                .menulogin_link
-                    font-size:	16px
-
-@media	(max-width:	767.5px)
-    header
-        nav
-            height:	130px
-            .logo_link
-                .menu_img
-                    display:	block
-                    margin:	0	auto
-            .menu
-                padding-left:	0
-                .menu_item
-                    padding-right:	22px
-                    .menu_link
-                        font-size:	18px
-            .menulogin
-                padding-left: 80%
-                .menulogin_link
-                    font-size:	19px
-
-@media	(max-width:	575.5px)
-    header
-        margin-bottom:	80px
+        margin-bottom:	30px
         nav
             height:	70px
             margin-top:	15px
             .header_menu
                 .hamburger_field
-                    display:	flex
-                    justify-content:	center
-                    align-items:	center
-                    width:	45px
-                    height:	45px
-                    position:	absolute
-                    right:	12px
-                    top:	26px
-                    z-index:	101
-                    transition:	0.5s	all
+                    display: flex
+                    justify-content: center
+                    align-items: center
+                    width: 45px
+                    height: 45px
+                    float: left
+                    transition:	0.5s all
                     .hamburger
-                        display:	block
-                        width:	30px
+                        display: block
+                        width: 50px
                         height:	15px
-                        z-index:	101
-                        transition:	0.5s	all
+                        z-index: 101
+                        transition:	0.5s all
                         span
-                            display:	block
-                            height:	3px
-                            width:	100%
-                            background-color:	black
-                            margin-bottom:	3px
-                            transition:	0.5s	all
+                            display: block
+                            height:	4px
+                            width: 100%
+                            background-color: black
+                            margin-bottom: 4px
+                            transition:	0.5s all
                             &:last-child
-                                margin-bottom:	0
+                                margin-bottom: 0
                         &_active
                             span
-                                margin-bottom:	-3px
+                                margin-bottom: -4px
                                 &:nth-child(1)
                                     margin-top:	4px
-                                    transform:	translateY(3px)	rotate(-45deg)
+                                    transform:	translateY(4px)	rotate(-45deg)
                                 &:nth-child(2)
-                                    display:	none
+                                    display: none
                                 &:nth-child(3)
-                                    margin-bottom:	0
-                                    transform:	translateY(3px)	rotate(45deg)
+                                    margin-bottom: 0
+                                    transform:	translateY(4px)	rotate(45deg)
                     &_active
-                        right:	195px
-                        background-color:	rgba(250,250,250,	0.95)
-                        border:	black	1px	solid
-                        border-radius:	100%
-                        transition:	0.5s	all
+                        right: 195px
+                        background-color: rgba(250,250,250,	0.95)
+                        border:	black 1px solid
+                        border-radius: 100%
+                        transition:	0.5s all
                 .logo_link
                     .menu_img
-                        display:	block
+                        display: block
                         margin:	0
                         width:	200px
                 .menu_field
                     &_active
-                        position:	fixed
-                        top:	0
-                        right:	0
-                        width:	100%
+                        position: fixed
+                        top: 0
+                        right: 0
+                        width: 100%
                         height:	100vh
-                        z-index:	100
-                        background-color:	rgba(116,	116,	116,	0.31)
+                        z-index: 100
+                        background-color: rgba(116,	116,	116,	0.31)
                     .menu
-                        position:	fixed
+                        position: fixed
                         overflow-y:	auto
                         flex-direction:	column
-                        align-items:	center
+                        align-items: center
                         top:	0
                         right:	-100%
                         width:	50%
@@ -124,7 +89,7 @@
                         border-left:	black	solid	1px
                         transition:	0.5s	all
                         &_active
-                            z-index:	101
+                            z-index: 101
                             right:	0
                         .mobile_menulogin
                             display:	flex
@@ -146,9 +111,35 @@
                                 display:	block
                                 padding:	10px	0
                                 font-size:	20px
-
                 .menulogin
                     display:	none
+
+@media	(max-width:	767.5px)
+    header
+        margin-bottom:	40px
+
+@media	(max-width:	575.5px)
+    header
+        nav
+            .header_menu
+                .hamburger_field
+                    width: 30px
+                    height: 45px
+                    .hamburger
+                        span
+                            height:	3px
+                            margin-bottom: 3px
+                        &_active
+                            span
+                                margin-bottom: -3px
+                                &:nth-child(1)
+                                    margin-top:	3px
+                                    transform:	translateY(3px)	rotate(-45deg)
+                                &:nth-child(2)
+                                    display: none
+                                &:nth-child(3)
+                                    margin-bottom: 0
+                                    transform:	translateY(3px)	rotate(45deg)
 @media	(max-width:	425px)
     footer
         .footer_descr

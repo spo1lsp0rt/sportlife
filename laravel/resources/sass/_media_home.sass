@@ -13,12 +13,11 @@
       .home_descr
         font-size: 23px
         line-height: 28px
-      .home_btn
-        width: 370px
-        height: 60px
-        font-size: 22px
-    .home_img
-      width: 400px
+      .home_btn_block
+          .home_btn
+            width: 370px
+            height: 60px
+            font-size: 22px
 @media (max-width: 991.5px)
   .home
     .home_descrblock
@@ -28,12 +27,14 @@
       .home_descr
         font-size: 20px
         line-height: 25px
-      .home_btn
-        width: 290px
-        height: 45px
-        font-size: 18px
+      .home_btn_block
+          .home_btn
+            width: 290px
+            height: 45px
+            font-size: 18px
     .home_img
       width: 300px
+      margin-left: 10px
 @media (max-width: 767.5px)
   .home
     .home_descrblock
@@ -43,10 +44,13 @@
       .home_descr
         font-size: 21px
         line-height: 27px
-      .home_btn
-        width: 315px
-        height: 50px
-        font-size: 20px
+      .home_btn_block
+          display: flex
+          justify-content: center
+          .home_btn
+            width: 315px
+            height: 50px
+            font-size: 20px
     .home_img
       display: none
 @media (max-width: 575.5px)
@@ -64,14 +68,15 @@
         max-width: 490px
         margin-left: auto
         margin-right: auto
-      .home_btn
-        display: block
-        margin-top: 40px
-        margin-left: auto
-        margin-right: auto
-        width: 280px
-        height: 50px
-        font-size: 20px
+      .home_btn_block
+          .home_btn
+            display: block
+            margin-top: 40px
+            margin-left: auto
+            margin-right: auto
+            width: 280px
+            height: 50px
+            font-size: 20px
 @media (max-width: 425px)
   .home
     .home_descrblock
