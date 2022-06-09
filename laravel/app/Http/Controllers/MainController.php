@@ -171,14 +171,17 @@ class MainController extends Controller
 
     public function  getStatistic(Request $request)
     {
-        $gender = "";
-        if($request->input('gender') == "Юноши")
-            $gender = "муж";
-        else if($request->input('gender') == "Девушки")
+        $gender = "муж";
+        if($request->input('gender') == "Девушки")
             $gender = "жен";
         $statistic = array();
-        $statistic['test1'] = DB::select('CALL getAllStatFromTest1("' . $gender . '", "' . $request->input('group') . '")');
+        $statistic['test1'] = DB::select('CALL getAllStatFromTest("' . $gender . '", "' . $request->input('group') . '", 1)');
+        $statistic['test2'] = DB::select('CALL getAllStatFromTest("' . $gender . '", "' . $request->input('group') . '", 2)');
+        $statistic['ofp'] = DB::select('CALL getAllStatFromOfp("' . $gender . '", "' . $request->input('group') . '")');
         $statistic['normativesForTest1'] = DB::select('CALL 	getNormativesForTest1("' . $gender . '")');
+        $statistic['normativesForTest2'] = DB::select('CALL 	getNormativesForTest2("' . $gender . '")');
+        $statistic['ofp_normatives'] = DB::select('select * from ofp_normatives');
+        $statistic['ofp_normatives2'] = DB::select('select min(male_normative) as minmn, min(female_normative) as minfn, max(male_normative) as maxmn, max(female_normative) as maxfn from ofp_assessment_tests group by id_ofp_test');
         return Redirect::back()->with(['statistic' => $statistic, 'gender' => $request->input('gender')]);
     }
 

@@ -35,7 +35,7 @@
             foreach ($faculties as $faculty)
                 $arr_faculties[] = $faculty->Name;
 
-            $arr_genders = array('Все', 'Юноши', 'Девушки');
+            $arr_genders = array('Юноши', 'Девушки');
         @endphp
         <script type="text/javascript">
             let arr_groups = <?php echo json_encode($arr_groups); ?>;
@@ -84,16 +84,34 @@
                     </thead>
                     <tbody style="line-height: 3; white-space: nowrap;">
                     @if($statistic && $statistic['normativesForTest1'] && $statistic['test1'])
+                        @php $OYFK = 0; $statistic['test1'][0]->Name = rtrim($statistic['test1'][0]->Name, '(отжимания выполняются юношами от пола, девушками от предметов не выше 50 см).'); @endphp
                         @for($i = 0; $i < 6; $i++)
                             <tr>
                                 <th scope="row">{{$statistic['normativesForTest1'][$i]->ID_Exercise}}</th>
                                 <td>{{$statistic['test1'][$i]->Name}}</td>
                                 <td>{{session('gender')}}</td>
                                 <td>{{$statistic['test1'][$i]->count}}</td>
-                                <td>{{$statistic['test1'][$i]->avg}}</td>
-                                <td>{{$statistic['normativesForTest1'][$i]->min}}-{{$statistic['normativesForTest1'][$i]->max}}</td>
+                                <td>{{round($statistic['test1'][$i]->avg, 2)}}</td>
+                                <td>@if($i==4)≤@elseif($i==5)≥@endif{{$statistic['normativesForTest1'][$i]->min}} – @if($i==4)≤@elseif($i==5)≥@endif{{$statistic['normativesForTest1'][$i]->max}}</td>
                             </tr>
+                            @php
+                                if ($statistic['test1'][$i]->Name == "Ловля падающей линейки.")
+                                {
+                                    $OYFK += (-1) * round(( $statistic['test1'][$i]->avg - $statistic['test1'][$i]->Norma) / $statistic['test1'][$i]->Norma, 2);
+                                }
+                                else
+                                    $OYFK += round(( $statistic['test1'][$i]->avg - $statistic['test1'][$i]->Norma) / $statistic['test1'][$i]->Norma, 2);
+                            @endphp
                         @endfor
+                        @php $OYFK = round($OYFK / 7, 2); @endphp
+                        <tr>
+                            <th scope="row">7</th>
+                            <td>Значение общего уровня физических кондиций (ОУФК) для 6-ти испытаний</td>
+                            <td>{{session('gender')}}</td>
+                            <td>{{$statistic['test1'][$i]->count}}</td>
+                            <td>{{$OYFK}}</td>
+                            <td>от – 1 до +1 </td>
+                        </tr>
                     @endif
                     </tbody>
                 </table>
@@ -114,14 +132,23 @@
                     </tr>
                     </thead>
                     <tbody style="line-height: 3; white-space: nowrap;">
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Индекс массы тела (г/см)</td>
-                        <td>Юноши</td>
-                        <td>330</td>
-                        <td>398,75</td>
-                        <td>от 501 и > до < 375</td>
-                    </tr>
+                    @if($statistic && $statistic['normativesForTest2'] && $statistic['test2'])
+                        @php
+                            unset($statistic['test2'][3]); $statistic['test2'] = array_values($statistic['test2']);
+                            unset($statistic['normativesForTest2'][2]); $statistic['normativesForTest2'] = array_values($statistic['normativesForTest2']);
+                        @endphp
+                        @for($i = 0; $i< 8; $i++)
+                            @php $statistic['test2'][$i]->Name = rtrim($statistic['test2'][$i]->Name, 'жен.муж') @endphp
+                            <tr>
+                                <th scope="row">{{$i+1}}</th>
+                                <td>{{$statistic['test2'][$i]->Name}}</td>
+                                <td>{{session('gender')}}</td>
+                                <td>{{$statistic['test2'][$i]->count}}</td>
+                                <td>{{round($statistic['test2'][$i]->avg, 2)}}</td>
+                                <td> от {{$statistic['normativesForTest2'][$i]->min}} до {{$statistic['normativesForTest2'][$i]->max}} </td>
+                            </tr>
+                        @endfor
+                    @endif
                     </tbody>
                 </table>
             </div>
@@ -141,13 +168,18 @@
                     </tr>
                     </thead>
                     <tbody style="line-height: 3; white-space: nowrap;">
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Индекс массы тела (г/см)</td>
-                        <td>Юноши</td>
-                        <td>398,75</td>
-                        <td>в. среднего</td>
-                    </tr>
+                    @if($statistic && $statistic['normativesForTest2'] && $statistic['test2'])
+                        @php $levels = set_level($statistic['test2'], session('gender')); @endphp
+                        @for($i = 0; $i< 8; $i++)
+                            <tr>
+                                <th scope="row">{{$i+1}}</th>
+                                <td>{{$statistic['test2'][$i]->Name}}</td>
+                                <td>{{session('gender')}}</td>
+                                <td>{{round($statistic['test2'][$i]->avg, 2)}}</td>
+                                <td>{{$levels[$i]}}</td>
+                            </tr>
+                        @endfor
+                    @endif
                     </tbody>
                 </table>
             </div>
@@ -178,8 +210,6 @@
                 </table>
             </div>
         </div>
-
-
         <div class="row">
             <div class="table-responsive">
                 <table class="table table-bordered align-middle text-center">
@@ -194,14 +224,28 @@
                     </tr>
                     </thead>
                     <tbody style="line-height: 3; white-space: nowrap;">
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Бег 2000/3000 м, (мин, с)</td>
-                        <td>Юноши</td>
-                        <td>68</td>
-                        <td>15,58</td>
-                        <td></td>
-                    </tr>
+                    @if($statistic && $statistic['ofp'] && $statistic['ofp_normatives'])
+                        @for($i = 0, $k = 0; $i < 9; $i++)
+                            <tr>
+                                <th scope="row">{{$i+1}}</th>
+                                <td>{{$statistic['ofp_normatives'][$i]->name}} @if(session('gender') == "Юноши"){{$statistic['ofp_normatives'][$i]->male_normative}}@else{{$statistic['ofp_normatives'][$i]->female_normative}}@endif {{$statistic['ofp_normatives'][$i]->unit}}</td>
+                                <td>{{session('gender')}}</td>
+                                @if($k < count($statistic['ofp']) && $statistic['ofp'][$k]->id_normative == $statistic['ofp_normatives'][$i]->id)
+                                    <td> {{$statistic['ofp'][$k]->count}}</td>
+                                    <td>{{round($statistic['ofp'][$k]->avg, 2)}}</td>
+                                    @php $k++; @endphp
+                                @else
+                                    <td>0</td>
+                                    <td>0</td>
+                                @endif
+                                @if(session('gender') == "Юноши")
+                                <td>{{$statistic['ofp_normatives2'][$i]->minmn}}  - {{$statistic['ofp_normatives2'][$i]->maxmn}}</td>
+                                @else
+                                    <td>{{$statistic['ofp_normatives2'][$i]->minfn}}  - {{$statistic['ofp_normatives2'][$i]->maxfn}}</td>
+                                @endif
+                            </tr>
+                        @endfor
+                    @endif
                     </tbody>
                 </table>
             </div>
