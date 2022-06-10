@@ -189,6 +189,11 @@ class MainController extends Controller
                 $id_class = DB::table('user')->where('ID_User', $data[0])->value('id_class');
                 DB::insert("REPLACE INTO ofp (id_user, id_normative, result, date, actual_class_id) values (".$data[0].", ".$data[1].", ".$_POST[$keys[$i]].", CURRENT_DATE, ".$id_class.")");
             }
+            else
+            {
+                $data = explode('_', $keys[$i]);
+                DB::table('ofp')->where('id_user', $data[0])->where('id_normative', $data[1])->delete();
+            }
         }
         return Redirect::back()->with(['success_update_ofp' => 'Данные обновлены!']);
     }
