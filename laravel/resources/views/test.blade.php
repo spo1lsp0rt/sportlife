@@ -1,22 +1,27 @@
 @php
     $allUsers = DB::select('select * from user');
     $currentUser = null;
-        if (array_key_exists('login', $_COOKIE))
+    if (array_key_exists('login', $_COOKIE))
+    {
+        foreach($allUsers as $user)
+        {
+            if($user->ID_User == $_COOKIE['ID_User'])
             {
-                foreach($allUsers as $user)
-                {
-                    if($user->ID_User == $_COOKIE['ID_User'])
-                    {
-                        $currentUser = $user;
-                        break;
-                    }
-                }
+                $currentUser = $user;
+                break;
             }
-        else
-            {
-                header('Location: /authorization');
-                exit;
-            }
+        }
+    }
+    else
+    {
+        header('Location: /authorization');
+        exit;
+    }
+    $user_test = DB::select("select ID from test_user where ID_User = ".$_COOKIE['ID_User']." AND ID_Test = ".$id);
+    if(!empty($user_test)){
+        header('Location: /tests');
+        exit;
+    }
 @endphp
 
 @extends('layout')

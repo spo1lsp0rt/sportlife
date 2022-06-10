@@ -1,22 +1,22 @@
 @php
     $allUsers = DB::select('select * from user');
     $currentUser = null;
-        if (array_key_exists('login', $_COOKIE))
+    if (array_key_exists('login', $_COOKIE))
+    {
+        foreach($allUsers as $user)
+        {
+            if($user->ID_User == $_COOKIE['ID_User'])
             {
-                foreach($allUsers as $user)
-                {
-                    if($user->ID_User == $_COOKIE['ID_User'])
-                    {
-                        $currentUser = $user;
-                        break;
-                    }
-                }
+                $currentUser = $user;
+                break;
             }
-        else
-            {
-                header('Location: /authorization');
-                exit;
-            }
+        }
+    }
+    else
+    {
+        header('Location: /authorization');
+        exit;
+    }
 @endphp
 
 @extends('layout')
@@ -37,7 +37,6 @@
         </div>
 
         @php
-
             $user_test = null;
             if(array_key_exists('ID_User', $_COOKIE))
             {
