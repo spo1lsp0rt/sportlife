@@ -149,6 +149,9 @@ header nav .header_menu .menulogin .menulogin_link {
   font-weight: 400;
   font-size: 19px;
 }
+header nav .header_menu .menulogin .menulogin_link:hover {
+  text-decoration: underline;
+}
 
 input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
