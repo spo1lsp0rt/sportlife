@@ -1,5 +1,12 @@
 .result_title {
   text-align: center;
+  padding-bottom: 20px;
+}
+
+.table-responsive table tbody tr th {
+  width: 45%;
+  text-align: left;
+  font-weight: 600;
 }
 
 .result_total {
@@ -11,7 +18,7 @@
 }
 .result_total .total_counting {
   display: flex;
-  width: 1000px;
+  width: 70%;
   justify-content: center;
   align-items: center;
   font-weight: 400;
@@ -39,4 +46,66 @@
 .access_btn:hover {
   background-color: rgba(183, 250, 183, 0.95);
   box-shadow: 0 5px 10px rgba(0, 92, 34, 0.53);
+}
+
+@media (max-width: 991px) {
+  .result_total .total_counting {
+    width: 80%;
+    font-size: 18px;
+  }
+}
+@media (max-width: 767.5px) {
+  .result_total .total_counting {
+    width: 90%;
+    font-size: 16px;
+  }
+}
+@media (max-width: 575.5px) {
+  .result_total {
+    margin-top: 0;
+  }
+  .result_total .total_counting {
+    width: 99%;
+    font-size: 14px;
+  }
+
+  .table-responsive table thead tr th {
+    font-size: 14px;
+  }
+  .table-responsive table thead tr .test6 {
+    font-size: 11px;
+  }
+  .table-responsive table tbody tr th {
+    width: 40%;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+  }
+  .table-responsive table tbody tr td {
+    font-size: 12px;
+  }
+  .table-responsive table tbody tr .test6 {
+    font-size: 11px;
+  }
+}
+@media (max-width: 425px) {
+  .result_total .total_counting {
+    font-size: 12px;
+  }
+
+  .table-responsive table thead tr th {
+    font-size: 12px;
+  }
+  .table-responsive table thead tr .test6 {
+    font-size: 10px;
+  }
+  .table-responsive table tbody tr th {
+    font-size: 10px;
+  }
+  .table-responsive table tbody tr td {
+    font-size: 10px;
+  }
+  .table-responsive table tbody tr .test6 {
+    font-size: 10px;
+  }
 }
