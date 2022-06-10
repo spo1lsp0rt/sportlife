@@ -103,6 +103,28 @@ class MainController extends Controller
         return Redirect::back()->with(['fio' => $fio]);
     }
 
+    public function  change_password(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'old_password' => 'required',
+            'password' => 'required|confirmed'
+        ]);
+        if ($validator->fails()) {
+            return Redirect::back()
+                ->withErrors(['changePassword_failed' => 'Ошибка! Проверьте введенные данные!']);
+        }
+        $password = DB::table('userdata')->where('ID_User', $_COOKIE['ID_User'])->value('Password');
+        if($password == hash('sha512', $request->input('old_password')))
+        {
+            DB::table('userdata')->where('ID_User', $_COOKIE['ID_User'])->update(array(
+                'Password' => hash('sha512', $request->input('password'))
+            ));
+            return Redirect::back()->with(['changePassword_success' => 'Пароль успешно изменен']);
+        }
+        else
+            return Redirect::back()->withErrors(['changePassword_failed' => 'Неправильно введен старый пароль']);
+
+    }
+
     public function  reg(Request $request) {
         $validator = Validator::make($request->all(), [
             'email' => 'required',

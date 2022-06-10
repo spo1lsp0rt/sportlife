@@ -35,6 +35,9 @@
 
 @section('main_content')
     <div class="container">
+        @if(session('changePassword_success'))
+            <div class="alert alert-success text-center">{{session('changePassword_success')}}</div>
+        @endif
         @if(session('add_success'))
             <div class="alert alert-success text-center">{{session('add_success')}}</div>
         @endif
@@ -70,6 +73,7 @@
                         header('Location: /authorization');
                         exit;
                     }
+
 
                     $stats = array();
 
@@ -125,30 +129,30 @@
                                 <h5 class="modal-title" id="exampleModalCenterTitle">Редактирование</h5>
                                 <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <form>
+                            <form action="/change_password" method="post">
                                 @csrf
                                 <div class="modal-body">
                                     <div class="container-fluid">
                                         <div class="row"><h5 class="text-center"><u>Изменение пароля</u></h5></div>
                                         <div class="row">
                                             <div class="col">
-                                                <input spellcheck="false" type="password" name="new_email" id="out1" class="form-control" placeholder="Введите старый пароль" autocomplete="off" value="">
+                                                <input spellcheck="false" type="password" name="old_password" class="form-control" placeholder="Введите старый пароль" autocomplete="off" value="">
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col">
-                                                <input spellcheck="false" type="password" name="new_email" id="out2" class="form-control" placeholder="Введите новый пароль" autocomplete="off" value="">
+                                                <input spellcheck="false" type="password" name="password" class="form-control" placeholder="Введите новый пароль" autocomplete="off" value="">
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col">
-                                                <input spellcheck="false" type="password" name="new_email" id="out3" class="form-control" placeholder="Введите новый пароль повторно" autocomplete="off" value="">
+                                                <input spellcheck="false" type="password" name="password_confirmation" class="form-control" placeholder="Введите новый пароль повторно" autocomplete="off" value="">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button formaction="updateStudent" class="btn btn-success">Сохранить</button>
+                                    <button class="btn btn-success">Сохранить</button>
                                 </div>
                             </form>
                         </div>
@@ -333,10 +337,8 @@
                                     <div class="container-fluid">
                                         <div class="row">
                                             <div class="col">
-                                                <input spellcheck="false" type="text" name="new_fio" id="out1" class="form-control"
-                                                       value="">
-                                                <input spellcheck="false" type="hidden" name="old_fio" id="out2" class="form-control"
-                                                       value="">
+                                                <input spellcheck="false" type="text" name="new_fio" id="out1" class="form-control">
+                                                <input spellcheck="false" type="hidden" name="old_fio" id="out2" class="form-control">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -353,7 +355,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button formaction="updateStudent" class="btn btn-success">Сохранить</button>
+                                    <button class="btn btn-success">Сохранить</button>
                                 </div>
                             </form>
                         </div>
@@ -442,7 +444,7 @@
                 document.getElementById('out2').value = `${id}`;
             }
 
-            let btns = document.querySelectorAll('button');
+            let btns = document.querySelectorAll('.modal_btn');
             btns.forEach((btn) => {
                 btn.addEventListener('click', () => {
                     getParentId(btn);
