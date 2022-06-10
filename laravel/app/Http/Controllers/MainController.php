@@ -212,9 +212,9 @@ class MainController extends Controller
         if($request->input('gender') == "Девушки")
             $gender = "жен";
         $statistic = array();
-        $statistic['test1'] = DB::select('CALL getAllStatFromTest("' . $gender . '", "' . $request->input('group') . '", 1)');
-        $statistic['test2'] = DB::select('CALL getAllStatFromTest("' . $gender . '", "' . $request->input('group') . '", 2)');
-        $statistic['ofp'] = DB::select('CALL getAllStatFromOfp("' . $gender . '", "' . $request->input('group') . '")');
+        $statistic['test1'] = DB::select('CALL getAllStatFromTest("' . $gender . '", "' . $request->input('group') . '", 1, ' . $request->input('year') . ')');
+        $statistic['test2'] = DB::select('CALL getAllStatFromTest("' . $gender . '", "' . $request->input('group') . '", 2, ' . $request->input('year') . ')');
+        $statistic['ofp'] = DB::select('CALL getAllStatFromOfp("' . $gender . '", "' . $request->input('group') . '", ' . $request->input('year') . ')');
         $statistic['normativesForTest1'] = DB::select('CALL 	getNormativesForTest1("' . $gender . '")');
         $statistic['normativesForTest2'] = DB::select('CALL 	getNormativesForTest2("' . $gender . '")');
         $statistic['ofp_normatives'] = DB::select('select * from ofp_normatives');
