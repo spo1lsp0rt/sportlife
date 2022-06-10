@@ -136,6 +136,8 @@ class MainController extends Controller
                 ->withErrors(['reg_failed' => 'Ошибка! Проверьте введенные данные!'])
                 ->with('fio', $fio);
         }
+        if(DB::table('userdata')->where('Login', $request->input('email'))->get()->toArray())
+            return Redirect::back()->withErrors(['login_busy' => 'Ошибка! Пользователь с таким логином уже существует!'])->with('fio', $fio);;
         $id_group = DB::table('class')->where('Name', $request->input('group'))->value('ID_Class');
         $gender = 'муж';
         if ($request->input('gender') == 'Девушка') {

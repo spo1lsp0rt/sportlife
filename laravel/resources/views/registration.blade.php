@@ -51,10 +51,10 @@
             <div class="col">
                 <div class="registration_form">
                     @if($errors->any())
-                        <div class="alert alert-danger">
+                        <div class="alert alert-danger text-center">
                             <ul>
                                 @foreach($errors->all() as $error)
-                                    <li>{{$error}}</li>
+                                    {{$error}}
                                 @endforeach
                             </ul>
                         </div>
