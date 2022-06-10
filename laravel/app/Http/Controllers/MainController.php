@@ -26,6 +26,16 @@ class MainController extends Controller
     }
 
     public function  statistics() {
+        if (empty($_COOKIE['login'])){
+            return redirect('/registration');
+        }
+        else
+        {
+            $user = DB::select("select ID_Role from user where ID_User = ".$_COOKIE['ID_User']);
+            if($user[0]->ID_Role != 2){
+                return  redirect('/profile');
+            }
+        }
         return view('statistics');
     }
 
