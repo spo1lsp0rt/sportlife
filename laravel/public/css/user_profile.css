@@ -21,7 +21,7 @@
 }
 .user_profile .profile_panel {
   margin-top: 30px;
-  margin-bottom: 10px;
+  margin-bottom: 30px;
   display: flex;
   justify-content: center;
 }
@@ -166,6 +166,9 @@
 .user_profile .admin_panel .user_delbtn:hover {
   background-color: rgba(255, 27, 27, 0.5);
 }
+.user_profile .admin_panel .table_searcher {
+  border: #ced4da solid 1px;
+}
 .user_profile .table {
   margin-top: 40px;
 }
@@ -182,5 +185,29 @@
   }
   .user_profile .profile_panel .profile_name {
     font-size: 23px;
+  }
+}
+@media (max-width: 767.5px) {
+  .user_profile .admin_panel .upload_form {
+    display: flex;
+    width: auto;
+    justify-content: space-between;
+  }
+  .user_profile .admin_panel .upload_form .form-control {
+    width: 350px;
+    font-size: 15px;
+  }
+  .user_profile .admin_panel .upload_form .sumbit-upload {
+    font-size: 15px;
+    height: 36.5px;
+    width: 160px;
+  }
+  .user_profile .admin_panel .user_delbtn {
+    width: 200px;
+    font-size: 15px;
+  }
+  .user_profile .admin_panel .table_searcher {
+    width: 180px;
+    font-size: 15px;
   }
 }
