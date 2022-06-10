@@ -1,5 +1,12 @@
-
 @extends('layout')
+
+@php
+    $user = DB::select("select ID_Role from user where ID_User = ".$_COOKIE['ID_User']);
+    if($user[0]->ID_Role != 2){
+        header('Location: /');
+        exit();
+    }
+@endphp
 
 @section('title')Нормативы@endsection
 
