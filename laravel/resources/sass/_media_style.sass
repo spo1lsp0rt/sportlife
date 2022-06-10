@@ -26,13 +26,13 @@
                     display: flex
                     justify-content: center
                     align-items: center
-                    width: 45px
-                    height: 45px
+                    width: 50px
+                    height: 50px
                     float: left
                     transition:	0.5s all
                     .hamburger
                         display: block
-                        width: 50px
+                        width: 40px
                         height:	15px
                         z-index: 101
                         transition:	0.5s all
@@ -49,19 +49,21 @@
                             span
                                 margin-bottom: -4px
                                 &:nth-child(1)
-                                    margin-top:	4px
-                                    transform:	translateY(4px)	rotate(-45deg)
+                                    margin-top:	3px
+                                    transform:	translateY(3px)	rotate(-45deg)
                                 &:nth-child(2)
                                     display: none
                                 &:nth-child(3)
                                     margin-bottom: 0
-                                    transform:	translateY(4px)	rotate(45deg)
+                                    transform:	translateY(3px)	rotate(45deg)
                     &_active
-                        right: 195px
+                        right: 52%
                         background-color: rgba(250,250,250,	0.95)
                         border:	black 1px solid
                         border-radius: 100%
                         transition:	0.5s all
+                        position: relative
+                        z-index: 100
                 .logo_link
                     .menu_img
                         display: block
@@ -123,9 +125,10 @@
         nav
             .header_menu
                 .hamburger_field
-                    width: 30px
-                    height: 45px
+                    width: 40px
+                    height: 40px
                     .hamburger
+                        width: 30px
                         span
                             height:	3px
                             margin-bottom: 3px

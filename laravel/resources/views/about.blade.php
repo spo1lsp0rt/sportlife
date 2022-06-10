@@ -98,6 +98,45 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="content_field">
+                            <div class="content_field_header">Просмотр статистики</div>
+                            <div class="content_field_info">Результаты, полученные студентами за все время, укомплектованы на странице "Статистика". Для того, чтобы просмотреть эту страницу, преподавателю необходимо зайти в свой профиль и нажать на кнопку над правым верхним углом таблицы результатов студентов. На странице преподаватель может отобразить статистику по выбранному факультету/группе и полу.</div>
+                            <img class="content_field_img" src="/img/about/statistics_usage.gif" alt="">
+                        </div>
+                    </div>
+                </div>
+            @elseif($currentUser->ID_Role == 3)
+                <div class="row">
+                    <div class="col">
+                        <div class="content_field">
+                            <div class="content_field_header">Создание ключ-кодов</div>
+                            <div class="content_field_info">Чтобы предоставить студенту(-аь) доступ к регистрации на сайте, необходимо в профиле администратора в области "Добавление студентов" выбрать файл с разрешением <i>.xlsx</i> (Excel), в котором будут в одном столбце на каждой строке выписаны ФИО студентов. После нажатия на кнопку "Загрузить" будут сгенерированы ключ-коды, которые необходимо указать при регистрации.</div>
+                            <img class="content_field_img" src="/img/about/new_regkey.gif" alt="">
+                            <div class="content_field_info"><span class="text-danger"><b>Важно!</b></span><br>Сгенерированные ключ-коды доступны в течение недели с начала их создания.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="content_field">
+                            <div class="content_field_header">Удаление студентов</div>
+                            <div class="content_field_info">В случае, если возникла необходимость удалить ошибочно добавленного студента или дупликат, в профиле администратора возможно найти в таблице нужно стужента и удалить его и все его данные из системы.</div>
+                            <img class="content_field_img" src="/img/about/deliting_usage.gif" alt="">
+                            <div class="content_field_info"><span class="text-danger"><b>Важно!</b></span><br>Не рекомендуется пользоваться этой функцией, так как возможно ошибочно удалить студента вместе со всеми его данными.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="content_field">
+                            <div class="content_field_header">Изменение студентов</div>
+                            <div class="content_field_info">Также в профиле администратора доступно изменение данных студента. Для этого необходимо найти необходимого студента и нажать в строке с его данными кнопку "Редактировать". В появившемся модальном окне будет доступно изменение ФИО и группы обучения.</div>
+                            <img class="content_field_img" src="/img/about/editing_usage.gif" alt="">
+                        </div>
+                    </div>
+                </div>
             @endif
         @endif
     </div>
