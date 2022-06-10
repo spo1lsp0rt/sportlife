@@ -159,18 +159,6 @@
             @endif
             @if($currentUser->ID_Role == 2)
                 @php
-                    $groups = DB::select('select * from class');
-                    $arr_groups = array();
-                    foreach ($groups as $group) {
-                        $arr_groups[] = $group->Name;
-                    }
-                @endphp
-                <script type="text/javascript">
-                    let arr_groups = <?php echo json_encode($arr_groups); ?>;
-                    let arr_options = [arr_groups];
-                </script>
-
-                @php
                     $allStat = DB::select("CALL getStatistic(1)");
                     $ofp_id_class = 1;
                     if(session('statistic'))
@@ -330,18 +318,6 @@
                     </form>
                 </div>
 
-                @php
-                    $groups = DB::select('select * from class');
-                    $arr_groups = array();
-                    foreach ($groups as $group) {
-                        $arr_groups[] = $group->Name;
-                    }
-                @endphp
-                <script type="text/javascript">
-                    let arr_groups = <?php echo json_encode($arr_groups); ?>;
-                    let arr_options = [arr_groups];
-                </script>
-
                 {{--Модальное окно по нажатии на Редактирование в админ профиле--}}
                 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
                      aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -381,7 +357,6 @@
                                 </div>
                             </form>
                         </div>
-
                     </div>
                 </div>
             @endif
@@ -391,9 +366,19 @@
 @endsection
 
 @section('scriptsheet')
-    @if($currentUser->ID_Role == 1)
+    @if($currentUser->ID_Role == 2)
+        @php
+            $groups = DB::select('select * from class');
+            $arr_groups = array();
+            foreach ($groups as $group) {
+                $arr_groups[] = $group->Name;
+            }
+        @endphp
+        <script type="text/javascript">
+            let arr_groups = <?php echo json_encode($arr_groups); ?>;
+            let arr_options = [arr_groups];
+        </script>
         <script src="{{ asset('js/combobox.js') }}"></script>
-    @elseif($currentUser->ID_Role == 2)
         <script>
             const active_comboval = <?php echo json_encode($active_comboval); ?>;
             const arr_optionEl = document.querySelectorAll('.combo-option');
@@ -405,6 +390,18 @@
             });
         </script>
     @elseif($currentUser->ID_Role == 3)
+        @php
+            $groups = DB::select('select * from class');
+            $arr_groups = array();
+            foreach ($groups as $group) {
+                $arr_groups[] = $group->Name;
+            }
+        @endphp
+        <script type="text/javascript">
+            let arr_groups = <?php echo json_encode($arr_groups); ?>;
+            let arr_options = [arr_groups];
+        </script>
+        <script src="{{ asset('js/combobox.js') }}"></script>
         <script>
             var unhide_keys = function () {
                 document.getElementById('unhide_btn').style.display = "none";
@@ -455,9 +452,7 @@
         <script src="{{ asset('js/myTable.js') }}"></script>
         <script>
             jQuery(document).ready(function(){
-
                 jQuery('#myTable').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:5});
-
             });
         </script>
         <script>
