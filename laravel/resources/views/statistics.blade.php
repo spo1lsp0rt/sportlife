@@ -35,6 +35,21 @@
                 $arr_faculties[] = $faculty->Name;
 
             $arr_genders = array('Юноши', 'Девушки');
+            // -- формирование массива годов --
+            $yearsFromTest = DB::select('SELECT DISTINCT(YEAR(results.Date)) as year FROM results GROUP BY results.Date');
+            $yearsFromOfp = DB::select('SELECT DISTINCT(YEAR(ofp.Date)) as year FROM ofp GROUP BY ofp.Date');
+            $years = array();
+            foreach($yearsFromTest as $year)
+                $years[] = $year->year;
+            foreach($yearsFromOfp as $year)
+                $years[] = $year->year;
+            $years = array_unique($years);
+            sort($years);
+            // -------------------------------
+
+
+
+
         @endphp
         <script type="text/javascript">
             let arr_groups = <?php echo json_encode($arr_groups); ?>;
