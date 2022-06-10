@@ -27,7 +27,7 @@ class MainController extends Controller
 
     public function  statistics() {
         if (empty($_COOKIE['login'])){
-            return redirect('/registration');
+            return redirect('/authorization');
         }
         else
         {
@@ -176,7 +176,7 @@ class MainController extends Controller
         $id_class = DB::table('class')->where('Name', $request->input('group'))->value('ID_Class');
         $statistic = DB::select('CALL getStatistic(' . $id_class . ')');
         $id_class = DB::table('class')->where('Name', $_POST['group'])->value('ID_Class');
-        return Redirect::back()->with(['statistic' => $statistic, 'ofp_id_class' => $id_class]);
+        return Redirect::back()->with(['statistic' => $statistic, 'id_class' => $id_class]);
     }
 
     public function  getStatistic(Request $request)
@@ -192,7 +192,7 @@ class MainController extends Controller
         $statistic['normativesForTest2'] = DB::select('CALL 	getNormativesForTest2("' . $gender . '")');
         $statistic['ofp_normatives'] = DB::select('select * from ofp_normatives');
         $statistic['ofp_normatives2'] = DB::select('select min(male_normative) as minmn, min(female_normative) as minfn, max(male_normative) as maxmn, max(female_normative) as maxfn from ofp_assessment_tests group by id_ofp_test');
-        return Redirect::back()->with(['statistic' => $statistic, 'gender' => $request->input('gender')]);
+        return Redirect::back()->with(['statistic' => $statistic, 'group' => $request->input('group'), 'gender' => $request->input('gender')]);
     }
 
     public function  updateStudent() {

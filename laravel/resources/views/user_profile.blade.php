@@ -160,13 +160,13 @@
             @if($currentUser->ID_Role == 2)
                 @php
                     $allStat = DB::select("CALL getStatistic(1)");
-                    $ofp_id_class = 1;
                     if(session('statistic'))
                         $allStat = session('statistic');
-                    if(session('ofp_id_class'))
-                        $ofp_id_class = session('ofp_id_class');
-                    $ofp_name_class = DB::table('class')->where('id_class', $ofp_id_class)->value('Name');
-                    $active_comboval = array($ofp_name_class);
+                    $id_class = 1;
+                    if(session('id_class'))
+                        $id_class = session('id_class');
+                    $name_class = DB::table('class')->where('id_class', $id_class)->value('Name');
+                    $active_comboval = array($name_class);
                 @endphp
 
                 <div class="container">

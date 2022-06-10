@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('title')Нормативы@endsection
+@section('title')Статистика@endsection
 
 @section('stylesheet')
     <link rel="stylesheet" type="text/css" href="{{url('css/statistics.css')}}">
@@ -66,8 +66,24 @@
             $statistic = null;
             if(session('statistic'))
                 $statistic = session('statistic');
+            $group = 'Все факультеты';
+            if(session('group'))
+                $group = session('group');
+            $gender = 'муж';
+            if(session('gender'))
+                $gender = session('gender');
 
+            $gender_name = "Юноши";
+            if ($gender == "жен") {
+                $gender_name = "Девушки";
+            }
+            $active_comboval = array($group, $gender_name);
         @endphp
+
+
+        <div class="statistics_table_title">
+            <h3>Результаты тестирования<br>общего уровня развития физических кондиций (ОУФК)</h3>
+        </div>
         <div class="row">
             <div class="table-responsive">
                 <table class="table table-bordered align-middle text-center">
@@ -117,6 +133,10 @@
             </div>
         </div>
 
+
+        <div class="statistics_table_title">
+            <h3>Оценка уровня функционального состояния студентов</h3>
+        </div>
         <div class="row">
             <div class="table-responsive">
                 <table class="table table-bordered align-middle text-center">
@@ -154,6 +174,9 @@
         </div>
 
 
+        <div class="statistics_table_title">
+            <h3>Уровневая оценка уровня функционального состояния студентов</h3>
+        </div>
         <div class="row">
             <div class="table-responsive">
                 <table class="table table-bordered align-middle text-center">
@@ -185,29 +208,8 @@
         </div>
 
 
-        <div class="row">
-            <div class="table-responsive">
-                <table class="table table-bordered align-middle text-center">
-                    <thead class="align-middle">
-                    <tr>
-                        <th scope="col">№</th>
-                        <th scope="col">Показатели</th>
-                        <th scope="col">17 лет<br><center>(n=4)</center></th>
-                        <th scope="col">18-22 года<br><center>(n=483)</center></th>
-                        <th scope="col">23 и старше<br><center>(n=23)</center></th>
-                    </tr>
-                    </thead>
-                    <tbody style="line-height: 3; white-space: nowrap;">
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>ОУФК (оценка собственного уровня физического развития)</td>
-                        <td>0,361</td>
-                        <td>0,42</td>
-                        <td>0,24</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+        <div class="statistics_table_title">
+            <h3>Результаты тестирования студентов по нормативам ГТО</h3>
         </div>
         <div class="row">
             <div class="table-responsive">
@@ -254,5 +256,37 @@
 @endsection
 
 @section('scriptsheet')
+
+    @php
+        $groups = DB::select('select * from class');
+        $arr_groups = array('#Группы');
+        foreach ($groups as $group) {
+            $arr_groups[] = $group->Name;
+        }
+
+        $faculties = DB::select('select * from faculty');
+        $arr_faculties = array('#Факультеты');
+        $arr_faculties[] = 'Все факультеты';
+        foreach ($faculties as $faculty)
+            $arr_faculties[] = $faculty->Name;
+
+        $arr_genders = array('Юноши', 'Девушки');
+    @endphp
+    <script type="text/javascript">
+        let arr_groups = <?php echo json_encode($arr_groups); ?>;
+        let arr_faculties = <?php echo json_encode($arr_faculties); ?>;
+        let arr_genders = <?php echo json_encode($arr_genders); ?>;
+        let arr_options = [arr_faculties.concat(arr_groups), arr_genders];
+    </script>
     <script src="{{ asset('js/combobox.js') }}"></script>
+    <script>
+        const active_comboval = <?php echo json_encode($active_comboval); ?>;
+        const arr_optionEl = document.querySelectorAll('.combo-option');
+        arr_optionEl.forEach(function (optionEl) {
+            if (active_comboval.includes(optionEl.innerText))
+            {
+                optionEl.click();
+            }
+        });
+    </script>
 @endsection
