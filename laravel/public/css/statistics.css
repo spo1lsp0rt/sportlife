@@ -30,6 +30,15 @@
 .parameters_panel .parameters_form .gender_combobox .combo .combo-input {
   width: 200px;
 }
+.parameters_panel .parameters_form .year_combobox {
+  margin-right: 10px;
+}
+.parameters_panel .parameters_form .year_combobox .combo {
+  max-width: 100px;
+}
+.parameters_panel .parameters_form .year_combobox .combo .combo-input {
+  width: 100px;
+}
 .parameters_panel .parameters_form .show_btn {
   display: block;
   width: 150px;

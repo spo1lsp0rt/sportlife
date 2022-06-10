@@ -38,25 +38,15 @@
             // -- формирование массива годов --
             $yearsFromTest = DB::select('SELECT DISTINCT(YEAR(results.Date)) as year FROM results GROUP BY results.Date');
             $yearsFromOfp = DB::select('SELECT DISTINCT(YEAR(ofp.Date)) as year FROM ofp GROUP BY ofp.Date');
-            $years = array();
+            $arr_years = array();
             foreach($yearsFromTest as $year)
-                $years[] = $year->year;
+                $arr_years[] = (string)$year->year;
             foreach($yearsFromOfp as $year)
-                $years[] = $year->year;
-            $years = array_unique($years);
-            sort($years);
+                $arr_years[] = (string)$year->year;
+            $arr_years = array_unique($arr_years);
+            sort($arr_years);
             // -------------------------------
-
-
-
-
         @endphp
-        <script type="text/javascript">
-            let arr_groups = <?php echo json_encode($arr_groups); ?>;
-            let arr_faculties = <?php echo json_encode($arr_faculties); ?>;
-            let arr_genders = <?php echo json_encode($arr_genders); ?>;
-            let arr_options = [arr_faculties.concat(arr_groups), arr_genders];
-        </script>
         <div class="row">
             <div class="parameters_panel">
                 <form class="parameters_form" action="/getStatistic" method="post">
@@ -73,6 +63,12 @@
                             <div class="combo-menu" role="listbox" id="gender-listbox"></div>
                         </div>
                     </div>
+                    <div class="year_combobox">
+                        <div name="year" class="combo js-combobox">
+                            <input name="year" spellcheck="false" aria-autocomplete="none" aria-controls="year-listbox" aria-haspopup="year-listbox" id="year-combo" class="combo-input" role="combobox" type="text">
+                            <div class="combo-menu" role="listbox" id="year-listbox"></div>
+                        </div>
+                    </div>
                     <button type="submit" class="show_btn">Вывести</button>
                 </form>
             </div>
@@ -87,12 +83,15 @@
             $gender = 'муж';
             if(session('gender'))
                 $gender = session('gender');
+            $year = null;
+            if(session('year'))
+                $year = session('year');
 
             $gender_name = "Юноши";
             if ($gender == "жен") {
                 $gender_name = "Девушки";
             }
-            $active_comboval = array($group, $gender_name);
+            $active_comboval = array($group, $gender_name, $year);
         @endphp
 
 
@@ -291,7 +290,8 @@
         let arr_groups = <?php echo json_encode($arr_groups); ?>;
         let arr_faculties = <?php echo json_encode($arr_faculties); ?>;
         let arr_genders = <?php echo json_encode($arr_genders); ?>;
-        let arr_options = [arr_faculties.concat(arr_groups), arr_genders];
+        let arr_years = <?php echo json_encode($arr_years); ?>;
+        let arr_options = [arr_faculties.concat(arr_groups), arr_genders, arr_years];
     </script>
     <script src="{{ asset('js/combobox.js') }}"></script>
     <script>
