@@ -1,25 +1,25 @@
 @php
     $allUsers = DB::select('select * from user');
     $currentUser = null;
-        if (array_key_exists('login', $_COOKIE))
+    if (array_key_exists('login', $_COOKIE))
+    {
+        foreach($allUsers as $user)
+        {
+            if($user->ID_User == $_COOKIE['ID_User'])
             {
-                foreach($allUsers as $user)
-                {
-                    if($user->ID_User == $_COOKIE['ID_User'])
-                    {
-                        $currentUser = $user;
-                        break;
-                    }
-                }
+                $currentUser = $user;
+                break;
             }
-        else
-            {
-                header('Location: /authorization');
-                exit;
-            }
-        $UserPoints = array();
-        $UserPoints_temp = array();
-        $keys = array();
+        }
+    }
+    else
+    {
+        header('Location: /authorization');
+        exit;
+    }
+    $UserPoints = array();
+    $UserPoints_temp = array();
+    $keys = array();
 @endphp
 
 @extends('layout')
@@ -87,19 +87,6 @@
         <div class="normatives_title">
             <h2>Журнал нормативов</h2>
         </div>
-        @php
-            $groups = DB::select('select * from class');
-            $arr_groups = array();
-            foreach ($groups as $group) {
-                $arr_groups[] = $group->Name;
-            }
-            $arr_genders = array('Все', 'Юноши', 'Девушки');
-        @endphp
-        <script type="text/javascript">
-            let arr_groups = <?php echo json_encode($arr_groups); ?>;
-            let arr_genders = <?php echo json_encode($arr_genders); ?>;
-            let arr_options = [arr_groups, arr_genders];
-        </script>
 
         <div class="container">
             <div class="row">
@@ -336,8 +323,25 @@
                 $i++;
             }
         @endphp
+    @endif
+@endsection
 
-
+@section('scriptsheet')
+    <script src="{{ asset('js/number_handler.js') }}"></script>
+    @if($currentUser->ID_Role == 2 || $currentUser->ID_Role == 3)
+        @php
+            $groups = DB::select('select * from class');
+            $arr_groups = array();
+            foreach ($groups as $group) {
+                $arr_groups[] = $group->Name;
+            }
+            $arr_genders = array('Все', 'Юноши', 'Девушки');
+        @endphp
+        <script type="text/javascript">
+            let arr_groups = <?php echo json_encode($arr_groups); ?>;
+            let arr_genders = <?php echo json_encode($arr_genders); ?>;
+            let arr_options = [arr_groups, arr_genders];
+        </script>
         <script src="{{ asset('js/combobox.js') }}"></script>
         <script>
             function setPoints(el) {
@@ -416,8 +420,4 @@
             });
         </script>
     @endif
-@endsection
-
-@section('scriptsheet')
-    <script src="{{ asset('js/number_handler.js') }}"></script>
 @endsection
