@@ -24,7 +24,7 @@
 
 @extends('layout')
 
-@section('title')Нормативы@endsection
+@section('title')ОФП@endsection
 
 @section('stylesheet')
     <link rel="stylesheet" type="text/css" href="{{url('css/normatives.css')}}">

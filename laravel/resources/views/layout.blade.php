@@ -7,11 +7,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>SportLife - @yield('title')</title>
     <link rel="stylesheet" type="text/css" href="{{asset('css/app.css')}}">
-    @yield('stylesheet')
     <link rel="stylesheet" type="text/css" href="{{url('css/style.css')}}">
     <link rel="icon" href="/icons/favicon.svg">
+    @yield('stylesheet')
 </head>
 <body>
+
+<div class="loader">
+    <div class="ring"></div>
+</div>
 <header>
     <nav>
         <div class="container">
@@ -76,6 +80,64 @@
         Позвоните нам 8-800-555-01-21
     </div>
 </footer>
+
+<script>
+    const loader = document.querySelector(".loader");
+    window.onload = function(){
+        setTimeout(function(){
+            loader.style.opacity = "0";
+            setTimeout(function(){
+                loader.style.display = "none";
+            }, 500);
+        },1500);
+    }
+</script>
+<script>
+    "use strict";
+    (() => {
+        const modified_inputs = new Set;
+        const defaultValue = "defaultValue";
+// store default values
+        addEventListener("beforeinput", (evt) => {
+            const target = evt.target;
+            if (!(defaultValue in target || defaultValue in target.dataset)) {
+                target.dataset[defaultValue] = ("" + (target.value || target.textContent)).trim();
+            }
+        });
+// detect input modifications
+        addEventListener("input", (evt) => {
+            const target = evt.target;
+            let original;
+            if (defaultValue in target) {
+                original = target[defaultValue];
+            } else {
+                original = target.dataset[defaultValue];
+            }
+            if (original !== ("" + (target.value || target.textContent)).trim()) {
+                if (!modified_inputs.has(target)) {
+                    modified_inputs.add(target);
+                }
+            } else if (modified_inputs.has(target)) {
+                modified_inputs.delete(target);
+            }
+        });
+// clear modified inputs upon form submission
+        addEventListener("submit", (evt) => {
+            modified_inputs.clear();
+            // to prevent the warning from happening, it is advisable
+            // that you clear your form controls back to their default
+            // state with evt.target.reset() or form.reset() after submission
+        });
+// warn before closing if any inputs are modified
+        addEventListener("beforeunload", (evt) => {
+            if (modified_inputs.size) {
+                const unsaved_changes_warning = "Changes you made may not be saved.";
+                evt.returnValue = unsaved_changes_warning;
+                return unsaved_changes_warning;
+            }
+        });
+    })();
+</script>
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('js/jquery.min.js') }}"></script>
 <script src="{{ asset('js/bootstrap.min.js') }}"></script>

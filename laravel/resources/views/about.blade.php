@@ -16,7 +16,7 @@
 
 @extends('layout')
 
-@section('title')О нас@endsection
+@section('title')О сайте@endsection
 
 @section('stylesheet')
     <link rel="stylesheet" type="text/css" href="{{url('css/about.css')}}">
