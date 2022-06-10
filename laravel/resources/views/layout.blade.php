@@ -89,7 +89,7 @@
             setTimeout(function(){
                 loader.style.display = "none";
             }, 500);
-        },1500);
+        },100);
     }
 </script>
 <script>
