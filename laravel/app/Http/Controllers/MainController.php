@@ -219,7 +219,7 @@ class MainController extends Controller
         $statistic['normativesForTest2'] = DB::select('CALL 	getNormativesForTest2("' . $gender . '")');
         $statistic['ofp_normatives'] = DB::select('select * from ofp_normatives');
         $statistic['ofp_normatives2'] = DB::select('select min(male_normative) as minmn, min(female_normative) as minfn, max(male_normative) as maxmn, max(female_normative) as maxfn from ofp_assessment_tests group by id_ofp_test');
-        return Redirect::back()->with(['statistic' => $statistic, 'group' => $request->input('group'), 'gender' => $request->input('gender')]);
+        return Redirect::back()->with(['statistic' => $statistic, 'group' => $request->input('group'), 'gender' => $request->input('gender'), 'year' => $request->input('year')]);
     }
 
     public function  updateStudent() {

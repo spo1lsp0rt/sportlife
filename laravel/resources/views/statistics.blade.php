@@ -80,18 +80,14 @@
             $group = 'Все факультеты';
             if(session('group'))
                 $group = session('group');
-            $gender = 'муж';
+            $gender = 'Юноши';
             if(session('gender'))
                 $gender = session('gender');
             $year = null;
             if(session('year'))
                 $year = session('year');
 
-            $gender_name = "Юноши";
-            if ($gender == "жен") {
-                $gender_name = "Девушки";
-            }
-            $active_comboval = array($group, $gender_name, $year);
+            $active_comboval = array($group, $gender, $year);
         @endphp
 
 

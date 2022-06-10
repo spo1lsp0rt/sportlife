@@ -81,11 +81,11 @@
                                     </center>
                                     </p>
                                     @error($exercise->getInputName().'begtime')
-                                    <div class="alert alert-danger">{{ 'Поле заполнено некорректно' }} @enderror
+                                    <div class="alert alert-danger text-center mt-2 mb-0">{{ 'Поле заполнено некорректно' }} @enderror
                                 @else
                                     <input type="number" step="any" placeholder="Введите результат" class="input_number test_result @error($exercise->getInputName()) is-invalid @enderror" name="{{$exercise->getInputName()}}" value="{{$exercise->Value}}">
                                     @error($exercise->getInputName())
-                                    <div class="alert alert-danger">{{ 'Поле заполнено некорректно' }}</div>
+                                    <div class="alert alert-danger text-center mt-2 mb-0">{{ 'Поле заполнено некорректно' }}</div>
                                 @endif
                                 @enderror
                             </div>
@@ -115,7 +115,13 @@
                                    class="@error("age") is-invalid @enderror" value= >
                         </div>
                         @error("age")
-                        <div class="alert alert-danger">{{ 'Введите число от 16 до 45' }}</div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="alert alert-danger text-center mt-2 mb-0">{{ 'Введите число от 17 до 23' }}</div>
+                                </div>
+                            </div>
+                        </div>
                         @enderror
                     @endif
 
