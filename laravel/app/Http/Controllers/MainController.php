@@ -79,10 +79,13 @@ class MainController extends Controller
         foreach($rows as $row)
         {
             $key = key_gen();
-            DB::table('reg_key')->insert(array(
-                'fio' => $row[0],
-                'key' => $key
-            ));
+            if(trim($row[0]))
+            {
+                DB::table('reg_key')->insert(array(
+                    'fio' => $row[0],
+                    'key' => $key
+                ));
+            }
         }
         return Redirect::back()->with(['add_success' => 'Студенты были успешно добавлены!']);
 
