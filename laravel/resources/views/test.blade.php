@@ -59,7 +59,7 @@
                                 <div class="test_info">{!! $exercise->Description !!}
                                 </div>
                                 @if($exercise->img)
-                                    <img class="test_img" src={{"/img/".$exercise->img}} alt="">
+                                    <img class="img-fluid test_img" src={{"/img/".$exercise->img}} alt="">
                                 @endif
 
 
