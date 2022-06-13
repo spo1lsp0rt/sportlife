@@ -2,25 +2,23 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: calc(90vh - 98px);
-  margin-bottom: calc(10vh - 98px);
 }
 .about_welcome .about_title {
   display: flex;
+  text-align: center;
   justify-content: center;
 }
 .about_welcome .about_img {
   margin: 20px auto 0 auto;
-  width: 18vw;
 }
 .about_welcome .about_info {
   text-align: center;
   margin: 20px auto 0 auto;
-  width: 58vw;
+  width: 60%;
 }
 .about_welcome .about_down {
   margin: 0 auto 0 auto;
-  width: 8vw;
+  width: 80px;
 }
 
 .content_field {
