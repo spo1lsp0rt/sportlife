@@ -71,12 +71,12 @@
                                         @else
                                             <input readonly spellcheck="false" contenteditable="false" type="number" lang="en" placeholder="Введите результат" class="input_number ofp_result" name="{{$currentUser->ID_User . '_' . $normative->id}}" value="{{$res_val}}" autocomplete="off">
                                         @endif
+                                        <button type="submit" class="result_btn">Сохранить результат</button>
                                     </div>
                                 </div>
                             </div>
                         @endforeach
                     </div>
-                    <button type="submit" class="result_btn">Получить результат</button>
                 </form>
             </div>
         </section>
