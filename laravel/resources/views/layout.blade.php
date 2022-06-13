@@ -74,8 +74,7 @@
 
 <footer>
     <div class="footer_descr">
-        <a href="#">Служба поддержки</a>
-        <a href="/privacy">Политика конфиденциальности</a>
+        <a href="https://astu.org/Content/PageChair/3553">Кафедра физического воспитания</a>
         <br>
         Наш телефон: 614-517
     </div>

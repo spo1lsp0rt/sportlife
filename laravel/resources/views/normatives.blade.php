@@ -68,10 +68,11 @@
                                         <h5 class="card-title">{{$norm}}</h5>
                                         @if ($res_val == null)
                                             <input step="any" spellcheck="false" type="number" lang="en" placeholder="Введите результат" class="input_number ofp_result" name="{{$currentUser->ID_User . '_' . $normative->id}}">
+                                            <button type="submit" class="result_btn">Сохранить результат</button>
                                         @else
                                             <input readonly spellcheck="false" contenteditable="false" type="number" lang="en" placeholder="Введите результат" class="input_number ofp_result" name="{{$currentUser->ID_User . '_' . $normative->id}}" value="{{$res_val}}" autocomplete="off">
+                                            <button disabled type="submit" class="result_btn">Сохранить результат</button>
                                         @endif
-                                        <button type="submit" class="result_btn">Сохранить результат</button>
                                     </div>
                                 </div>
                             </div>

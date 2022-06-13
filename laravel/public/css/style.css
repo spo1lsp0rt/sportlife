@@ -178,12 +178,6 @@ footer .footer_descr a {
   -webkit-text-decoration-color: #888888;
           text-decoration-color: #888888;
   cursor: pointer;
-  padding-right: 5px;
-  border-right: #888888 solid 1px;
-}
-footer .footer_descr a:nth-child(2) {
-  padding-right: 0;
-  border-right: none;
 }
 
 @media (max-width: 1199.5px) {
