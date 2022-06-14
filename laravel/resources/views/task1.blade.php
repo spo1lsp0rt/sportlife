@@ -58,10 +58,25 @@
         </div>
     </div>
 
+    @php
+    $world = '';
+    if(-1 > $OYFK)
+        $world = 'Опасная зона';
+    else if (-1 < $OYFK && -0.61 > $OYFK)
+        $world = 'Нудовлетворительно';
+    else if (-0.60 < $OYFK && -0.21 > $OYFK)
+        $world = 'Удовлетворительно';
+    else if (-0.2 < $OYFK && 0.2 > $OYFK)
+        $world = 'Хорошо';
+    else if(0.21 < $OYFK && 0.60 > $OYFK)
+        $world = 'Отлично';
+    else if (0.61 < $OYFK)
+        $world = 'Супер';
+    @endphp
     <div class="row">
         <div class="result_total">
             <h3>Общий уровень развития физических кондиций</h3>
-            <div class="total_counting">ОУФК = (О + ПТ + Н + У + ЛЛ + УР + ТТ) : 7 = {{round($OYFK, 2)}}</div>
+            <div class="total_counting">ОУФК = (О + ПТ + Н + У + ЛЛ + УР + ТТ) : 7 = {{round($OYFK, 2)}} {{$world}}</div>
         </div>
     </div>
 </div>
