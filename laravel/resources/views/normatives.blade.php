@@ -246,7 +246,7 @@
                             </tbody>
                             <tfoot style="line-height: 2; white-space: nowrap;">
                             <tr>
-                                <th scope="row" colspan="2">Итого</th>
+                                <th scope="row" colspan="2">Среднее значение</th>
                                 @for($i = 0; $i < count($total); $i++)
                                     @if($total[$i][0] != 0)
                                         <td>{{bcdiv($total[$i][0], $total[$i][1], 1)}}</td>
