@@ -9,3 +9,5 @@
 Библиотека: NodeJS
 
 СУБД: MySQL 8.0
+
+Файл бэкапа БД: sportlife.sql
