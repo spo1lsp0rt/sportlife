@@ -88,7 +88,14 @@
                             break;
                         }
                     }
+
+                    $active_comboval = DB::table('class')->where('ID_Class', $_COOKIE['ID_User'])->value('Name');
+                    // Дата, когда доступен combobox для смены группы у студента
+                    $activeGroupChange = false;
+                    if(date("m.d") >= "08.20" && date("m.d") <= "09.01")
+                        $activeGroupChange = true;
                 @endphp
+
 
                 <div class="container">
                     <div class="row">
@@ -147,6 +154,19 @@
                                         <div class="row">
                                             <div class="col">
                                                 <input spellcheck="false" type="password" name="password_confirmation" class="form-control" placeholder="Введите новый пароль повторно" autocomplete="off" value="">
+                                            </div>
+                                        </div>
+                                        <div class="row"><h5 class="text-center"><u>Изменение группы</u></h5></div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="group_combobox">
+                                                    <div name="group" class="combo js-combobox">
+                                                        <input @if(!$activeGroupChange) disabled @endif spellcheck="false" name="group" autocomplete="off" aria-controls="groups-listbox"
+                                                               aria-haspopup="groups-listbox" id="groups-combo" class="combo-input"
+                                                               role="combobox" type="text">
+                                                        <div class="combo-menu" role="listbox" id="groups-listbox"></div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -368,7 +388,30 @@
 @endsection
 
 @section('scriptsheet')
-    @if($currentUser->ID_Role == 2)
+    @if($currentUser->ID_Role == 1)
+        @php
+            $groups = DB::select('select * from class');
+            $arr_groups = array();
+            foreach ($groups as $group) {
+                $arr_groups[] = $group->Name;
+            }
+        @endphp
+        <script type="text/javascript">
+            let arr_groups = <?php echo json_encode($arr_groups); ?>;
+            let arr_options = [arr_groups];
+        </script>
+        <script src="{{ asset('js/combobox.js') }}"></script>
+        <script>
+            const active_comboval = <?php echo json_encode($active_comboval); ?>;
+            const arr_optionEl = document.querySelectorAll('.combo-option');
+            arr_optionEl.forEach(function (optionEl) {
+                if (active_comboval.includes(optionEl.innerText))
+                {
+                    optionEl.click();
+                }
+            });
+        </script>
+    @elseif($currentUser->ID_Role == 2)
         @php
             $groups = DB::select('select * from class');
             $arr_groups = array();
