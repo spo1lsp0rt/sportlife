@@ -38,6 +38,9 @@
         @if(session('changePassword_success'))
             <div class="alert alert-success text-center">{{session('changePassword_success')}}</div>
         @endif
+        @if(session('changeGroup_success'))
+            <div class="alert alert-success text-center">{{session('changeGroup_success')}}</div>
+        @endif
         @if(session('add_success'))
             <div class="alert alert-success text-center">{{session('add_success')}}</div>
         @endif
@@ -52,6 +55,12 @@
                 <li>{{$error}}</li>
             </div>
         @endforeach
+            @php
+                $closeUpdate = false;
+                // Запретить редактирование профиля, если студент неактивен
+                if(DB::table('user')->where('ID_User', $_COOKIE['ID_User'])->value('id_class') == 0)
+                    $closeUpdate = true;
+            @endphp
             <div class="user_profile">
                 <div class="profile_title"><h2>Профиль</h2></div>
                 <div class="profile_img">
@@ -59,7 +68,7 @@
                 </div>
                 <div class="profile_panel">
                     <div class="profile_name">{{$currentUser->FullName}}</div>
-                    @if($currentUser->ID_Role == 1)
+                    @if($currentUser->ID_Role == 1 && !$closeUpdate)
                     <button class="modal_btn" type="button" data-bs-toggle="modal"
                             data-bs-target="#exampleModalCenter">
                         <img src="img/edit.png" alt="Редактировать">
@@ -92,7 +101,7 @@
                     $active_comboval = DB::table('class')->where('ID_Class', $_COOKIE['ID_User'])->value('Name');
                     // Дата, когда доступен combobox для смены группы у студента
                     $activeGroupChange = false;
-                    if(date("m.d") >= "08.20" && date("m.d") <= "09.01")
+                    if(date("m.d") >= "08.01" && date("m.d") <= "09.01")
                         $activeGroupChange = true;
                 @endphp
 
@@ -134,12 +143,12 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalCenterTitle">Редактирование</h5>
-                                <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <button  class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <form action="/change_password" method="post">
-                                @csrf
-                                <div class="modal-body">
-                                    <div class="container-fluid">
+                            <div class="modal-body">
+                                <div class="container-fluid">
+                                    <form action="/change_password" method="post">
+                                        @csrf
                                         <div class="row"><h5 class="text-center"><u>Изменение пароля</u></h5></div>
                                         <div class="row">
                                             <div class="col">
@@ -156,7 +165,11 @@
                                                 <input spellcheck="false" type="password" name="password_confirmation" class="form-control" placeholder="Введите новый пароль повторно" autocomplete="off" value="">
                                             </div>
                                         </div>
-                                        <div class="row"><h5 class="text-center"><u>Изменение группы</u></h5></div>
+                                        <button class="btn btn-success">Сменить пароль</button>
+                                    </form>
+                                    <form action="/change_group" method="post">
+                                        @csrf
+                                        <div class="row mt-3"><h5 class="text-center"><u>Изменение группы</u></h5></div>
                                         <div class="row">
                                             <div class="col">
                                                 <div class="group_combobox">
@@ -169,14 +182,11 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                        <button class="btn btn-success">Поменять группу</button>
+                                    </form>
                                 </div>
-                                <div class="modal-footer">
-                                    <button class="btn btn-success">Сохранить</button>
-                                </div>
-                            </form>
+                            </div>
                         </div>
-
                     </div>
                 </div>
 

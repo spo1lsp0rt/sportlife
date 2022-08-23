@@ -106,6 +106,16 @@ class MainController extends Controller
         return Redirect::back()->with(['fio' => $fio]);
     }
 
+    public function change_group(Request $request)
+    {
+        $id_class = DB::table('class')->where('Name', $request->input('group'))->value('ID_Class');
+        DB::table('user')->where('ID_User', $_COOKIE['ID_User'])->update(array(
+            'id_class' => $id_class,
+            'date_change_group' => date('y-m-d')
+        ));
+        return Redirect::back()->with(['changeGroup_success' => 'Группа успешно изменена!']);
+    }
+
     public function  change_password(Request $request) {
         $validator = Validator::make($request->all(), [
             'old_password' => 'required',
@@ -121,10 +131,10 @@ class MainController extends Controller
             DB::table('userdata')->where('ID_User', $_COOKIE['ID_User'])->update(array(
                 'Password' => hash('sha512', $request->input('password'))
             ));
-            return Redirect::back()->with(['changePassword_success' => 'Пароль успешно изменен']);
+            return Redirect::back()->with(['changePassword_success' => 'Пароль успешно изменен!']);
         }
         else
-            return Redirect::back()->withErrors(['changePassword_failed' => 'Неправильно введен старый пароль']);
+            return Redirect::back()->withErrors(['changePassword_failed' => 'Неправильно введен старый пароль!']);
 
     }
 
@@ -232,7 +242,8 @@ class MainController extends Controller
         $id_class = DB::table('class')->where('Name', $_POST['group'])->value('ID_Class');
         DB::table('user')->where('ID_User', $id)->update(array(
             'FullName' => $_POST['new_fio'],
-            'ID_Class' => $id_class
+            'ID_Class' => $id_class,
+            'date_change_group' => date('y-m-d')
         ));
         return Redirect::back()->with(['update_success' => 'Обновление студента прошло успешно!']);
     }

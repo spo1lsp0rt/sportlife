@@ -58,6 +58,8 @@ Route::post('/out_testResults', [ MainController::class, 'out_testResults' ]);
 
 Route::post('/getStatistic', [ MainController::class, 'getStatistic' ]);
 
+Route::post('/change_group', [ MainController::class, 'change_group' ]);
+
 Route::post('/change_password', [ MainController::class, 'change_password' ]);
 /**
  * Вывод списка тестов

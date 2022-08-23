@@ -38,6 +38,7 @@ class TestResultController extends Controller
                 $statistic->ID_Test = $result->ID_Test;
                 $statistic->date_test = date('y-m-d H:i:s');
                 $statistic->ID_Result = $id;
+                $statistic->actual_id_class = DB::table('user')->where('ID_User', $_COOKIE['ID_User'])->value('id_class');
                 $statistic->save();
             }
         }
