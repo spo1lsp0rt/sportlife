@@ -182,7 +182,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <button class="btn btn-success">Поменять группу</button>
+                                        <button @if(!$activeGroupChange) disabled @endif class="btn btn-success">Поменять группу</button>
                                     </form>
                                 </div>
                             </div>
