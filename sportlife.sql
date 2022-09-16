@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.3
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Июн 15 2022 г., 11:17
--- Версия сервера: 8.0.29
--- Версия PHP: 7.4.29
+-- Время создания: Сен 12 2022 г., 16:49
+-- Версия сервера: 8.0.30
+-- Версия PHP: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -62,15 +62,15 @@ CREATE DEFINER=`root`@`127.0.0.1` PROCEDURE `getAllStatFromTest` (IN `gender` TE
 IF(studentFrom = "Все факультеты") THEN
         SELECT re.Name, COUNT(re.Value)as `count`, AVG(re.Value) as `avg`, AVG(re.Norma) as `Norma` 
         FROM `result_exercises` AS re, statistic AS s, user AS u, results AS r 
-        WHERE re.ID_Result = s.ID_Result and s.ID_Test = numTest and s.ID_User = u.ID_User and u.gender = gender AND YEAR(r.Date) = yearTest GROUP BY re.Name;
+        WHERE re.ID_Result = s.ID_Result and s.ID_Test = numTest and s.ID_User = u.ID_User and u.gender = gender 		 AND YEAR(r.Date) = yearTest GROUP BY re.Name;
 ELSEIF(EXISTS(SELECT * FROM faculty WHERE Name = studentFrom)) THEN
         SELECT re.Name, COUNT(re.Value)as `count`, AVG(re.Value) as `avg`, AVG(re.Norma) as `Norma` 
         FROM `result_exercises` AS re, statistic AS s, user AS u, class AS c, results as r 
-        WHERE re.ID_Result = s.ID_Result and s.ID_Test = numTest and s.ID_User = u.ID_User and u.gender = gender AND u.id_class = c.ID_Class AND c.id_faculty = (SELECT id_faculty FROM faculty WHERE Name = studentFrom) AND YEAR(r.Date) = yearTest GROUP BY re.Name;
+        WHERE re.ID_Result = s.ID_Result and s.ID_Test = numTest and s.ID_User = u.ID_User and u.gender = gender AND s.actual_id_class = c.ID_Class AND c.id_faculty = (SELECT id_faculty FROM faculty WHERE Name = studentFrom) AND YEAR(r.Date) = yearTest GROUP BY re.Name;
 ELSE 
         SELECT re.Name, COUNT(re.Value)as `count`, AVG(re.Value) as `avg`, AVG(re.Norma) as `Norma` 
         FROM `result_exercises` AS re, statistic AS s, user AS u, class AS c, results AS r 
-        WHERE re.ID_Result = s.ID_Result and s.ID_Test = numTest and s.ID_User = u.ID_User and u.gender = gender AND u.id_class = c.ID_Class AND c.Name = studentFrom AND YEAR(r.Date) = yearTest GROUP BY re.Name;
+        WHERE re.ID_Result = s.ID_Result and s.ID_Test = numTest and s.ID_User = u.ID_User and u.gender = gender AND s.actual_id_class = c.ID_Class AND c.Name = studentFrom AND YEAR(r.Date) = yearTest GROUP BY re.Name;
 END IF;
 END$$
 
@@ -300,7 +300,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 CREATE TABLE `normatives1` (
   `id` bigint UNSIGNED NOT NULL,
-  `gender` varchar(3) CHARACTER SET utf8mb3 COLLATE utf8_general_ci NOT NULL,
+  `gender` varchar(3) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   `age` int NOT NULL,
   `ID_Test` bigint UNSIGNED NOT NULL,
   `ID_Exercise` bigint UNSIGNED NOT NULL,
@@ -738,8 +738,8 @@ INSERT INTO `ofp_assessment_tests` (`id`, `male_normative`, `female_normative`, 
 CREATE TABLE `ofp_normatives` (
   `id` int NOT NULL,
   `name` text NOT NULL,
-  `male_normative` text CHARACTER SET utf8mb3 COLLATE utf8_general_ci,
-  `female_normative` text CHARACTER SET utf8mb3 COLLATE utf8_general_ci,
+  `male_normative` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci,
+  `female_normative` text CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci,
   `unit` text NOT NULL,
   `img` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
@@ -809,7 +809,8 @@ INSERT INTO `results` (`ID_Result`, `ID_Test`, `Date`) VALUES
 (44, 1, '2022-06-08 04:54:08'),
 (45, 1, '2022-06-08 04:55:41'),
 (46, 2, '2022-06-09 03:27:52'),
-(47, 2, '2022-06-09 03:29:55');
+(47, 2, '2022-06-09 03:29:55'),
+(49, 3, '2022-08-23 07:45:19');
 
 -- --------------------------------------------------------
 
@@ -863,7 +864,12 @@ INSERT INTO `result_exercises` (`ID_Result_Exercise`, `ID_Result`, `Name`, `Desc
 (299, 47, 'Оценка состояния дыхательной системы (проба Генче).муж', '<p>Проба Генче – время задержки дыхания на выдохе (сек).</p>\r\n<p><center><b>Условия выполнения теста.</b></center></p>\r\n<p>Сесть на стул, удобно оперевшись о его спинку, и расслабить мышцы.\r\nСделать глубокий вдох и выдох, затем снова вдох и на максимальном выдохе задержать дыхание, зажав пальцами нос.<br>\r\nПо секундомеру (или секундной стрелки часов) фиксируется время максимальной задержки дыхания (сек).<br>\r\n<b>Примечание.</b> По функциональным особенностям дыхательной системы время задержки дыхания на выдохе всегда меньше, чем время задержки дыхания на вдохе. Если проба Генче выполняется сразу после пробы Штанге, то необходим отдых между пробами 7-10 минут.</p>', 16, '43.00', 5),
 (300, 47, 'Трехфазная проба (проба Серкина).муж', 'Данная комплексная проба оценивает функцию дыхания и состоит из 3-х фаз:\r\n<ul>\r\n     <li>После пятиминутного отдыха определить время задержки дыхания на вдохе \r\n         в положении сидя (сек).</li>\r\n     <li>Выполнить 20 приседаний за 30 секунд и вновь определить время \r\n         задержки дыхания на вдохе (сек).</li>\r\n     <li>Отдохнуть ровно 1 минуту (в положении стоя) и повторить фазу 1.</li>\r\n</ul>\r\nИтоговая оценка производится по результатам фазы 3 (сек).', 17, '34.00', 5),
 (301, 47, 'Оценка вегетативных реакций на нагрузку (ортостатическая проба)муж', '<p><center><b>Условия проведения пробы.</b></center></p>\r\n<p>В положении стоя подсчитывается пульс за 10 сек и умножается на 6.\r\nЗатем нужно спокойно встать и подсчитать пульс в положении стоя.\r\nФиксируется разница (превышение) значений пульса между показателями в положении лежа и стоя (п.п. 1 и 2).</p>', 18, '34.00', 5),
-(302, 47, 'Оценка вегетативных реакций на нагрузку (клиностатическая проба)муж', 'Выполняется в обратном порядке при переходе из положения стоя в положение лежа.<br>\r\nФиксируется разница (уменьшение) значений пульса между показателями в положении стоя и лежа.\r\n', 19, '31.00', 5);
+(302, 47, 'Оценка вегетативных реакций на нагрузку (клиностатическая проба)муж', 'Выполняется в обратном порядке при переходе из положения стоя в положение лежа.<br>\r\nФиксируется разница (уменьшение) значений пульса между показателями в положении стоя и лежа.\r\n', 19, '31.00', 5),
+(303, 49, 'Оценка силовой выносливости (тест Юхаша).Часть 6.муж', '<center>6-е упражнение – поднимание ног в положении лежа лицом вниз, туловище от пола не отрывается в течение 30 секунд (кол-во раз). \r\nИспытание длится 5 минут без пауз между упражнениями.</center>', 26, '65.00', 1),
+(304, 49, 'Статическая силовая выносливость мышц рук.муж', '<p>Удержание угла в висе на согнутых руках (раз). </p>\r\n<p><center><b>Условия выполнения задания</b></center></p>\r\n<p>Испытуемый с помощью партнера или стула принимает и.п. – вис на согнутых руках (хват снизу), подбородок расположен над перекладиной. Угол между туловищем и бедрами 90⁰. По сигналу необходимо удержать это положение как можно дольше. Секундомер останавливается после того как подбородок испытуемого опустится ниже перекладины.</p>\r\n', 27, '54.00', 5),
+(305, 49, 'Проба Ромберга. муж', '<p><center><b>Условия выполнения задания</b></center></p>\r\n<p>Испытуемый должен стоять так, чтобы ноги его были на одной линии, при этом пятка одной ноги касается носка другой ноги, глаза закрыты, руки вытянуты вперед, пальцы разведены.<br>\r\nОценивается удержания позы и степень устойчивости (с).</p>\r\n', 28, '55.00', 5),
+(306, 49, 'Прыжки на одной (толчковой) ноге 20 м. Оценивается скоростно-силовая выносливость и быстрота двигательной реакции.муж', '<p><center><b>Условия выполнения задания</b></center></p>\r\n<p>Выполняются прыжки на одной (толчковой) ноге по прямой линии длиной 20 метров. Регистрируется время прохождения дистанции (с). На дистанции испытуемый не должен касаться пола второй ногой.</p>', 29, '66.00', 5),
+(307, 49, 'Тест на координированность (согласованность) движений. муж', '<p>Ассиметрично согласованные движения рук, ног, головы различной координационной сложности. </p>\r\n<p><center><b>Условия выполнения задания</b></center></p>\r\n<p>После называния и показа каждого упражнения оно изучается испытуемыми. Упражнение выполняется 2 раза совместно с проводящим в медленном темпе, 1 раз в среднем темпе, 1 раз в быстром темпе. Контрольное упражнение выполняется 1 раз в среднем темпе и 1 раз в быстром темпе. Определяется точность и время выполнения (сек):\r\n<ol>\r\n     <li>И.П. – основная стойка;</li>\r\n     <li>правая рука на пояс;</li>\r\n     <li>левая рука к плечу;</li>\r\n     <li>правая рука к плечу;</li>\r\n     <li>левая рука вверх;</li>\r\n     <li>правая рука вверх;</li>\r\n     <li>два хлопка над головой.</li>\r\n</ol>\r\n\r\nВыполнить то же в обратной последовательности.</p>\r\n', 30, '78.00', 5);
 
 -- --------------------------------------------------------
 
@@ -887,18 +893,20 @@ CREATE TABLE `statistic` (
   `ID_User` int NOT NULL,
   `ID_Test` int NOT NULL,
   `date_test` date DEFAULT NULL,
-  `ID_Result` bigint UNSIGNED NOT NULL
+  `ID_Result` bigint UNSIGNED NOT NULL,
+  `actual_id_class` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Дамп данных таблицы `statistic`
 --
 
-INSERT INTO `statistic` (`ID_Statistic`, `ID_User`, `ID_Test`, `date_test`, `ID_Result`) VALUES
-(25, 14, 1, '2022-06-08', 44),
-(26, 16, 1, '2022-06-08', 45),
-(27, 14, 2, '2022-06-09', 46),
-(28, 16, 2, '2022-06-09', 47);
+INSERT INTO `statistic` (`ID_Statistic`, `ID_User`, `ID_Test`, `date_test`, `ID_Result`, `actual_id_class`) VALUES
+(25, 14, 1, '2022-06-08', 44, 1),
+(26, 16, 1, '2022-06-08', 45, 2),
+(27, 14, 2, '2022-06-09', 46, 1),
+(28, 16, 2, '2022-06-09', 47, 2),
+(29, 14, 3, '2022-08-23', 49, 1);
 
 -- --------------------------------------------------------
 
@@ -945,7 +953,8 @@ INSERT INTO `test_user` (`ID`, `ID_Test`, `ID_User`) VALUES
 (81, 1, 14),
 (82, 1, 16),
 (83, 2, 14),
-(84, 2, 16);
+(84, 2, 16),
+(85, 3, 14);
 
 -- --------------------------------------------------------
 
@@ -957,25 +966,26 @@ CREATE TABLE `user` (
   `ID_User` int NOT NULL,
   `FullName` varchar(50) NOT NULL,
   `ID_Role` int NOT NULL,
-  `id_class` int NOT NULL,
-  `gender` text NOT NULL
+  `id_class` int DEFAULT NULL,
+  `gender` text NOT NULL,
+  `date_change_group` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Дамп данных таблицы `user`
 --
 
-INSERT INTO `user` (`ID_User`, `FullName`, `ID_Role`, `id_class`, `gender`) VALUES
-(8, 'Администратор', 3, 0, ''),
-(9, 'Преподаватель', 2, 0, ''),
-(14, 'Черемин Александр Николаевич', 1, 1, 'муж'),
-(15, 'Поташов Алексей Дмитриевич', 1, 1, 'муж'),
-(16, 'Иванов Иван Иванович', 1, 2, 'муж'),
-(17, 'Киселев Кирилл Михайлович', 1, 1, 'муж'),
-(18, 'Измайлов Илья Маратович', 1, 1, 'жен'),
-(19, 'Прогуляев Прогулял Прогуляевич', 1, 1, 'жен'),
-(22, 'Петров Петр Петрович', 1, 1, 'муж'),
-(23, 'Петров Петр Иванович', 1, 1, 'муж');
+INSERT INTO `user` (`ID_User`, `FullName`, `ID_Role`, `id_class`, `gender`, `date_change_group`) VALUES
+(8, 'Администратор', 3, 0, '', NULL),
+(9, 'Преподаватель', 2, 0, '', NULL),
+(14, 'Черемин Александр Николаевич', 1, 1, 'муж', '2022-08-23'),
+(15, 'Поташов Алексей Дмитриевич', 1, 1, 'муж', '2022-08-23'),
+(16, 'Иванов Иван Иванович', 1, 1, 'муж', '2022-08-23'),
+(17, 'Киселев Кирилл Михайлович', 1, 1, 'муж', '2021-01-06'),
+(18, 'Измайлов Илья Маратович', 1, 2, 'жен', NULL),
+(19, 'Прогуляев Прогулял Прогуляевич', 1, 1, 'жен', NULL),
+(22, 'Петров Петр Петрович', 1, 1, 'муж', NULL),
+(23, 'Петров Петр Иванович', 1, 1, 'муж', NULL);
 
 -- --------------------------------------------------------
 
@@ -986,7 +996,7 @@ INSERT INTO `user` (`ID_User`, `FullName`, `ID_Role`, `id_class`, `gender`) VALU
 CREATE TABLE `userdata` (
   `ID_User` int NOT NULL,
   `Login` varchar(50) NOT NULL,
-  `Password` varchar(150) CHARACTER SET utf8mb3 COLLATE utf8_general_ci NOT NULL
+  `Password` varchar(150) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
@@ -1253,19 +1263,19 @@ ALTER TABLE `reg_key`
 -- AUTO_INCREMENT для таблицы `results`
 --
 ALTER TABLE `results`
-  MODIFY `ID_Result` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `ID_Result` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT для таблицы `result_exercises`
 --
 ALTER TABLE `result_exercises`
-  MODIFY `ID_Result_Exercise` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=303;
+  MODIFY `ID_Result_Exercise` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=308;
 
 --
 -- AUTO_INCREMENT для таблицы `statistic`
 --
 ALTER TABLE `statistic`
-  MODIFY `ID_Statistic` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `ID_Statistic` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT для таблицы `tests`
@@ -1277,7 +1287,7 @@ ALTER TABLE `tests`
 -- AUTO_INCREMENT для таблицы `test_user`
 --
 ALTER TABLE `test_user`
-  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `ID` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
 -- AUTO_INCREMENT для таблицы `user`
@@ -1338,6 +1348,14 @@ ALTER TABLE `statistic`
 --
 ALTER TABLE `userdata`
   ADD CONSTRAINT `FK_userdata_ID_User` FOREIGN KEY (`ID_User`) REFERENCES `user` (`ID_User`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+DELIMITER $$
+--
+-- События
+--
+CREATE DEFINER=`root`@`%` EVENT `event_students` ON SCHEDULE EVERY 1 YEAR STARTS '2022-09-01 12:40:57' ON COMPLETION NOT PRESERVE ENABLE DO UPDATE user SET user.id_class = 0 WHERE DATEDIFF(CURRENT_DATE, user.date_change_group) > 364$$
+
+DELIMITER ;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
