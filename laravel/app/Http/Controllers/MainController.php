@@ -64,31 +64,59 @@ class MainController extends Controller
     public function  add_users()
     {
         $file = $_FILES['uploadfile']['tmp_name']; // файл для получения данных
+        // Первый лист
         $spreadsheet = IOFactory::load( $file );
-        $worksheet = $spreadsheet->getActiveSheet();
-        $rows = [];
-        foreach ($worksheet->getRowIterator() AS $row) {
-            $cellIterator = $row->getCellIterator();
-            $cellIterator->setIterateOnlyExistingCells(FALSE); // This loops through all cells,
-            $cells = [];
-            foreach ($cellIterator as $cell) {
-                $cells[] = $cell->getValue();
+        $spreadsheet->setActiveSheetIndex(0);
+        $sheet = $spreadsheet->getActiveSheet();
+        $rows = array();
+        foreach ($sheet->toArray() as $row) {
+            $rows[] = $row;
+        }
+        $i = 0;
+        foreach($rows as $row)
+        {
+            if($row[0] == "Логин") {
+                $rows = array_slice($rows, $i + 1);
+                break;
             }
-            $rows[] = $cells;
+            $i++;
+        }
+        for($i = 0; $i < count($rows); $i++)
+        {
+            $rows[$i] = array_filter($rows[$i], static function($var){return $var !== null;} );
+            $rows[$i] = array_values($rows[$i]);
         }
         foreach($rows as $row)
         {
-            $key = key_gen();
-            if(trim($row[0]))
-            {
-                DB::table('reg_key')->insert(array(
-                    'fio' => $row[0],
-                    'key' => $key
+            if(count($row) != 6)
+                continue;
+            $id_class = -1;
+            try {
+                $id_class = DB::table('class')->where('Name', $row[4])->value('ID_Class');
+            }catch (\Exception $ex){
+                DB::table('faculty')->insert(array(
+                        'Name' => $row[5]
+                    ));
+                DB::table('class')->insert(array(
+                    'Name' => $row[4],
+                    'id_faculty' => DB::table('faculty')->where('Name', $row[5])->value('id_faculty')
                 ));
+                $id_class = DB::table('class')->where('Name', $row[4])->value('ID_Class');
             }
+            DB::table('user')->insert(array(
+                'FullName' => $row[2],
+                'ID_Role' => 1,
+                'id_class' => $id_class,
+                'gender' => $row[3] == 'Мужской' ? "муж" : "жен",
+                'date_change_group' => date('y-m-d')
+            ));
+            DB::table('userdata')->insert(array(
+                'ID_User' => DB::table('user')->where('FullName', $row[2])->value('ID_User'),
+                'Login' => $row[0],
+                'Password' => $row[1]
+            ));
         }
         return Redirect::back()->with(['add_success' => 'Студенты были успешно добавлены!']);
-
     }
 
     public function  registration() {
@@ -126,10 +154,10 @@ class MainController extends Controller
                 ->withErrors(['changePassword_failed' => 'Ошибка! Проверьте введенные данные!']);
         }
         $password = DB::table('userdata')->where('ID_User', $_COOKIE['ID_User'])->value('Password');
-        if($password == hash('sha512', $request->input('old_password')))
+        if($password == strtoupper(md5($request->input('old_password'))))
         {
             DB::table('userdata')->where('ID_User', $_COOKIE['ID_User'])->update(array(
-                'Password' => hash('sha512', $request->input('password'))
+                'Password' => strtoupper(md5(($request->input('password'))))
             ));
             return Redirect::back()->with(['changePassword_success' => 'Пароль успешно изменен!']);
         }
@@ -166,7 +194,7 @@ class MainController extends Controller
         DB::table('userdata')->insert([
             'ID_User' => $id_user,
             'Login' => $request->input('email'),
-            'Password' => hash('sha512', $request->input('password'))
+            'Password' => strtoupper(md5($request->input('password')))
         ]);
         DB::table('reg_key')->where('fio', $fio)->delete();
         return redirect('authorization')->with(['reg_success' => 'Регистрация прошла успешно!']);
@@ -271,7 +299,7 @@ class MainController extends Controller
         $password = $_POST['password'] ?? '';
         foreach ($allUserdata as $user) {
             if ($user->Login == $login
-                && $user->Password == hash('sha512', $password))
+                && $user->Password == strtoupper(md5($password)))
             {
                 $allStat = new statistic();
                 $allTests = new Test();

@@ -263,34 +263,6 @@
                         <input class="form-control" type="file" id="formFile" name="uploadfile">
                         <input class="sumbit-upload" type="submit" value="Загрузить">
                     </form>
-                    <div class="container">
-                        <div class="row">
-                            <div class="table-responsive">
-                                <table id="key_table" class="table table-bordered align-middle text-center">
-                                    <thead class="align-middle">
-                                    <tr>
-                                        <th scope="col">ФИО</th>
-                                        <th scope="col">Ключ</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody style="line-height: 3; white-space: nowrap;">
-                                    @php
-                                        $reg_keys = DB::select('select * from reg_key');
-                                    @endphp
-                                    @foreach($reg_keys as $reg_key)
-                                        <tr class="key_row">
-                                            <td>{{$reg_key->fio}}</td>
-                                            <td>{{$reg_key->key}}</td>
-                                        </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
-                                <button id="unhide_btn" class="unhide_btn" onclick="unhide_keys()">Раскрыть</button>
-                                <button id="hide_btn" class="hide_btn" onclick="hide_keys()">Скрыть</button>
-                            </div>
-                        </div>
-                    </div>
-
                     <h3>Список студентов</h3>
 
                     <form method="post" action="delete_student">
