@@ -45,8 +45,6 @@
                         </div>
                         <button type="submit" class="btn btn-dark login_btn">Войти</button>
                     </form>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item text-center" href="/registration">Пройти регистрацию</a>
                 </div>
             </div>
         </div>

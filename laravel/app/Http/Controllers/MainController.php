@@ -119,19 +119,8 @@ class MainController extends Controller
         return Redirect::back()->with(['add_success' => 'Студенты были успешно добавлены!']);
     }
 
-    public function  registration() {
-        return view('registration');
-    }
-
     public function  authorization() {
         return view('authorization');
-    }
-
-    public function  check_key() {
-        if(!($fio = DB::table('reg_key')->where('key', $_POST['key'])->value('fio'))) {
-            return Redirect::back()->withErrors(['key_failed' => 'Неверно введен ключ!']);
-        }
-        return Redirect::back()->with(['fio' => $fio]);
     }
 
     public function change_group(Request $request)
@@ -164,40 +153,6 @@ class MainController extends Controller
         else
             return Redirect::back()->withErrors(['changePassword_failed' => 'Неправильно введен старый пароль!']);
 
-    }
-
-    public function  reg(Request $request) {
-        $validator = Validator::make($request->all(), [
-            'email' => 'required',
-            'password' => 'required|confirmed'
-        ]);
-        $fio = $request->input('secondname') . " " . $request->input('firstname') . " " . $request->input('lastname');
-        if ($validator->fails()) {
-            return Redirect::back()
-                ->withErrors(['reg_failed' => 'Ошибка! Проверьте введенные данные!'])
-                ->with('fio', $fio);
-        }
-        if(DB::table('userdata')->where('Login', $request->input('email'))->get()->toArray())
-            return Redirect::back()->withErrors(['login_busy' => 'Ошибка! Пользователь с таким логином уже существует!'])->with('fio', $fio);;
-        $id_group = DB::table('class')->where('Name', $request->input('group'))->value('ID_Class');
-        $gender = 'муж';
-        if ($request->input('gender') == 'Девушка') {
-            $gender = 'жен';
-        }
-        DB::table('user')->insert([
-            'Fullname' => $fio,
-            'ID_Role' => 1,
-            'id_class' => $id_group,
-            'gender' => $gender
-        ]);
-        $id_user = DB::table('user')->where('FullName', $fio)->value('ID_User');
-        DB::table('userdata')->insert([
-            'ID_User' => $id_user,
-            'Login' => $request->input('email'),
-            'Password' => strtoupper(md5($request->input('password')))
-        ]);
-        DB::table('reg_key')->where('fio', $fio)->delete();
-        return redirect('authorization')->with(['reg_success' => 'Регистрация прошла успешно!']);
     }
 
     public function  exit()
@@ -301,11 +256,7 @@ class MainController extends Controller
             if ($user->Login == $login
                 && $user->Password == strtoupper(md5($password)))
             {
-                $allStat = new statistic();
-                $allTests = new Test();
-                $allUsers = new users();
                 $gender = DB::table('user')->where('ID_User', $user->ID_User)->value('gender');
-                $currentData = array($allStat->all(), $allTests->all(), $allUsers->all());
                 setcookie('login', $login, 0, '/');
                 setcookie('ID_User', $user->ID_User, 0, '/');
                 setcookie('Gender', $gender, 0, '/');
