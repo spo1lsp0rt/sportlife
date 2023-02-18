@@ -102,19 +102,31 @@ class MainController extends Controller
                     'id_faculty' => DB::table('faculty')->where('Name', $row[5])->value('id_faculty')
                 ));
                 $id_class = DB::table('class')->where('Name', $row[4])->value('ID_Class');
+            }        
+            $id = DB::table('user')->where('FullName', $row[2])->value('ID_User');
+            if($id)
+            {
+                DB::table('user')->where('ID_User', $id)->update(array(
+                    'FullName' => $row[2],
+                    'id_class' => $id_class,
+                    'date_change_group' => date('y-m-d')
+                ));
             }
-            DB::table('user')->insert(array(
-                'FullName' => $row[2],
-                'ID_Role' => 1,
-                'id_class' => $id_class,
-                'gender' => $row[3] == 'Мужской' ? "муж" : "жен",
-                'date_change_group' => date('y-m-d')
-            ));
-            DB::table('userdata')->insert(array(
-                'ID_User' => DB::table('user')->where('FullName', $row[2])->value('ID_User'),
-                'Login' => $row[0],
-                'Password' => $row[1]
-            ));
+            else
+            {
+                DB::table('user')->insert(array(
+                    'FullName' => $row[2],
+                    'ID_Role' => 1,
+                    'id_class' => $id_class,
+                    'gender' => $row[3] == 'Мужской' ? "муж" : "жен",
+                    'date_change_group' => date('y-m-d')
+                ));
+                DB::table('userdata')->insert(array(
+                    'ID_User' => DB::table('user')->where('FullName', $row[2])->value('ID_User'),
+                    'Login' => $row[0],
+                    'Password' => $row[1]
+                ));
+            }
         }
         return Redirect::back()->with(['add_success' => 'Студенты были успешно добавлены!']);
     }
