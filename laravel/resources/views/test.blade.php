@@ -53,7 +53,7 @@
                     <div class="row">
                         <div class="col">
                             <div class="test_task">
-                                <div class="test_header">Задание {{$key + 1}}. {!! ($exercise->Name) !!}
+                                <div class="test_header">{!! ($exercise->Name) !!}
                                 </div>
 
                                 <div class="test_info">{!! $exercise->Description !!}
