@@ -110,7 +110,7 @@
                     <tbody style="line-height: 3; white-space: nowrap;">
                     @if($statistic && $statistic['normativesForTest1'] && $statistic['test1'])
                         @php $OYFK = 0; $statistic['test1'][0]->Name = rtrim($statistic['test1'][0]->Name, '(отжимания выполняются юношами от пола, девушками от предметов не выше 50 см).'); @endphp
-                        @for($i = 0; $i < 6; $i++)
+                        @for($i = 0; $i < 7; $i++)
                             <tr>
                                 <th scope="row">{{$statistic['normativesForTest1'][$i]->ID_Exercise}}</th>
                                 <td>{{$statistic['test1'][$i]->Name}}</td>
@@ -128,6 +128,7 @@
                                     $OYFK += round(( $statistic['test1'][$i]->avg - $statistic['test1'][$i]->Norma) / $statistic['test1'][$i]->Norma, 2);
                             @endphp
                         @endfor
+                        @php if($i == 7) $i--; @endphp
                         @php $OYFK = round($OYFK / 7, 2); @endphp
                         <tr>
                             <th scope="row">7</th>
