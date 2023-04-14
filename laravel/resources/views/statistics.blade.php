@@ -199,7 +199,7 @@
                     <tbody style="line-height: 3; white-space: nowrap;">
                     @if($statistic && $statistic['normativesForTest2'] && $statistic['test2'])
                         @php $levels = set_level($statistic['test2'], session('gender')); @endphp
-                        @for($i = 0; $i< 8; $i++)
+                        @for($i = 0; $i< 9; $i++)
                             <tr>
                                 <th scope="row">{{$i+1}}</th>
                                 <td>{{$statistic['test2'][$i]->Name}}</td>
