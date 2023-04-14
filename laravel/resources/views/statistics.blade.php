@@ -163,11 +163,7 @@
                     </thead>
                     <tbody style="line-height: 3; white-space: nowrap;">
                     @if($statistic && $statistic['normativesForTest2'] && $statistic['test2'])
-                        @php
-                            unset($statistic['test2'][3]); $statistic['test2'] = array_values($statistic['test2']);
-                            unset($statistic['normativesForTest2'][2]); $statistic['normativesForTest2'] = array_values($statistic['normativesForTest2']);
-                        @endphp
-                        @for($i = 0; $i< 8; $i++)
+                        @for($i = 0; $i< 9; $i++)
                             @php $statistic['test2'][$i]->Name = rtrim($statistic['test2'][$i]->Name, 'жен.муж') @endphp
                             <tr>
                                 <th scope="row">{{$i+1}}</th>
