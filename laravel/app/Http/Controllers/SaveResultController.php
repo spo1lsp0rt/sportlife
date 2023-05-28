@@ -491,7 +491,7 @@ class SaveResultController extends Controller
         foreach ($test->Exercises as $exercise){
             $begtemp = explode(':', $request->input($exercise->getInputName().'begtime'));
             $endtemp = explode(':', $request->input($exercise->getInputName().'endtime'));
-
+            
 
             for ($i = 0; $i < 2; $i++){
                 $time_temp[] = $begtemp[$i];
@@ -511,23 +511,18 @@ class SaveResultController extends Controller
                 $rules[$exercise->getInputName().'begtime'] = 'required';
                 $rules[$exercise->getInputName().'endtime'] = 'required';
             }
-
+            
         }
-        //dd(sizeof($arrtime));
+
         for ($i = 0; $i < sizeof($arrtime); $i++){
             for ($j = $i + 1; $j < sizeof($arrtime); $j++){
-                //Проверка на совпадение часа во временных промежутках начала, если равны, то
-                if ($arrtime[$i][0] <= $arrtime[$j][0] && $arrtime[$i][1] <= $arrtime[$j][2]){
-                    //Прверка на совпадение минут во временных промежутках
-                    if ($arrtime[$i][0] == $arrtime[$j][0]){
-                        if ($arrtime[$i][1] > $arrtime[$j][1]) $rules[$exercise->getInputName().'begtime'] = 'required|email';
-                    }
-                    else
-                    {
-                        if ($arrtime[$i][3] > $arrtime[$j][1]) $rules[$exercise->getInputName().'begtime'] = 'required|email';
-                    }
+
+                if(strtotime(date("Y-m-d H:i", mktime($arrtime[$i][0], $arrtime[$i][1]))) < strtotime(date("Y-m-d H:i", mktime($arrtime[$j][2], $arrtime[$j][3]))) 
+                    && strtotime(date("Y-m-d H:i", mktime($arrtime[$i][2], $arrtime[$i][3]))) > strtotime(date("Y-m-d H:i", mktime($arrtime[$j][0], $arrtime[$j][1]))))
+                {
+                    $rules[$exercise->getInputName().'begtime'] = 'required|email';
                 }
-                else $rules[$exercise->getInputName().'begtime'] = 'required|email';
+                
             }
         }
         $time = 0;
