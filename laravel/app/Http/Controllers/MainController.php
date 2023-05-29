@@ -103,7 +103,8 @@ class MainController extends Controller
                 ));
                 $id_class = DB::table('class')->where('Name', $row[4])->value('ID_Class');
             }        
-            $id = DB::table('user')->where('FullName', $row[2])->value('ID_User');
+            
+            $id = DB::table('userdata')->where('Login', $row[0])->value('ID_User');
             if($id)
             {
                 DB::table('user')->where('ID_User', $id)->update(array(
@@ -114,7 +115,7 @@ class MainController extends Controller
             }
             else
             {
-                DB::table('user')->insert(array(
+                $id = DB::table('user')->insert(array(
                     'FullName' => $row[2],
                     'ID_Role' => 1,
                     'id_class' => $id_class,
@@ -122,7 +123,7 @@ class MainController extends Controller
                     'date_change_group' => date('y-m-d')
                 ));
                 DB::table('userdata')->insert(array(
-                    'ID_User' => DB::table('user')->where('FullName', $row[2])->value('ID_User'),
+                    'ID_User' => DB::table('user')->max('ID_User'),
                     'Login' => $row[0],
                     'Password' => $row[1]
                 ));
