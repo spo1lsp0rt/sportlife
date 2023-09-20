@@ -42,6 +42,8 @@ Route::post('/out_ofp', [ MainController::class, 'out_ofp' ]);
 
 Route::post('/add_users', [ MainController::class, 'add_users' ]);
 
+Route::post('/add_groups', [ MainController::class, 'add_groups' ]);
+
 Route::post('/out_ofp', [ MainController::class, 'out_ofp' ]);
 
 Route::post('/ofp_table', [ MainController::class, 'ofp_table' ]);

@@ -61,6 +61,24 @@ class MainController extends Controller
         return redirect('/profile');
     }
 
+
+    public function add_groups()
+    {
+        if(empty($_POST['name'])){
+            return Redirect::back()->with(['changeGroup_success' => 'Введите название группы!!!']);
+        }
+        //SELECT MAX(article) AS article FROM shop
+        $id_class =  DB::select('SELECT MAX(ID_Class) AS ID_Class FROM class');
+        $_POST['ID_Class'] = $id_class[0]->ID_Class;
+
+        DB::table('class')->insert(array(
+            'ID_Class' => $_POST['ID_Class'],
+            'Name' => $_POST['name'],
+            'id_faculty' => DB::table('faculty')->where('id_faculty', $_POST['faculty'])->value('id_faculty')
+        ));
+        return Redirect::back()->with(['add_success' => 'Группа была успешно добавлена!']);
+
+    }
     public function  add_users()
     {
         $file = $_FILES['uploadfile']['tmp_name']; // файл для получения данных
@@ -102,8 +120,8 @@ class MainController extends Controller
                     'id_faculty' => DB::table('faculty')->where('Name', $row[5])->value('id_faculty')
                 ));
                 $id_class = DB::table('class')->where('Name', $row[4])->value('ID_Class');
-            }        
-            
+            }
+
             $id = DB::table('userdata')->where('Login', $row[0])->value('ID_User');
             if($id)
             {

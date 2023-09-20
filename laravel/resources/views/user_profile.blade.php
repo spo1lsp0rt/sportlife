@@ -55,26 +55,26 @@
                 <li>{{$error}}</li>
             </div>
         @endforeach
-            @php
-                $closeUpdate = false;
-                // Запретить редактирование профиля, если студент неактивен
-                if(DB::table('user')->where('ID_User', $_COOKIE['ID_User'])->value('id_class') == 0)
-                    $closeUpdate = true;
-            @endphp
-            <div class="user_profile">
-                <div class="profile_title"><h2>Профиль</h2></div>
-                <div class="profile_img">
-                    <img src="/img/profile_img.png" alt="profile">
-                </div>
-                <div class="profile_panel">
-                    <div class="profile_name">{{$currentUser->FullName}}</div>
-                    @if($currentUser->ID_Role == 1 && !$closeUpdate)
+        @php
+            $closeUpdate = false;
+            // Запретить редактирование профиля, если студент неактивен
+            if(DB::table('user')->where('ID_User', $_COOKIE['ID_User'])->value('id_class') == 0)
+                $closeUpdate = true;
+        @endphp
+        <div class="user_profile">
+            <div class="profile_title"><h2>Профиль</h2></div>
+            <div class="profile_img">
+                <img src="/img/profile_img.png" alt="profile">
+            </div>
+            <div class="profile_panel">
+                <div class="profile_name">{{$currentUser->FullName}}</div>
+                @if($currentUser->ID_Role == 1 && !$closeUpdate)
                     <button class="modal_btn" type="button" data-bs-toggle="modal"
                             data-bs-target="#exampleModalCenter">
                         <img src="img/edit.png" alt="Редактировать">
                     </button>
-                    @endif
-                </div>
+                @endif
+            </div>
             @if($currentUser->ID_Role == 1)
                 @php
                     if(!array_key_exists('login', $_COOKIE))
@@ -126,7 +126,8 @@
                                     @endphp
                                     <tr>
                                         <th class="p-0" scope="row"><a
-                                                href="/test_result/{{$stat->ID_Result}}">{{$stat->date_test}}</a></th>
+                                                    href="/test_result/{{$stat->ID_Result}}">{{$stat->date_test}}</a>
+                                        </th>
                                         <td class="p-0"><a href="/test_result/{{$stat->ID_Result}}">{{$name_test}}</a>
                                         </td>
                                     </tr>
@@ -143,7 +144,7 @@
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="exampleModalCenterTitle">Редактирование</h5>
-                                <button  class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <button class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <div class="container-fluid">
@@ -152,17 +153,23 @@
                                         <div class="row"><h5 class="text-center"><u>Изменение пароля</u></h5></div>
                                         <div class="row">
                                             <div class="col">
-                                                <input spellcheck="false" type="password" name="old_password" class="form-control" placeholder="Введите старый пароль" autocomplete="off" value="">
+                                                <input spellcheck="false" type="password" name="old_password"
+                                                       class="form-control" placeholder="Введите старый пароль"
+                                                       autocomplete="off" value="">
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col">
-                                                <input spellcheck="false" type="password" name="password" class="form-control" placeholder="Введите новый пароль" autocomplete="off" value="">
+                                                <input spellcheck="false" type="password" name="password"
+                                                       class="form-control" placeholder="Введите новый пароль"
+                                                       autocomplete="off" value="">
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col">
-                                                <input spellcheck="false" type="password" name="password_confirmation" class="form-control" placeholder="Введите новый пароль повторно" autocomplete="off" value="">
+                                                <input spellcheck="false" type="password" name="password_confirmation"
+                                                       class="form-control" placeholder="Введите новый пароль повторно"
+                                                       autocomplete="off" value="">
                                             </div>
                                         </div>
                                         <button class="btn btn-success">Сменить пароль</button>
@@ -174,15 +181,21 @@
                                             <div class="col">
                                                 <div class="group_combobox">
                                                     <div name="group" class="combo js-combobox">
-                                                        <input @if(!$activeGroupChange) disabled @endif spellcheck="false" name="group" autocomplete="off" aria-controls="groups-listbox"
-                                                               aria-haspopup="groups-listbox" id="groups-combo" class="combo-input"
+                                                        <input @if(!$activeGroupChange) disabled
+                                                               @endif spellcheck="false" name="group" autocomplete="off"
+                                                               aria-controls="groups-listbox"
+                                                               aria-haspopup="groups-listbox" id="groups-combo"
+                                                               class="combo-input"
                                                                role="combobox" type="text">
-                                                        <div class="combo-menu" role="listbox" id="groups-listbox"></div>
+                                                        <div class="combo-menu" role="listbox"
+                                                             id="groups-listbox"></div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <button @if(!$activeGroupChange) disabled @endif class="btn btn-success">Поменять группу</button>
+                                        <button @if(!$activeGroupChange) disabled @endif class="btn btn-success">
+                                            Поменять группу
+                                        </button>
                                     </form>
                                 </div>
                             </div>
@@ -209,17 +222,19 @@
                             <div class="parameters_panel">
                                 <form class="form_parameters" action="/out_testResults" method="post">
                                     @csrf
-                                        <div class="group_combobox">
-                                            <div name="group" class="combo js-combobox">
-                                                <input spellcheck="false" name="group" autocomplete="off" aria-controls="groups-listbox"
-                                                       aria-haspopup="groups-listbox" id="groups-combo" class="combo-input"
-                                                       role="combobox" type="text">
-                                                <div class="combo-menu" role="listbox" id="groups-listbox"></div>
-                                            </div>
+                                    <div class="group_combobox">
+                                        <div name="group" class="combo js-combobox">
+                                            <input spellcheck="false" name="group" autocomplete="off"
+                                                   aria-controls="groups-listbox"
+                                                   aria-haspopup="groups-listbox" id="groups-combo" class="combo-input"
+                                                   role="combobox" type="text">
+                                            <div class="combo-menu" role="listbox" id="groups-listbox"></div>
                                         </div>
-                                        <button type="submit" class="show_btn">Вывести</button>
+                                    </div>
+                                    <button type="submit" class="show_btn">Вывести</button>
                                 </form>
-                                <a href="/statistics" class="stat_btn"><img src="img/statistic_icon.png" alt="Статистика"></a>
+                                <a href="/statistics" class="stat_btn"><img src="img/statistic_icon.png"
+                                                                            alt="Статистика"></a>
                             </div>
                         </div>
                     </div>
@@ -242,7 +257,8 @@
 
                                     <tr>
                                         <th class="p-0" scope="row"><a
-                                                href="/test_result/{{$stat->ID_Result}}">{{$stat->date_test}}</a></th>
+                                                    href="/test_result/{{$stat->ID_Result}}">{{$stat->date_test}}</a>
+                                        </th>
                                         <td class="p-0"><a href="/test_result/{{$stat->ID_Result}}">{{$name_user}}</a>
                                         </td>
                                         <td class="p-0"><a href="/test_result/{{$stat->ID_Result}}">{{$name_test}}</a>
@@ -263,6 +279,26 @@
                         <input class="form-control" type="file" id="formFile" name="uploadfile">
                         <input class="sumbit-upload" type="submit" value="Загрузить">
                     </form>
+                    @php
+                        $faculties = DB::select('select * from faculty');
+                        foreach ($faculties as $faculty)
+                            $arr_faculties[$faculty->id_faculty] = $faculty->Name;
+
+                        //dd($arr_faculties);
+                    @endphp
+                    <form class="" action="/add_groups" method="post">
+                        @csrf
+                        <div class="text-center">
+                            Выберите Факультет и напишите имя группы
+                        </div>
+                        <select name="faculty" class="group_combobox">
+                            <?php foreach ($arr_faculties as $key => $faculty): ?>
+                                <option value="<?= $key ?>"><?=$faculty?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <input id="name_group" name="name">
+                        <input class="sumbit-upload" type="submit" value="Добавить группу">
+                    </form>
                     <h3>Список студентов</h3>
 
                     <form method="post" action="delete_student">
@@ -272,7 +308,8 @@
                                 <div class="col">
                                     <div class="table_parameters">
                                         <button class="user_delbtn">Удалить выбранных</button>
-                                        <input type="text" id="myInput" class="table_searcher" onkeyup="searchMe(0)" placeholder="Поиск по имени...">
+                                        <input type="text" id="myInput" class="table_searcher" onkeyup="searchMe(0)"
+                                               placeholder="Поиск по имени...">
                                     </div>
                                 </div>
                             </div>
@@ -299,7 +336,8 @@
                                                     $facultyName = DB::table('faculty')->where('id_faculty', DB::table('class')->where('ID_Class', $student->id_class)->value('id_faculty'))->value('Name');
                                                 @endphp
                                                 <tr>
-                                                    <th scope="row"><input spellcheck="false" name="{{$student->ID_User}}" type="checkbox"
+                                                    <th scope="row"><input spellcheck="false"
+                                                                           name="{{$student->ID_User}}" type="checkbox"
                                                                            style="transform:scale(1.4);"></th>
                                                     <td>{{$student->FullName}}</td>
                                                     <td>{{$facultyName}}</td>
@@ -339,8 +377,10 @@
                                     <div class="container-fluid">
                                         <div class="row">
                                             <div class="col">
-                                                <input spellcheck="false" type="text" name="new_fio" id="out1" class="form-control">
-                                                <input spellcheck="false" type="hidden" name="old_fio" id="out2" class="form-control">
+                                                <input spellcheck="false" type="text" name="new_fio" id="out1"
+                                                       class="form-control">
+                                                <input spellcheck="false" type="hidden" name="old_fio" id="out2"
+                                                       class="form-control">
                                             </div>
                                         </div>
                                         <div class="row">
@@ -387,8 +427,7 @@
             const active_comboval = <?php echo json_encode($active_comboval); ?>;
             const arr_optionEl = document.querySelectorAll('.combo-option');
             arr_optionEl.forEach(function (optionEl) {
-                if (active_comboval.includes(optionEl.innerText))
-                {
+                if (active_comboval.includes(optionEl.innerText)) {
                     optionEl.click();
                 }
             });
@@ -410,8 +449,7 @@
             const active_comboval = <?php echo json_encode($active_comboval); ?>;
             const arr_optionEl = document.querySelectorAll('.combo-option');
             arr_optionEl.forEach(function (optionEl) {
-                if (active_comboval.includes(optionEl.innerText))
-                {
+                if (active_comboval.includes(optionEl.innerText)) {
                     optionEl.click();
                 }
             });
@@ -423,6 +461,18 @@
             foreach ($groups as $group) {
                 $arr_groups[] = $group->Name;
             }
+
+
+        @endphp
+        @php
+
+
+            $faculties = DB::select('select * from faculty');
+            $arr_faculties = array('#Факультеты');
+            $arr_faculties[] = 'Все факультеты';
+            foreach ($faculties as $faculty)
+                $arr_faculties[] = $faculty->Name;
+
         @endphp
         <script type="text/javascript">
             let arr_groups = <?php echo json_encode($arr_groups); ?>;
@@ -455,8 +505,7 @@
                         }
                         i++;
                     });
-                }
-                else if (arr_keyrows.length === 0) {
+                } else if (arr_keyrows.length === 0) {
                     document.getElementById('key_table').style.display = "none";
                 }
             }
@@ -478,8 +527,13 @@
         </script>
         <script src="{{ asset('js/myTable.js') }}"></script>
         <script>
-            jQuery(document).ready(function(){
-                jQuery('#myTable').pageMe({pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:5});
+            jQuery(document).ready(function () {
+                jQuery('#myTable').pageMe({
+                    pagerSelector: '#myPager',
+                    showPrevNext: true,
+                    hidePageNumbers: false,
+                    perPage: 5
+                });
             });
         </script>
         <script>
@@ -493,8 +547,7 @@
                     var pager = document.getElementById(myPager);
                     var li = pager.querySelector("li.active");
                     li.getElementsByTagName("a")[0].click();
-                }
-                else {
+                } else {
                     tr = table.getElementsByTagName("tr");
                     // Loop through all table rows, and hide those who don't match the search query
                     var viewed = 0;
